@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+{% block title %}À Propos - Club de Voitures Américaines{% endblock %}
+
+{% block content %}
+<main style="grid-template-columns: 1fr; grid-template-areas: 'title' 'content';">
+    <h1>À Propos de Notre Club</h1>
+
+    <div class="about-content" style="grid-area: content; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; margin-bottom: 40px;">
+        {% if club_info %}
+            <div class="about-section">
+                <h2>Notre Histoire</h2>
+                <p>{{ club_info.description }}</p>
+            </div>
+
+            <div class="founders-section">
+                <h2>Nos Fondateurs</h2>
+                <div class="founders-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+                    <div class="founder-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 8px; overflow: hidden; padding: 20px;">
+                        <h3>Le Fondateur</h3>
+                        <p>{{ club_info.founder_info }}</p>
+                    </div>
+                    <div class="founder-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 8px; overflow: hidden; padding: 20px;">
+                        <h3>Le Co-Fondateur</h3>
+                        <p>{{ club_info.cofounder_info }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section" style="margin-top: 30px;">
+                <h2>Contactez-nous</h2>
+                <ul style="list-style: none; padding: 0;">
+                    {% if club_info.email %}
+                        <li style="margin-bottom: 10px;"><i class="fas fa-envelope"></i> {{ club_info.email }}</li>
+                    {% endif %}
+                    {% if club_info.phone %}
+                        <li style="margin-bottom: 10px;"><i class="fas fa-phone"></i> {{ club_info.phone }}</li>
+                    {% endif %}
+                    <li style="margin-bottom: 10px;">
+                        <div class="social-links" style="display: flex; gap: 15px;">
+                            {% if club_info.instagram %}
+                                <a href="{{ club_info.instagram }}" style="color: white;"><i class="fab fa-instagram"></i> Instagram</a>
+                            {% endif %}
+                            {% if club_info.facebook %}
+                                <a href="{{ club_info.facebook }}" style="color: white;"><i class="fab fa-facebook"></i> Facebook</a>
+                            {% endif %}
+                            {% if club_info.twitter %}
+                                <a href="{{ club_info.twitter }}" style="color: white;"><i class="fab fa-twitter"></i> Twitter</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        {% else %}
+            <p>Les informations sur le club ne sont pas encore disponibles.</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

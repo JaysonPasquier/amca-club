@@ -1,0 +1,123 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Membres - Club de Voitures Américaines{% endblock %}
+
+{% block content %}
+<div class="members-page" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+    <h1 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Nos Membres</h1>
+
+    <!-- Debug info to verify members are loaded correctly -->
+    {% if debug %}
+    <div style="background-color: rgba(0,0,0,0.5); padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+        <p>Nombre total de membres: {{ members.count }}</p>
+        <ul>
+        {% for member in members %}
+            <li>ID {{ member.member_id }}: {{ member.user.get_full_name }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="members-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;">
+        {% if members %}
+            {% for member in members %}
+                <div class="member-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <!-- Highlight if this is the current user -->
+                    {% if user == member.user %}
+                    <div style="background-color: var(--accent); color: white; text-align: center; padding: 5px; font-weight: bold;">
+                        C'est vous
+                    </div>
+                    {% endif %}
+
+                    <div class="member-header" style="position: relative;">
+                        <div style="height: 100px; background: linear-gradient(45deg, #2c3e50, #3498db);"></div>
+                        <div class="member-image" style="position: relative; margin: -50px auto 10px; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 4px solid black; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                            <img src="{{ member.profile_image.url }}"
+                                 alt="{{ member.user.get_full_name }}"
+                                 style="width: 100%; height: 100%; object-fit: cover;"
+                                 onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                        </div>
+                        <div class="member-id-badge" style="position: absolute; top: 15px; right: 15px; background-color: black; color: white; border-radius: 30px; padding: 5px 10px; font-size: 0.9rem;">
+                            ID: {{ member.member_id }}
+                        </div>
+                    </div>
+
+                    <div class="member-info" style="padding: 20px; text-align: center;">
+                        <h2 style="margin: 0 0 5px 0; font-size: 1.4rem;">{{ member.user.get_full_name }}</h2>
+                        <p style="margin: 0 0 15px 0; color: #aaa; font-size: 1rem;">{{ member.get_role_display }}</p>
+
+                        <div class="member-since" style="font-size: 0.9rem; margin-bottom: 15px;">
+                            <i class="fas fa-calendar-alt"></i> Membre depuis {{ member.date_created|date:"d/m/Y" }}
+                        </div>
+
+                        {% if member.instagram or member.facebook or member.twitter %}
+                            <div class="member-social" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 15px;">
+                                {% if member.instagram %}
+                                    <a href="{{ member.instagram }}" target="_blank" style="color: #e1306c; font-size: 1.2rem; transition: transform 0.3s ease;">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                {% endif %}
+                                {% if member.facebook %}
+                                    <a href="{{ member.facebook }}" target="_blank" style="color: #1877f2; font-size: 1.2rem; transition: transform 0.3s ease;">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                {% endif %}
+                                {% if member.twitter %}
+                                    <a href="{{ member.twitter }}" target="_blank" style="color: #1da1f2; font-size: 1.2rem; transition: transform 0.3s ease;">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        <a href="{% url 'user_profile' member.user.username %}" style="display: inline-block; background-color: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; padding: 8px 20px; border-radius: 30px; transition: all 0.3s ease; font-weight: 500;">
+                            <i class="fas fa-user" style="margin-right: 5px;"></i> Voir profil
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 50px 0;">
+                <div style="background-color: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 10px;">
+                    <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                    <h3>Aucun membre approuvé pour le moment</h3>
+                    <p>Les membres approuvés apparaîtront ici.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .member-card {
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .member-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .member-social a:hover {
+        transform: scale(1.2);
+    }
+
+    .member-card:hover .member-id-badge {
+        background-color: #ff3838;
+    }
+
+    /* Media queries for responsive design */
+    @media (max-width: 768px) {
+        .members-container {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+    }
+
+    @media (max-width: 480px) {
+        .members-container {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}

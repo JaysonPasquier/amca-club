@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% load custom_filters %}
+
+{% block title %}Accueil - Club de Voitures Américaines{% endblock %}
+
+{% block header %}
+<!-- Header section with founders -->
+<header>
+    <!-- Toujours afficher l'image du fondateur -->
+    <img src="/static/img/Jerem.png" alt="Fondateur">
+
+    <div class="header-text">
+        <img src="/static/img/logo.png" alt="logo" class="header-logo">
+        <h1>Bienvenue</h1>
+        {% if club_info %}
+            <h4>{{ club_info.description }}</h4>
+        {% else %}
+            <h4>Une communauté dédiée aux passionnés de voitures américaines.</h4>
+        {% endif %}
+    </div>
+
+    <!-- Toujours afficher l'image du co-fondateur -->
+    <img src="/static/img/Eric.png" alt="Co-Fondateur">
+</header>
+{% endblock %}
+
+{% block content %}
+<!-- Main content with events -->
+<main>
+    <h1>Événements à Venir</h1>
+
+    {% if upcoming_events %}
+        {% for event in upcoming_events %}
+            <div class="event-card">
+                <img src="/static/img/images.png" alt="{{ event.title }}">
+                <div class="event-info">
+                    <h2>{{ event.event_date|date:"l j F Y" }}</h2>
+                    <h2>horaire : {{ event.event_date|date:"H:i" }}</h2>
+                    <h2>{{ event.location }}</h2>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Fill any remaining slots with empty cards if needed -->
+        {% if upcoming_events|length < 6 %}
+            {% for i in "x"|ljust:6|make_list|slice:upcoming_events|length %}
+                <div class="event-card">
+                    <img src="static/img/images.png" alt="Événement à venir">
+                    <div class="event-info">
+                        <h2>Plus d'événements à venir</h2>
+                        <h2>Restez à l'écoute</h2>
+                        <h2>Informations bientôt disponibles</h2>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <!-- Display placeholder events when none are available -->
+        {% for i in "123456" %}
+            <div class="event-card">
+                <img src="static/img/images.png" alt="Événement à venir">
+                <div class="event-info">
+                    <h2>Plus d'événements à venir</h2>
+                    <h2>Restez à l'écoute</h2>
+                    <h2>Informations bientôt disponibles</h2>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+{% load custom_filters %}
+
+{% block title %}Demande d'Adhésion - Club de Voitures Américaines{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 80px auto; padding: 30px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+    <h1 style="text-align: center; margin-bottom: 30px;">Demande d'Adhésion</h1>
+
+    <p style="text-align: center; margin-bottom: 30px; color: #aaa;">
+        Remplissez le formulaire ci-dessous pour demander à rejoindre le Club de Voitures Américaines.
+        Votre demande sera examinée par un administrateur.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.first_name.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.first_name.label }}</label>
+            {{ form.first_name|add_class:"form-input" }}
+            {% if form.first_name.errors %}
+                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.first_name.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.last_name.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.last_name.label }}</label>
+            {{ form.last_name|add_class:"form-input" }}
+            {% if form.last_name.errors %}
+                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.last_name.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.username.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.username.label }}</label>
+            {{ form.username|add_class:"form-input" }}
+            {% if form.username.errors %}
+                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.username.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.email.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.email.label }}</label>
+            {{ form.email|add_class:"form-input" }}
+            {% if form.email.errors %}
+                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.email.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 12px 0; background-color: white; color: black; border: none; border-radius: 5px; font-weight: 500; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease; margin-top: 20px;">Envoyer ma demande</button>
+    </form>
+
+    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <p>Déjà membre ?</p>
+        <a href="{% url 'login' %}" style="display: inline-block; padding: 10px 20px; background-color: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">
+            Se connecter
+        </a>
+    </div>
+</div>
+
+<style>
+    .form-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.05);
+        color: white;
+        font-size: 16px;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: white;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load custom_filters %}
+
+{% block title %}Connexion - Club de Voitures Américaines{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 80px auto; padding: 30px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+    <h1 style="text-align: center; margin-bottom: 30px;">Connexion</h1>
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <div style="margin-bottom: 20px;">
+            <label for="id_username" style="display: block; margin-bottom: 8px; font-weight: 500;">Nom d'utilisateur</label>
+            <input type="text" name="username" id="id_username" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="id_password" style="display: block; margin-bottom: 8px; font-weight: 500;">Mot de passe</label>
+            <input type="password" name="password" id="id_password" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px;">
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0 20px;">
+            <div>
+                <input type="checkbox" name="remember" id="remember" style="margin-right: 8px;">
+                <label for="remember">Se souvenir de moi</label>
+            </div>
+            <a href="{% url 'password_reset' %}" style="color: #aaa; text-decoration: none;">Mot de passe oublié ?</a>
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 12px 0; background-color: white; color: black; border: none; border-radius: 5px; font-weight: 500; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Se connecter</button>
+
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <p>Pas encore membre ?</p>
+        <a href="{% url 'signup_request' %}" style="display: inline-block; padding: 10px 20px; background-color: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">
+            Demander l'adhésion
+        </a>
+    </div>
+</div>
+{% endblock %}

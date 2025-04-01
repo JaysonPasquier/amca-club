@@ -1,0 +1,50 @@
+a website for a club of american car lover (not only american car but focused on it)
+content of main page :
+	nav bar at the top
+		nav bar content
+			logo on the left with the name at the right of the logo, on the absolute right of the nav bar there will be the profile button and the settings icon, and between the logo and the profile there will be nav button(max 5 display other will be in a "menu deroulant")
+
+	there will be the introduction with a little description of the website (who are the ceo of it, why was it created, what is available to do on it)
+	with image of the two ceo ( one on the right and on the left and there will be one or two image at the center for the club like the garage where the cars are) (for now the image are just gona be placeholder, black screen)
+
+	after that maybe a section where futur event will be displayed (the name of the place with a text displayed to say its in work)
+
+	a place where post that was posted on the website by people from the club so image with a texte or just image
+
+	under we will have a newslatter a place where random people can put they email so they can receiv mail of the club without having an account on it
+
+	and we are gona have the footer
+		content of footer
+			nav link
+			contact (email, numero de telephone fondateur et co fondateur, instagram)
+			logo
+			rgpd
+
+	profile page
+		profile page content
+			image profile
+			name (Par exemple Jayson Pasquier)
+			member id (from 1 to ... the number will be given by the order fo register)
+			role (fondateur, co fondateur, member, other later, developpeur (me))
+			post (un peut comme sur les reseau les gens pourront faire des post chaque post auras une image/video avec description, like, commentaire, partage)
+			réseaux sociaux extern
+
+	page pour la liste des membres
+		page content :
+			liste des utilisateur du site en haut les premier inscrit et ensuite a la suite les derniere personne inscrite avec leur image de profile, leurs roles, et la date ou ils se sont inscrit
+			pouvoir voir le profile de la personne en cliquant dessus
+
+dautre page plus tard
+
+technologie :
+django
+a db that you want (not mangodb)
+the image will be save on the serveur
+react to make the website adaptive to all screen
+
+use basic color for the website
+make an admin vue to create profile rapidly via the admin vue and if someone want to create a profile from the public vue, i want to do so an admin need to accept the request to create an account.
+for now there will be only one database for everything, user account and information, post and information of post.
+i want to add two information really important for the account, when was it created and when was the last login/connexion from the user.
+
+for now the post thing will be disable

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Club de Voitures Américaines{% endblock %}</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <div class="nav-left">
+            <img src="/static/img/logo.png" alt="logo">
+            <span class="nav-title">Club de Voitures Américaines</span>
+        </div>
+        <div class="nav-center">
+            <a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Accueil</a>
+            <a href="{% url 'about' %}" class="{% if 'about' in request.path %}active{% endif %}">À propos</a>
+            <a href="{% url 'events' %}" class="{% if 'events' in request.path %}active{% endif %}">Événements</a>
+            <a href="{% url 'members_list' %}" class="{% if 'members' in request.path %}active{% endif %}">Membres</a>
+        </div>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}">{{ user.username }}</a>
+            {% else %}
+                <a href="{% url 'login' %}">Connexion</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Content blocks -->
+    {% block header %}{% endblock %}
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="newsletter">
+                <h3>Restez informé des derniers événements</h3>
+                <p>Inscrivez-vous à notre newsletter pour recevoir les dernières actualités</p>
+                <form class="newsletter-form" method="post" action="{% url 'newsletter_signup' %}">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Votre adresse email" required>
+                    <button type="submit">S'inscrire</button>
+                </form>
+            </div>
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="/static/img/logo.png" alt="logo" class="footer-logo-img">
+                    <span>Club de Voitures Américaines</span>
+                </div>
+                <div class="footer-links">
+                    <a href="{% url 'about' %}">À propos</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; {% now "Y" %} Club de Voitures Américaines. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ profile_user.get_full_name }} - Club de Voitures Américaines{% endblock %}
+
+{% block content %}
+<div class="profile-page" style="max-width: 1000px; margin: 50px auto; padding: 0 20px;">
+    <!-- Profile header with banner and image -->
+    <div class="profile-header" style="position: relative; background-color: rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+        <!-- Banner area -->
+        <div class="profile-banner" style="height: 180px; background: linear-gradient(45deg, #2c3e50, #34495e); width: 100%;"></div>
+
+        <!-- Profile information container -->
+        <div class="profile-info" style="position: relative; padding: 20px 30px 30px; margin-top: -50px;">
+            <!-- Profile image -->
+            <div class="profile-image-container" style="width: 150px; height: 150px; margin-bottom: 15px; position: relative; margin-left: 20px;">
+                <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 5px solid black; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                    <!-- Add default image fallback using onerror -->
+                    <img src="{{ profile.profile_image.url }}"
+                         alt="{{ profile_user.get_full_name }}"
+                         style="width: 100%; height: 100%; object-fit: cover;"
+                         onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                </div>
+                <!-- Member ID badge -->
+                <div style="position: absolute; bottom: 5px; right: 5px; background-color: black; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; font-size: 12px; border: 2px solid white; font-weight: bold;">
+                    #{{ profile.member_id }}
+                </div>
+            </div>
+
+            <!-- Role badge -->
+            <div style="position: absolute; top: -20px; right: 20px; background-color: rgba(0, 0, 0, 0.8); color: white; padding: 5px 15px; border-radius: 20px; font-weight: 500;">
+                {{ profile.get_role_display }}
+            </div>
+
+            <!-- User information -->
+            <div style="padding-top: 20px;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 5px;">{{ profile_user.get_full_name }}</h1>
+                <p style="color: #aaa; margin-bottom: 25px; font-size: 1.1rem;">@{{ profile_user.username }}</p>
+
+                <!-- Member stats -->
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                    <div style="background-color: rgba(255, 255, 255, 0.1); padding: 10px 15px; border-radius: 8px;">
+                        <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>
+                        Membre depuis {{ profile.date_created|date:"d/m/Y" }}
+                    </div>
+                    <div style="background-color: rgba(255, 255, 255, 0.1); padding: 10px 15px; border-radius: 8px;">
+                        <i class="fas fa-clock" style="margin-right: 8px;"></i>
+                        Dernière connexion: {% if profile.last_login %}{{ profile.last_login|date:"d/m/Y" }}{% else %}jamais{% endif %}
+                    </div>
+                    <div style="background-color: rgba(255, 255, 255, 0.1); padding: 10px 15px; border-radius: 8px;">
+                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                        {{ profile_user.email }}
+                    </div>
+                </div>
+
+                <!-- Social links -->
+                {% if profile.instagram or profile.facebook or profile.twitter %}
+                    <div class="social-links" style="display: flex; gap: 10px; margin-top: 20px;">
+                        {% if profile.instagram %}
+                            <a href="{{ profile.instagram }}" target="_blank" style="background-color: #e1306c; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        {% endif %}
+                        {% if profile.facebook %}
+                            <a href="{{ profile.facebook }}" target="_blank" style="background-color: #1877f2; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        {% endif %}
+                        {% if profile.twitter %}
+                            <a href="{{ profile.twitter }}" target="_blank" style="background-color: #1da1f2; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <!-- Edit button (only for the profile owner) -->
+                {% if user == profile_user %}
+                    <div style="margin-top: 25px;">
+                        <a href="{% url 'profile_edit' %}" style="display: inline-flex; align-items: center; background-color: white; color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: 500; transition: all 0.3s ease;">
+                            <i class="fas fa-edit" style="margin-right: 8px;"></i>
+                            Modifier mon profil
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .social-links a {
+        transition: transform 0.3s ease;
+    }
+    .social-links a:hover {
+        transform: translateY(-5px);
+    }
+
+    @media (max-width: 768px) {
+        .profile-info {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .profile-image-container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
+{% endblock %}

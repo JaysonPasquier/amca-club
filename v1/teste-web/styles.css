@@ -1,0 +1,448 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center; /* Ensure this is set to center */
+    gap: 15px;
+}
+
+.nav-left img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    display: block; /* Ensure the image doesn't have extra space beneath */
+}
+
+/* Fallback for image not loading */
+.nav-left img:not([src]),
+.nav-left img[src=""],
+.nav-left img[src="/images/images.png"] {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>');
+    filter: invert(0.5);
+}
+
+.nav-title {
+    font-weight: 600;
+    font-size: 1.4em;
+    color: #333;
+    letter-spacing: -0.5px;
+    display: flex; /* Add this to ensure vertical alignment */
+    align-items: center; /* Vertical center alignment */
+    line-height: 1; /* Adjust line height to prevent extra spacing */
+}
+
+.nav-center {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-right {
+    display: flex;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.05rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+nav a:hover {
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* Underline animation on hover */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+/* Profile link style */
+.nav-right a {
+    background-color: #f5f5f5;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-right a:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Header styles */
+header {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;     /* Added fixed minimum height */
+    max-width: 100%;       /* Changed from 1200px to 100% for full width */
+    width: 100%;           /* Ensure full width */
+    padding: 40px 20px;
+    margin: 0 auto;
+    gap: 5%;
+    box-sizing: border-box; /* Ensures padding doesn't add to width */
+}
+
+/* Update the selector to only target the direct children of header (the founder images) */
+header > img {
+    border-radius: 15px;
+    width: 20%;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Update the hover selector to match */
+header > img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+header img:first-child {
+    /* removed margin-left */
+}
+
+header img:last-child {
+    /* removed margin-right */
+}
+
+.header-text {
+    color: black;
+    text-align: center;
+    flex: 0 1 auto;
+    padding: 0 15px;
+    max-width: 600px;
+    margin: 0;
+    /* Add transition for hover effects on all text elements */
+    transition: transform 0.3s ease;
+}
+
+
+/* Add styling for the header logo */
+.header-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* Removed transition property */
+}
+
+/* Add a rule to prevent the logo from animating when header-text is hovered */
+.header-text:hover .header-logo {
+    transform: none;
+}
+
+header h1 {
+    font-size: 5rem;
+    line-height: 1.2;    /* Added line height to make text taller */
+    margin-top: 0;
+    margin-bottom: 20px; /* Increased from 10px to 20px */
+    font-weight: 600;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    cursor: default;
+}
+
+header h4 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.8;    /* Increased from 1.5 to 1.8 */
+    margin: 0 auto;
+    padding: 0 10px;     /* Added horizontal padding */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: default;
+}
+
+main {
+    min-height: 70%;
+    max-width: 1300px;
+    margin: 80px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto repeat(3, minmax(200px, auto));
+    gap: 40px 80px;  /* Updated: row gap 40px, column gap 80px */
+    grid-template-areas:
+        "title title"
+        "card1 card4"
+        "card2 card5"
+        "card3 card6";
+}
+
+/* Add specific style for the main heading */
+main > h1 {
+    grid-area: title;    /* Assign to the title grid area */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* Remove the events-column class */
+.events-column {
+    display: none;
+}
+
+/* Individual event card */
+.event-card {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Assign grid areas to each card */
+.card-1 { grid-area: card1; }
+.card-2 { grid-area: card2; }
+.card-3 { grid-area: card3; }
+.card-4 { grid-area: card4; }
+.card-5 { grid-area: card5; }
+.card-6 { grid-area: card6; }
+
+/* Event image */
+.event-card img {
+    width: 40%;  /* Increased from 180px */
+    height: auto;  /* Changed from fixed height to auto for better proportions */
+    min-height: 100%;  /* Ensure image takes full height of card */
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Event text container */
+.event-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    transition: transform 0.2s ease;
+}
+
+.event-card:hover .event-info {
+    transform: translateX(15px);
+}
+
+/* Event text styling */
+main h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.event-card:hover h2 {
+    color: #f0f0f0;
+}
+
+main h2:first-of-type {
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Add underline animation for the date */
+main h2:first-of-type::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.event-card:hover h2:first-of-type::after {
+    width: 27%;
+}
+
+/* Footer styles */
+footer {
+    background-color: white;
+    color: black;
+    padding: 60px 0 30px;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Newsletter section */
+.newsletter {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.newsletter h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.newsletter p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #eaeaea;
+    border-radius: 6px 0 0 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    border-color: #333;
+}
+
+.newsletter-form button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 0 6px 6px 0;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #333;
+}
+
+/* Footer info section */
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 20px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #555;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
