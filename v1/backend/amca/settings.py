@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.club_info',  # Ajout du processeur de contexte
             ],
         },
     },
@@ -115,8 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'fr-fr'  # Changer de 'en-us' à 'fr-fr'
+TIME_ZONE = 'Europe/Paris'  # Adapter à votre fuseau horaire
 USE_I18N = True
 USE_TZ = True
 

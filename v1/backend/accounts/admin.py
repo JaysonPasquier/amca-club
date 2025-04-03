@@ -7,14 +7,18 @@ class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
     verbose_name_plural = 'Profil'
-    fields = ('profile_image', 'member_id', 'role', 'is_approved', 'date_created', 'last_login', 'instagram', 'facebook', 'twitter')
+    fields = ('profile_image', 'member_id', 'role', 'is_approved', 'date_created',
+              'last_login', 'instagram', 'facebook', 'twitter', 'bio',
+              ('banner_image', 'banner_color', 'banner_approved'))
     readonly_fields = ('date_created',)
 
 class UserAdmin(BaseUserAdmin):
     inlines = (UserProfileInline,)
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_is_approved', 'get_member_id', 'get_role')
-    list_filter = ('profile__is_approved', 'profile__role', 'is_staff', 'is_superuser')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_is_approved',
+                    'get_member_id', 'get_role', 'get_banner_status')
+    list_filter = ('profile__is_approved', 'profile__role', 'profile__banner_approved', 'is_staff', 'is_superuser')
     search_fields = ('username', 'email', 'first_name', 'last_name')
+    actions = ['approve_banners', 'reject_banners']
 
     def get_is_approved(self, obj):
         return obj.profile.is_approved
@@ -28,6 +32,29 @@ class UserAdmin(BaseUserAdmin):
     def get_role(self, obj):
         return obj.profile.get_role_display()
     get_role.short_description = 'Rôle'
+
+    def get_banner_status(self, obj):
+        if obj.profile.banner_image or obj.profile.banner_color != "#2c3e50":
+            return obj.profile.banner_approved
+        return None
+    get_banner_status.short_description = 'Bannière Approuvée'
+    get_banner_status.boolean = True
+
+    def approve_banners(self, request, queryset):
+        for user in queryset:
+            if hasattr(user, 'profile'):
+                user.profile.banner_approved = True
+                user.profile.save()
+        self.message_user(request, f"{queryset.count()} bannières approuvées.")
+    approve_banners.short_description = "Approuver les bannières sélectionnées"
+
+    def reject_banners(self, request, queryset):
+        for user in queryset:
+            if hasattr(user, 'profile'):
+                user.profile.banner_approved = False
+                user.profile.save()
+        self.message_user(request, f"{queryset.count()} bannières rejetées.")
+    reject_banners.short_description = "Rejeter les bannières sélectionnées"
 
 @admin.register(SignupRequest)
 class SignupRequestAdmin(admin.ModelAdmin):

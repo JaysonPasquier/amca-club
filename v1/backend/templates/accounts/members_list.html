@@ -3,7 +3,7 @@
 {% block title %}Membres - Club de Voitures Américaines{% endblock %}
 
 {% block content %}
-<div class="members-page" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+<div class="members-page" style="max-width: 1400px; margin: 50px auto; padding: 0 20px;">
     <h1 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Nos Membres</h1>
 
     <!-- Debug info to verify members are loaded correctly -->
@@ -18,106 +18,237 @@
     </div>
     {% endif %}
 
-    <div class="members-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;">
+    <!-- Improved members grid layout -->
+    <div class="members-grid">
         {% if members %}
             {% for member in members %}
-                <div class="member-card" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                    <!-- Highlight if this is the current user -->
-                    {% if user == member.user %}
-                    <div style="background-color: var(--accent); color: white; text-align: center; padding: 5px; font-weight: bold;">
-                        C'est vous
-                    </div>
-                    {% endif %}
-
-                    <div class="member-header" style="position: relative;">
-                        <div style="height: 100px; background: linear-gradient(45deg, #2c3e50, #3498db);"></div>
-                        <div class="member-image" style="position: relative; margin: -50px auto 10px; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 4px solid black; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                            <img src="{{ member.profile_image.url }}"
-                                 alt="{{ member.user.get_full_name }}"
-                                 style="width: 100%; height: 100%; object-fit: cover;"
-                                 onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
-                        </div>
-                        <div class="member-id-badge" style="position: absolute; top: 15px; right: 15px; background-color: black; color: white; border-radius: 30px; padding: 5px 10px; font-size: 0.9rem;">
-                            ID: {{ member.member_id }}
-                        </div>
-                    </div>
-
-                    <div class="member-info" style="padding: 20px; text-align: center;">
-                        <h2 style="margin: 0 0 5px 0; font-size: 1.4rem;">{{ member.user.get_full_name }}</h2>
-                        <p style="margin: 0 0 15px 0; color: #aaa; font-size: 1rem;">{{ member.get_role_display }}</p>
-
-                        <div class="member-since" style="font-size: 0.9rem; margin-bottom: 15px;">
-                            <i class="fas fa-calendar-alt"></i> Membre depuis {{ member.date_created|date:"d/m/Y" }}
-                        </div>
-
-                        {% if member.instagram or member.facebook or member.twitter %}
-                            <div class="member-social" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 15px;">
-                                {% if member.instagram %}
-                                    <a href="{{ member.instagram }}" target="_blank" style="color: #e1306c; font-size: 1.2rem; transition: transform 0.3s ease;">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                {% endif %}
-                                {% if member.facebook %}
-                                    <a href="{{ member.facebook }}" target="_blank" style="color: #1877f2; font-size: 1.2rem; transition: transform 0.3s ease;">
-                                        <i class="fab fa-facebook"></i>
-                                    </a>
-                                {% endif %}
-                                {% if member.twitter %}
-                                    <a href="{{ member.twitter }}" target="_blank" style="color: #1da1f2; font-size: 1.2rem; transition: transform 0.3s ease;">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                {% endif %}
+                <div class="member-card-container">
+                    <a href="{% url 'user_profile' member.user.username %}" class="member-card-link">
+                        <div class="member-card">
+                            <div class="member-header">
+                                <!-- Remplacer le gradient par défaut par la bannière personnalisée -->
+                                <div class="member-cover" style="{{ member.get_banner_style }}"></div>
+                                <div class="member-image">
+                                    <img src="{{ member.profile_image.url }}"
+                                         alt="{{ member.user.get_full_name }}"
+                                         onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                                </div>
+                                <div class="member-id-badge">
+                                    ID: {{ member.member_id }}
+                                </div>
                             </div>
-                        {% endif %}
 
-                        <a href="{% url 'user_profile' member.user.username %}" style="display: inline-block; background-color: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; padding: 8px 20px; border-radius: 30px; transition: all 0.3s ease; font-weight: 500;">
-                            <i class="fas fa-user" style="margin-right: 5px;"></i> Voir profil
-                        </a>
-                    </div>
+                            <div class="member-info">
+                                <h2>{{ member.user.get_full_name }}</h2>
+                                <p class="member-role">{{ member.get_role_display }}</p>
+
+                                <!-- Bio excerpt if available -->
+                                {% if member.bio %}
+                                    <p class="member-bio">"{{ member.bio|truncatechars:100 }}"</p>
+                                {% endif %}
+
+                                <div class="member-since">
+                                    <i class="fas fa-calendar-alt"></i> Membre depuis {{ member.date_created|date:"d/m/Y" }}
+                                </div>
+
+                                <!-- Keep the button for clarity -->
+                                <div class="view-profile-btn">
+                                    <i class="fas fa-user"></i> Voir profil
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             {% endfor %}
         {% else %}
-            <div style="grid-column: 1 / -1; text-align: center; padding: 50px 0;">
-                <div style="background-color: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 10px;">
-                    <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
-                    <h3>Aucun membre approuvé pour le moment</h3>
-                    <p>Les membres approuvés apparaîtront ici.</p>
-                </div>
+            <div class="no-members-message">
+                <i class="fas fa-users"></i>
+                <h3>Aucun membre approuvé pour le moment</h3>
+                <p>Les membres approuvés apparaîtront ici.</p>
             </div>
         {% endif %}
     </div>
 </div>
 
 <style>
-    .member-card {
+    .members-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);  /* Exactement 4 colonnes */
+        gap: 20px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .member-card-container {
+        position: relative;
+        height: 100%;
+    }
+
+    .member-card-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
         cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease;
+        height: 100%;
     }
 
-    .member-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    .member-card-link:hover {
+        transform: translateY(-5px);
     }
 
-    .member-social a:hover {
-        transform: scale(1.2);
+    .member-card {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        /* Hauteur minimale pour assurer la cohérence */
+        min-height: 360px;
     }
 
-    .member-card:hover .member-id-badge {
-        background-color: #ff3838;
+    .member-header {
+        position: relative;
+        flex-shrink: 0;
     }
 
-    /* Media queries for responsive design */
-    @media (max-width: 768px) {
-        .members-container {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    .member-cover {
+        height: 80px;
+    }
+
+    .member-image {
+        position: relative;
+        margin: -40px auto 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid black;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .member-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .member-id-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: black;
+        color: white;
+        border-radius: 30px;
+        padding: 3px 8px;
+        font-size: 0.8rem;
+    }
+
+    .member-info {
+        padding: 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .member-info h2 {
+        margin: 0 0 5px 0;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .member-role {
+        margin: 0 0 12px 0;
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    .member-bio {
+        margin-bottom: 15px;
+        font-style: italic;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        /* Suppression de la hauteur fixe */
+    }
+
+    /* Pour les membres sans bio, ajouter un texte informatif */
+    .member-bio-placeholder {
+        margin-bottom: 25px;
+        font-style: italic;
+        font-size: 0.85rem;
+        color: #888;  /* Couleur grise */
+    }
+
+    .member-since {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+        color: #ccc;
+    }
+
+    .view-profile-btn {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-top: auto;
+    }
+
+    .no-members-message {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 50px 0;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    /* Media queries ajustées */
+    @media (max-width: 1200px) {
+        .members-grid {
+            grid-template-columns: repeat(3, 1fr);  /* 3 colonnes sur écrans moyens */
         }
     }
 
-    @media (max-width: 480px) {
-        .members-container {
-            grid-template-columns: 1fr;
+    @media (max-width: 992px) {
+        .members-grid {
+            grid-template-columns: repeat(2, 1fr);  /* 2 colonnes sur tablettes */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .members-grid {
+            grid-template-columns: 1fr;  /* 1 colonne sur mobiles */
         }
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Pour chaque carte sans bio, ajouter un placeholder avec du texte
+        document.querySelectorAll('.member-card').forEach(card => {
+            if (!card.querySelector('.member-bio')) {
+                const memberInfo = card.querySelector('.member-info');
+                const memberRole = card.querySelector('.member-role');
+                const placeholder = document.createElement('div');
+                placeholder.className = 'member-bio-placeholder';
+                placeholder.innerText = 'Pas de bio pour le moment';
+                memberInfo.insertBefore(placeholder, memberRole.nextSibling);
+            }
+        });
+    });
+</script>
 {% endblock %}

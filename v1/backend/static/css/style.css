@@ -10,12 +10,18 @@
     --event-date-bg: #ff3838;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
     background-color: black;
     color: white;
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header Styling */
@@ -137,6 +143,40 @@ nav a:hover::after {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Navigation buttons */
+.nav-btn {
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.login-btn {
+    background-color: transparent;
+    border: 1px solid #333;
+}
+
+.login-btn:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.signup-btn {
+    background-color: transparent;
+    border: 1px solid #333;
+}
+
+.signup-btn:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 /* Header styles */
 header {
     background-color: white;
@@ -224,6 +264,7 @@ main {
         "card1 card4"
         "card2 card5"
         "card3 card6";
+    flex: 1;
 }
 
 main > h1 {
@@ -318,6 +359,7 @@ footer {
     color: black;
     padding: 60px 0 30px;
     width: 100%;
+    margin-top: auto;
 }
 
 .footer-container {

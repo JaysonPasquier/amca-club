@@ -3,42 +3,243 @@
 {% block title %}Événements - Club de Voitures Américaines{% endblock %}
 
 {% block content %}
-<main>
-    <h1>Événements à Venir</h1>
+<div class="events-container">
+    <h1 class="section-title">Événements à Venir</h1>
 
-    {% if upcoming_events %}
-        {% for event in upcoming_events %}
-            <div class="event-card">
-                <img src="/static/img/event-default.jpg" alt="{{ event.title }}">
-                <div class="event-info">
-                    <h2>{{ event.event_date|date:"l j F Y" }}</h2>
-                    <h2>horaire : {{ event.event_date|date:"H:i" }}</h2>
-                    <h2>{{ event.location }}</h2>
-                    <p>{{ event.description }}</p>
-                </div>
+    <!-- Upcoming events section -->
+    <div class="events-section">
+        {% if upcoming_events %}
+            <div class="events-grid">
+                {% for event in upcoming_events %}
+                    <a href="{% url 'event_detail' event.id %}" class="event-card-link">
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="{% if event.type == 'rasso' %}/static/img/rasso.png{% else %}/static/img/autre.png{% endif %}" alt="{{ event.title }}">
+                                <div class="event-type-badge" style="background-color: {% if event.type == 'rasso' %}#3498db{% else %}#e67e22{% endif %};">
+                                    {{ event.get_type_display }}
+                                </div>
+                            </div>
+                            <div class="event-info">
+                                <div class="event-date">
+                                    {{ event.event_date|date:"l j F Y"|capfirst }}
+                                </div>
+                                <div class="event-time">
+                                    <i class="fas fa-clock"></i> {{ event.event_date|date:"H:i" }}
+                                </div>
+                                <div class="event-location">
+                                    <i class="fas fa-map-marker-alt"></i> {{ event.location }}
+                                </div>
+                                <p class="event-description">{{ event.description|truncatechars:120 }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
-        {% endfor %}
-    {% else %}
-        <div class="event-card">
-            <div class="event-info">
-                <h2>Aucun événement programmé pour le moment</h2>
-                <h2>Revenez bientôt pour plus d'informations</h2>
+        {% else %}
+            <div class="no-events-message">
+                <i class="fas fa-calendar-times"></i>
+                <p>Aucun événement programmé pour le moment</p>
+                <p class="no-events-sub">Revenez bientôt pour plus d'informations</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Past events section -->
+    {% if past_events %}
+        <h1 class="section-title">Événements Passés</h1>
+
+        <div class="events-section">
+            <div class="events-grid past-events">
+                {% for event in past_events %}
+                    <a href="{% url 'event_detail' event.id %}" class="event-card-link past-event">
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="{% if event.type == 'rasso' %}/static/img/rasso.png{% else %}/static/img/autre.png{% endif %}" alt="{{ event.title }}">
+                                <div class="event-type-badge" style="background-color: {% if event.type == 'rasso' %}#3498db{% else %}#e67e22{% endif %};">
+                                    {{ event.get_type_display }}
+                                </div>
+                                <div class="past-event-overlay">
+                                    <span>Événement terminé</span>
+                                </div>
+                            </div>
+                            <div class="event-info">
+                                <div class="event-date">
+                                    {{ event.event_date|date:"l j F Y"|capfirst }}
+                                </div>
+                                <div class="event-time">
+                                    <i class="fas fa-clock"></i> {{ event.event_date|date:"H:i" }}
+                                </div>
+                                <div class="event-location">
+                                    <i class="fas fa-map-marker-alt"></i> {{ event.location }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
         </div>
     {% endif %}
+</div>
 
-    {% if past_events %}
-        <h1>Événements Passés</h1>
-        {% for event in past_events %}
-            <div class="event-card" style="opacity: 0.7;">
-                <img src="/static/img/event-default.jpg" alt="{{ event.title }}">
-                <div class="event-info">
-                    <h2>{{ event.event_date|date:"l j F Y" }}</h2>
-                    <h2>horaire : {{ event.event_date|date:"H:i" }}</h2>
-                    <h2>{{ event.location }}</h2>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-</main>
+<style>
+    /* Styles spécifiques à la page d'événements uniquement */
+    .events-container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+        margin-bottom: 120px; /* Espace pour le footer */
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2.5rem;
+    }
+
+    /* Grille des événements */
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        width: 100%;
+    }
+
+    /* Carte d'événement */
+    .event-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .event-card-link:hover {
+        transform: translateY(-5px);
+    }
+
+    .event-card {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image de l'événement */
+    .event-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .event-card:hover .event-image img {
+        transform: scale(1.05);
+    }
+
+    /* Badge de type d'événement */
+    .event-type-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Overlay pour les événements passés */
+    .past-event-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 600;
+    }
+
+    .past-event-overlay span {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 8px 16px;
+        border-radius: 20px;
+    }
+
+    /* Informations de l'événement */
+    .event-info {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .event-date {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .event-time, .event-location {
+        font-size: 1rem;
+        color: #ddd;
+        margin-bottom: 8px;
+    }
+
+    .event-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-top: 15px;
+        color: #aaa;
+    }
+
+    /* Message si pas d'événements */
+    .no-events-message {
+        text-align: center;
+        padding: 60px 0;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .no-events-message i {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    .no-events-message p {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    .no-events-sub {
+        font-size: 1rem !important;
+        color: #aaa;
+    }
+
+    /* Événements passés avec un style plus atténué */
+    .past-events .event-card {
+        opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .events-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
 {% endblock %}

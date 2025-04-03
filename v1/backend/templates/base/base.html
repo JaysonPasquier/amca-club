@@ -3,19 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Club de Voitures Américaines{% endblock %}</title>
+    <title>{% block title %}{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}{% endblock %}</title>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/static/css/style.css" rel="stylesheet">
+    <style>
+        /* Page Transition Effects */
+        #page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        #page-transition-overlay.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .page-transition-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: page-transition-spin 1s ease-in-out infinite;
+        }
+
+        @keyframes page-transition-spin {
+            to { transform: rotate(360deg); }
+        }
+
+        body.page-transition {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+    <!-- Page Transition Overlay -->
+    <div id="page-transition-overlay">
+        <div class="page-transition-spinner"></div>
+    </div>
+
     <!-- Navigation bar -->
     <nav>
         <div class="nav-left">
             <img src="/static/img/logo.png" alt="logo">
-            <span class="nav-title">Club de Voitures Américaines</span>
+            <span class="nav-title">{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}</span>
         </div>
         <div class="nav-center">
             <a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Accueil</a>
@@ -27,7 +77,8 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}">{{ user.username }}</a>
             {% else %}
-                <a href="{% url 'login' %}">Connexion</a>
+                <a href="{% url 'login' %}" class="nav-btn login-btn">Connexion</a>
+                <a href="{% url 'signup_request' %}" class="nav-btn signup-btn">S'inscrire</a>
             {% endif %}
         </div>
     </nav>
@@ -63,7 +114,7 @@
             <div class="footer-info">
                 <div class="footer-logo">
                     <img src="/static/img/logo.png" alt="logo" class="footer-logo-img">
-                    <span>Club de Voitures Américaines</span>
+                    <span>{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}</span>
                 </div>
                 <div class="footer-links">
                     <a href="{% url 'about' %}">À propos</a>
@@ -77,10 +128,75 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; {% now "Y" %} Club de Voitures Américaines. Tous droits réservés.</p>
+                <p>&copy; {% now "Y" %} {% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Page Transition Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add class to body for initial page load effect
+            document.body.classList.add('page-transition');
+
+            // Hide overlay on initial page load
+            const overlay = document.getElementById('page-transition-overlay');
+
+            // Handle link clicks for page transitions
+            document.addEventListener('click', function(e) {
+                // Only handle clicks on links that navigate to another page on the same site
+                const link = e.target.closest('a');
+
+                if (link &&
+                    link.hostname === window.location.hostname &&
+                    !link.hasAttribute('data-no-transition') &&
+                    !e.ctrlKey && !e.metaKey) {
+
+                    const href = link.getAttribute('href');
+
+                    // Skip for hash links (same-page navigation)
+                    if (href.startsWith('#')) return;
+
+                    // Skip for download links
+                    if (link.getAttribute('download')) return;
+
+                    // Skip for links with target="_blank"
+                    if (link.getAttribute('target') === '_blank') return;
+
+                    // Show overlay
+                    e.preventDefault();
+                    overlay.classList.add('visible');
+
+                    // Navigate after short delay for animation
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, 300);
+                }
+            });
+
+            // For form submissions (optional - can be removed if it causes issues)
+            document.addEventListener('submit', function(e) {
+                const form = e.target;
+
+                // Skip for forms with data-no-transition attribute
+                if (form.hasAttribute('data-no-transition')) return;
+
+                // Skip for AJAX forms
+                if (form.getAttribute('method')?.toLowerCase() === 'post' &&
+                    form.getAttribute('enctype') === 'multipart/form-data') return;
+
+                overlay.classList.add('visible');
+            });
+        });
+
+        // Handle browser back/forward navigation
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                // Page was restored from the bfcache (back/forward navigation)
+                document.body.classList.add('page-transition');
+            }
+        });
+    </script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

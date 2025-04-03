@@ -32,15 +32,31 @@ class UserProfileForm(forms.ModelForm):
     first_name = forms.CharField(max_length=100, required=True, label='Prénom')
     last_name = forms.CharField(max_length=100, required=True, label='Nom')
     email = forms.EmailField(required=True, label='Email')
+    # Nouvelles options pour bannière
+    banner_color = forms.CharField(
+        max_length=20,
+        required=False,
+        label="Couleur de bannière",
+        widget=forms.TextInput(attrs={'type': 'color', 'class': 'form-color'})
+    )
 
     class Meta:
         model = UserProfile
-        fields = ('profile_image', 'instagram', 'facebook', 'twitter')
+        fields = (
+            'profile_image', 'bio', 'instagram', 'facebook',
+            'twitter', 'banner_image', 'banner_color'
+        )
         labels = {
             'profile_image': 'Photo de profil',
+            'bio': 'Biographie',
             'instagram': 'Instagram',
             'facebook': 'Facebook',
-            'twitter': 'Twitter'
+            'twitter': 'Twitter',
+            'banner_image': 'Image de bannière',
+        }
+        help_texts = {
+            'banner_image': 'La bannière sera examinée par un administrateur avant d\'être affichée.',
+            'banner_color': 'Vous pouvez choisir une couleur à utiliser si vous n\'avez pas d\'image de bannière.',
         }
 
     def __init__(self, *args, **kwargs):
@@ -52,6 +68,10 @@ class UserProfileForm(forms.ModelForm):
 
     def save(self, commit=True):
         profile = super().save(commit=False)
+
+        # Si la bannière est modifiée, elle doit être réapprouvée
+        if 'banner_image' in self.changed_data or 'banner_color' in self.changed_data:
+            profile.banner_approved = False
 
         # Update the related User model fields
         user = profile.user

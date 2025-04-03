@@ -21,6 +21,12 @@ class UserProfile(models.Model):
     instagram = models.CharField(max_length=100, blank=True, null=True)
     facebook = models.CharField(max_length=100, blank=True, null=True)
     twitter = models.CharField(max_length=100, blank=True, null=True)
+    bio = models.TextField(blank=True, null=True, verbose_name="Biographie")
+
+    # Nouveaux champs pour la bannière
+    banner_image = models.ImageField(upload_to='banner_images/', blank=True, null=True, verbose_name="Image de bannière")
+    banner_color = models.CharField(max_length=20, blank=True, null=True, default="#2c3e50", verbose_name="Couleur de bannière")
+    banner_approved = models.BooleanField(default=False, verbose_name="Bannière approuvée")
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name} - {self.get_role_display()}"
@@ -34,6 +40,15 @@ class UserProfile(models.Model):
             else:
                 self.member_id = 1
         super().save(*args, **kwargs)
+
+    def get_banner_style(self):
+        """Retourne le style CSS pour la bannière en fonction des paramètres approuvés"""
+        if self.banner_approved and self.banner_image:
+            return f"background-image: url('{self.banner_image.url}'); background-size: cover; background-position: center;"
+        elif self.banner_approved and self.banner_color:
+            return f"background-color: {self.banner_color};"
+        else:
+            return "background: linear-gradient(45deg, #2c3e50, #3498db);" # Style par défaut
 
 class SignupRequest(models.Model):
     first_name = models.CharField(max_length=100)

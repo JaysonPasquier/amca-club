@@ -4,168 +4,487 @@
 {% block title %}Modifier Profil - Club de Voitures Américaines{% endblock %}
 
 {% block content %}
-<div class="edit-profile-page" style="max-width: 800px; margin: 50px auto; padding: 0 20px;">
-    <!-- Form container -->
-    <div class="edit-profile-container" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); padding: 30px;">
-        <h1 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">Modifier mon Profil</h1>
+<div class="edit-profile-page" style="max-width: 100%; width: 100%; margin: 0; padding: 0;">
+    <div class="edit-profile-container" style="background-color: rgba(255, 255, 255, 0.08); display: flex; min-height: calc(100vh - 170px);">
 
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+        <!-- Left sidebar with profile picture -->
+        <div class="profile-sidebar" style="width: 300px; flex: 0 0 300px; background: linear-gradient(to bottom, rgba(43, 43, 53, 0.9), rgba(25, 25, 35, 0.9)); padding: 0; display: flex; flex-direction: column; align-items: center; border-right: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; height: 100vh;">
 
-            <!-- Current profile image preview -->
-            <div style="display: flex; justify-content: center; margin-bottom: 30px;">
-                <div style="position: relative;">
-                    <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid rgba(255,255,255,0.2);">
-                        <img src="{{ user.profile.profile_image.url }}"
-                             alt="Photo de profil"
-                             style="width: 100%; height: 100%; object-fit: cover;"
-                             onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+            <!-- Profile content with vertical centering -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; width: 100%; height: 100%;">
+
+                <!-- Profile image with enhanced styling -->
+                <div style="position: relative; margin-bottom: 30px;">
+                    <div class="profile-image-container" style="width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), rgba(0,0,0,0.5)); padding: 8px;">
+                        <div style="width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);">
+                            <img src="{{ user.profile.profile_image.url }}"
+                                 alt="Photo de profil"
+                                 style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: all 0.4s ease;"
+                                 onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                        </div>
                     </div>
-                    <div style="position: absolute; bottom: 5px; right: 5px; background-color: black; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; font-size: 14px; border: 2px solid white;">
+                    <div class="camera-icon" style="position: absolute; bottom: 5px; right: 5px; background-color: var(--accent); color: #333; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-size: 16px; border: 3px solid rgba(25, 25, 35, 0.8); box-shadow: 0 4px 8px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.3s ease; z-index: 10;">
                         <i class="fas fa-camera"></i>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-sections" style="display: grid; grid-template-columns: 1fr; gap: 35px;">
-                <!-- Personal Information -->
-                <div class="form-section">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px;">
-                        <i class="fas fa-user" style="margin-right: 10px;"></i>Informations Personnelles
-                    </h3>
+                <!-- User info with enhanced styling -->
+                <h2 style="margin: 0; font-size: 1.8rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.3); text-align: center;">{{ user.get_full_name }}</h2>
+                <p style="color: #aaa; margin: 5px 0 20px; font-size: 1rem; letter-spacing: 0.5px; text-align: center;">@{{ user.username }}</p>
 
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <!-- First Name -->
-                        <div class="form-group">
-                            <label for="{{ form.first_name.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.first_name.label }}</label>
-                            {{ form.first_name|add_class:"form-input" }}
-                            {% if form.first_name.errors %}
-                                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
-                                    {{ form.first_name.errors }}
-                                </div>
-                            {% endif %}
-                        </div>
-
-                        <!-- Last Name -->
-                        <div class="form-group">
-                            <label for="{{ form.last_name.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.last_name.label }}</label>
-                            {{ form.last_name|add_class:"form-input" }}
-                            {% if form.last_name.errors %}
-                                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
-                                    {{ form.last_name.errors }}
-                                </div>
-                            {% endif %}
-                        </div>
-
-                        <!-- Email -->
-                        <div class="form-group" style="grid-column: span 2;">
-                            <label for="{{ form.email.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.email.label }}</label>
-                            {{ form.email|add_class:"form-input" }}
-                            {% if form.email.errors %}
-                                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
-                                    {{ form.email.errors }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
+                <!-- Member info badge -->
+                <div style="background-color: rgba(255, 255, 255, 0.1); padding: 8px 20px; border-radius: 30px; margin: 10px 0; width: 80%; text-align: center; backdrop-filter: blur(5px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <i class="fas fa-id-badge" style="margin-right: 8px; color: var(--accent);"></i>
+                    ID: {{ user.profile.member_id }}
                 </div>
 
-                <!-- Profile Photo -->
-                <div class="form-section">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px;">
-                        <i class="fas fa-image" style="margin-right: 10px;"></i>Photo de Profil
-                    </h3>
-
-                    <div class="form-group">
-                        <label for="{{ form.profile_image.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">{{ form.profile_image.label }}</label>
-                        {{ form.profile_image|add_class:"form-input" }}
-                        <div style="margin-top: 5px; font-size: 0.9rem; color: #aaa;">Formats acceptés: JPG, PNG, GIF. Taille max: 5 MB</div>
-                        {% if form.profile_image.errors %}
-                            <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
-                                {{ form.profile_image.errors }}
-                            </div>
-                        {% endif %}
-                    </div>
+                <!-- Member since badge -->
+                <div style="background-color: rgba(255, 255, 255, 0.1); padding: 8px 20px; border-radius: 30px; margin: 10px 0; width: 80%; text-align: center; backdrop-filter: blur(5px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <i class="fas fa-calendar-alt" style="margin-right: 8px; color: var(--accent);"></i>
+                    Membre depuis {{ user.profile.date_created|date:"d/m/Y" }}
                 </div>
 
-                <!-- Social Media -->
-                <div class="form-section">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px;">
-                        <i class="fas fa-share-alt" style="margin-right: 10px;"></i>Réseaux Sociaux
-                    </h3>
-
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <!-- Instagram -->
-                        <div class="form-group">
-                            <label for="{{ form.instagram.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">
-                                <i class="fab fa-instagram" style="margin-right: 8px; color: #e1306c;"></i>Instagram
-                            </label>
-                            {{ form.instagram|add_class:"form-input" }}
-                        </div>
-
-                        <!-- Facebook -->
-                        <div class="form-group">
-                            <label for="{{ form.facebook.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">
-                                <i class="fab fa-facebook" style="margin-right: 8px; color: #1877f2;"></i>Facebook
-                            </label>
-                            {{ form.facebook|add_class:"form-input" }}
-                        </div>
-
-                        <!-- Twitter -->
-                        <div class="form-group">
-                            <label for="{{ form.twitter.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">
-                                <i class="fab fa-twitter" style="margin-right: 8px; color: #1da1f2;"></i>Twitter
-                            </label>
-                            {{ form.twitter|add_class:"form-input" }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Action buttons -->
-            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
-                <button type="submit" style="background-color: white; color: black; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
-                    <i class="fas fa-save" style="margin-right: 8px;"></i>Enregistrer
-                </button>
-                <a href="{% url 'profile' %}" style="background-color: rgba(255, 255, 255, 0.2); color: white; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; transition: all 0.3s ease;">
-                    <i class="fas fa-times" style="margin-right: 8px;"></i>Annuler
+                <!-- Back to profile button at the bottom -->
+                <a href="{% url 'profile' %}" style="margin-top: auto; background-color: rgba(255, 255, 255, 0.15); color: white; text-decoration: none; padding: 10px 0; border-radius: 30px; font-weight: 500; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; width: 80%;">
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                    Retour au profil
                 </a>
             </div>
-        </form>
+        </div>
+
+        <!-- Right content with form fields -->
+        <div class="form-content" style="flex-grow: 1; padding: 40px; background-color: rgba(30, 30, 40, 0.5); overflow-y: auto;">
+            <h1 style="font-size: 1.8rem; margin-bottom: 30px; color: white; display: flex; align-items: center;">
+                <i class="fas fa-user-edit" style="margin-right: 12px; color: var(--accent);"></i>Modifier mon profil
+            </h1>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Forms in a modern card layout -->
+                <div class="form-sections" style="display: flex; flex-direction: column; gap: 30px; max-width: 1000px; margin: 0 auto;">
+
+                    <!-- Personal Information Card -->
+                    <div class="form-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="font-size: 1.2rem; margin: 0 0 20px; color: white; display: flex; align-items: center;">
+                            <span class="section-icon" style="background-color: rgba(var(--accent-rgb), 0.2); width: 32px; height: 32px; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                                <i class="fas fa-user" style="color: var(--accent);"></i>
+                            </span>
+                            Informations personnelles
+                        </h3>
+
+                        <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                            <div class="form-field">
+                                <label for="{{ form.first_name.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.first_name.label }}</label>
+                                {{ form.first_name|add_class:"form-input" }}
+                                {% if form.first_name.errors %}
+                                    <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">{{ form.first_name.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-field">
+                                <label for="{{ form.last_name.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.last_name.label }}</label>
+                                {{ form.last_name|add_class:"form-input" }}
+                                {% if form.last_name.errors %}
+                                    <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">{{ form.last_name.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-field" style="margin-top: 20px;">
+                            <label for="{{ form.email.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.email.label }}</label>
+                            {{ form.email|add_class:"form-input" }}
+                            {% if form.email.errors %}
+                                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">{{ form.email.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Biography Card -->
+                    <div class="form-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="font-size: 1.2rem; margin: 0 0 20px; color: white; display: flex; align-items: center;">
+                            <span class="section-icon" style="background-color: rgba(var(--accent-rgb), 0.2); width: 32px; height: 32px; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                                <i class="fas fa-quote-left" style="color: var(--accent);"></i>
+                            </span>
+                            Biographie
+                        </h3>
+
+                        <div class="form-field">
+                            <label for="{{ form.bio.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.bio.label }}</label>
+                            {{ form.bio|add_class:"form-input bio-input" }}
+                            <div style="margin-top: 5px; font-size: 0.9rem; color: #aaa;">Parlez-nous de vous et de votre passion pour les voitures américaines</div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Upload Card -->
+                    <div class="form-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="font-size: 1.2rem; margin: 0 0 20px; color: white; display: flex; align-items: center;">
+                            <span class="section-icon" style="background-color: rgba(var(--accent-rgb), 0.2); width: 32px; height: 32px; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                                <i class="fas fa-image" style="color: var(--accent);"></i>
+                            </span>
+                            Photo de profil
+                        </h3>
+
+                        <div class="form-field" style="position: relative;">
+                            <label for="{{ form.profile_image.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.profile_image.label }}</label>
+
+                            <!-- Image actuelle -->
+                            <div style="margin-bottom: 15px; display: flex; align-items: center;">
+                                <img src="{{ user.profile.profile_image.url }}" alt="Image actuelle" style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; margin-right: 10px;" onerror="this.style.display='none'">
+                                <span style="font-size: 0.9rem; color: #ccc;">
+                                    <i class="fas fa-check-circle" style="color: var(--accent); margin-right: 5px;"></i>
+                                    Image actuelle
+                                </span>
+                            </div>
+
+                            <div class="file-input-wrapper" style="position: relative;">
+                                <div style="border: 2px dashed rgba(255, 255, 255, 0.3); border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 10px; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 10px;"></i>
+                                    <div style="margin-bottom: 10px; color: #ccc;" id="file-name-display">Glissez votre nouvelle image ici ou cliquez pour sélectionner</div>
+                                    {{ form.profile_image|add_class:"form-input file-input" }}
+                                </div>
+                            </div>
+
+                            <div style="font-size: 0.85rem; color: #aaa; display: flex; align-items: center; margin-top: 8px;">
+                                <i class="fas fa-info-circle" style="margin-right: 8px; color: var(--accent);"></i>
+                                Formats acceptés: JPG, PNG, GIF. Taille maximale: 5 MB
+                            </div>
+                            {% if form.profile_image.errors %}
+                                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">{{ form.profile_image.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Banner Customization Card -->
+                    <div class="form-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="font-size: 1.2rem; margin: 0 0 20px; color: white; display: flex; align-items: center;">
+                            <span class="section-icon" style="background-color: rgba(var(--accent-rgb), 0.2); width: 32px; height: 32px; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                                <i class="fas fa-image" style="color: var(--accent);"></i>
+                            </span>
+                            Personnalisation de la bannière
+                        </h3>
+
+                        <!-- Current banner preview -->
+                        <div class="banner-preview" style="height: 100px; border-radius: 8px; margin-bottom: 20px; overflow: hidden; {{ user.profile.get_banner_style }}">
+                            <!-- Banner approval status -->
+                            {% if form.instance.banner_image or form.instance.banner_color != "#2c3e50" %}
+                                {% if not form.instance.banner_approved %}
+                                    <div style="background-color: rgba(0,0,0,0.7); color: white; text-align: center; padding: 5px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                                        <span><i class="fas fa-hourglass-half" style="margin-right: 8px;"></i>En attente d'approbation</span>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <!-- Banner image upload -->
+                        <div class="form-field" style="margin-bottom: 20px; position: relative;">
+                            <label for="{{ form.banner_image.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.banner_image.label }}</label>
+
+                            <div class="file-input-wrapper" style="position: relative;">
+                                <div style="border: 2px dashed rgba(255, 255, 255, 0.3); border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 10px; min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                    <i class="fas fa-cloud-upload-alt" style="font-size: 1.5rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 10px;"></i>
+                                    <div style="margin-bottom: 10px; color: #ccc;" id="banner-file-display">Choisissez une image pour votre bannière</div>
+                                    {{ form.banner_image|add_class:"form-input file-input" }}
+                                </div>
+                            </div>
+
+                            <div style="font-size: 0.85rem; color: #aaa; display: flex; align-items: center; margin-top: 8px;">
+                                <i class="fas fa-info-circle" style="margin-right: 8px; color: var(--accent);"></i>
+                                Cette image sera examinée par un administrateur avant d'être visible.
+                            </div>
+                            {% if form.banner_image.errors %}
+                                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">{{ form.banner_image.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Banner color selection -->
+                        <div class="form-field">
+                            <label for="{{ form.banner_color.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.banner_color.label }}</label>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                {{ form.banner_color|add_class:"form-color" }}
+                                <span class="color-preview"></span>
+                                <span style="color: #aaa; font-size: 0.9rem;">Alternative si vous n'avez pas d'image de bannière</span>
+                            </div>
+                            {% if form.banner_color.errors %}
+                                <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">{{ form.banner_color.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Social Media Card -->
+                    <div class="form-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h3 style="font-size: 1.2rem; margin: 0 0 20px; color: white; display: flex; align-items: center;">
+                            <span class="section-icon" style="background-color: rgba(var(--accent-rgb), 0.2); width: 32px; height: 32px; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 12px;"></span>
+                                <i class="fas fa-share-alt" style="color: var(--accent);"></i>
+                            </span>
+                            Réseaux sociaux
+                        </h3>
+
+                        <div class="social-fields-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                            <!-- Instagram -->
+                            <div class="form-field social-field">
+                                <label for="{{ form.instagram.id_for_label }}" style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    <i class="fab fa-instagram" style="margin-right: 8px; color: white; font-size: 1.2rem;"></i>Instagram
+                                </label>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.3); pointer-events: none;">https://instagram.com/</div>
+                                    {{ form.instagram|add_class:"form-input social-input" }}
+                                </div>
+                            </div>
+
+                            <!-- Facebook -->
+                            <div class="form-field social-field">
+                                <label for="{{ form.facebook.id_for_label }}" style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    <i class="fab fa-facebook" style="margin-right: 8px; color: white; font-size: 1.2rem;"></i>Facebook
+                                </label>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.3); pointer-events: none;">https://facebook.com/</div>
+                                    {{ form.facebook|add_class:"form-input social-input" }}
+                                </div>
+                            </div>
+
+                            <!-- Twitter -->
+                            <div class="form-field social-field">
+                                <label for="{{ form.twitter.id_for_label }}" style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    <i class="fab fa-twitter" style="margin-right: 8px; color: white; font-size: 1.2rem;"></i>Twitter
+                                </label>
+                                <div style="position: relative;">
+                                    <div style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.3); pointer-events: none;">https://twitter.com/</div>
+                                    {{ form.twitter|add_class:"form-input social-input" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div style="margin-top: 40px; margin-bottom: 20px; display: flex; justify-content: flex-end; gap: 15px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+                    <a href="{% url 'profile' %}" class="btn-cancel" style="background-color: rgba(255, 255, 255, 0.05); color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 500; transition: all 0.3s ease; display: flex; align-items: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <i class="fas fa-times" style="margin-right: 8px;"></i>Annuler
+                    </a>
+                    <button type="submit" class="btn-save" style="background-color: var(--accent); color: #333; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center;">
+                        <i class="fas fa-save" style="margin-right: 8px;"></i>Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 <style>
+    :root {
+        --accent: #ffffff;
+        --accent-rgb: 255, 255, 255;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
     .form-input {
         width: 100%;
         padding: 12px 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.2);
         color: white;
         font-size: 16px;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
     }
 
     .form-input:focus {
         outline: none;
-        border-color: white;
-        background-color: rgba(255, 255, 255, 0.15);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.3);
+        background-color: rgba(0, 0, 0, 0.3);
     }
 
-    button[type="submit"]:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    .bio-input {
+        height: 150px;
+        resize: vertical;
+        line-height: 1.5;
     }
 
-    a.btn:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-
-    /* Fix file input styling */
-    input[type="file"].form-input {
-        padding: 10px;
-        background-color: rgba(255, 255, 255, 0.05);
+    .file-input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         cursor: pointer;
+        z-index: 10;
+    }
+
+    .file-input-wrapper {
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    .file-input-wrapper:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .social-input {
+        padding-left: 180px;
+    }
+
+    .btn-save:hover {
+        background-color: #e6e6e6;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(var(--accent-rgb), 0.3);
+    }
+
+    .btn-cancel:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .profile-image-container:hover img {
+        transform: scale(1.05);
+    }
+
+    .camera-icon:hover {
+        transform: rotate(15deg) scale(1.1);
+    }
+
+    .form-color {
+        -webkit-appearance: none;
+        width: 60px;
+        height: 40px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .form-color::-webkit-color-swatch-wrapper {
+        padding: 0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .form-color::-webkit-color-swatch {
+        border: none;
+        border-radius: 8px;
+    }
+
+    .color-preview {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.3);
+        background-color: {{ form.instance.banner_color|default:"#2c3e50" }};
+    }
+
+    @media (max-width: 992px) {
+        .edit-profile-container {
+            flex-direction: column;
+        }
+
+        .profile-sidebar {
+            position: relative;
+            width: 100%;
+            flex: none;
+            height: auto;
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .form-content {
+            padding: 30px 20px;
+        }
+
+        .social-input {
+            padding-left: 15px;
+        }
+
+        .social-fields-container {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.querySelector('.file-input');
+        const fileNameDisplay = document.getElementById('file-name-display');
+
+        if (fileInput && fileNameDisplay) {
+            fileInput.addEventListener('change', function() {
+                const fileName = this.value.split('\\').pop();
+                if (fileName) {
+                    fileNameDisplay.innerHTML = '<i class="fas fa-check-circle" style="color: white; margin-right: 8px;"></i>' + fileName;
+                } else {
+                    fileNameDisplay.innerText = 'Glissez votre image ici ou cliquez pour sélectionner';
+                }
+            });
+
+            // Hide URL prefixes on mobile
+            function adjustPrefixes() {
+                const prefixes = document.querySelectorAll('.social-field .form-input + div');
+                if (window.innerWidth < 768) {
+                    prefixes.forEach(prefix => prefix.style.display = 'none');
+                    document.querySelectorAll('.social-input').forEach(input => {
+                        input.style.paddingLeft = '15px';
+                    });
+                } else {
+                    prefixes.forEach(prefix => prefix.style.display = 'block');
+                    document.querySelectorAll('.social-input').forEach(input => {
+                        input.style.paddingLeft = '180px';
+                    });
+                }
+            }
+
+            // Run on load and window resize
+            adjustPrefixes();
+            window.addEventListener('resize', adjustPrefixes);
+        }
+
+        // Masquer ou remplacer le texte "Currently:" par "Actuelle:"
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+            const parent = input.parentNode;
+            const currentlyText = Array.from(parent.childNodes)
+                .find(node => node.nodeType === Node.TEXT_NODE && node.textContent.includes('Currently:'));
+
+            if (currentlyText) {
+                // Option 1: Remplacer le texte
+                currentlyText.textContent = currentlyText.textContent.replace('Currently:', 'Actuelle:');
+
+                // Option 2: Ou masquer complètement cette partie si vous préférez
+                // parent.removeChild(currentlyText);
+                // const nextElement = currentlyText.nextElementSibling;
+                // if (nextElement) parent.removeChild(nextElement);
+            }
+        });
+
+        // Banner file handling
+        const bannerFileInput = document.querySelector('input[name="banner_image"]');
+        const bannerFileDisplay = document.getElementById('banner-file-display');
+
+        if (bannerFileInput && bannerFileDisplay) {
+            bannerFileInput.addEventListener('change', function() {
+                const fileName = this.value.split('\\').pop();
+                if (fileName) {
+                    bannerFileDisplay.innerHTML = '<i class="fas fa-check-circle" style="color: white; margin-right: 8px;"></i>' + fileName;
+                } else {
+                    bannerFileDisplay.innerText = 'Choisissez une image pour votre bannière';
+                }
+            });
+        }
+
+        // Update color preview when color changes
+        const colorInput = document.querySelector('.form-color');
+        const colorPreview = document.querySelector('.color-preview');
+
+        if (colorInput && colorPreview) {
+            colorInput.addEventListener('input', function() {
+                colorPreview.style.backgroundColor = this.value;
+            });
+        }
+    });
+</script>
 {% endblock %}

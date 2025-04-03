@@ -6,8 +6,8 @@
 <div class="profile-page" style="max-width: 1000px; margin: 50px auto; padding: 0 20px;">
     <!-- Profile header with banner and image -->
     <div class="profile-header" style="position: relative; background-color: rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
-        <!-- Banner area -->
-        <div class="profile-banner" style="height: 180px; background: linear-gradient(45deg, #2c3e50, #34495e); width: 100%;"></div>
+        <!-- Banner area with custom banner if approved -->
+        <div class="profile-banner" style="height: 180px; width: 100%; {{ profile.get_banner_style }}"></div>
 
         <!-- Profile information container -->
         <div class="profile-info" style="position: relative; padding: 20px 30px 30px; margin-top: -50px;">
@@ -42,15 +42,24 @@
                         <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>
                         Membre depuis {{ profile.date_created|date:"d/m/Y" }}
                     </div>
-                    <div style="background-color: rgba(255, 255, 255, 0.1); padding: 10px 15px; border-radius: 8px;">
-                        <i class="fas fa-clock" style="margin-right: 8px;"></i>
-                        Dernière connexion: {% if profile.last_login %}{{ profile.last_login|date:"d/m/Y" }}{% else %}jamais{% endif %}
-                    </div>
+                    <!-- Email uniquement visible par le propriétaire -->
+                    {% if user == profile_user %}
                     <div style="background-color: rgba(255, 255, 255, 0.1); padding: 10px 15px; border-radius: 8px;">
                         <i class="fas fa-envelope" style="margin-right: 8px;"></i>
                         {{ profile_user.email }}
                     </div>
+                    {% endif %}
                 </div>
+
+                <!-- Biographie -->
+                {% if profile.bio %}
+                <div style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h3 style="margin-top: 0; font-size: 1.2rem; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                        <i class="fas fa-quote-left" style="margin-right: 8px;"></i>Biographie
+                    </h3>
+                    <p style="margin: 0; line-height: 1.6;">{{ profile.bio }}</p>
+                </div>
+                {% endif %}
 
                 <!-- Social links -->
                 {% if profile.instagram or profile.facebook or profile.twitter %}
