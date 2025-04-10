@@ -247,7 +247,7 @@
 
         <h3 style="margin-top: 0; text-align: center;">Nouvelle Publication</h3>
 
-        <!-- Améliorations du formulaire pour une meilleure soumission -->
+        <!-- Modified form to only accept images -->
         <form id="new-post-form" action="{% url 'create_post' %}" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
             {% csrf_token %}
             <div id="upload-container" style="position: relative;">
@@ -255,11 +255,11 @@
                     <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; margin-bottom: 15px; color: rgba(255, 255, 255, 0.5);"></i>
                     <p id="upload-text" style="margin: 0; color: rgba(255, 255, 255, 0.7);">Glissez une image ou cliquez pour télécharger</p>
                     <p id="upload-info" style="margin: 5px 0 0; color: rgba(255, 255, 255, 0.5); font-size: 0.8rem;">
-                        Formats supportés: JPG, PNG, GIF, MP4, MOV (max 10MB)
+                        Formats supportés: JPG, PNG, GIF (max 10MB)
                     </p>
                 </div>
-                <!-- Utilisation de l'id pour le JS et name pour le serveur -->
-                <input type="file" id="file-upload" name="image" accept="image/*,video/*" style="display: none;">
+                <!-- Changed accept attribute to only allow images -->
+                <input type="file" id="file-upload" name="image" accept="image/*" style="display: none;">
             </div>
 
             <textarea name="description" placeholder="Description..." style="background-color: rgba(255, 255, 255, 0.1); border: none; padding: 15px; color: white; border-radius: 8px; min-height: 100px; resize: vertical;"></textarea>
@@ -273,6 +273,27 @@
 </div>
 
 <style>
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .post-item {
+        position: relative;
+        aspect-ratio: 1/1;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .post-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .post-item:hover .post-overlay {
         opacity: 1;
     }
@@ -303,7 +324,51 @@
         background-color: transparent;
     }
 
+    @media (max-width: 1200px) {
+        .profile-page {
+            padding: 0 15px;
+        }
+
+        .posts-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+    }
+
+    @media (max-width: 992px) {
+        .profile-header {
+            padding-bottom: 20px;
+        }
+
+        .profile-image-container {
+            width: 120px;
+            height: 120px;
+        }
+    }
+
     @media (max-width: 768px) {
+        .profile-page {
+            margin: 30px auto;
+        }
+
+        .profile-banner {
+            height: 140px;
+        }
+
+        .profile-info {
+            margin-top: -40px;
+            padding: 15px 20px 20px;
+        }
+
+        .profile-info h1 {
+            font-size: 2rem;
+        }
+
+        .posts-grid {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
+
+        /* Style for modals on mobile */
         .modal-content {
             flex-direction: column;
             height: auto;
@@ -321,6 +386,68 @@
 
         .modal-comments {
             max-height: 200px;
+        }
+
+        /* Profile stats display on mobile */
+        div[style*="display: flex; flex-wrap: wrap; gap: 15px"] {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .profile-page {
+            margin: 20px auto;
+            gap: 20px;
+        }
+
+        .profile-banner {
+            height: 120px;
+        }
+
+        .profile-image-container {
+            width: 100px;
+            height: 100px;
+            margin-left: 10px;
+        }
+
+        .profile-info {
+            padding: 15px;
+        }
+
+        .profile-info h1 {
+            font-size: 1.7rem;
+        }
+
+        div[style*="margin-top: 25px; display: flex; gap: 15px;"] {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        div[style*="margin-top: 25px; display: flex; gap: 15px;"] a {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .posts-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* New post form on mobile */
+        .upload-area {
+            height: 150px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .posts-grid {
+            grid-template-columns: 1fr;
+        }
+
+        h2[style*="font-size: 1.8rem"] {
+            font-size: 1.5rem !important;
         }
     }
 </style>
@@ -403,54 +530,28 @@
         }
 
         function handleFileSelect(file) {
-            // Déterminer si c'est une vidéo ou une image
+            // Check if file is an image
             const fileType = file.type;
-            console.log("File type:", fileType);
 
-            // Affichage de message de débogage dans la console
-            console.log(`Fichier sélectionné: ${file.name} (${fileType})`);
-
-            // Retirer l'ancien fichier pour éviter les conflits
-            const oldInput = document.getElementById('file-upload');
-            const newInput = oldInput.cloneNode(true);
-            oldInput.parentNode.replaceChild(newInput, oldInput);
-            newInput.files = new FileList(file);
-
-            // Mettre le type correct en fonction du fichier
-            if (fileType.startsWith('video/')) {
-                newInput.name = "video";
-
-                // Prévisualisation vidéo
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadArea.innerHTML = `
-                        <video controls style="max-width: 100%; max-height: 180px; border-radius: 4px;">
-                            <source src="${e.target.result}" type="${file.type}">
-                            Votre navigateur ne prend pas en charge la lecture de vidéos.
-                        </video>
-                        <p style="margin: 5px 0 0; color: #4CAF50;">${file.name} (${(file.size/1024/1024).toFixed(2)} MB)</p>
-                    `;
-                }
-                reader.readAsDataURL(file);
-            } else if (fileType.startsWith('image/')) {
-                newInput.name = "image";
-
-                // Prévisualisation image
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadArea.innerHTML = `
-                        <img src="${e.target.result}" alt="Preview" style="max-width: 100%; max-height: 180px; border-radius: 4px;">
-                        <p style="margin: 5px 0 0; color: #4CAF50;">${file.name} (${(file.size/1024/1024).toFixed(2)} MB)</p>
-                    `;
-                }
-                reader.readAsDataURL(file);
-            } else {
-                alert("Type de fichier non supporté. Veuillez choisir une image ou une vidéo.");
+            if (!fileType.startsWith('image/')) {
+                alert("Seules les images sont autorisées. Veuillez choisir un fichier JPG, PNG ou GIF.");
                 return;
             }
+
+            console.log(`Fichier sélectionné: ${file.name} (${fileType})`);
+
+            // Prévisualisation image
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadArea.innerHTML = `
+                    <img src="${e.target.result}" alt="Preview" style="max-width: 100%; max-height: 180px; border-radius: 4px;">
+                    <p style="margin: 5px 0 0; color: #4CAF50;">${file.name} (${(file.size/1024/1024).toFixed(2)} MB)</p>
+                `;
+            }
+            reader.readAsDataURL(file);
         }
 
-        // Support pour FileList car FileList est immutable
+        // Support for FileList as FileList is immutable
         function FileList(...items) {
             const list = new DataTransfer();
             items.forEach(item => list.items.add(item));

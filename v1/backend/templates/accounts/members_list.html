@@ -216,10 +216,20 @@
         border-radius: 10px;
     }
 
-    /* Media queries ajustées */
+    /* Media queries ajustées et améliorées */
+    @media (max-width: 1400px) {
+        .members-grid {
+            grid-template-columns: repeat(3, 1fr);  /* 3 colonnes sur grands écrans */
+        }
+    }
+
     @media (max-width: 1200px) {
         .members-grid {
             grid-template-columns: repeat(3, 1fr);  /* 3 colonnes sur écrans moyens */
+        }
+
+        .member-card {
+            min-height: 340px;
         }
     }
 
@@ -227,11 +237,40 @@
         .members-grid {
             grid-template-columns: repeat(2, 1fr);  /* 2 colonnes sur tablettes */
         }
+
+        .members-page {
+            margin: 30px auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .members-grid {
+            gap: 15px;
+        }
+
+        h1 {
+            font-size: 2rem !important;
+            margin-bottom: 25px !important;
+        }
     }
 
     @media (max-width: 576px) {
         .members-grid {
             grid-template-columns: 1fr;  /* 1 colonne sur mobiles */
+        }
+
+        .member-card {
+            min-height: 320px;
+        }
+
+        .member-info h2 {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .members-page {
+            padding: 0 15px;
         }
     }
 </style>

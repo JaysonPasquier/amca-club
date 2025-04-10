@@ -69,5 +69,69 @@
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
+
+    @media (max-width: 992px) {
+        .forum-container {
+            margin: 30px auto;
+        }
+
+        .category-header {
+            padding: 20px;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .category-info {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .category-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .topic-card > a > div {
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        .topic-card > a > div > div:last-child {
+            margin-top: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .forum-container {
+            padding: 0 15px;
+            margin: 20px auto;
+        }
+
+        .category-header {
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .category-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .empty-state {
+            padding: 30px 15px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.1rem;
+        }
+    }
 </style>
 {% endblock %}

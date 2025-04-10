@@ -209,5 +209,88 @@
         50% { background-color: rgba(52, 152, 219, 0.2); }
         100% { background-color: rgba(255, 255, 255, 0.05); }
     }
+
+    @media (max-width: 992px) {
+        .forum-container {
+            margin: 30px auto;
+        }
+
+        .topic-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .topic-header {
+            padding: 20px;
+        }
+
+        .reply-card, .solution {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .reply-card > div:first-child,
+        .solution > div:first-child {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .topic-content,
+        .reply-card div[style*="background-color: rgba(0, 0, 0, 0.2)"],
+        .solution div[style*="background-color: rgba(0, 0, 0, 0.2)"] {
+            padding: 15px;
+        }
+
+        .topic-header > div:first-child {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .forum-container {
+            padding: 0 15px;
+            margin: 20px auto;
+        }
+
+        .breadcrumb {
+            flex-wrap: wrap;
+            line-height: 1.8;
+        }
+
+        .topic-header, .reply-card, .solution, .reply-form {
+            padding: 15px;
+        }
+
+        .topic-content,
+        .reply-card div[style*="background-color: rgba(0, 0, 0, 0.2)"],
+        .solution div[style*="background-color: rgba(0, 0, 0, 0.2)"] {
+            padding: 10px;
+            font-size: 0.95rem;
+        }
+
+        .reply-card > div:nth-child(2),
+        .solution > div:nth-child(2) {
+            flex-direction: column;
+        }
+
+        .reply-card > div:nth-child(2) > div:first-child,
+        .solution > div:nth-child(2) > div:first-child {
+            width: 100%;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .reply-card > div:nth-child(2) > div:first-child > div:first-child,
+        .solution > div:nth-child(2) > div:first-child > div:first-child {
+            margin-right: 15px;
+            width: 50px;
+            height: 50px;
+        }
+    }
 </style>
 {% endblock %}

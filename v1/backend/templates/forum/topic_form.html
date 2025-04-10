@@ -115,5 +115,71 @@
         border-color: #3498db;
         box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
     }
+
+    @media (max-width: 992px) {
+        .forum-container {
+            margin: 30px auto;
+        }
+
+        .form-container h1 {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 20px;
+        }
+
+        .breadcrumb {
+            flex-wrap: wrap;
+            line-height: 1.8;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .forum-container {
+            padding: 0 15px;
+            margin: 20px auto;
+        }
+
+        .form-container {
+            padding: 15px;
+        }
+
+        .form-container h1 {
+            font-size: 1.5rem;
+        }
+
+        label {
+            font-size: 0.9rem;
+        }
+
+        .posting-tips {
+            padding: 15px;
+        }
+
+        .posting-tips h3 {
+            font-size: 1.1rem;
+        }
+
+        .posting-tips ul {
+            padding-left: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Make form buttons more mobile-friendly */
+        div[style*="display: flex; justify-content: space-between;"] {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        div[style*="display: flex; justify-content: space-between;"] a,
+        div[style*="display: flex; justify-content: space-between;"] button {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+    }
 </style>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}À Propos - Club de Voitures Américaines{% endblock %}
 
 {% block content %}
-<main style="grid-template-columns: 1fr; grid-template-areas: 'title' 'content';">
+<main style="grid-template-columns: 1fr; grid-template-areas: 'title' 'content'; padding: 0 20px;">
     <h1>À Propos de Notre Club</h1>
 
     <div class="about-content" style="grid-area: content; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; margin-bottom: 40px;">
@@ -37,7 +37,7 @@
                         <li style="margin-bottom: 10px;"><i class="fas fa-phone"></i> {{ club_info.phone }}</li>
                     {% endif %}
                     <li style="margin-bottom: 10px;">
-                        <div class="social-links" style="display: flex; gap: 15px;">
+                        <div class="social-links" style="display: flex; gap: 15px; flex-wrap: wrap;">
                             {% if club_info.instagram %}
                                 <a href="{{ club_info.instagram }}" style="color: white;"><i class="fab fa-instagram"></i> Instagram</a>
                             {% endif %}
@@ -56,4 +56,59 @@
         {% endif %}
     </div>
 </main>
+
+<style>
+    @media (max-width: 992px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .founders-grid {
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        main {
+            margin: 30px auto;
+        }
+
+        .about-content {
+            padding: 20px;
+        }
+
+        .founders-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        main {
+            margin: 20px auto;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            padding: 15px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+        }
+    }
+</style>
 {% endblock %}

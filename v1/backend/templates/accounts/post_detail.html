@@ -9,38 +9,15 @@
         <div class="post-media-container" id="media-container" style="flex: 1; background-color: #000; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;">
             {% if post.image %}
                 <img id="post-image" class="post-media" src="{{ post.image.url }}" alt="Post" style="max-width: 100%; max-height: 100vh; object-fit: contain;">
-            {% elif post.video %}
-                <div class="tiktok-style-video-container" style="width: 100%; height: 100%; position: relative; cursor: pointer;" onclick="togglePlayPause()">
-                    <!-- Vidéo en autoplay sans contrôles natifs - retrait de l'attribut muted -->
-                    <video id="post-video" class="post-media" autoplay loop playsinline disablePictureInPicture style="width: 100%; height: 100%; object-fit: contain; background-color: #000;">
-                        <source src="{{ post.video.url }}" type="video/mp4">
-                        Votre navigateur ne prend pas en charge la lecture de vidéos.
-                    </video>
-
-                    <!-- Overlay de progression -->
-                    <div class="video-progress-container" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background-color: rgba(255, 255, 255, 0.2);">
-                        <div id="video-progress-bar" style="height: 100%; width: 0; background-color: white;"></div>
-                    </div>
-
-                    <!-- Bouton play/pause central -->
-                    <div id="play-pause-btn" class="video-control" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
-                        <i class="fas fa-pause" style="font-size: 1.8rem; color: white;"></i>
-                    </div>
-
-                    <!-- Bouton mute/unmute avec icône unmuted par défaut -->
-                    <div id="mute-btn" class="video-control" style="position: absolute; bottom: 15px; left: 15px; background-color: rgba(0,0,0,0.6); border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10;">
-                        <i class="fas fa-volume-up" style="color: white;"></i>
-                    </div>
-                </div>
             {% else %}
                 <div style="display: flex; flex-direction: column; align-items: center; color: #aaa;">
                     <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 10px;"></i>
-                    <p>Média non disponible</p>
+                    <p>Image non disponible</p>
                 </div>
             {% endif %}
 
             <!-- Expand/fullscreen button -->
-            {% if post.image or post.video %}
+            {% if post.image %}
                 <button id="fullscreen-btn" class="media-control-btn" style="position: absolute; bottom: 15px; right: 15px; background-color: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;">
                     <i class="fas fa-expand"></i>
                 </button>
@@ -237,27 +214,49 @@
         }
     }
 
-    /* Nouveaux styles pour les vidéos style TikTok */
-    .tiktok-style-video-container:hover .video-control {
-        opacity: 1;
+    @media (max-width: 768px) {
+        .post-media-container {
+            height: 50vh;
+            min-height: 350px;
+        }
+
+        .post-comments {
+            max-height: 300px;
+        }
     }
 
-    .video-control {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
+    @media (max-width: 576px) {
+        .post-media-container {
+            height: 40vh;
+            min-height: 250px;
+        }
 
-    #play-pause-btn.visible {
-        opacity: 1;
-    }
+        .post-comments {
+            max-height: 200px;
+            padding: 15px;
+        }
 
-    #play-pause-btn.fade-out {
-        animation: controlFadeOut 1s forwards;
-    }
+        .post-user-info,
+        .post-description,
+        .post-likes,
+        .comment-form {
+            padding: 12px;
+        }
 
-    @keyframes controlFadeOut {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
+        .navigation-buttons {
+            padding: 12px;
+        }
+
+        #play-pause-btn {
+            width: 50px;
+            height: 50px;
+        }
+
+        #mute-btn,
+        #fullscreen-btn {
+            width: 36px;
+            height: 36px;
+        }
     }
 
     /* Additional styles for the moved navigation button */
@@ -269,6 +268,99 @@
         background-color: rgba(255, 255, 255, 0.2);
         transform: translateY(-2px);
     }
+
+    /* Adjust video sizing and positioning */
+    .tiktok-style-video-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #post-video {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 85vh;
+        object-fit: contain;
+        background-color: #000;
+    }
+
+    /* Add a max-width for the video in the media container */
+    .post-media-container video {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Fullscreen modal video adjustments */
+    #fullscreen-video {
+        max-width: 90%;
+        max-height: 90vh;
+    }
+
+    /* Additional media queries for better responsive behavior */
+    @media (max-width: 992px) {
+        .post-media-container video {
+            max-width: 100%;
+        }
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Improved video sizing and positioning */
+    .tiktok-style-video-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+    }
+
+    /* Video container for portrait mode */
+    .portrait-video-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Portrait video specific styles */
+    .video-portrait {
+        width: auto;
+        height: 100%;
+        max-height: 85vh;
+        max-width: 85%;
+        object-fit: contain;
+    }
+
+    /* Landscape video specific styles */
+    .video-landscape {
+        width: 100%;
+        height: auto;
+        max-width: 800px;
+        max-height: 85vh;
+        object-fit: contain;
+    }
+
+    /* Fullscreen modal video adjustments */
+    #fullscreen-video.video-portrait {
+        max-width: 65%;
+        height: 90%;
+    }
+
+    #fullscreen-video.video-landscape {
+        width: 90%;
+        max-height: 80vh;
+    }
 </style>
 
 <script>
@@ -276,66 +368,7 @@
         const postContainer = document.querySelector('.post-container');
         const mediaContainer = document.getElementById('media-container');
         const image = document.getElementById('post-image');
-        const video = document.getElementById('post-video');
-        const media = image || video;
-        const progressBar = document.getElementById('video-progress-bar');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const muteBtn = document.getElementById('mute-btn');
-
-        // TikTok-style video functionality
-        if (video) {
-            // Fonction pour mettre à jour la barre de progression
-            function updateProgressBar() {
-                if (video.currentTime > 0 && !video.paused && !video.ended) {
-                    const progress = (video.currentTime / video.duration) * 100;
-                    progressBar.style.width = progress + '%';
-                    requestAnimationFrame(updateProgressBar);
-                }
-            }
-
-            // Démarrer la mise à jour de la barre de progression
-            video.addEventListener('play', function() {
-                requestAnimationFrame(updateProgressBar);
-            });
-
-            // Basculer lecture/pause en cliquant sur la vidéo
-            window.togglePlayPause = function() {
-                if (video.paused) {
-                    video.play();
-                    playPauseBtn.querySelector('i').className = 'fas fa-pause';
-                } else {
-                    video.pause();
-                    playPauseBtn.querySelector('i').className = 'fas fa-play';
-                }
-
-                // Afficher le bouton play/pause temporairement
-                playPauseBtn.classList.add('visible');
-                setTimeout(function() {
-                    if (!video.paused) {
-                        playPauseBtn.classList.add('fade-out');
-                        setTimeout(() => {
-                            playPauseBtn.classList.remove('visible');
-                            playPauseBtn.classList.remove('fade-out');
-                        }, 1000);
-                    }
-                }, 500);
-            };
-
-            // Activer/désactiver le son - mise à jour pour refléter l'état non-muet par défaut
-            muteBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Empêcher le déclenchement du togglePlayPause
-                video.muted = !video.muted;
-                muteBtn.innerHTML = video.muted ?
-                    '<i class="fas fa-volume-mute" style="color: white;"></i>' :
-                    '<i class="fas fa-volume-up" style="color: white;"></i>';
-            });
-
-            // Vidéo en boucle
-            video.addEventListener('ended', function() {
-                video.currentTime = 0;
-                video.play();
-            });
-        }
+        const media = image;
 
         // Function to adjust layout based on media orientation
         function adjustLayoutForMediaOrientation() {
@@ -350,24 +383,14 @@
                 if (image.complete) {
                     checkMediaOrientation(image);
                 }
-            } else if (media === video) {
-                // For videos, use metadata to determine dimensions
-                video.addEventListener('loadedmetadata', function() {
-                    checkMediaOrientation(video);
-                });
-
-                // If metadata already loaded
-                if (video.readyState >= 1) {
-                    checkMediaOrientation(video);
-                }
             }
         }
 
         // Function to check if media is portrait or landscape
         function checkMediaOrientation(element) {
             // For videos, use videoWidth and videoHeight
-            const width = element.tagName === 'VIDEO' ? element.videoWidth : element.naturalWidth;
-            const height = element.tagName === 'VIDEO' ? element.videoHeight : element.naturalHeight;
+            const width = element.naturalWidth;
+            const height = element.naturalHeight;
 
             // If portrait or square
             if (height >= width) {
@@ -387,84 +410,7 @@
 
         if (fullscreenBtn && fullscreenModal) {
             fullscreenBtn.addEventListener('click', function() {
-                if (video) {
-                    // Pour les vidéos, créer une version similaire avec les mêmes contrôles personnalisés
-                    const videoContainer = document.createElement('div');
-                    videoContainer.className = 'tiktok-style-video-container';
-                    videoContainer.style.width = '100%';
-                    videoContainer.style.height = '100%';
-                    videoContainer.style.position = 'relative';
-                    videoContainer.style.cursor = 'pointer';
-                    videoContainer.innerHTML = `
-                        <video id="fullscreen-video" class="post-media" autoplay loop playsinline style="width: 100%; height: 100%; object-fit: contain; background-color: #000;">
-                            <source src="${video.querySelector('source').src}" type="video/mp4">
-                        </video>
-                        <div class="video-progress-container" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background-color: rgba(255, 255, 255, 0.2);">
-                            <div id="fullscreen-progress-bar" style="height: 100%; width: 0; background-color: white;"></div>
-                        </div>
-                        <div id="fullscreen-play-pause" class="video-control" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; opacity: 0;">
-                            <i class="fas fa-pause" style="font-size: 2.5rem; color: white;"></i>
-                        </div>
-                        <div id="fullscreen-mute" class="video-control" style="position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.6); border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10;">
-                            <i class="fas fa-volume-up" style="color: white; font-size: 1.2rem;"></i>
-                        </div>
-                    `;
-
-                    fullscreenMediaContainer.innerHTML = '';
-                    fullscreenMediaContainer.appendChild(videoContainer);
-
-                    const fsVideo = document.getElementById('fullscreen-video');
-                    const fsProgressBar = document.getElementById('fullscreen-progress-bar');
-                    const fsPlayPause = document.getElementById('fullscreen-play-pause');
-                    const fsMute = document.getElementById('fullscreen-mute');
-
-                    // Synchroniser le temps de la vidéo
-                    fsVideo.currentTime = video.currentTime;
-
-                    // Mettre à jour la progression
-                    function updateFullscreenProgress() {
-                        if (fsVideo.currentTime > 0 && !fsVideo.paused && !fsVideo.ended) {
-                            const progress = (fsVideo.currentTime / fsVideo.duration) * 100;
-                            fsProgressBar.style.width = progress + '%';
-                            requestAnimationFrame(updateFullscreenProgress);
-                        }
-                    }
-
-                    fsVideo.addEventListener('play', function() {
-                        requestAnimationFrame(updateFullscreenProgress);
-                    });
-
-                    // Clic pour play/pause en plein écran
-                    videoContainer.addEventListener('click', function() {
-                        if (fsVideo.paused) {
-                            fsVideo.play();
-                            fsPlayPause.querySelector('i').className = 'fas fa-pause';
-                        } else {
-                            fsVideo.pause();
-                            fsPlayPause.querySelector('i').className = 'fas fa-play';
-                        }
-
-                        fsPlayPause.style.opacity = '1';
-                        setTimeout(function() {
-                            if (!fsVideo.paused) {
-                                fsPlayPause.style.opacity = '0';
-                            }
-                        }, 1500);
-                    });
-
-                    // Bouton mute en plein écran
-                    fsMute.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        fsVideo.muted = !fsVideo.muted;
-                        video.muted = fsVideo.muted; // Synchroniser avec la vidéo originale
-                        fsMute.innerHTML = fsVideo.muted ?
-                            '<i class="fas fa-volume-mute" style="color: white; font-size: 1.2rem;"></i>' :
-                            '<i class="fas fa-volume-up" style="color: white; font-size: 1.2rem;"></i>';
-                        muteBtn.innerHTML = fsVideo.muted ?
-                            '<i class="fas fa-volume-mute" style="color: white;"></i>' :
-                            '<i class="fas fa-volume-up" style="color: white;"></i>';
-                    });
-                } else if (image) {
+                if (image) {
                     // Pour les images, comportement normal
                     const clonedMedia = image.cloneNode(true);
                     clonedMedia.style.maxWidth = '100%';
@@ -483,12 +429,6 @@
             closeFullscreen.addEventListener('click', function() {
                 fullscreenModal.style.display = 'none';
                 document.body.style.overflow = 'auto'; // Re-enable scrolling
-
-                // If video was playing in fullscreen, pause it
-                const videoInModal = fullscreenMediaContainer.querySelector('video');
-                if (videoInModal) {
-                    videoInModal.pause();
-                }
             });
         }
 
@@ -574,6 +514,92 @@
                 })
                 .catch(error => console.error('Error:', error));
             });
+        }
+
+        // Improved video orientation handling
+        if (video) {
+            // Make sure video loops
+            video.loop = true;
+
+            // Handle video metadata to determine orientation and set appropriate classes
+            video.addEventListener('loadedmetadata', function() {
+                // Clear any existing classes first
+                video.classList.remove('video-portrait', 'video-landscape');
+
+                // Determine orientation
+                if (this.videoHeight > this.videoWidth) {
+                    // Portrait video
+                    video.classList.add('video-portrait');
+                    mediaContainer.classList.add('portrait-mode');
+                } else {
+                    // Landscape video
+                    video.classList.add('video-landscape');
+                    mediaContainer.classList.remove('portrait-mode');
+                }
+
+                // Start muted to help with autoplay policies
+                video.muted = true;
+                video.play().catch(e => console.log('Autoplay prevented:', e));
+            });
+
+            // ...existing code for video controls...
+        }
+
+        // Fullscreen functionality with improved orientation handling
+        if (fullscreenBtn && fullscreenModal) {
+            fullscreenBtn.addEventListener('click', function() {
+                if (video) {
+                    // ...existing code...
+
+                    const fsVideo = document.getElementById('fullscreen-video');
+
+                    // Copy orientation classes from original video
+                    if (video.classList.contains('video-portrait')) {
+                        fsVideo.classList.add('video-portrait');
+                        fsVideo.classList.remove('video-landscape');
+                    } else {
+                        fsVideo.classList.add('video-landscape');
+                        fsVideo.classList.remove('video-portrait');
+                    }
+
+                    // Ensure the fullscreen video also loops
+                    fsVideo.loop = true;
+
+                    // ...existing code...
+                }
+
+                // ...existing code...
+            });
+
+            // ...existing code...
+        }
+
+        // Additional function to dynamically adjust video size based on container
+        function resizeVideoToFit() {
+            if (video) {
+                const containerWidth = mediaContainer.clientWidth;
+                const containerHeight = mediaContainer.clientHeight;
+
+                // Re-apply appropriate dimensions based on orientation
+                if (video.videoHeight > video.videoWidth) {
+                    // Portrait orientation - prioritize height
+                    const scaleFactor = Math.min(containerHeight / video.videoHeight, containerWidth / video.videoWidth * 0.8);
+                    video.style.height = `${video.videoHeight * scaleFactor}px`;
+                    video.style.width = `${video.videoWidth * scaleFactor}px`;
+                } else {
+                    // Landscape orientation - prioritize width
+                    const scaleFactor = Math.min(containerWidth / video.videoWidth * 0.95, containerHeight / video.videoHeight);
+                    video.style.width = `${video.videoWidth * scaleFactor}px`;
+                    video.style.height = `${video.videoHeight * scaleFactor}px`;
+                }
+            }
+        }
+
+        // Call resize function when video metadata is loaded
+        if (video) {
+            video.addEventListener('loadedmetadata', resizeVideoToFit);
+            // Also handle resize events
+            window.addEventListener('resize', resizeVideoToFit);
         }
     });
 </script>

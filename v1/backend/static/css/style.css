@@ -22,6 +22,7 @@ body {
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
 }
 
 /* Header Styling */
@@ -251,20 +252,11 @@ header h4 {
 }
 
 main {
-    min-height: 70%;
+    min-height: auto; /* Changed from 70% to auto */
     max-width: 1300px;
     margin: 80px auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto repeat(3, minmax(200px, auto));
-    gap: 40px 80px;
-    grid-template-areas:
-        "title title"
-        "card1 card4"
-        "card2 card5"
-        "card3 card6";
-    flex: 1;
+    flex: 1; /* This will push the footer to the bottom */
 }
 
 main > h1 {
@@ -359,7 +351,9 @@ footer {
     color: black;
     padding: 60px 0 30px;
     width: 100%;
-    margin-top: auto;
+    margin-top: auto; /* Push footer to bottom */
+    position: relative; /* Ensure footer stays above content */
+    z-index: 5; /* Add z-index to keep footer above other elements */
 }
 
 .footer-container {
@@ -489,7 +483,7 @@ footer {
 }
 
 /* Responsive adjustments */
-@media (max-width: 992px) {
+@media (max-width: 1400px) {
     header {
         flex-direction: column;
         padding: 20px;
@@ -510,10 +504,6 @@ footer {
             "card4"
             "card5"
             "card6";
-    }
-
-    .nav-center {
-        display: none;
     }
 
     .footer-info {

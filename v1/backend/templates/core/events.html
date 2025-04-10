@@ -236,9 +236,61 @@
     }
 
     /* Responsive */
+    @media (max-width: 1200px) {
+        .events-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
     @media (max-width: 768px) {
         .events-grid {
             grid-template-columns: 1fr;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .events-container {
+            margin: 30px auto;
+            padding: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .event-image {
+            height: 180px;
+        }
+
+        .event-date {
+            font-size: 1.1rem;
+        }
+
+        .event-time, .event-location {
+            font-size: 0.9rem;
+        }
+
+        .event-description {
+            font-size: 0.9rem;
+        }
+
+        .no-events-message p {
+            font-size: 1.2rem;
+        }
+
+        .no-events-sub {
+            font-size: 0.9rem !important;
+        }
+
+        .no-events-message i {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .event-info {
+            padding: 15px;
         }
     }
 </style>

@@ -3,8 +3,8 @@
 {% block title %}{{ event.title }} - Club de Voitures Américaines{% endblock %}
 
 {% block content %}
-<div class="event-detail-page" style="max-width: 1200px; margin: 50px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 300px; gap: 30px;">
-
+<!-- Replace the main container with this simplified version -->
+<div class="event-detail-page">
     <!-- Main content -->
     <div class="event-main">
         <!-- Event Header -->
@@ -121,7 +121,7 @@
     <!-- Sidebar with related events -->
     <div class="event-sidebar">
         <!-- Upcoming events sidebar -->
-        <div class="upcoming-events" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+        <div class="upcoming-events next-events-section" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
             <h3 style="margin-top: 0; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center;">
                 <i class="fas fa-calendar-alt" style="margin-right: 10px; color: #3498db;"></i>
                 Prochains événements
@@ -159,7 +159,7 @@
         </div>
 
         <!-- Google Maps placeholder -->
-        <div class="map-container" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+        <div class="map-container location-section" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
             <h3 style="margin-top: 0; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center;">
                 <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #ff6b6b;"></i>
                 Lieu
@@ -188,16 +188,129 @@
         background-color: rgba(255, 255, 255, 0.15);
     }
 
-    @media (max-width: 992px) {
+    /* Clean slate - replacing all conflicting layout styles with one unified approach */
+    .event-detail-page {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* Ensure all child elements respect box-sizing */
+    .event-detail-page * {
+        box-sizing: border-box;
+    }
+
+    /* Remove all these conflicting media queries and styles */
+    /* Old event-detail-container styles and other redundant layout styles */
+
+    /* Mobile layout - single comprehensive media query */
+    @media (max-width: 1000px) {
         .event-detail-page {
             grid-template-columns: 1fr;
+            width: 100%;
+            padding: 0 15px;
+            margin: 30px auto;
         }
+
+        .event-main, .event-sidebar {
+            width: 100%;
+            padding-right: 0;
+            padding-left: 0;
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .event-sidebar {
+            margin-top: 30px;
+        }
+    }
+
+    /* Keep these specific component styles */
+    .event-actions a:hover, .event-actions button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar-event-card:hover {
+        transform: translateY(-3px);
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .participant-card:hover {
+        transform: translateY(-3px);
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Keep other component-specific styles (not layout) */
+    @media (max-width: 768px) {
+        .event-banner {
+            height: 180px;
+        }
+
+        .event-header {
+            padding: 0 0 15px;
+        }
+
+        /* ...existing code for components... */
     }
 
     @media (max-width: 576px) {
         .participants-grid {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        /* ...existing code for components... */
+    }
+
+    @media (max-width: 480px) {
+        .participants-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* ...existing code for components... */
     }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Simpler function to handle any potential DOM manipulations if needed
+    function ensureFullWidth() {
+        const detailPage = document.querySelector('.event-detail-page');
+
+        if (!detailPage) return;
+
+        // Force full width when in mobile view
+        if (window.innerWidth <= 1000) {
+            detailPage.style.width = '100%';
+            detailPage.style.maxWidth = '100%';
+            detailPage.style.margin = '30px auto';
+            detailPage.style.padding = '0 15px';
+
+            // Force body and html to not overflow
+            document.body.style.overflowX = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
+            document.body.style.width = '100%';
+            document.documentElement.style.width = '100%';
+        } else {
+            // Reset for desktop
+            detailPage.style.width = '';
+            detailPage.style.maxWidth = '';
+            detailPage.style.margin = '';
+            detailPage.style.padding = '';
+            document.body.style.overflowX = '';
+            document.documentElement.style.overflowX = '';
+            document.body.style.width = '';
+            document.documentElement.style.width = '';
+        }
+    }
+
+    // Run on page load and resize
+    ensureFullWidth();
+    window.addEventListener('resize', ensureFullWidth);
+});
+</script>
 {% endblock %}

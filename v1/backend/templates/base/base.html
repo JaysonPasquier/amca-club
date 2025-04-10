@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/static/css/style.css" rel="stylesheet">
+    <!-- Ensure favicon has absolute path with correct URL -->
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <style>
         /* Page Transition Effects */
         #page-transition-overlay {
@@ -52,6 +54,179 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* Updated mobile menu styling */
+        /* Navigation container */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: nowrap;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 20px;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            flex-wrap: wrap;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* Mobile menu toggle button - positioned right */
+        #mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 10px;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        #mobile-menu-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        /* User account display */
+        .user-account {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f5f5f5;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .user-account i {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .user-account:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive navigation - changed breakpoint from 992px to 1400px */
+        @media (max-width: 1400px) {
+            nav {
+                flex-wrap: wrap;
+                padding: 10px 20px;
+            }
+
+            .nav-center {
+                order: 3;
+                flex-basis: 100%;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                margin: 0;
+                opacity: 0;
+                transform: translateY(-10px);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                transition: all 0.3s ease;
+            }
+
+            .nav-center.show {
+                max-height: 500px;
+                padding: 15px 0 10px 0;
+                opacity: 1;
+                transform: translateY(0);
+                margin-top: 10px;
+                border-top: 1px solid #eee;
+            }
+
+            .nav-center a {
+                text-align: center;
+                width: 100%;
+                padding: 12px 0;
+                font-size: 1.1rem;
+            }
+
+            #mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+
+            #mobile-menu-toggle:hover {
+                background-color: rgba(0,0,0,0.05);
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav {
+                padding: 12px 15px;
+            }
+
+            .nav-title {
+                font-size: 1.2em;
+            }
+
+            .nav-left img {
+                height: 35px;
+            }
+
+            .nav-btn {
+                min-width: auto;
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            /* Footer adjustments */
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                border-radius: 6px;
+                margin-bottom: 10px;
+                width: 100%;
+            }
+
+            .footer-info {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -61,12 +236,13 @@
         <div class="page-transition-spinner"></div>
     </div>
 
-    <!-- Navigation bar -->
+    <!-- Navigation bar - restructured for better responsive behavior -->
     <nav>
         <div class="nav-left">
             <img src="/static/img/logo.png" alt="logo">
             <span class="nav-title">{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}</span>
         </div>
+
         <div class="nav-center">
             <a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Accueil</a>
             <a href="{% url 'about' %}" class="{% if 'about' in request.path %}active{% endif %}">À propos</a>
@@ -74,13 +250,21 @@
             <a href="{% url 'forum:forum_home' %}" class="{% if active_forum or 'forum' in request.path %}active{% endif %}">Forum</a>
             <a href="{% url 'members_list' %}" class="{% if 'members' in request.path %}active{% endif %}">Membres</a>
         </div>
+
         <div class="nav-right">
             {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}">{{ user.username }}</a>
+                <a href="{% url 'profile' %}" class="user-account">
+                    <i class="fas fa-user-circle"></i>
+                    <span>{{ user.username }}</span>
+                </a>
             {% else %}
                 <a href="{% url 'login' %}" class="nav-btn login-btn">Connexion</a>
                 <a href="{% url 'signup_request' %}" class="nav-btn signup-btn">S'inscrire</a>
             {% endif %}
+            <!-- Mobile menu toggle button moved to nav-right -->
+            <button id="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
@@ -142,6 +326,50 @@
 
             // Hide overlay on initial page load
             const overlay = document.getElementById('page-transition-overlay');
+
+            // Mobile navigation toggle - updated for improved animation
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const navCenter = document.querySelector('.nav-center');
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event bubbling
+                    navCenter.classList.toggle('show');
+
+                    // Change icon between bars and X
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-bars')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('#mobile-menu-toggle') &&
+                        !e.target.closest('.nav-center') &&
+                        navCenter.classList.contains('show')) {
+                        navCenter.classList.remove('show');
+                        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+
+                // Close menu when clicking a nav link
+                const navLinks = navCenter.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (navCenter.classList.contains('show')) {
+                            navCenter.classList.remove('show');
+                            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
 
             // Handle link clicks for page transitions
             document.addEventListener('click', function(e) {

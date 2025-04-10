@@ -379,6 +379,12 @@
         background-color: {{ form.instance.banner_color|default:"#2c3e50" }};
     }
 
+    @media (max-width: 1200px) {
+        .form-sections {
+            gap: 20px;
+        }
+    }
+
     @media (max-width: 992px) {
         .edit-profile-container {
             flex-direction: column;
@@ -403,6 +409,80 @@
 
         .social-fields-container {
             grid-template-columns: 1fr;
+        }
+
+        /* Optimize profile sidebar for smaller screens */
+        .profile-sidebar > div {
+            padding: 25px 20px;
+        }
+
+        .profile-image-container {
+            width: 140px;
+            height: 140px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .form-content h1 {
+            font-size: 1.6rem;
+        }
+
+        .form-card {
+            padding: 20px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .profile-image-container {
+            width: 120px;
+            height: 120px;
+        }
+
+        .camera-icon {
+            width: 35px;
+            height: 35px;
+        }
+
+        .form-sections {
+            gap: 15px;
+        }
+
+        .form-card h3 {
+            font-size: 1.1rem;
+        }
+
+        /* Button Stack on mobile */
+        div[style*="justify-content: flex-end"] {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-cancel, .btn-save {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .social-field div[style*="position: relative"] div {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .profile-sidebar > div {
+            padding: 20px 15px;
+        }
+
+        .form-content {
+            padding: 20px 15px;
+        }
+
+        .form-card {
+            padding: 15px;
         }
     }
 </style>

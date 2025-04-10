@@ -4,7 +4,7 @@
 {% block title %}Connexion - Club de Voitures Américaines{% endblock %}
 
 {% block content %}
-<div style="max-width: 500px; margin: 80px auto; padding: 30px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+<div style="max-width: 500px; margin: 80px auto; padding: 30px 20px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px;">
     <h1 style="text-align: center; margin-bottom: 30px;">Connexion</h1>
 
     <form method="post" action="{% url 'login' %}">
@@ -12,15 +12,15 @@
 
         <div style="margin-bottom: 20px;">
             <label for="id_username" style="display: block; margin-bottom: 8px; font-weight: 500;">Nom d'utilisateur</label>
-            <input type="text" name="username" id="id_username" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px;">
+            <input type="text" name="username" id="id_username" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px; box-sizing: border-box;">
         </div>
 
         <div style="margin-bottom: 20px;">
             <label for="id_password" style="display: block; margin-bottom: 8px; font-weight: 500;">Mot de passe</label>
-            <input type="password" name="password" id="id_password" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px;">
+            <input type="password" name="password" id="id_password" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px; box-sizing: border-box;">
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0 20px; flex-wrap: wrap; gap: 10px;">
             <div>
                 <input type="checkbox" name="remember" id="remember" style="margin-right: 8px;">
                 <label for="remember">Se souvenir de moi</label>
@@ -40,4 +40,23 @@
         </a>
     </div>
 </div>
+
+<style>
+    @media (max-width: 576px) {
+        div[style*="max-width: 500px"] {
+            padding: 20px 15px;
+            margin: 40px 15px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .remember-forgot {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+    }
+</style>
 {% endblock %}

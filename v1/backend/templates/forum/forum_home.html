@@ -84,5 +84,84 @@
         transform: translateY(-5px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
+
+    @media (max-width: 992px) {
+        .forum-container {
+            margin: 30px auto;
+        }
+
+        .forum-header h1 {
+            font-size: 2rem;
+        }
+
+        .forum-header p {
+            font-size: 1rem;
+        }
+
+        .category-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .category-stats {
+            margin-left: 0;
+            align-self: flex-end;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .category-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .category-info h2 {
+            font-size: 1.3rem;
+        }
+
+        .category-stats {
+            font-size: 1.2rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .forum-container {
+            padding: 0 15px;
+            margin: 20px auto;
+        }
+
+        .forum-header {
+            margin-bottom: 20px;
+        }
+
+        .forum-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .category-header {
+            padding: 15px;
+        }
+
+        .latest-topic {
+            padding: 10px 15px;
+        }
+
+        .latest-topic > div {
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+    }
 </style>
 {% endblock %}

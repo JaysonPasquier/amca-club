@@ -6,10 +6,14 @@
 {% block header %}
 <!-- Header section with founders -->
 <header>
-    <!-- Toujours afficher l'image du fondateur -->
-    <img src="/static/img/Jerem.png" alt="Fondateur">
+    <!-- Founder image -->
+    <img src="/static/img/Jerem.png" alt="Fondateur" class="founder-image">
 
     <div class="header-text">
+        <!-- Add title above logo -->
+        <div class="header-title">
+            {% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}
+        </div>
         <img src="/static/img/logo.png" alt="logo" class="header-logo">
         <h1>Bienvenue</h1>
         {% if club_info %}
@@ -19,45 +23,212 @@
         {% endif %}
     </div>
 
-    <!-- Toujours afficher l'image du co-fondateur -->
-    <img src="/static/img/Eric.png" alt="Co-Fondateur">
+    <!-- Co-founder image -->
+    <img src="/static/img/Eric.png" alt="Co-Fondateur" class="founder-image">
 </header>
+
+<style>
+    /* Add styles for header title */
+    .header-title {
+        font-size: 3rem;  /* Increased from 2rem to 3rem */
+        color: #333;
+        margin-bottom: 15px;  /* Increased from 10px to 15px */
+        font-weight: 900;
+        letter-spacing: 1px;  /* Added for better spacing */
+        line-height: 1.1;  /* Better line height for larger text */
+    }
+
+    /* Responsive styles for header images */
+    @media (max-width: 1440px) {
+        .founder-image {
+            display: none;
+        }
+
+        header {
+            padding: 30px 20px;
+        }
+
+        .header-text {
+            max-width: 800px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-title {
+            font-size: 2rem;  /* Adjusted for medium screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .header-title {
+            font-size: 1.6rem;  /* Adjusted for small screens */
+        }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <!-- Main content with events -->
-<main>
-    <h1>Événements à Venir</h1>
+<div class="main-container">
+    <main class="home-main">
+        <h1>Événements à Venir</h1>
 
-    {% if upcoming_events %}
-        {% for event in upcoming_events %}
-            <a href="{% url 'event_detail' event.id %}" style="text-decoration: none; color: inherit;">
-                <div class="event-card">
-                    <img src="{% if event.type == 'rasso' %}/static/img/rasso.png{% else %}/static/img/autre.png{% endif %}" alt="{{ event.title }}">
-                    <div class="event-info">
-                        <h2>{{ event.event_date|date:"l j F Y"|capfirst }}</h2>
-                        <h2>horaire : {{ event.event_date|date:"H:i" }}</h2>
-                        <h2>{{ event.location }}</h2>
-                        <!-- Ajout du badge de type d'événement -->
-                        <div class="event-type" style="background-color: {% if event.type == 'rasso' %}#3498db{% else %}#e67e22{% endif %}; color: white; display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; margin-top: 5px;">
-                            {{ event.get_type_display }}
+        <div class="events-wrapper">
+            {% if upcoming_events %}
+                {% for event in upcoming_events %}
+                    <a href="{% url 'event_detail' event.id %}" class="event-link">
+                        <div class="event-card">
+                            <img src="{% if event.type == 'rasso' %}/static/img/rasso.png{% else %}/static/img/autre.png{% endif %}" alt="{{ event.title }}">
+                            <div class="event-info">
+                                <h2>{{ event.event_date|date:"l j F Y"|capfirst }}</h2>
+                                <h2>horaire : {{ event.event_date|date:"H:i" }}</h2>
+                                <h2>{{ event.location }}</h2>
+                                <!-- Ajout du badge de type d'événement -->
+                                <div class="event-type" style="background-color: {% if event.type == 'rasso' %}#3498db{% else %}#e67e22{% endif %}; color: white; display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; margin-top: 5px;">
+                                    {{ event.get_type_display }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <!-- Display placeholder events when none are available -->
+                {% for i in "123456" %}
+                    <div class="event-card">
+                        <img src="/static/img/autre.png" alt="Événement à venir">
+                        <div class="event-info">
+                            <h2>Plus d'événements à venir</h2>
+                            <h2>Restez à l'écoute</h2>
+                            <h2>Informations bientôt disponibles</h2>
                         </div>
                     </div>
-                </div>
-            </a>
-        {% endfor %}
-    {% else %}
-        <!-- Display placeholder events when none are available -->
-        {% for i in "123456" %}
-            <div class="event-card">
-                <img src="/static/img/autre.png" alt="Événement à venir">
-                <div class="event-info">
-                    <h2>Plus d'événements à venir</h2>
-                    <h2>Restez à l'écoute</h2>
-                    <h2>Informations bientôt disponibles</h2>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-</main>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </main>
+</div>
+
+<style>
+    .main-container {
+        padding-bottom: 60px;
+    }
+
+    .home-main {
+        min-height: auto;
+        max-width: 1300px;
+        margin: 80px auto;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .home-main > h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    .events-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    .event-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .event-card {
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+        background-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .event-card img {
+        width: 40%;
+        height: auto;
+        min-height: 100%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .event-info {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+        transition: transform 0.2s ease;
+    }
+
+    .event-card:hover .event-info {
+        transform: translateX(15px);
+    }
+
+    .home-main h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+    }
+
+    .event-card:hover h2 {
+        color: #f0f0f0;
+    }
+
+    .home-main h2:first-of-type {
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .home-main h2:first-of-type::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #ffffff;
+        transition: width 0.3s ease;
+    }
+
+    .event-card:hover h2:first-of-type::after {
+        width: 27%;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .events-wrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .home-main {
+            margin: 40px auto;
+        }
+
+        .events-wrapper {
+            gap: 25px;
+        }
+    }
+</style>
 {% endblock %}
