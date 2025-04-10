@@ -1,0 +1,213 @@
+{% extends 'base/base.html' %}
+{% load custom_filters %}
+
+{% block title %}{{ topic.title }} - Forum{% endblock %}
+
+{% block content %}
+<div class="forum-container" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb" style="margin-bottom: 20px; display: flex; align-items: center;">
+        <a href="{% url 'forum:forum_home' %}" style="color: #aaa; text-decoration: none;">Forum</a>
+        <span style="color: #aaa; margin: 0 10px;">/</span>
+        <a href="{% url 'forum:category_detail' topic.category.slug %}" style="color: #aaa; text-decoration: none;">{{ topic.category.name }}</a>
+        <span style="color: #aaa; margin: 0 10px;">/</span>
+        <span>{{ topic.title }}</span>
+    </div>
+
+    <!-- Topic header -->
+    <div class="topic-header" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin-bottom: 30px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h1 style="margin: 0; font-size: 2rem;">{{ topic.title }}</h1>
+
+            <div style="display: flex; gap: 10px;">
+                {% if topic.is_locked %}
+                    <span style="background-color: #e74c3c; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.9rem;">
+                        <i class="fas fa-lock" style="margin-right: 5px;"></i>Verrouillé
+                    </span>
+                {% endif %}
+
+                {% if topic.is_pinned %}
+                    <span style="background-color: #ff6b6b; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.9rem;">
+                        <i class="fas fa-thumbtack" style="margin-right: 5px;"></i>Épinglé
+                    </span>
+                {% endif %}
+
+                {% if user.is_authenticated and user == topic.author %}
+                    <a href="{% url 'forum:edit_topic' topic.slug %}" style="background-color: #3498db; color: white; text-decoration: none; padding: 5px 10px; border-radius: 5px; display: flex; align-items: center; font-size: 0.9rem;">
+                        <i class="fas fa-edit" style="margin-right: 5px;"></i>Modifier
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 15px; color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">
+            <div>
+                <i class="fas fa-user" style="margin-right: 5px;"></i>{{ topic.author.get_full_name|default:topic.author.username }}
+            </div>
+            <div>
+                <i class="fas fa-clock" style="margin-right: 5px;"></i>{{ topic.created_at|date:"d/m/Y H:i" }}
+            </div>
+            <div>
+                <i class="fas fa-eye" style="margin-right: 5px;"></i>{{ topic.views }} vues
+            </div>
+            <div>
+                <i class="fas fa-comments" style="margin-right: 5px;"></i>{{ replies|length }} réponses
+            </div>
+        </div>
+
+        <div class="topic-content" style="background-color: rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 8px; margin-top: 10px; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
+            {{ topic.content|linebreaks }}
+        </div>
+    </div>
+
+    <!-- Solution if exists -->
+    {% if solution %}
+        <div id="reply-{{ solution.id }}" class="solution" style="background-color: rgba(46, 204, 113, 0.1); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: 10px; padding: 25px; margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0; font-size: 1.3rem; display: flex; align-items: center; color: #2ecc71;">
+                    <i class="fas fa-check-circle" style="margin-right: 10px;"></i>Solution
+                </h3>
+
+                <div style="color: #aaa; font-size: 0.9rem;">
+                    {{ solution.created_at|date:"d/m/Y H:i" }}
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <!-- Author info -->
+                <div style="width: 80px; text-align: center;">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px;">
+                        <img src="{{ solution.author.profile.profile_image.url }}" alt="{{ solution.author.username }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                    </div>
+                    <div style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">{{ solution.author.get_full_name|default:solution.author.username }}</div>
+                    <div style="color: #aaa; font-size: 0.8rem;">{{ solution.author.profile.get_role_display }}</div>
+                </div>
+
+                <!-- Reply content with improved text wrapping -->
+                <div style="flex-grow: 1;">
+                    <div style="background-color: rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 8px; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
+                        {{ solution.content|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Replies list -->
+    <div class="replies-list" style="display: flex; flex-direction: column; gap: 15px;">
+        <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center;">
+            <i class="fas fa-comments" style="margin-right: 10px; color: #3498db;"></i>Réponses ({{ replies|length }})
+        </h3>
+
+        {% for reply in replies %}
+            {% if not reply.is_solution or forloop.counter0 == 0 %}
+                <div id="reply-{{ reply.id }}" class="reply-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; {% if reply.is_solution %}border: 1px solid rgba(46, 204, 113, 0.3);{% endif %}">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div style="font-weight: 500; font-size: 1.1rem; display: flex; align-items: center;">
+                            {% if reply.is_solution %}
+                                <span style="background-color: #2ecc71; color: white; padding: 3px 8px; border-radius: 3px; font-size: 0.8rem; margin-right: 10px;">
+                                    <i class="fas fa-check" style="margin-right: 5px;"></i>Solution
+                                </span>
+                            {% endif %}
+
+                            Réponse #{{ forloop.counter }}
+                        </div>
+
+                        <div style="color: #aaa; font-size: 0.9rem;">
+                            {{ reply.created_at|date:"d/m/Y H:i" }}
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 20px;">
+                        <!-- Author info -->
+                        <div style="width: 80px; text-align: center;">
+                            <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px;">
+                                <img src="{{ reply.author.profile.profile_image.url }}" alt="{{ reply.author.username }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                            </div>
+                            <div style="font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">{{ reply.author.get_full_name|default:reply.author.username }}</div>
+                            <div style="color: #aaa; font-size: 0.8rem;">{{ reply.author.profile.get_role_display }}</div>
+                        </div>
+
+                        <!-- Reply content with improved text wrapping -->
+                        <div style="flex-grow: 1;">
+                            <div style="background-color: rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 8px; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word;">
+                                {{ reply.content|linebreaks }}
+                            </div>
+
+                            {% if user.is_authenticated and user == topic.author and not topic.is_locked and not reply.is_solution %}
+                                <!-- Mark as solution button -->
+                                <div style="margin-top: 15px; text-align: right;">
+                                    <a href="{% url 'forum:mark_solution' reply.id %}" style="background-color: #2ecc71; color: white; text-decoration: none; padding: 5px 10px; border-radius: 5px; font-size: 0.9rem; display: inline-flex; align-items: center;">
+                                        <i class="fas fa-check-circle" style="margin-right: 5px;"></i>Marquer comme solution
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% empty %}
+            <div class="empty-state" style="text-align: center; padding: 30px 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                <i class="fas fa-comment-slash" style="font-size: 2rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                <h3 style="margin: 0 0 10px; font-size: 1.2rem;">Aucune réponse</h3>
+                <p style="color: #aaa;">Soyez le premier à répondre à ce sujet !</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Reply form -->
+    {% if user.is_authenticated and not topic.is_locked %}
+        <div class="reply-form" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin-top: 30px;">
+            <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center;">
+                <i class="fas fa-reply" style="margin-right: 10px; color: #4CAF50;"></i>Répondre
+            </h3>
+
+            <form id="reply-form" method="post" action="{% url 'forum:create_reply' topic.slug %}">
+                {% csrf_token %}
+
+                <div style="margin-bottom: 20px;">
+                    <textarea name="content" id="id_content" placeholder="Votre réponse..." rows="5"
+                              style="width: 98%; padding: 15px; border: 1px solid rgba(255, 255, 255, 0.2);
+                                     border-radius: 8px; background-color: rgba(0, 0, 0, 0.2); color: white;
+                                     font-size: 16px; min-height: 150px; resize: vertical;"
+                              class="form-input">{{ reply_form.content.value|default:'' }}</textarea>
+                </div>
+
+                <div style="text-align: right;">
+                    <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center; transition: all 0.3s ease;">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                        Envoyer ma réponse
+                    </button>
+                </div>
+            </form>
+        </div>
+    {% elif topic.is_locked %}
+        <div class="topic-locked" style="background-color: rgba(231, 76, 60, 0.1); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: 10px; padding: 20px; margin-top: 30px; text-align: center;">
+            <i class="fas fa-lock" style="font-size: 2rem; margin-bottom: 15px; color: #e74c3c;"></i>
+            <h3 style="margin: 0 0 10px; font-size: 1.2rem;">Sujet verrouillé</h3>
+            <p style="color: #aaa;">Ce sujet est verrouillé. Vous ne pouvez plus y répondre.</p>
+        </div>
+    {% elif not user.is_authenticated %}
+        <div class="login-to-reply" style="background-color: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 10px; padding: 20px; margin-top: 30px; text-align: center;">
+            <i class="fas fa-sign-in-alt" style="font-size: 2rem; margin-bottom: 15px; color: #3498db;"></i>
+            <h3 style="margin: 0 0 10px; font-size: 1.2rem;">Connectez-vous pour répondre</h3>
+            <p style="color: #aaa;">Vous devez être connecté pour participer à la discussion.</p>
+            <a href="{% url 'login' %}?next={{ request.path }}" style="display: inline-block; margin-top: 15px; background-color: #3498db; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px;">
+                <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>Se connecter
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .reply-card:target {
+        animation: highlight 2s ease-in-out;
+    }
+
+    @keyframes highlight {
+        0% { background-color: rgba(255, 255, 255, 0.05); }
+        50% { background-color: rgba(52, 152, 219, 0.2); }
+        100% { background-color: rgba(255, 255, 255, 0.05); }
+    }
+</style>
+{% endblock %}

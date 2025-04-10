@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
-from .models import UserProfile, SignupRequest, Newsletter
+from django.http import JsonResponse
+from .models import UserProfile, SignupRequest, Newsletter, Post, Like, Comment
 from .forms import SignupRequestForm, UserProfileForm, NewsletterForm
 
 def signup_request(request):
@@ -29,9 +30,21 @@ def profile_view(request, username=None):
 
     profile = get_object_or_404(UserProfile, user=user)
 
+    # Get user posts - only show approved posts unless viewing own profile
+    if user == request.user:
+        # User can see all their own posts, including unapproved ones
+        posts = Post.objects.filter(user=user).order_by('-created_at')
+    else:
+        # Others can only see approved posts
+        posts = Post.objects.filter(user=user, is_approved=True).order_by('-created_at')
+
+    pending_posts = Post.objects.filter(user=user, is_approved=False).count() if user == request.user else 0
+
     return render(request, 'accounts/profile.html', {
         'profile_user': user,
-        'profile': profile
+        'profile': profile,
+        'posts': posts,
+        'pending_posts': pending_posts
     })
 
 @login_required
@@ -92,3 +105,108 @@ def update_last_login(request):
     profile.last_login = timezone.now()
     profile.save()
     return redirect('profile')
+
+@login_required
+def create_post(request):
+    """Create a new post"""
+    if request.method == 'POST':
+        # Ajouter un débogage pour vérifier la requête
+        print("Files in request:", request.FILES)
+        print("POST data:", request.POST)
+
+        image = request.FILES.get('image')
+        video = request.FILES.get('video')
+        description = request.POST.get('description', '')
+
+        # Correction: Vérifier correctement si un fichier est présent
+        # et autoriser une plus large gamme de formats
+        has_media = 'image' in request.FILES or 'video' in request.FILES
+
+        if not has_media:
+            messages.error(request, "Vous devez ajouter une image ou une vidéo.")
+            return redirect('profile')
+
+        post = Post.objects.create(
+            user=request.user,
+            description=description,
+            is_approved=False  # Posts need approval by default
+        )
+
+        if 'image' in request.FILES:
+            post.image = request.FILES['image']
+        elif 'video' in request.FILES:
+            post.video = request.FILES['video']
+
+        post.save()
+
+        messages.success(request, "Votre publication a été créée et sera visible après approbation par un administrateur.")
+        return redirect('profile')
+
+    return redirect('profile')
+
+@login_required
+def post_detail(request, post_id):
+    """View a specific post"""
+    # Add logic to only show approved posts unless it's the post owner
+    post = get_object_or_404(Post, id=post_id)
+
+    # Check if post is approved or if user is the owner
+    if not post.is_approved and post.user != request.user:
+        messages.error(request, "Cette publication n'est pas disponible ou est en attente d'approbation.")
+        return redirect('profile')
+
+    comments = post.comments.order_by('created_at')
+    liked = post.likes.filter(user=request.user).exists() if request.user.is_authenticated else False
+
+    return render(request, 'accounts/post_detail.html', {
+        'post': post,
+        'comments': comments,
+        'liked': liked
+    })
+
+@login_required
+def toggle_like_post(request, post_id):
+    """Like or unlike a post"""
+    post = get_object_or_404(Post, id=post_id)
+    like = Like.objects.filter(post=post, user=request.user)
+
+    if like.exists():
+        like.delete()
+        liked = False
+    else:
+        Like.objects.create(post=post, user=request.user)
+        liked = True
+
+    return JsonResponse({
+        'liked': liked,
+        'likes_count': post.likes.count()
+    })
+
+@login_required
+def add_comment(request, post_id):
+    """Add a comment to a post"""
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        text = request.POST.get('text', '').strip()
+
+        if text:
+            comment = Comment.objects.create(
+                post=post,
+                user=request.user,
+                text=text
+            )
+
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'success': True,
+                    'comment_id': comment.id,
+                    'user': request.user.get_full_name(),
+                    'username': request.user.username,
+                    'text': comment.text,
+                    'created_at': comment.created_at.strftime('%d/%m/%Y %H:%M')
+                })
+
+            return redirect('post_detail', post_id=post.id)
+
+    return redirect('post_detail', post_id=post.id)

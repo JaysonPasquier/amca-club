@@ -1,0 +1,580 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Publication de {{ post.user.get_full_name }} - Club de Voitures Américaines{% endblock %}
+
+{% block content %}
+<div class="post-detail-page" style="width: 100%; margin: 0; padding: 0;">
+    <div class="post-container" style="display: flex; flex-direction: row; background-color: #222; border-radius: 0; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); min-height: 80vh; width: 100%;">
+        <!-- Left side - Media (Image/Video) -->
+        <div class="post-media-container" id="media-container" style="flex: 1; background-color: #000; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            {% if post.image %}
+                <img id="post-image" class="post-media" src="{{ post.image.url }}" alt="Post" style="max-width: 100%; max-height: 100vh; object-fit: contain;">
+            {% elif post.video %}
+                <div class="tiktok-style-video-container" style="width: 100%; height: 100%; position: relative; cursor: pointer;" onclick="togglePlayPause()">
+                    <!-- Vidéo en autoplay sans contrôles natifs - retrait de l'attribut muted -->
+                    <video id="post-video" class="post-media" autoplay loop playsinline disablePictureInPicture style="width: 100%; height: 100%; object-fit: contain; background-color: #000;">
+                        <source src="{{ post.video.url }}" type="video/mp4">
+                        Votre navigateur ne prend pas en charge la lecture de vidéos.
+                    </video>
+
+                    <!-- Overlay de progression -->
+                    <div class="video-progress-container" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background-color: rgba(255, 255, 255, 0.2);">
+                        <div id="video-progress-bar" style="height: 100%; width: 0; background-color: white;"></div>
+                    </div>
+
+                    <!-- Bouton play/pause central -->
+                    <div id="play-pause-btn" class="video-control" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+                        <i class="fas fa-pause" style="font-size: 1.8rem; color: white;"></i>
+                    </div>
+
+                    <!-- Bouton mute/unmute avec icône unmuted par défaut -->
+                    <div id="mute-btn" class="video-control" style="position: absolute; bottom: 15px; left: 15px; background-color: rgba(0,0,0,0.6); border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10;">
+                        <i class="fas fa-volume-up" style="color: white;"></i>
+                    </div>
+                </div>
+            {% else %}
+                <div style="display: flex; flex-direction: column; align-items: center; color: #aaa;">
+                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                    <p>Média non disponible</p>
+                </div>
+            {% endif %}
+
+            <!-- Expand/fullscreen button -->
+            {% if post.image or post.video %}
+                <button id="fullscreen-btn" class="media-control-btn" style="position: absolute; bottom: 15px; right: 15px; background-color: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;">
+                    <i class="fas fa-expand"></i>
+                </button>
+            {% endif %}
+        </div>
+
+        <!-- Right side - Info and comments -->
+        <div class="post-details" style="width: 500px; display: flex; flex-direction: column; border-left: 1px solid rgba(255, 255, 255, 0.1);">
+            <!-- Post owner info -->
+            <div class="post-user-info" style="padding: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; margin-right: 15px;">
+                    <img src="{{ post.user.profile.profile_image.url }}" alt="{{ post.user.get_full_name }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                </div>
+                <div style="flex-grow: 1;">
+                    <a href="{% url 'user_profile' post.user.username %}" style="text-decoration: none; color: white; font-weight: 600; display: block;">{{ post.user.get_full_name }}</a>
+                    <p style="margin: 0; font-size: 0.8rem; color: #aaa;">{{ post.created_at|date:"d/m/Y H:i" }}</p>
+                </div>
+                {% if user == post.user %}
+                <div class="post-actions">
+                    <a href="#" class="post-action-btn" style="color: #aaa; margin-left: 10px; font-size: 1.2rem;">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Post description -->
+            {% if post.description %}
+            <div class="post-description" style="padding: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                <p style="margin: 0; line-height: 1.6;">{{ post.description }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Like section -->
+            <div class="post-likes" style="padding: 15px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 20px;">
+                <button id="like-btn" class="like-btn" data-post-id="{{ post.id }}" style="background: none; border: none; color: white; display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 0;">
+                    <i class="{% if liked %}fas{% else %}far{% endif %} fa-heart" style="font-size: 1.5rem; {% if liked %}color: #e74c3c;{% endif %}"></i>
+                    <span id="likes-count">{{ post.likes.count }} j'aime</span>
+                </button>
+                <div style="display: flex; align-items: center; gap: 8px; color: #aaa;">
+                    <i class="far fa-comment" style="font-size: 1.5rem;"></i>
+                    <span>{{ post.comments.count }} commentaires</span>
+                </div>
+            </div>
+
+            <!-- Comments section -->
+            <div class="post-comments" id="comments-container" style="flex-grow: 1; overflow-y: auto; padding: 20px;">
+                <h4 style="margin-top: 0; margin-bottom: 15px;">Commentaires</h4>
+
+                {% if post.comments.exists %}
+                    {% for comment in comments %}
+                    <div class="comment" style="margin-bottom: 15px; display: flex;">
+                        <div style="width: 30px; height: 30px; border-radius: 50%; overflow: hidden; margin-right: 10px; flex-shrink: 0;">
+                            <img src="{{ comment.user.profile.profile_image.url }}" alt="{{ comment.user.get_full_name }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='/static/img/default-avatar.png';">
+                        </div>
+                        <div>
+                            <p style="margin: 0; font-weight: 600; font-size: 0.9rem;">{{ comment.user.get_full_name }}</p>
+                            <p style="margin: 0; font-size: 0.9rem;">{{ comment.text }}</p>
+                            <p style="margin: 2px 0 0; font-size: 0.8rem; color: #aaa;">{{ comment.created_at|date:"d/m/Y H:i" }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p style="color: #aaa; text-align: center;">Aucun commentaire pour le moment. Soyez le premier à commenter!</p>
+                {% endif %}
+            </div>
+
+            <!-- Add comment form -->
+            <div class="comment-form" style="padding: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex;">
+                <form id="comment-form" action="{% url 'add_comment' post.id %}" method="post" style="display: flex; width: 100%;">
+                    {% csrf_token %}
+                    <input type="text" name="text" placeholder="Ajouter un commentaire..." style="flex: 1; background-color: rgba(255, 255, 255, 0.1); border: none; padding: 10px 15px; color: white; border-radius: 20px 0 0 20px;">
+                    <button type="submit" style="background-color: #1877f2; color: white; border: none; padding: 10px 15px; border-radius: 0 20px 20px 0; cursor: pointer;">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Navigation button - moved to below comment form -->
+            <div class="navigation-buttons" style="padding: 15px; display: flex; justify-content: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <a href="{% url 'user_profile' post.user.username %}" style="background-color: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: flex; align-items: center; width: 100%; justify-content: center;">
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                    Retour au profil
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fullscreen modal for media -->
+<div id="fullscreen-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center;">
+    <div class="fullscreen-content" style="position: relative; width: 90%; height: 90%; display: flex; justify-content: center; align-items: center;">
+        <!-- Close button -->
+        <button id="close-fullscreen" style="position: absolute; top: -50px; right: 0; background: transparent; border: none; color: white; font-size: 2rem; cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Media container -->
+        <div id="fullscreen-media-container" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;">
+            <!-- Content will be cloned here -->
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Styles for the post container to adapt to media orientation */
+    .post-container.portrait-mode {
+        flex-direction: column;
+    }
+
+    .post-container.portrait-mode .post-media-container {
+        min-height: 70vh;
+    }
+
+    .post-container.portrait-mode .post-details {
+        width: 100%;
+        max-height: none;
+    }
+
+    .post-details::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .post-details::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+    }
+
+    .post-details::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .post-comments::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .post-comments::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    .post-comments::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .media-control-btn {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .post-media-container:hover .media-control-btn {
+        opacity: 1;
+    }
+
+    /* Animation for fullscreen modal */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    #fullscreen-modal {
+        animation: fadeIn 0.3s ease;
+    }
+
+    @media (max-width: 1200px) {
+        .post-details {
+            width: 400px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .post-container {
+            flex-direction: column !important; /* Force column direction on mobile */
+            min-height: auto;
+        }
+
+        .post-media-container {
+            height: 60vh;
+            min-height: 400px;
+        }
+
+        .post-details {
+            width: 100% !important; /* Force full width on mobile */
+        }
+
+        .post-comments {
+            max-height: 400px;
+        }
+    }
+
+    /* Nouveaux styles pour les vidéos style TikTok */
+    .tiktok-style-video-container:hover .video-control {
+        opacity: 1;
+    }
+
+    .video-control {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    #play-pause-btn.visible {
+        opacity: 1;
+    }
+
+    #play-pause-btn.fade-out {
+        animation: controlFadeOut 1s forwards;
+    }
+
+    @keyframes controlFadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    /* Additional styles for the moved navigation button */
+    .navigation-buttons a {
+        transition: all 0.3s ease;
+    }
+
+    .navigation-buttons a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const postContainer = document.querySelector('.post-container');
+        const mediaContainer = document.getElementById('media-container');
+        const image = document.getElementById('post-image');
+        const video = document.getElementById('post-video');
+        const media = image || video;
+        const progressBar = document.getElementById('video-progress-bar');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const muteBtn = document.getElementById('mute-btn');
+
+        // TikTok-style video functionality
+        if (video) {
+            // Fonction pour mettre à jour la barre de progression
+            function updateProgressBar() {
+                if (video.currentTime > 0 && !video.paused && !video.ended) {
+                    const progress = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = progress + '%';
+                    requestAnimationFrame(updateProgressBar);
+                }
+            }
+
+            // Démarrer la mise à jour de la barre de progression
+            video.addEventListener('play', function() {
+                requestAnimationFrame(updateProgressBar);
+            });
+
+            // Basculer lecture/pause en cliquant sur la vidéo
+            window.togglePlayPause = function() {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.querySelector('i').className = 'fas fa-pause';
+                } else {
+                    video.pause();
+                    playPauseBtn.querySelector('i').className = 'fas fa-play';
+                }
+
+                // Afficher le bouton play/pause temporairement
+                playPauseBtn.classList.add('visible');
+                setTimeout(function() {
+                    if (!video.paused) {
+                        playPauseBtn.classList.add('fade-out');
+                        setTimeout(() => {
+                            playPauseBtn.classList.remove('visible');
+                            playPauseBtn.classList.remove('fade-out');
+                        }, 1000);
+                    }
+                }, 500);
+            };
+
+            // Activer/désactiver le son - mise à jour pour refléter l'état non-muet par défaut
+            muteBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Empêcher le déclenchement du togglePlayPause
+                video.muted = !video.muted;
+                muteBtn.innerHTML = video.muted ?
+                    '<i class="fas fa-volume-mute" style="color: white;"></i>' :
+                    '<i class="fas fa-volume-up" style="color: white;"></i>';
+            });
+
+            // Vidéo en boucle
+            video.addEventListener('ended', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+        }
+
+        // Function to adjust layout based on media orientation
+        function adjustLayoutForMediaOrientation() {
+            if (!media) return;
+
+            if (media === image) {
+                // For images, wait for the image to load
+                image.onload = function() {
+                    checkMediaOrientation(image);
+                };
+                // If already loaded, check immediately
+                if (image.complete) {
+                    checkMediaOrientation(image);
+                }
+            } else if (media === video) {
+                // For videos, use metadata to determine dimensions
+                video.addEventListener('loadedmetadata', function() {
+                    checkMediaOrientation(video);
+                });
+
+                // If metadata already loaded
+                if (video.readyState >= 1) {
+                    checkMediaOrientation(video);
+                }
+            }
+        }
+
+        // Function to check if media is portrait or landscape
+        function checkMediaOrientation(element) {
+            // For videos, use videoWidth and videoHeight
+            const width = element.tagName === 'VIDEO' ? element.videoWidth : element.naturalWidth;
+            const height = element.tagName === 'VIDEO' ? element.videoHeight : element.naturalHeight;
+
+            // If portrait or square
+            if (height >= width) {
+                // 9:16 or 1:1 aspect ratio (portrait or square)
+                postContainer.classList.add('portrait-mode');
+            } else {
+                // 16:9 or similar (landscape)
+                postContainer.classList.remove('portrait-mode');
+            }
+        }
+
+        // Fullscreen functionality
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const fullscreenModal = document.getElementById('fullscreen-modal');
+        const closeFullscreen = document.getElementById('close-fullscreen');
+        const fullscreenMediaContainer = document.getElementById('fullscreen-media-container');
+
+        if (fullscreenBtn && fullscreenModal) {
+            fullscreenBtn.addEventListener('click', function() {
+                if (video) {
+                    // Pour les vidéos, créer une version similaire avec les mêmes contrôles personnalisés
+                    const videoContainer = document.createElement('div');
+                    videoContainer.className = 'tiktok-style-video-container';
+                    videoContainer.style.width = '100%';
+                    videoContainer.style.height = '100%';
+                    videoContainer.style.position = 'relative';
+                    videoContainer.style.cursor = 'pointer';
+                    videoContainer.innerHTML = `
+                        <video id="fullscreen-video" class="post-media" autoplay loop playsinline style="width: 100%; height: 100%; object-fit: contain; background-color: #000;">
+                            <source src="${video.querySelector('source').src}" type="video/mp4">
+                        </video>
+                        <div class="video-progress-container" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background-color: rgba(255, 255, 255, 0.2);">
+                            <div id="fullscreen-progress-bar" style="height: 100%; width: 0; background-color: white;"></div>
+                        </div>
+                        <div id="fullscreen-play-pause" class="video-control" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; opacity: 0;">
+                            <i class="fas fa-pause" style="font-size: 2.5rem; color: white;"></i>
+                        </div>
+                        <div id="fullscreen-mute" class="video-control" style="position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.6); border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10;">
+                            <i class="fas fa-volume-up" style="color: white; font-size: 1.2rem;"></i>
+                        </div>
+                    `;
+
+                    fullscreenMediaContainer.innerHTML = '';
+                    fullscreenMediaContainer.appendChild(videoContainer);
+
+                    const fsVideo = document.getElementById('fullscreen-video');
+                    const fsProgressBar = document.getElementById('fullscreen-progress-bar');
+                    const fsPlayPause = document.getElementById('fullscreen-play-pause');
+                    const fsMute = document.getElementById('fullscreen-mute');
+
+                    // Synchroniser le temps de la vidéo
+                    fsVideo.currentTime = video.currentTime;
+
+                    // Mettre à jour la progression
+                    function updateFullscreenProgress() {
+                        if (fsVideo.currentTime > 0 && !fsVideo.paused && !fsVideo.ended) {
+                            const progress = (fsVideo.currentTime / fsVideo.duration) * 100;
+                            fsProgressBar.style.width = progress + '%';
+                            requestAnimationFrame(updateFullscreenProgress);
+                        }
+                    }
+
+                    fsVideo.addEventListener('play', function() {
+                        requestAnimationFrame(updateFullscreenProgress);
+                    });
+
+                    // Clic pour play/pause en plein écran
+                    videoContainer.addEventListener('click', function() {
+                        if (fsVideo.paused) {
+                            fsVideo.play();
+                            fsPlayPause.querySelector('i').className = 'fas fa-pause';
+                        } else {
+                            fsVideo.pause();
+                            fsPlayPause.querySelector('i').className = 'fas fa-play';
+                        }
+
+                        fsPlayPause.style.opacity = '1';
+                        setTimeout(function() {
+                            if (!fsVideo.paused) {
+                                fsPlayPause.style.opacity = '0';
+                            }
+                        }, 1500);
+                    });
+
+                    // Bouton mute en plein écran
+                    fsMute.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        fsVideo.muted = !fsVideo.muted;
+                        video.muted = fsVideo.muted; // Synchroniser avec la vidéo originale
+                        fsMute.innerHTML = fsVideo.muted ?
+                            '<i class="fas fa-volume-mute" style="color: white; font-size: 1.2rem;"></i>' :
+                            '<i class="fas fa-volume-up" style="color: white; font-size: 1.2rem;"></i>';
+                        muteBtn.innerHTML = fsVideo.muted ?
+                            '<i class="fas fa-volume-mute" style="color: white;"></i>' :
+                            '<i class="fas fa-volume-up" style="color: white;"></i>';
+                    });
+                } else if (image) {
+                    // Pour les images, comportement normal
+                    const clonedMedia = image.cloneNode(true);
+                    clonedMedia.style.maxWidth = '100%';
+                    clonedMedia.style.maxHeight = '100%';
+                    clonedMedia.style.objectFit = 'contain';
+
+                    fullscreenMediaContainer.innerHTML = '';
+                    fullscreenMediaContainer.appendChild(clonedMedia);
+                }
+
+                // Show the fullscreen modal
+                fullscreenModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeFullscreen.addEventListener('click', function() {
+                fullscreenModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+
+                // If video was playing in fullscreen, pause it
+                const videoInModal = fullscreenMediaContainer.querySelector('video');
+                if (videoInModal) {
+                    videoInModal.pause();
+                }
+            });
+        }
+
+        // Call the function to adjust the layout
+        adjustLayoutForMediaOrientation();
+
+        // Like button functionality
+        const likeBtn = document.getElementById('like-btn');
+        if (likeBtn) {
+            likeBtn.addEventListener('click', function() {
+                const postId = this.dataset.postId;
+                fetch(`/accounts/post/${postId}/like/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const icon = likeBtn.querySelector('i');
+                    if (data.liked) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        icon.style.color = '#e74c3c';
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        icon.style.color = '';
+                    }
+                    document.getElementById('likes-count').textContent = `${data.likes_count} j'aime`;
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        // AJAX comment submission
+        const commentForm = document.getElementById('comment-form');
+        if (commentForm) {
+            commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Add the new comment to the UI
+                        const commentsContainer = document.getElementById('comments-container');
+                        const newComment = document.createElement('div');
+                        newComment.className = 'comment';
+                        newComment.style = 'margin-bottom: 15px; display: flex;';
+                        newComment.innerHTML = `
+                            <div style="width: 30px; height: 30px; border-radius: 50%; overflow: hidden; margin-right: 10px; flex-shrink: 0;">
+                                <img src="${document.querySelector('.post-user-info img').src}" alt="${data.user}" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <p style="margin: 0; font-weight: 600; font-size: 0.9rem;">${data.user}</p>
+                                <p style="margin: 0; font-size: 0.9rem;">${data.text}</p>
+                                <p style="margin: 2px 0 0; font-size: 0.8rem; color: #aaa;">${data.created_at}</p>
+                            </div>
+                        `;
+
+                        // If it's the first comment, clear the "no comments" message
+                        if (commentsContainer.querySelector('p') && commentsContainer.querySelector('p').textContent.includes('Aucun commentaire')) {
+                            commentsContainer.querySelector('p').remove();
+                        }
+
+                        commentsContainer.appendChild(newComment);
+
+                        // Clear the form
+                        commentForm.reset();
+
+                        // Scroll to the new comment
+                        commentsContainer.scrollTop = commentsContainer.scrollHeight;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import UserProfile, SignupRequest, Newsletter
+from .models import UserProfile, SignupRequest, Newsletter, Post, Comment, Like
+from django.utils.html import format_html
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
@@ -111,6 +112,77 @@ class NewsletterAdmin(admin.ModelAdmin):
         self.message_user(request, f"{queryset.count()} abonnement(s) activé(s).")
     activate_subscriptions.short_description = "Activer les abonnements sélectionnés"
 
-# Re-register UserAdmin
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'has_media', 'is_approved', 'approval_status', 'created_at')
+    list_filter = ('is_approved', 'created_at', 'approval_date')
+    search_fields = ('user__username', 'user__first_name', 'user__last_name', 'description')
+    readonly_fields = ('created_at', 'updated_at')
+    actions = ['approve_posts', 'unapprove_posts']
+    date_hierarchy = 'created_at'
+    list_per_page = 20
+
+    def approval_status(self, obj):
+        if obj.is_approved:
+            return format_html('<span style="color: green; font-weight: bold;">✓ Approuvé</span>')
+        else:
+            return format_html('<span style="color: red; font-weight: bold;">⨯ En attente</span>')
+    approval_status.short_description = "Statut"
+
+    def has_media(self, obj):
+        if obj.image:
+            return format_html('<span style="color: green;">✓ Image</span>')
+        elif obj.video:
+            return format_html('<span style="color: blue;">✓ Vidéo</span>')
+        return format_html('<span style="color: gray;">✗ Aucun</span>')
+    has_media.boolean = False
+    has_media.short_description = "Média"
+
+    def approve_posts(self, request, queryset):
+        from django.utils import timezone
+        updated = queryset.update(is_approved=True, approval_date=timezone.now())
+        self.message_user(request, f"{updated} publication(s) approuvée(s).")
+    approve_posts.short_description = "✓ Approuver les publications sélectionnées"
+
+    def unapprove_posts(self, request, queryset):
+        updated = queryset.update(is_approved=False, approval_date=None)
+        self.message_user(request, f"{updated} publication(s) désapprouvée(s).")
+    unapprove_posts.short_description = "⨯ Désapprouver les publications sélectionnées"
+
+    def changelist_view(self, request, extra_context=None):
+        if extra_context is None:
+            extra_context = {}
+
+        extra_context['title'] = "Gestion des publications"
+        extra_context['subtitle'] = "Utilisez les filtres à droite pour afficher les publications en attente d'approbation"
+
+        pending_count = Post.objects.filter(is_approved=False).count()
+        if pending_count > 0:
+            extra_context['pending_message'] = f"⚠️ {pending_count} publication(s) en attente d'approbation"
+
+        return super().changelist_view(request, extra_context=extra_context)
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.order_by('is_approved', '-created_at')
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'post', 'short_text', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('user__username', 'user__first_name', 'user__last_name', 'text')
+    date_hierarchy = 'created_at'
+
+    def short_text(self, obj):
+        return obj.text[:50] + '...' if len(obj.text) > 50 else obj.text
+    short_text.short_description = "Commentaire"
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'post', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('user__username', 'user__first_name', 'user__last_name')
+    date_hierarchy = 'created_at'
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

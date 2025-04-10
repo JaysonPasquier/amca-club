@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ category.name }} - Forum{% endblock %}
+
+{% block content %}
+<div class="forum-container" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb" style="margin-bottom: 20px; display: flex; align-items: center;">
+        <a href="{% url 'forum:forum_home' %}" style="color: #aaa; text-decoration: none;">Forum</a>
+        <span style="color: #aaa; margin: 0 10px;">/</span>
+        <span>{{ category.name }}</span>
+    </div>
+
+    <!-- Category header -->
+    <div class="category-header" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;">
+        <div class="category-info" style="display: flex; align-items: center; gap: 20px;">
+            <div class="category-icon" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i class="fas {{ category.icon }}" style="font-size: 1.8rem; color: white;"></i>
+            </div>
+            <div>
+                <h1 style="margin: 0; font-size: 2rem;">{{ category.name }}</h1>
+                <p style="margin: 5px 0 0; color: #aaa;">{{ category.description }}</p>
+            </div>
+        </div>
+
+        <!-- New topic button -->
+        <a href="{% url 'forum:create_topic_in_category' category.slug %}" style="background-color: #4CAF50; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: flex; align-items: center; transition: all 0.3s ease;">
+            <i class="fas fa-plus" style="margin-right: 8px;"></i>
+            Nouveau Sujet
+        </a>
+    </div>
+
+    <!-- Topics listing -->
+    <div class="topics-list" style="display: flex; flex-direction: column; gap: 15px;">
+        {% if pinned_topics %}
+            <!-- Pinned topics -->
+            <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center;">
+                <i class="fas fa-thumbtack" style="margin-right: 10px; color: #ff6b6b;"></i>Sujets épinglés
+            </h3>
+
+            {% for topic in pinned_topics %}
+                {% include 'forum/includes/topic_card.html' with topic=topic is_pinned=True %}
+            {% endfor %}
+        {% endif %}
+
+        <!-- Regular topics -->
+        <h3 style="margin-top: 20px; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center;">
+            <i class="fas fa-list" style="margin-right: 10px; color: #4CAF50;"></i>Tous les sujets
+        </h3>
+
+        {% for topic in regular_topics %}
+            {% include 'forum/includes/topic_card.html' with topic=topic %}
+        {% empty %}
+            <div class="empty-state" style="text-align: center; padding: 50px 20px; background-color: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                <i class="fas fa-comment-slash" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3 style="margin: 0 0 10px;">Aucun sujet dans cette catégorie</h3>
+                <p style="color: #aaa;">Soyez le premier à créer un sujet !</p>
+                <a href="{% url 'forum:create_topic_in_category' category.slug %}" style="display: inline-block; margin-top: 15px; background-color: #4CAF50; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease;">
+                    <i class="fas fa-plus" style="margin-right: 8px;"></i>
+                    Nouveau Sujet
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .topic-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
+{% endblock %}

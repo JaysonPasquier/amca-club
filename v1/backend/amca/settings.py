@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'core',
     'accounts',
     'api',
+    'forum',  # Ajouter l'application forum ici
 ]
 
 MIDDLEWARE = [

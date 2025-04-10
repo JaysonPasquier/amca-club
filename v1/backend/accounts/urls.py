@@ -25,4 +25,10 @@ urlpatterns = [
     # Members and newsletter
     path('members/', views.members_list, name='members_list'),
     path('newsletter-signup/', views.newsletter_signup, name='newsletter_signup'),
+
+    # Posts URLs
+    path('post/create/', views.create_post, name='create_post'),
+    path('post/<int:post_id>/', views.post_detail, name='post_detail'),
+    path('post/<int:post_id>/like/', views.toggle_like_post, name='toggle_like_post'),
+    path('post/<int:post_id>/comment/', views.add_comment, name='add_comment'),
 ]

@@ -1,0 +1,119 @@
+{% extends 'base/base.html' %}
+{% load custom_filters %}
+
+{% block title %}{% if is_new %}Nouveau Sujet{% else %}Modifier le Sujet{% endif %} - Forum{% endblock %}
+
+{% block content %}
+<div class="forum-container" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb" style="margin-bottom: 20px; display: flex; align-items: center;">
+        <a href="{% url 'forum:forum_home' %}" style="color: #aaa; text-decoration: none;">Forum</a>
+        <span style="color: #aaa; margin: 0 10px;">/</span>
+        {% if is_new %}
+            {% if form.initial.category %}
+                <a href="{% url 'forum:category_detail' form.initial.category.slug %}" style="color: #aaa; text-decoration: none;">{{ form.initial.category.name }}</a>
+                <span style="color: #aaa; margin: 0 10px;">/</span>
+            {% endif %}
+            <span>Nouveau Sujet</span>
+        {% else %}
+            <a href="{% url 'forum:category_detail' topic.category.slug %}" style="color: #aaa; text-decoration: none;">{{ topic.category.name }}</a>
+            <span style="color: #aaa; margin: 0 10px;">/</span>
+            <a href="{% url 'forum:topic_detail' topic.slug %}" style="color: #aaa; text-decoration: none;">{{ topic.title }}</a>
+            <span style="color: #aaa; margin: 0 10px;">/</span>
+            <span>Modifier</span>
+        {% endif %}
+    </div>
+
+    <!-- Form container -->
+    <div class="form-container" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 30px;">
+        <h1 style="margin-top: 0; margin-bottom: 25px; font-size: 2rem;">
+            {% if is_new %}
+                <i class="fas fa-plus-circle" style="margin-right: 10px; color: #4CAF50;"></i>Nouveau Sujet
+            {% else %}
+                <i class="fas fa-edit" style="margin-right: 10px; color: #3498db;"></i>Modifier le Sujet
+            {% endif %}
+        </h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div style="margin-bottom: 25px;">
+                <label for="{{ form.title.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600; color: #fff;">{{ form.title.label }}</label>
+                {{ form.title|add_class:"form-input" }}
+                {% if form.title.errors %}
+                    <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
+                        {{ form.title.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label for="{{ form.category.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600; color: #fff;">{{ form.category.label }}</label>
+                {{ form.category|add_class:"form-input" }}
+                {% if form.category.errors %}
+                    <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
+                        {{ form.category.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label for="{{ form.content.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600; color: #fff;">{{ form.content.label }}</label>
+                {{ form.content|add_class:"form-input" }}
+                {% if form.content.errors %}
+                    <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
+                        {{ form.content.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                <a href="javascript:history.back()" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; border: none; padding: 12px 20px; border-radius: 5px; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center;">
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                    Retour
+                </a>
+
+                <button type="submit" style="background-color: {% if is_new %}#4CAF50{% else %}#3498db{% endif %}; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center;">
+                    <i class="fas fa-{% if is_new %}plus{% else %}save{% endif %}" style="margin-right: 8px;"></i>
+                    {% if is_new %}Créer le sujet{% else %}Enregistrer les modifications{% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Posting guidelines -->
+    <div class="posting-tips" style="background-color: rgba(52, 152, 219, 0.1); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 10px; padding: 20px; margin-top: 30px;">
+        <h3 style="margin-top: 0; font-size: 1.2rem; display: flex; align-items: center; color: #3498db;">
+            <i class="fas fa-lightbulb" style="margin-right: 10px;"></i>Conseils pour un bon sujet
+        </h3>
+
+        <ul style="margin: 0; padding-left: 20px; color: #eee;">
+            <li style="margin-bottom: 8px;">Utilisez un titre clair et descriptif</li>
+            <li style="margin-bottom: 8px;">Soyez précis dans votre description</li>
+            <li style="margin-bottom: 8px;">Mentionnez le modèle et l'année de votre voiture si applicable</li>
+            <li style="margin-bottom: 8px;">Ajoutez des détails sur ce que vous avez déjà essayé</li>
+            <li>Restez respectueux et constructif</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .form-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.2);
+        color: white;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+    }
+</style>
+{% endblock %}
