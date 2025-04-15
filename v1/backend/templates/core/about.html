@@ -15,41 +15,43 @@
 
             <div class="founders-section">
                 <h2>Nos Fondateurs</h2>
-                <div class="founders-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
-                    <div class="founder-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 8px; overflow: hidden; padding: 20px;">
+                <div class="founders-grid">
+                    <div class="founder-card">
                         <h3>Le Fondateur</h3>
                         <p>{{ club_info.founder_info }}</p>
                     </div>
-                    <div class="founder-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 8px; overflow: hidden; padding: 20px;">
+                    <div class="founder-card">
                         <h3>Le Co-Fondateur</h3>
                         <p>{{ club_info.cofounder_info }}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="contact-section" style="margin-top: 30px;">
+            <div class="contact-section">
                 <h2>Contactez-nous</h2>
-                <ul style="list-style: none; padding: 0;">
-                    {% if club_info.email %}
-                        <li style="margin-bottom: 10px;"><i class="fas fa-envelope"></i> {{ club_info.email }}</li>
-                    {% endif %}
-                    {% if club_info.phone %}
-                        <li style="margin-bottom: 10px;"><i class="fas fa-phone"></i> {{ club_info.phone }}</li>
-                    {% endif %}
-                    <li style="margin-bottom: 10px;">
-                        <div class="social-links" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <div class="contact-grid">
+                    <ul class="contact-list">
+                        {% if club_info.email %}
+                            <li class="contact-item"><i class="fas fa-envelope"></i> {{ club_info.email }}</li>
+                        {% endif %}
+                        {% if club_info.phone %}
+                            <li class="contact-item"><i class="fas fa-phone"></i> {{ club_info.phone }}</li>
+                        {% endif %}
+                    </ul>
+                    <div class="social-links-container">
+                        <div class="social-links">
                             {% if club_info.instagram %}
-                                <a href="{{ club_info.instagram }}" style="color: white;"><i class="fab fa-instagram"></i> Instagram</a>
+                                <a href="{{ club_info.instagram }}" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
                             {% endif %}
                             {% if club_info.facebook %}
-                                <a href="{{ club_info.facebook }}" style="color: white;"><i class="fab fa-facebook"></i> Facebook</a>
+                                <a href="{{ club_info.facebook }}" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
                             {% endif %}
                             {% if club_info.twitter %}
-                                <a href="{{ club_info.twitter }}" style="color: white;"><i class="fab fa-twitter"></i> Twitter</a>
+                                <a href="{{ club_info.twitter }}" class="social-link"><i class="fab fa-twitter"></i> Twitter</a>
                             {% endif %}
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         {% else %}
             <p>Les informations sur le club ne sont pas encore disponibles.</p>
@@ -58,6 +60,106 @@
 </main>
 
 <style>
+    /* Base styles */
+    .about-content {
+        transition: padding 0.3s ease;
+    }
+
+    .about-section {
+        margin-bottom: 40px;
+    }
+
+    .about-section p {
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    /* Founders section styling */
+    .founders-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .founder-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 20px;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .founder-card h3 {
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .founder-card:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px);
+    }
+
+    /* Contact section styling */
+    .contact-section {
+        margin-top: 30px;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .contact-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .contact-item {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .contact-item i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 8px 15px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .social-link i {
+        margin-right: 8px;
+    }
+
+    .social-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+    }
+
     @media (max-width: 992px) {
         h1 {
             font-size: 2rem;
@@ -81,9 +183,98 @@
             padding: 20px;
         }
 
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* New dedicated media query for screens under 660px */
+    @media (max-width: 660px) {
+        main {
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        .about-content {
+            padding: 20px 15px;
+            border-radius: 8px;
+        }
+
+        .about-section {
+            margin-bottom: 30px;
+        }
+
+        /* Switch founders grid to 1 column at 660px with increased gap */
         .founders-grid {
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 30px; /* Increased from 20px to 30px for more separation */
+            margin-top: 15px;
+        }
+
+        .founder-card {
+            padding: 15px;
+            margin-bottom: 0;
+        }
+
+        .founder-card h3 {
+            font-size: 1.3rem;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Text size adjustments for better readability */
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .about-section p {
+            font-size: 1rem;
+        }
+
+        /* Enhance contact section for mobile */
+        .contact-section {
+            margin-top: 25px;
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        /* Make social links more mobile-friendly */
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-link {
+            width: 100%;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+    }
+
+    /* Add additional separation for the stacked founder cards on very small screens */
+    @media (max-width: 480px) {
+        .founders-grid {
+            gap: 35px; /* Even more separation on very small screens */
         }
     }
 
@@ -93,8 +284,7 @@
         }
 
         h1 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 1.7rem;
         }
 
         .about-content {
@@ -103,11 +293,53 @@
 
         h2 {
             font-size: 1.3rem;
-            margin-top: 20px;
         }
 
         h3 {
             font-size: 1.1rem;
+        }
+
+        /* Make social links 1 column for very small screens */
+        .social-links {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 380px) {
+        .about-content {
+            padding: 12px;
+            margin-bottom: 25px;
+        }
+
+        .founder-card {
+            padding: 12px;
+        }
+
+        .contact-section {
+            padding: 12px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        h3 {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+        }
+
+        .contact-item,
+        .social-link {
+            font-size: 0.9rem;
         }
     }
 </style>

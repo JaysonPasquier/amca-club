@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import UserProfile, SignupRequest, Newsletter, Post, Comment, Like
 from django.utils.html import format_html
+from django.db import transaction
+from django.contrib import messages
+import logging
+
+logger = logging.getLogger(__name__)
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
@@ -65,29 +70,69 @@ class SignupRequestAdmin(admin.ModelAdmin):
     actions = ['approve_requests', 'reject_requests']
 
     def approve_requests(self, request, queryset):
+        success_count = 0
+        error_count = 0
+
         for signup_request in queryset:
             if not signup_request.is_approved and not signup_request.is_rejected:
-                # Create a new user
-                user = User.objects.create_user(
-                    username=signup_request.username,
-                    email=signup_request.email,
-                    first_name=signup_request.first_name,
-                    last_name=signup_request.last_name
-                )
-                # Set a random password that the user will need to reset
-                user.set_password('ChangeMe!2023')
-                user.save()
+                try:
+                    with transaction.atomic():
+                        # Check if user already exists
+                        if User.objects.filter(username=signup_request.username).exists():
+                            logger.warning(f"User {signup_request.username} already exists. Skipping.")
+                            continue
 
-                # Update profile
-                profile = user.profile
-                profile.is_approved = True
-                profile.save()
+                        # Use create_user instead of create for proper user creation
+                        if signup_request.password:
+                            # Create user with existing password hash
+                            user = User.objects.create_user(
+                                username=signup_request.username,
+                                email=signup_request.email,
+                                password=None,  # Will set password directly below
+                                first_name=signup_request.first_name,
+                                last_name=signup_request.last_name,
+                            )
+                            # Set the hashed password directly
+                            user.password = signup_request.password
+                        else:
+                            # Create user with default password
+                            user = User.objects.create_user(
+                                username=signup_request.username,
+                                email=signup_request.email,
+                                password='ChangeMe!2023',
+                                first_name=signup_request.first_name,
+                                last_name=signup_request.last_name,
+                            )
 
-                # Mark request as approved
-                signup_request.is_approved = True
-                signup_request.save()
+                        # Make sure user is active
+                        user.is_active = True
+                        user.save()
 
-        self.message_user(request, f"{queryset.count()} demande(s) d'inscription approuvée(s).")
+                        logger.info(f"Successfully created user {user.username} with ID {user.id}")
+
+                        # Update profile
+                        if hasattr(user, 'profile'):
+                            profile = user.profile
+                            profile.is_approved = True
+                            profile.save()
+                            logger.info(f"Updated profile for user {user.username}")
+                        else:
+                            logger.error(f"No profile found for user {user.username}")
+
+                        # Mark request as approved
+                        signup_request.is_approved = True
+                        signup_request.save()
+
+                        success_count += 1
+                except Exception as e:
+                    error_count += 1
+                    logger.error(f"Error approving user {signup_request.username}: {str(e)}")
+
+        if success_count > 0:
+            self.message_user(request, f"{success_count} demande(s) d'inscription approuvée(s).")
+        if error_count > 0:
+            self.message_user(request, f"{error_count} demande(s) d'inscription ont échoué.", level=messages.ERROR)
+
     approve_requests.short_description = "Approuver les demandes sélectionnées"
 
     def reject_requests(self, request, queryset):

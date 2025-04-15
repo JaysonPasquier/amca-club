@@ -14,6 +14,10 @@ html, body {
     height: 100%;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -23,6 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensure body takes full viewport height */
+    line-height: 1.6;
 }
 
 /* Header Styling */
@@ -382,6 +387,7 @@ footer {
 
 .newsletter-form {
     display: flex;
+    flex-direction: column;
     max-width: 500px;
     margin: 0 auto;
 }
@@ -440,6 +446,8 @@ footer {
 
 .footer-links {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 20px;
 }
 
@@ -510,6 +518,275 @@ footer {
         flex-direction: column;
         gap: 20px;
     }
+}
+
+/* Improved responsive typography system */
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Mobile typography improvements */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .newsletter {
+        padding: 0 15px;
+    }
+
+    .newsletter h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    p, li, a {
+        font-size: 0.95rem;
+    }
+
+    /* Improve touch targets */
+    button,
+    .btn,
+    input[type="button"],
+    input[type="submit"] {
+        min-height: 44px;
+        padding: 10px 15px;
+    }
+
+    /* Add space between stacked elements */
+    .row > [class*="col-"],
+    [class*="d-flex"] > * {
+        margin-bottom: 15px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    .newsletter-form input {
+        padding: 14px 15px;
+    }
+
+    .newsletter-form button {
+        padding: 14px 15px;
+        margin-top: 5px;
+    }
+
+    .newsletter h3 {
+        font-size: 1.4rem;
+    }
+
+    .newsletter p {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+
+    .footer-info {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .footer-links a {
+        display: block;
+        padding: 8px 0;
+    }
+
+    .footer-links a:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Add specific media query targeting screens between 375px and 490px */
+@media (min-width: 376px) and (max-width: 490px) {
+    .footer-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .footer-links a {
+        display: block;
+        padding: 8px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-links a:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .footer-links a {
+        display: block;
+        padding: 8px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-links a:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 375px) {
+    html {
+        font-size: 13px;
+    }
+
+    /* Make cards more compact */
+    .card, [class*="card"] {
+        padding: 12px !important;
+    }
+
+    .newsletter {
+        margin-bottom: 30px;
+    }
+
+    .newsletter h3 {
+        font-size: 1.3rem;
+    }
+
+    .newsletter p {
+        margin-bottom: 15px;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        padding: 12px;
+    }
+
+    .footer-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .footer-links a {
+        font-size: 0.9rem;
+        padding: 6px 0;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .footer-logo {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-logo span {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+    .footer-links a {
+        font-size: 0.85rem;
+        padding: 5px 0;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-links a {
+        font-size: 0.85rem;
+        padding: 5px 0;
+    }
+
+    .newsletter h3 {
+        font-size: 1.2rem;
+    }
+
+    .newsletter p {
+        font-size: 0.85rem;
+    }
+
+    .copyright p {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* Improved spacing for content at all screen sizes */
+.content-section {
+    margin-bottom: 2rem;
+}
+
+/* Better form controls for mobile */
+input, select, textarea {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    padding: 10px 12px !important;
 }
 
 /* Notifications & alerts */

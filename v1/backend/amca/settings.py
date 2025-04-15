@@ -17,7 +17,15 @@ SECRET_KEY = 'django-insecure-amca-project-secret-key-change-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '.ngrok.io', '.ngrok-free.app', 'ab4e-176-133-46-196.ngrok-free.app']
+
+# Add CSRF trusted origins for ngrok domain
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'https://*.ngrok-free.app',
+    'https://sensible-horribly-raven.ngrok-free.app',
+]
 
 # Application definition
 INSTALLED_APPS = [

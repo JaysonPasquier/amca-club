@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
 from .models import UserProfile, SignupRequest, Newsletter
 
 class SignupRequestForm(forms.ModelForm):
@@ -7,6 +8,19 @@ class SignupRequestForm(forms.ModelForm):
     last_name = forms.CharField(max_length=100, required=True, label='Nom')
     email = forms.EmailField(required=True, label='Email')
     username = forms.CharField(max_length=150, required=True, label="Nom d'utilisateur")
+
+    # Add password fields
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        required=True,
+        label="Mot de passe",
+        help_text="Votre mot de passe doit contenir au moins 8 caractères."
+    )
+    password_confirm = forms.CharField(
+        widget=forms.PasswordInput,
+        required=True,
+        label="Confirmer le mot de passe"
+    )
 
     class Meta:
         model = SignupRequest
@@ -27,6 +41,22 @@ class SignupRequestForm(forms.ModelForm):
         if SignupRequest.objects.filter(username=username, is_approved=False, is_rejected=False).exists():
             raise forms.ValidationError("Une demande avec ce nom d'utilisateur est déjà en attente d'approbation.")
         return username
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if password:
+            validate_password(password)
+        return password
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_confirm = cleaned_data.get('password_confirm')
+
+        if password and password_confirm and password != password_confirm:
+            self.add_error('password_confirm', "Les mots de passe ne correspondent pas.")
+
+        return cleaned_data
 
 class UserProfileForm(forms.ModelForm):
     first_name = forms.CharField(max_length=100, required=True, label='Prénom')

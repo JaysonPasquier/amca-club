@@ -10,6 +10,7 @@ class UserProfile(models.Model):
         ('co-founder', 'Co-Fondateur'),
         ('member', 'Membre'),
         ('developer', 'Développeur'),
+        ('admin', 'Administratif')
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
@@ -56,6 +57,7 @@ class SignupRequest(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     username = models.CharField(max_length=150)
+    password = models.CharField(max_length=128, blank=True)  # For storing hashed password
     date_requested = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
     is_rejected = models.BooleanField(default=False)

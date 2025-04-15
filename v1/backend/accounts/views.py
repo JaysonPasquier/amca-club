@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse
+from django.contrib.auth.hashers import make_password
 from .models import UserProfile, SignupRequest, Newsletter, Post, Like, Comment
 from .forms import SignupRequestForm, UserProfileForm, NewsletterForm
 
@@ -12,7 +13,11 @@ def signup_request(request):
     if request.method == 'POST':
         form = SignupRequestForm(request.POST)
         if form.is_valid():
-            form.save()
+            signup_request = form.save(commit=False)
+            # Ensure password is properly hashed
+            if 'password' in form.cleaned_data:
+                signup_request.password = make_password(form.cleaned_data['password'])
+            signup_request.save()
             messages.success(request, 'Votre demande a été soumise. Un administrateur va examiner votre candidature prochainement.')
             return redirect('home')
     else:

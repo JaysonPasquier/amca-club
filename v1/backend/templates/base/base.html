@@ -86,6 +86,40 @@
             align-items: center;
             transition: all 0.3s ease;
             flex-wrap: wrap;
+            order: 3;
+            flex-basis: 100%;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .nav-center.show {
+            max-height: 500px;
+            padding: 10px 0;
+            opacity: 1;
+            transform: translateY(0);
+            border-top: 1px solid #eee;
+        }
+
+        .nav-center a {
+            text-align: center;
+            width: 100%;
+            padding: 12px 0;
+            font-size: 1.1rem;
         }
 
         .nav-right {
@@ -95,9 +129,11 @@
             flex-shrink: 0;
         }
 
-        /* Mobile menu toggle button - positioned right */
+        /* Mobile menu toggle button - now visible on all screen sizes */
         #mobile-menu-toggle {
-            display: none;
+            display: flex; /* Changed from 'none' to 'flex' to always show the button */
+            align-items: center;
+            justify-content: center;
             background: none;
             border: none;
             color: #333;
@@ -106,10 +142,14 @@
             margin-left: 10px;
             padding: 5px;
             transition: transform 0.3s ease;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
         }
 
         #mobile-menu-toggle:hover {
             transform: rotate(90deg);
+            background-color: rgba(0,0,0,0.05);
         }
 
         /* User account display */
@@ -133,61 +173,115 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Responsive navigation - changed breakpoint from 992px to 1400px */
-        @media (max-width: 1400px) {
-            nav {
-                flex-wrap: wrap;
-                padding: 10px 20px;
+        /* Logout button styling */
+        .logout-btn {
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid #dc3545;
+            color: #dc3545;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive styling for logout button */
+        @media (max-width: 576px) {
+            .logout-text {
+                display: none;
             }
 
-            .nav-center {
-                order: 3;
-                flex-basis: 100%;
-                max-height: 0;
-                overflow: hidden;
-                padding: 0;
-                margin: 0;
-                opacity: 0;
-                transform: translateY(-10px);
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0;
-                transition: all 0.3s ease;
-            }
-
-            .nav-center.show {
-                max-height: 500px;
-                padding: 15px 0 10px 0;
-                opacity: 1;
-                transform: translateY(0);
-                margin-top: 10px;
-                border-top: 1px solid #eee;
-            }
-
-            .nav-center a {
-                text-align: center;
-                width: 100%;
-                padding: 12px 0;
-                font-size: 1.1rem;
-            }
-
-            #mobile-menu-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 40px;
-                height: 40px;
+            .logout-btn {
+                padding: 8px;
                 border-radius: 50%;
-            }
-
-            #mobile-menu-toggle:hover {
-                background-color: rgba(0,0,0,0.05);
+                min-width: 0;
+                width: 36px;
+                height: 36px;
             }
         }
 
-        @media (max-width: 576px) {
+        /* Responsive navigation - improved for all mobile sizes */
+        @media (max-width: 1400px) {
             nav {
-                padding: 12px 15px;
+                flex-wrap: wrap;
+                padding: 8px 15px;
+            }
+
+            .nav-left {
+                gap: 10px;
+            }
+
+            .nav-left img {
+                height: 38px;
+            }
+
+            .nav-title {
+                font-size: 1.2em;
+                max-width: 160px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Remove duplicate mobile menu toggle styles since we've moved them up */
+        }
+
+        /* Mobile L specific adjustments (425px and below but above 376px) */
+        @media (min-width: 376px) and (max-width: 480px) {
+            nav {
+                padding: 8px 10px;
+            }
+
+            .nav-right {
+                margin-left: auto;
+            }
+
+            #mobile-menu-toggle {
+                width: 34px;
+                height: 34px;
+                font-size: 1.3rem;
+                margin-left: 5px;
+                position: relative;
+                right: 0;
+            }
+
+            .nav-left {
+                gap: 6px;
+            }
+
+            .user-account {
+                padding: 5px 8px;
+            }
+
+            /* Use the same core styles as 375px */
+            .nav-left img {
+                height: 28px;
+            }
+
+            .user-account span {
+                max-width: 60px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .nav-btn {
+                padding: 4px 8px;
+                font-size: 0.85rem;
+                margin-left: 5px;
+            }
+        }
+
+        /* Medium mobile devices (between 376px and 576px) */
+        @media (min-width: 481px) and (max-width: 576px) {
+            nav {
+                padding: 8px 12px;
             }
 
             .nav-title {
@@ -195,16 +289,28 @@
             }
 
             .nav-left img {
-                height: 35px;
+                height: 32px;
             }
 
             .nav-btn {
                 min-width: auto;
-                padding: 6px 12px;
+                padding: 5px 10px;
                 font-size: 0.9rem;
             }
 
-            /* Footer adjustments */
+            .user-account {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+
+            .user-account span {
+                max-width: 80px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Other general styles for this size range */
             .newsletter-form {
                 flex-direction: column;
             }
@@ -213,7 +319,6 @@
             .newsletter-form button {
                 border-radius: 6px;
                 margin-bottom: 10px;
-                width: 100%;
             }
 
             .footer-info {
@@ -223,8 +328,227 @@
             }
 
             .footer-links {
+                display: flex;
                 flex-direction: column;
-                gap: 10px;
+                align-items: center;
+                gap: 20px;
+            }
+
+            /* General typography improvements */
+            h1 {
+                font-size: 1.8rem !important;
+            }
+
+            h2 {
+                font-size: 1.5rem !important;
+            }
+
+            h3 {
+                font-size: 1.3rem !important;
+            }
+
+            p {
+                font-size: 0.95rem !important;
+            }
+        }
+
+        /* Mobile S/XS specific adjustments (375px and smaller phones above 321px) */
+        @media (min-width: 321px) and (max-width: 375px) {
+            nav {
+                padding: 6px 10px;
+            }
+
+            .nav-left {
+                gap: 6px;
+                margin-right: 8px;
+            }
+
+            .nav-left img {
+                height: 28px;
+            }
+
+            .nav-title {
+                font-size: 1.1em;
+            }
+
+            .nav-btn {
+                padding: 4px 8px;
+                font-size: 0.85rem;
+                margin-left: 5px;
+            }
+
+            #mobile-menu-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 1.3rem;
+            }
+
+            .user-account {
+                padding: 4px 8px;
+                font-size: 0.85rem;
+                gap: 4px;
+            }
+
+            .user-account span {
+                max-width: 60px;
+            }
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        /* Very small screens (between 347px and 320px) */
+        @media (min-width: 320px) and (max-width: 347px) {
+            nav {
+                padding: 5px 8px;
+            }
+
+            .nav-left {
+                gap: 5px;
+                margin-right: 6px;
+            }
+
+            .nav-left img {
+                height: 26px;
+            }
+
+            .nav-title {
+                font-size: 1.1em;
+            }
+
+            .nav-btn {
+                padding: 3px 7px;
+                font-size: 0.82rem;
+                margin-left: 4px;
+            }
+
+            #mobile-menu-toggle {
+                width: 30px;
+                height: 30px;
+                font-size: 1.25rem;
+                margin-left: 3px;
+            }
+
+            .user-account {
+                padding: 3px 7px;
+                font-size: 0.82rem;
+                gap: 3px;
+            }
+
+            .user-account span {
+                max-width: 55px;
+            }
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        /* Extra small screens (iPhone SE, etc.) - 320px and below */
+        @media (max-width: 320px) {
+            nav {
+                padding: 5px 8px;
+            }
+
+            .nav-left {
+                gap: 4px;
+                margin-right: 4px;
+            }
+
+            .nav-left img {
+                height: 24px;
+            }
+
+            .nav-title {
+                font-size: 1.1em;
+            }
+
+            .nav-btn {
+                padding: 3px 6px;
+                font-size: 0.8rem;
+                margin-left: 3px;
+            }
+
+            #mobile-menu-toggle {
+                width: 28px;
+                height: 28px;
+                font-size: 1.2rem;
+            }
+
+            .user-account {
+                padding: 3px 6px;
+                font-size: 0.8rem;
+                gap: 3px;
+            }
+
+            .user-account span {
+                max-width: 50px;
+            }
+
+            .nav-center.show {
+                padding: 8px 0 6px 0;
+            }
+
+            .nav-center a {
+                padding: 10px 0;
+                font-size: 1rem;
+            }
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        /* Mobile auth links styling */
+        .mobile-auth-links {
+            display: none;
+            width: 100%;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .mobile-menu-link i {
+            margin-right: 10px;
+        }
+
+        /* Show mobile auth links in dropdown only when menu is expanded */
+        .nav-center.show .mobile-auth-links {
+            display: block;
+        }
+
+        /* Media queries for responsive navigation */
+        @media (max-width: 1400px) {
+            /* ...existing code... */
+
+            .mobile-auth-links {
+                display: none; /* Initially hidden */
+            }
+
+            .nav-center.show .mobile-auth-links {
+                display: block; /* Show when menu is expanded */
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Hide desktop auth links on small screens */
+            .desktop-auth-links {
+                display: none;
             }
         }
     </style>
@@ -243,28 +567,43 @@
             <span class="nav-title">{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}</span>
         </div>
 
+        <div class="nav-right">
+            <!-- Mobile menu toggle button moved to nav-right -->
+            <button id="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Move nav-center below nav-right for better mobile display -->
         <div class="nav-center">
             <a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Accueil</a>
             <a href="{% url 'about' %}" class="{% if 'about' in request.path %}active{% endif %}">À propos</a>
             <a href="{% url 'events' %}" class="{% if 'events' in request.path %}active{% endif %}">Événements</a>
             <a href="{% url 'forum:forum_home' %}" class="{% if active_forum or 'forum' in request.path %}active{% endif %}">Forum</a>
             <a href="{% url 'members_list' %}" class="{% if 'members' in request.path %}active{% endif %}">Membres</a>
-        </div>
 
-        <div class="nav-right">
-            {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="user-account">
-                    <i class="fas fa-user-circle"></i>
-                    <span>{{ user.username }}</span>
-                </a>
-            {% else %}
-                <a href="{% url 'login' %}" class="nav-btn login-btn">Connexion</a>
-                <a href="{% url 'signup_request' %}" class="nav-btn signup-btn">S'inscrire</a>
-            {% endif %}
-            <!-- Mobile menu toggle button moved to nav-right -->
-            <button id="mobile-menu-toggle" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <!-- Add auth links to mobile menu - they'll be styled to only show on mobile -->
+            <div class="mobile-auth-links">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="mobile-menu-link">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Mon Profil</span>
+                    </a>
+                    <a href="{% url 'logout' %}" class="mobile-menu-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Déconnexion</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="mobile-menu-link">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Connexion</span>
+                    </a>
+                    <a href="{% url 'signup_request' %}" class="mobile-menu-link">
+                        <i class="fas fa-user-plus"></i>
+                        <span>S'inscrire</span>
+                    </a>
+                {% endif %}
+            </div>
         </div>
     </nav>
 
