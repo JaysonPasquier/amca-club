@@ -29,27 +29,61 @@
 
             <div class="contact-section">
                 <h2>Contactez-nous</h2>
-                <div class="contact-grid">
-                    <ul class="contact-list">
-                        {% if club_info.email %}
-                            <li class="contact-item"><i class="fas fa-envelope"></i> {{ club_info.email }}</li>
-                        {% endif %}
-                        {% if club_info.phone %}
-                            <li class="contact-item"><i class="fas fa-phone"></i> {{ club_info.phone }}</li>
-                        {% endif %}
-                    </ul>
-                    <div class="social-links-container">
-                        <div class="social-links">
+
+                <!-- Centered contact information -->
+                <div class="contact-container" style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 20px;">
+                    {% if club_info.email %}
+                        <div class="contact-item" style="margin-bottom: 25px; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-envelope" style="margin-right: 10px; color: rgba(255, 255, 255, 0.7);"></i>
+                            {{ club_info.email }}
+                        </div>
+                    {% endif %}
+
+                    {% if club_info.phone %}
+                        <div class="contact-item" style="margin-bottom: 25px; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-phone" style="margin-right: 10px; color: rgba(255, 255, 255, 0.7);"></i>
+                            {{ club_info.phone }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Centered social media grid -->
+                    <div class="social-links-container" style="width: 100%; max-width: 600px; margin: 0 auto;">
+                        <div class="social-media-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; justify-content: center; margin-top: 10px;">
                             {% if club_info.instagram %}
-                                <a href="{{ club_info.instagram }}" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+                                <a href="{{ club_info.instagram|safe }}"
+                                   class="social-btn instagram"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   aria-label="Instagram"
+                                   onclick="openSocialMedia('{{ club_info.instagram|safe }}', 'instagram')">
+                                    <div class="social-icon-wrapper">
+                                        <i class="fab fa-instagram"></i>
+                                    </div>
+                                    <span class="social-name">Instagram</span>
+                                </a>
                             {% endif %}
-                            {% if club_info.facebook %}
-                                <a href="{{ club_info.facebook }}" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
-                            {% endif %}
-                            {% if club_info.twitter %}
-                                <a href="{{ club_info.twitter }}" class="social-link"><i class="fab fa-twitter"></i> Twitter</a>
+
+                            {% if club_info.tiktok or True %}
+                                <a href="{{ club_info.tiktok|default:'https://www.tiktok.com/@amc.france'|safe }}"
+                                   class="social-btn tiktok"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   aria-label="TikTok"
+                                   onclick="openSocialMedia('{{ club_info.tiktok|default:'https://www.tiktok.com/@amc.france'|safe }}', 'tiktok')">
+                                    <div class="social-icon-wrapper">
+                                        <i class="fab fa-tiktok"></i>
+                                    </div>
+                                    <span class="social-name">TikTok</span>
+                                </a>
                             {% endif %}
                         </div>
+                    </div>
+
+                    <!-- Debug information to help diagnose the issue (will be hidden from users) -->
+                    <div style="display: none; margin-top: 20px; padding: 10px; background: rgba(0,0,0,0.5); font-size: 12px; color: #aaa;">
+                        <p>Instagram: {% if club_info.instagram %}✅ {{ club_info.instagram }}{% else %}❌ Not set{% endif %}</p>
+                        <p>Facebook: {% if club_info.facebook %}✅ {{ club_info.facebook }}{% else %}❌ Not set{% endif %}</p>
+                        <p>TikTok: {% if club_info.tiktok %}✅ {{ club_info.tiktok }}{% else %}❌ Not set{% endif %}</p>
                     </div>
                 </div>
             </div>
@@ -75,6 +109,25 @@
     }
 
     /* Founders section styling */
+    .founders-section {
+        margin-top: 70px; /* Increased margin to match contact section spacing */
+        position: relative;
+        padding-top: 20px;
+    }
+
+    /* Add a subtle separator between sections */
+    .founders-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 1px;
+    }
+
     .founders-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -107,7 +160,22 @@
 
     /* Contact section styling */
     .contact-section {
-        margin-top: 30px;
+        margin-top: 70px; /* Increased from 30px to 70px to create more space */
+        position: relative;
+        padding-top: 20px;
+    }
+
+    /* Add a subtle separator between sections */
+    .contact-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 1px;
     }
 
     .contact-grid {
@@ -135,29 +203,157 @@
         color: rgba(255, 255, 255, 0.7);
     }
 
-    .social-links {
-        display: flex;
+    /* Modern Social Media Buttons */
+    .social-media-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 15px;
-        flex-wrap: wrap;
+        width: 100%;
     }
 
-    .social-link {
-        color: white;
-        background-color: rgba(255, 255, 255, 0.1);
-        padding: 8px 15px;
-        border-radius: 6px;
-        display: inline-flex;
+    .social-btn {
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        transition: all 0.3s ease;
+        text-decoration: none;
+        color: white;
+        padding: 15px 0;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     }
 
-    .social-link i {
-        margin-right: 8px;
+    .social-icon-wrapper {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,0.15);
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 2;
+        transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
-    .social-link:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        transform: translateY(-3px);
+    .social-btn i {
+        font-size: 1.4rem;
+        transition: transform 0.3s ease;
+    }
+
+    .social-name {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        position: relative;
+        z-index: 2;
+        transition: transform 0.3s ease;
+    }
+
+    /* Platform-specific styles */
+    .social-btn.instagram {
+        background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+    }
+
+    .social-btn.facebook {
+        background-color: #1877f2;
+    }
+
+    .social-btn.tiktok {
+        background: linear-gradient(45deg, #000000, #EE1D52, #69C9D0);
+    }
+
+    /* Button hover effects */
+    .social-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,0.1);
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        z-index: 1;
+    }
+
+    .social-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .social-btn:hover::before {
+        transform: translateY(0);
+    }
+
+    .social-btn:hover .social-icon-wrapper {
+        transform: scale(1.1);
+        background-color: rgba(255,255,255,0.25);
+    }
+
+    .social-btn:hover i {
+        transform: scale(1.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .social-media-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 660px) {
+        .social-media-grid {
+            grid-template-columns: 1fr;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .social-btn {
+            flex-direction: row;
+            justify-content: flex-start;
+            padding: 12px 20px;
+            text-align: left;
+        }
+
+        .social-icon-wrapper {
+            margin-bottom: 0;
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .social-media-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .contact-item {
+            font-size: 1.1rem !important;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .social-media-grid {
+            grid-template-columns: 1fr;
+            max-width: 200px;
+        }
+    }
+
+    /* Remove old social-links styles */
+    .social-links {
+        display: none;
     }
 
     @media (max-width: 992px) {
@@ -245,7 +441,7 @@
 
         /* Enhance contact section for mobile */
         .contact-section {
-            margin-top: 25px;
+            margin-top: 60px; /* Slightly less spacing on mobile but still significant */
             background-color: rgba(255, 255, 255, 0.03);
             padding: 15px;
             border-radius: 8px;
@@ -259,22 +455,20 @@
         /* Make social links more mobile-friendly */
         .social-links {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 10px;
-            margin-top: 10px;
+            width: 100%;
         }
 
         .social-link {
             width: 100%;
+            padding: 14px 12px;
             justify-content: center;
-            font-size: 0.95rem;
         }
-    }
 
-    /* Add additional separation for the stacked founder cards on very small screens */
-    @media (max-width: 480px) {
-        .founders-grid {
-            gap: 35px; /* Even more separation on very small screens */
+        /* Make founders section spacing consistent with contact on mobile */
+        .founders-section {
+            margin-top: 60px; /* Match the contact section mobile spacing */
         }
     }
 
@@ -343,4 +537,27 @@
         }
     }
 </style>
+
+<script>
+    function openSocialMedia(url, platform) {
+        // If URL doesn't start with http:// or https://, add https://
+        if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+            // Handle different social media platforms
+            if (platform === 'instagram') {
+                url = 'https://www.instagram.com/' + url.replace('@', '');
+            } else if (platform === 'facebook') {
+                url = 'https://www.facebook.com/' + url.replace('@', '');
+            } else if (platform === 'tiktok') {
+                // For TikTok, always ensure we have the @amc.france account
+                url = url.includes('@') ? 'https://www.tiktok.com/' + url : 'https://www.tiktok.com/@amc.france';
+            }
+        }
+
+        // Open the URL in a new tab
+        window.open(url, '_blank', 'noopener,noreferrer');
+
+        // Prevent the default click behavior
+        return false;
+    }
+</script>
 {% endblock %}

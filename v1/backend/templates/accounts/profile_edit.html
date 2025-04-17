@@ -8,10 +8,10 @@
     <div class="edit-profile-container" style="background-color: rgba(255, 255, 255, 0.08); display: flex; min-height: calc(100vh - 170px);">
 
         <!-- Left sidebar with profile picture -->
-        <div class="profile-sidebar" style="width: 300px; flex: 0 0 300px; background: linear-gradient(to bottom, rgba(43, 43, 53, 0.9), rgba(25, 25, 35, 0.9)); padding: 0; display: flex; flex-direction: column; align-items: center; border-right: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; height: 100vh;">
+        <div class="profile-sidebar" style="flex: 0 0 300px; background: linear-gradient(to bottom, rgba(43, 43, 53, 0.9), rgba(25, 25, 35, 0.9)); padding: 0; display: flex; flex-direction: column; align-items: center; border-right: 1px solid rgba(255,255,255,0.08); position: relative; top: 0; height: 100vh;">
 
             <!-- Profile content with vertical centering -->
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; width: 100%; height: 100%;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; height: 100%;">
 
                 <!-- Profile image with enhanced styling -->
                 <div style="position: relative; margin-bottom: 30px;">
@@ -202,7 +202,6 @@
                             <label for="{{ form.banner_color.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">{{ form.banner_color.label }}</label>
                             <div style="display: flex; align-items: center; gap: 15px;">
                                 {{ form.banner_color|add_class:"form-color" }}
-                                <span class="color-preview"></span>
                                 <span style="color: #aaa; font-size: 0.9rem;">Alternative si vous n'avez pas d'image de bannière</span>
                             </div>
                             {% if form.banner_color.errors %}
@@ -282,7 +281,6 @@
     }
 
     .form-input {
-        width: 100%;
         padding: 12px 15px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
@@ -301,6 +299,7 @@
     }
 
     .bio-input {
+        width: 100%;
         height: 150px;
         resize: vertical;
         line-height: 1.5;
@@ -463,7 +462,6 @@
         }
 
         .btn-cancel, .btn-save {
-            width: 100%;
             justify-content: center;
         }
 
