@@ -1,0 +1,8 @@
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 17, 2025 - 23:12:37
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+

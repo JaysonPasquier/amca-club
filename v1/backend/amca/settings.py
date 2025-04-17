@@ -25,6 +25,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'https://*.ngrok-free.app',
     'https://sensible-horribly-raven.ngrok-free.app',
+    'https://amc-f.com',
 ]
 
 # Application definition
