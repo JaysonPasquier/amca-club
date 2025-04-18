@@ -19,10 +19,12 @@
                     <div class="founder-card">
                         <h3>Le Fondateur</h3>
                         <p>{{ club_info.founder_info }}</p>
+                        <img src="/static/img/Jerem.png" alt="Fondateur" class="founder-image">
                     </div>
                     <div class="founder-card">
                         <h3>Le Co-Fondateur</h3>
                         <p>{{ club_info.cofounder_info }}</p>
+                        <img src="/static/img/Eric.png" alt="Co-Fondateur" class="founder-image">
                     </div>
                 </div>
             </div>
@@ -94,6 +96,50 @@
 </main>
 
 <style>
+
+    /* Founder image styling - add these to your style section */
+    .founder-image {
+        max-width: 300px;
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: auto; /* Changed from margin-top: 20px to auto to push image to bottom */
+        margin-bottom: 10px; /* Add some spacing at the bottom */
+        align-self: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .founder-card:hover .founder-image {
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Adjustments for different screen sizes */
+    @media (max-width: 992px) {
+        .founder-image {
+            max-width: 250px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .founder-image {
+            max-width: 180px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .founder-image {
+            max-width: 130px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .founder-image {
+            max-width: 120px;
+        }
+    }
+
     /* Base styles */
     .about-content {
         transition: padding 0.3s ease;
@@ -151,6 +197,11 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding-bottom: 10px;
         margin-bottom: 15px;
+    }
+
+    .founder-card p {
+        flex: 1 0 auto; /* Make description take available space but not shrink */
+        margin-bottom: 20px; /* Add space between text and image */
     }
 
     .founder-card:hover {
@@ -403,7 +454,7 @@
         /* Switch founders grid to 1 column at 660px with increased gap */
         .founders-grid {
             grid-template-columns: 1fr;
-            gap: 30px; /* Increased from 20px to 30px for more separation */
+            gap: 5%; /* Increased from 20px to 30px for more separation */
             margin-top: 15px;
         }
 
