@@ -108,3 +108,27 @@ Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 
 Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Media root directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Error setting up media directory: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 22:09:21
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Error moving file: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/e9d67c549b3c4d07b6e37eba6ad2a639.png'
+Error copying file: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/e9d67c549b3c4d07b6e37eba6ad2a639.png'
+Error moving file: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/bfa697b4ad844a84b0402e4b6f83ff7e.png'
+Error copying file: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/bfa697b4ad844a84b0402e4b6f83ff7e.png'
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Media root directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Error setting up media directory: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Using media directory: /tmp/amca_media
+Media root directory: /tmp/amca_media
+Using media directory: /tmp/amca_media
+Media root directory: /tmp/amca_media
+Using media directory: /tmp/amca_media
+Media root directory: /tmp/amca_media

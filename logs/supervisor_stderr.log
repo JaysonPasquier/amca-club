@@ -20417,3 +20417,146 @@ Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
 [27/Apr/2025 22:09:49] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3715
 Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
 [27/Apr/2025 22:09:49] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3715
+[27/Apr/2025 22:11:39] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:40] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 22:11:40] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 22:11:40] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:40] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:41] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:41] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:41] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:41] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:41] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2020/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:42] "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:42] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:42] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:42] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:42] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:42] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:43] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:43] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 22:11:43] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /favicon.ico
+[27/Apr/2025 22:14:07] "GET /favicon.ico HTTP/1.1" 404 3372
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/amca/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[27/Apr/2025 22:15:54] "GET /accounts/profile/JaysonPasquier/ HTTP/1.1" 200 44979
+[27/Apr/2025 22:15:54] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 22:15:54] "GET /static/img/logo.png HTTP/1.1" 304 0
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:15:54] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3669
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:15:55] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3669
+[27/Apr/2025 22:15:58] "GET /accounts/profile/edit/ HTTP/1.1" 200 51861
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:15:58] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3669
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:15:58] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3669
+[27/Apr/2025 22:16:06] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 22:16:06] "GET /accounts/profile/ HTTP/1.1" 200 45330
+[27/Apr/2025 22:16:06] "GET /media/055b9022ca764ed196eb592e0e293c97.png HTTP/1.1" 200 76744
+[27/Apr/2025 22:16:09] "GET /accounts/members/ HTTP/1.1" 200 35651
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:09] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+[27/Apr/2025 22:16:10] "GET /media/055b9022ca764ed196eb592e0e293c97.png HTTP/1.1" 304 0
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 22:16:10] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3677
+[27/Apr/2025 22:16:13] "GET /accounts/profile/Eric-Pasquier/ HTTP/1.1" 200 48850
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:13] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+Not Found: /media/posts/20250405_202546.jpg
+[27/Apr/2025 22:16:13] "GET /media/posts/20250405_202546.jpg HTTP/1.1" 404 3625
+Not Found: /media/posts/Eric.png
+[27/Apr/2025 22:16:13] "GET /media/posts/Eric.png HTTP/1.1" 404 3581
+Not Found: /media/posts/images.png
+Not Found: /media/posts/logo-base.png
+Not Found: /media/posts/Jerem.png
+[27/Apr/2025 22:16:13] "GET /media/posts/logo-base.png HTTP/1.1" 404 3601
+[27/Apr/2025 22:16:13] "GET /media/posts/Jerem.png HTTP/1.1" 404 3585
+[27/Apr/2025 22:16:13] "GET /media/posts/images.png HTTP/1.1" 404 3589
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:13] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+Watching for file changes with StatReloader
+[27/Apr/2025 22:16:50] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 22:16:53] "GET /accounts/profile/Eric-Pasquier/ HTTP/1.1" 200 48850
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:53] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+Not Found: /media/posts/20250405_202546.jpg
+[27/Apr/2025 22:16:53] "GET /media/posts/20250405_202546.jpg HTTP/1.1" 404 3625
+Not Found: /media/posts/Eric.png
+Not Found: /media/posts/Jerem.png
+Not Found: /media/posts/logo-base.png
+[27/Apr/2025 22:16:53] "GET /media/posts/Jerem.png HTTP/1.1" 404 3585
+[27/Apr/2025 22:16:53] "GET /media/posts/Eric.png HTTP/1.1" 404 3581
+Not Found: /media/posts/images.png
+[27/Apr/2025 22:16:53] "GET /media/posts/logo-base.png HTTP/1.1" 404 3601
+[27/Apr/2025 22:16:53] "GET /media/posts/images.png HTTP/1.1" 404 3589
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:53] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+[27/Apr/2025 22:16:55] "GET /accounts/profile/Eric-Pasquier/ HTTP/1.1" 200 48850
+Not Found: /media/posts/20250405_202546.jpg
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:55] "GET /media/posts/20250405_202546.jpg HTTP/1.1" 404 3625
+[27/Apr/2025 22:16:55] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+Not Found: /media/posts/Eric.png
+[27/Apr/2025 22:16:55] "GET /media/posts/Eric.png HTTP/1.1" 404 3581
+Not Found: /media/posts/logo-base.png
+Not Found: /media/posts/images.png
+[27/Apr/2025 22:16:55] "GET /media/posts/logo-base.png HTTP/1.1" 404 3601
+Not Found: /media/posts/Jerem.png
+[27/Apr/2025 22:16:55] "GET /media/posts/images.png HTTP/1.1" 404 3589
+[27/Apr/2025 22:16:55] "GET /media/posts/Jerem.png HTTP/1.1" 404 3585
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:55] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+[27/Apr/2025 22:16:59] "GET /accounts/members/ HTTP/1.1" 200 35651
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:16:59] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+[27/Apr/2025 22:16:59] "GET /media/055b9022ca764ed196eb592e0e293c97.png HTTP/1.1" 304 0
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 22:16:59] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3677
+[27/Apr/2025 22:17:00] "GET /accounts/profile/JaysonPasquier/ HTTP/1.1" 200 44979
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 22:17:04] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 22:17:39] "GET /accounts/profile/JaysonPasquier/ HTTP/1.1" 200 44979
+[27/Apr/2025 22:17:39] "GET /media/055b9022ca764ed196eb592e0e293c97.png HTTP/1.1" 304 0
+[27/Apr/2025 22:17:43] "GET /accounts/members/ HTTP/1.1" 200 35651
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:17:44] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 22:17:44] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3677
+Watching for file changes with StatReloader
+[27/Apr/2025 22:18:08] "GET /accounts/members/ HTTP/1.1" 200 35651
+[27/Apr/2025 22:18:08] "GET /media/055b9022ca764ed196eb592e0e293c97.png HTTP/1.1" 304 0
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:18:08] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 22:18:08] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3677
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 22:18:31] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 22:19:03] "GET /admin/auth/user/1/change/ HTTP/1.1" 200 48003
+[27/Apr/2025 22:19:03] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 22:19:07] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3661
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 22:19:09] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 22:19:52] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
