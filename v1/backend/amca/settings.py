@@ -4,6 +4,7 @@ Django settings for amca project.
 
 import os
 import sys
+import tempfile  # Add tempfile import
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -140,35 +141,19 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Dynamic media and static path configuration
-# Check if we're running on production server
-if '/var/www/vhosts/amc-f.com' in str(BASE_DIR):
-    # Production paths
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(str(BASE_DIR).replace('/home/scorpio/personall-website', '/var/www/vhosts/amc-f.com/httpdocs/amca-club'), 'media')
-    STATIC_ROOT = os.path.join(str(BASE_DIR).replace('/home/scorpio/personall-website', '/var/www/vhosts/amc-f.com/httpdocs/amca-club'), 'staticfiles')
-else:
-    # Development paths
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Create a temporary directory for uploads with guaranteed write permissions
+TEMP_MEDIA_ROOT = tempfile.mkdtemp()
+print(f"Using temporary media directory: {TEMP_MEDIA_ROOT}")
 
-# Ensure media directories exist with proper permissions
-import os
-try:
-    os.makedirs(MEDIA_ROOT, exist_ok=True)
-    # Give full permissions to ensure writability
-    os.chmod(MEDIA_ROOT, 0o777)
+# Use temporary directory for all uploads
+MEDIA_URL = '/media/'
+MEDIA_ROOT = TEMP_MEDIA_ROOT
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-    for directory in ['profile_images', 'banner_images', 'posts']:
-        dir_path = os.path.join(MEDIA_ROOT, directory)
-        os.makedirs(dir_path, exist_ok=True)
-        # Give full permissions to the directories too
-        os.chmod(dir_path, 0o777)
-except Exception as e:
-    print(f"Error setting permissions: {e}")
+# Don't attempt to create directories or set permissions on the temp directory
+# since tempfile.mkdtemp() already ensures proper permissions
 
-# File permission settings (less restrictive)
+# File permission settings (even more permissive)
 FILE_UPLOAD_PERMISSIONS = 0o666
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o777
 
