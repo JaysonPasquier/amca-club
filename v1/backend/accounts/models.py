@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import FileExtensionValidator
+from .storage import PermissionFileStorage
 
 class UserProfile(models.Model):
     ROLE_CHOICES = (
@@ -14,7 +15,12 @@ class UserProfile(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_image = models.ImageField(upload_to='profile_images/', default='profile_images/default.png')
+    profile_image = models.ImageField(
+        upload_to='profile_images/',
+        storage=PermissionFileStorage(),
+        default='default.png',
+        blank=True
+    )
     member_id = models.PositiveIntegerField(unique=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='member')
     is_approved = models.BooleanField(default=False)
@@ -26,7 +32,12 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True, verbose_name="Biographie")
 
     # Nouveaux champs pour la bannière
-    banner_image = models.ImageField(upload_to='banner_images/', blank=True, null=True, verbose_name="Image de bannière")
+    banner_image = models.ImageField(
+        upload_to='banner_images/',
+        storage=PermissionFileStorage(),
+        blank=True,
+        null=True
+    )
     banner_color = models.CharField(max_length=20, blank=True, null=True, default="#2c3e50", verbose_name="Couleur de bannière")
     banner_approved = models.BooleanField(default=False, verbose_name="Bannière approuvée")
 

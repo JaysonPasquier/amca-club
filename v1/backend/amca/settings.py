@@ -3,6 +3,7 @@ Django settings for amca project.
 """
 
 import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,18 +136,41 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Media files - ensure these settings are present and correct
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Dynamic media and static path configuration
+# Check if we're running on production server
+if '/var/www/vhosts/amc-f.com' in str(BASE_DIR):
+    # Production paths
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(str(BASE_DIR).replace('/home/scorpio/personall-website', '/var/www/vhosts/amc-f.com/httpdocs/amca-club'), 'media')
+    STATIC_ROOT = os.path.join(str(BASE_DIR).replace('/home/scorpio/personall-website', '/var/www/vhosts/amc-f.com/httpdocs/amca-club'), 'staticfiles')
+else:
+    # Development paths
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# File permission settings
-FILE_UPLOAD_PERMISSIONS = 0o644
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+# Ensure media directories exist with proper permissions
+import os
+try:
+    os.makedirs(MEDIA_ROOT, exist_ok=True)
+    # Give full permissions to ensure writability
+    os.chmod(MEDIA_ROOT, 0o777)
+
+    for directory in ['profile_images', 'banner_images', 'posts']:
+        dir_path = os.path.join(MEDIA_ROOT, directory)
+        os.makedirs(dir_path, exist_ok=True)
+        # Give full permissions to the directories too
+        os.chmod(dir_path, 0o777)
+except Exception as e:
+    print(f"Error setting permissions: {e}")
+
+# File permission settings (less restrictive)
+FILE_UPLOAD_PERMISSIONS = 0o666
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o777
 
 # Media file settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
