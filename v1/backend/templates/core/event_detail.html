@@ -114,10 +114,29 @@
                 Ajouter à mon calendrier
             </a>
 
-            <a href="#" style="background-color: #3498db; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; display: flex; align-items: center; transition: all 0.3s ease;">
-                <i class="fas fa-share-alt" style="margin-right: 10px;"></i>
-                Partager
-            </a>
+            <div class="dropdown" style="position: relative; display: inline-block;">
+                <button id="shareButton" style="background-color: #3498db; color: white; border: none; padding: 12px 24px; border-radius: 8px; display: flex; align-items: center; transition: all 0.3s ease; cursor: pointer; font-family: inherit; font-size: 1rem;">
+                    <i class="fas fa-share-alt" style="margin-right: 10px;"></i>
+                    Partager
+                </button>
+                <div id="shareDropdown" class="dropdown-content" style="display: none; position: absolute; background-color: rgba(40, 40, 40, 0.95); min-width: 200px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); border-radius: 8px; z-index: 1; margin-top: 8px; left: 0;">
+                    <a href="javascript:void(0)" onclick="shareViaWebAPI()" style="padding: 12px 16px; text-decoration: none; display: block; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <i class="fas fa-mobile-alt" style="margin-right: 10px; color: #3498db;"></i>Partager
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://amc-f.com/events/{{ event.id }}/" target="_blank" style="padding: 12px 16px; text-decoration: none; display: block; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <i class="fab fa-facebook" style="margin-right: 10px; color: #4267B2;"></i>Facebook
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text={{ event.title|urlencode }}%20-%20{{ event.event_date|date:'d/m/Y'|urlencode }}%20à%20{{ event.location|urlencode }}&url=https://amc-f.com/events/{{ event.id }}/" target="_blank" style="padding: 12px 16px; text-decoration: none; display: block; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <i class="fab fa-twitter" style="margin-right: 10px; color: #1DA1F2;"></i>Twitter
+                    </a>
+                    <a href="https://api.whatsapp.com/send?text={{ event.title|urlencode }}%20-%20{{ event.event_date|date:'d/m/Y'|urlencode }}%20à%20{{ event.location|urlencode }}%0A%0APlus d'informations: https://amc-f.com/events/{{ event.id }}/" target="_blank" style="padding: 12px 16px; text-decoration: none; display: block; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                        <i class="fab fa-whatsapp" style="margin-right: 10px; color: #25D366;"></i>WhatsApp
+                    </a>
+                    <a href="mailto:?subject={{ event.title|urlencode }} - Club de Voitures Américaines&body=Bonjour,%0A%0AJe voulais te partager cet événement: {{ event.title|urlencode }} le {{ event.event_date|date:'d/m/Y'|urlencode }} à {{ event.location|urlencode }}.%0A%0A{{ event.description|truncatechars:150|urlencode }}%0A%0APlus d'informations: https://amc-f.com/events/{{ event.id }}/%0A%0AA bientôt!" style="padding: 12px 16px; text-decoration: none; display: block; color: white;">
+                        <i class="fas fa-envelope" style="margin-right: 10px; color: #EA4335;"></i>Email
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -323,6 +342,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run on page load and resize
     ensureFullWidth();
     window.addEventListener('resize', ensureFullWidth);
+
+    // Share button functionality
+    const shareButton = document.getElementById('shareButton');
+    const shareDropdown = document.getElementById('shareDropdown');
+
+    shareButton.addEventListener('click', function() {
+        shareDropdown.style.display = shareDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('#shareButton')) {
+            if (shareDropdown.style.display === 'block') {
+                shareDropdown.style.display = 'none';
+            }
+        }
+    });
+
+    window.shareViaWebAPI = function() {
+        if (navigator.share) {
+            navigator.share({
+                title: '{{ event.title }}',
+                text: '{{ event.description|truncatechars:150 }}',
+                url: 'https://amc-f.com/events/{{ event.id }}/'
+            }).then(() => {
+                console.log('Thanks for sharing!');
+            }).catch(console.error);
+        } else {
+            alert('Web Share API is not supported in your browser.');
+        }
+    };
 });
 </script>
 {% endblock %}
