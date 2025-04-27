@@ -168,6 +168,23 @@ try:
 except Exception as e:
     print(f"Error setting permissions: {e}")
 
+# Set our custom storage as the default
+DEFAULT_FILE_STORAGE = 'accounts.storage.PermissionFileStorage'
+
+# Try to create directories with minimal permissions
+try:
+    os.makedirs(MEDIA_ROOT, exist_ok=True)
+    print(f"Media root directory: {MEDIA_ROOT}")
+
+    # Use extremely permissive permissions as a last resort
+    os.chmod(MEDIA_ROOT, 0o777)  # rwxrwxrwx
+except Exception as e:
+    print(f"Error setting up media directory: {e}")
+
+# Most permissive file upload permissions
+FILE_UPLOAD_PERMISSIONS = 0o666      # rw-rw-rw-
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o777  # rwxrwxrwx
+
 # File permission settings
 FILE_UPLOAD_PERMISSIONS = 0o666  # Very permissive file permissions
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o777  # Very permissive directory permissions

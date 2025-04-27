@@ -3,6 +3,19 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import FileExtensionValidator
+# Don't import the custom storage class anymore
+# from .storage import PermissionFileStorage
+import os
+import uuid
+
+def get_file_path(instance, filename):
+    """
+    Generate a unique filename for uploads to avoid permission issues
+    """
+    ext = filename.split('.')[-1]
+    # Create a unique filename with uuid to avoid collisions
+    new_filename = f"{uuid.uuid4().hex}.{ext}"
+    return new_filename
 
 class UserProfile(models.Model):
     ROLE_CHOICES = (
@@ -15,7 +28,8 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_image = models.ImageField(
-        upload_to='profile_images/',
+        upload_to=get_file_path,  # Use our custom function
+        # Don't use custom storage
         default='default.png',
         blank=True
     )
@@ -31,7 +45,8 @@ class UserProfile(models.Model):
 
     # Nouveaux champs pour la bannière
     banner_image = models.ImageField(
-        upload_to='banner_images/',
+        upload_to=get_file_path,  # Use our custom function
+        # Don't use custom storage
         blank=True,
         null=True
     )
@@ -68,7 +83,7 @@ class SignupRequest(models.Model):
     password = models.CharField(max_length=128, blank=True)  # For storing hashed password
     date_requested = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
-    is_rejected = models.BooleanField(default=False)
+    is_rejected = models.BooleanField(default(False)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.date_requested.strftime('%d-%m-%Y')}"
