@@ -18351,3 +18351,102 @@ Not Found: /wp-admin/setup-config.php
 [27/Apr/2025 18:54:34] "GET /events/36/ HTTP/1.1" 200 35607
 [27/Apr/2025 18:54:34] "GET /static/img/rasso.png HTTP/1.1" 304 0
 [27/Apr/2025 18:54:34] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 18:57:43] "GET /events/36/ HTTP/1.1" 200 35893
+[27/Apr/2025 18:57:50] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:50] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 18:57:50] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 18:57:50] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:50] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:51] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:51] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:51] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:51] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:51] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:52] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:52] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:52] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:52] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:52] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:53] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:53] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:53] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:53] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 18:57:53] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 18:57:55] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 18:58:06] "GET /events/36/ HTTP/1.1" 200 35893
+[27/Apr/2025 18:58:35] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 18:58:35] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 18:58:35] "GET /static/img/Jerem.png HTTP/1.1" 200 167198
+[27/Apr/2025 18:58:35] "GET /static/img/Eric.png HTTP/1.1" 200 171022
+[27/Apr/2025 18:58:35] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 18:58:35] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 18:58:35] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 18:58:37] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 18:58:38] "GET /events/36/ HTTP/1.1" 200 35607
+[27/Apr/2025 18:58:40] "GET /events/36/ HTTP/1.1" 200 35607
+[27/Apr/2025 18:58:40] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 18:58:40] "GET /events/36/ HTTP/1.1" 200 35607
+[27/Apr/2025 18:58:40] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 18:58:47] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 18:58:49] "GET /events/37/ HTTP/1.1" 200 35599
+[27/Apr/2025 18:58:58] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 18:59:03] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 18:59:08] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 18:59:50] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:01:09] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:09] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 19:01:10] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 19:01:10] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:10] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:10] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:10] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:11] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:11] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:11] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:11] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:11] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:12] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:12] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:12] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:12] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:12] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:13] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:13] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:01:13] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 19:04:06] "GET /events/36/ HTTP/1.1" 200 35893
