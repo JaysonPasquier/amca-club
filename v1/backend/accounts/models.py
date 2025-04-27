@@ -83,7 +83,7 @@ class SignupRequest(models.Model):
     password = models.CharField(max_length=128, blank=True)  # For storing hashed password
     date_requested = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
-    is_rejected = models.BooleanField(default(False)
+    is_rejected = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.date_requested.strftime('%d-%m-%Y')}"
