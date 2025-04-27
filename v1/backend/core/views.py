@@ -89,12 +89,16 @@ def event_detail(request, event_id):
         is_approved=True
     ).select_related('user').order_by('-user__profile__member_id')
 
+    # Add this line to include the API key from settings
+    from django.conf import settings
+
     context = {
         'event': event,
         'upcoming_events': upcoming_events,
         'participants': participants,
         'is_participating': event.is_user_participating(request.user),
-        'participants_count': event.get_participants_count()
+        'participants_count': event.get_participants_count(),
+        'google_maps_api_key': getattr(settings, 'GOOGLE_MAPS_API_KEY', ''),
     }
 
     return render(request, 'core/event_detail.html', context)

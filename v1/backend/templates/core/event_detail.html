@@ -159,15 +159,24 @@
         </div>
 
         <!-- Google Maps placeholder -->
-        <div class="map-container location-section" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
-            <h3 style="margin-top: 0; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center;">
-                <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: #ff6b6b;"></i>
-                Lieu
-            </h3>
-            <div class="map-placeholder" style="background-color: rgba(0, 0, 0, 0.2); height: 200px; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
-                <p>{{ event.location }}</p>
-                <!-- Une intégration Google Maps pourrait être ajoutée ici en utilisant l'adresse de l'événement -->
-            </div>
+        <div class="map-container" style="border-radius: 8px; overflow: hidden; height: 300px; margin-bottom: 10px;">
+            <iframe
+                width="100%"
+                height="100%"
+                frameborder="0"
+                style="border:0"
+                src="https://maps.google.com/maps?q={{ event.location|urlencode }}&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div style="text-align: center; padding: 10px 0;">
+            <a href="https://www.google.com/maps/search/?api=1&query={{ event.location|urlencode }}"
+               target="_blank"
+               rel="noopener noreferrer"
+               style="color: white; text-decoration: none; display: inline-flex; align-items: center;">
+                <i class="fas fa-directions" style="margin-right: 8px; color: #4cd137;"></i>
+                Obtenir l'itinéraire
+            </a>
         </div>
     </div>
 </div>
