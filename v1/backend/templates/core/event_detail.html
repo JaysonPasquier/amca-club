@@ -106,7 +106,7 @@
                 </a>
             {% endif %}
 
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ event.title|urlencode }}&dates={{ event.event_date|date:'Ymd\THis' }}%2F{{ event.event_date|date:'Ymd' }}T235959&details={{ event.description|truncatechars:300|urlencode }}%0A%0APlus d'informations: {{ request.build_absolute_uri }}&location={{ event.location|urlencode }}&sf=true"
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ event.title|urlencode }}&dates={{ event.event_date|date:'Ymd\THis' }}%2F{{ event.event_date|date:'Ymd' }}T235959&details={{ event.description|truncatechars:300|urlencode }}%0A%0APlus d'informations: https://amc-f.com/events/{{ event.id }}/&location={{ event.location|urlencode }}&sf=true"
                target="_blank"
                rel="noopener noreferrer"
                style="background-color: #4cd137; color: white; text-decoration: none; padding: 12px 24px; border-radius: 8px; display: flex; align-items: center; transition: all 0.3s ease;">
