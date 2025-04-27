@@ -143,9 +143,9 @@ STATICFILES_DIRS = [
 # Dynamic media and static path configuration
 # Check if we're running on production server
 if '/var/www/vhosts/amc-f.com' in str(BASE_DIR):
-    # Production paths
+    # Production paths - use /tmp for media
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(str(BASE_DIR).replace('/home/scorpio/personall-website', '/var/www/vhosts/amc-f.com/httpdocs/amca-club'), 'media')
+    MEDIA_ROOT = '/tmp/amca_media'
     STATIC_ROOT = os.path.join(str(BASE_DIR).replace('/home/scorpio/personall-website', '/var/www/vhosts/amc-f.com/httpdocs/amca-club'), 'staticfiles')
 else:
     # Development paths
@@ -157,16 +157,17 @@ else:
 import os
 try:
     os.makedirs(MEDIA_ROOT, exist_ok=True)
-    # Give full permissions to ensure writability
-    os.chmod(MEDIA_ROOT, 0o777)
+    print(f"Using media directory: {MEDIA_ROOT}")
 
     for directory in ['profile_images', 'banner_images', 'posts']:
         dir_path = os.path.join(MEDIA_ROOT, directory)
         os.makedirs(dir_path, exist_ok=True)
-        # Give full permissions to the directories too
-        os.chmod(dir_path, 0o777)
 except Exception as e:
-    print(f"Error setting permissions: {e}")
+    print(f"Error setting up media directory: {e}")
+
+# File permissions settings
+FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
 
 # Set our custom storage as the default
 DEFAULT_FILE_STORAGE = 'accounts.storage.PermissionFileStorage'
