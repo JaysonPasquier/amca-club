@@ -347,16 +347,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const shareButton = document.getElementById('shareButton');
     const shareDropdown = document.getElementById('shareDropdown');
 
-    shareButton.addEventListener('click', function() {
-        shareDropdown.style.display = shareDropdown.style.display === 'block' ? 'none' : 'block';
+    // Convert dropdown to modal popup
+    shareDropdown.style.position = 'fixed';
+    shareDropdown.style.left = '50%';
+    shareDropdown.style.top = '50%';
+    shareDropdown.style.transform = 'translate(-50%, -50%)';
+    shareDropdown.style.zIndex = '1000';
+    shareDropdown.style.width = '280px';
+    shareDropdown.style.padding = '20px';
+    shareDropdown.style.borderRadius = '12px';
+
+    // Create backdrop overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    overlay.style.zIndex = '999';
+    overlay.style.display = 'none';
+    document.body.appendChild(overlay);
+
+    // Add close button to popup
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.style.position = 'absolute';
+    closeBtn.style.top = '10px';
+    closeBtn.style.right = '10px';
+    closeBtn.style.background = 'none';
+    closeBtn.style.border = 'none';
+    closeBtn.style.color = 'white';
+    closeBtn.style.fontSize = '20px';
+    closeBtn.style.cursor = 'pointer';
+    shareDropdown.prepend(closeBtn);
+
+    // Show modal with overlay
+    shareButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        overlay.style.display = 'block';
+        shareDropdown.style.display = 'block';
     });
 
-    window.addEventListener('click', function(event) {
-        if (!event.target.matches('#shareButton')) {
-            if (shareDropdown.style.display === 'block') {
-                shareDropdown.style.display = 'none';
-            }
-        }
+    // Close modal when clicking overlay or close button
+    overlay.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        shareDropdown.style.display = 'none';
+    });
+
+    closeBtn.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        shareDropdown.style.display = 'none';
+    });
+
+    // Prevent closing when clicking inside popup
+    shareDropdown.addEventListener('click', function(event) {
+        event.stopPropagation();
     });
 
     window.shareViaWebAPI = function() {
