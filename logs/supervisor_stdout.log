@@ -6,3 +6,105 @@ Django version 4.2.7, using settings 'amca.settings'
 Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 18:53:55
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 19:21:41
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 20:50:26
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 21:26:58
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 21:29:34
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Using temporary media directory: /tmp/tmpz56en89e
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 21:43:43
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Using temporary media directory: /tmp/tmpbydg_mws
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 21:51:18
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 21:58:10
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Attempting to save file to: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+Directory path: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images
+Directory exists with permissions: drwxr-xr-x
+Directory owner: 0, group: 0
+Process running as user: 33, group: 33
+Directory created/checked: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images
+Error saving file: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+Attempting to save file to: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+Directory path: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images
+Directory exists with permissions: drwxr-xr-x
+Directory owner: 0, group: 0
+Process running as user: 33, group: 33
+Directory created/checked: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images
+Error saving file: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+Attempting to save file to: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+Directory path: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images
+Directory exists with permissions: drwxr-xr-x
+Directory owner: 0, group: 0
+Process running as user: 33, group: 33
+Directory created/checked: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images
+Error saving file: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 22:06:04
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Error setting permissions: [Errno 1] Operation not permitted: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'

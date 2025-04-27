@@ -18450,3 +18450,1970 @@ Not Found: /cms/wp-includes/wlwmanifest.xml
 Not Found: /sito/wp-includes/wlwmanifest.xml
 [27/Apr/2025 19:01:13] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
 [27/Apr/2025 19:04:06] "GET /events/36/ HTTP/1.1" 200 35893
+[27/Apr/2025 19:05:08] "GET /about/ HTTP/1.1" 200 39058
+[27/Apr/2025 19:05:41] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:05:42] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:05:42] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:05:46] "GET /about/ HTTP/1.1" 200 39058
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 19:07:05] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 19:07:13] "GET /accounts/login/?next=/events/37/ HTTP/1.1" 200 25452
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 19:09:43] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 19:10:59] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 19:11:08] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 19:11:40] "GET /about/ HTTP/1.1" 200 39058
+[27/Apr/2025 19:11:46] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:11:46] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:11:46] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:11:53] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:53] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+[27/Apr/2025 19:11:53] "GET / HTTP/1.1" 200 28829
+Not Found: /xmlrpc.php
+[27/Apr/2025 19:11:53] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 19:11:53] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 19:11:53] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 19:11:53] "GET /static/img/Jerem.png HTTP/1.1" 200 167198
+[27/Apr/2025 19:11:53] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 19:11:53] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 19:11:53] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 19:11:53] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:53] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 19:11:54] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:54] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:54] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:54] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:54] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:54] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:55] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:55] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:55] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:55] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:55] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:55] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:56] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:56] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:56] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:11:56] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 19:12:32] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:12:32] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:12:32] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:12:35] "GET /about/ HTTP/1.1" 200 39058
+[27/Apr/2025 19:12:48] "GET /about/ HTTP/1.1" 200 39058
+[27/Apr/2025 19:12:48] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 19:12:48] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 19:12:48] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 19:12:48] "GET /static/img/Jerem.png HTTP/1.1" 200 167198
+[27/Apr/2025 19:12:48] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 19:12:58] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:12:58] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 19:12:58] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 19:12:58] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 19:13:03] "GET /about/ HTTP/1.1" 200 39058
+[27/Apr/2025 19:13:07] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:13:40] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:13:40] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:13:40] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:13:59] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:13:59] "GET /static/img/Jerem.png HTTP/1.1" 200 167198
+[27/Apr/2025 19:13:59] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 19:13:59] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 19:13:59] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 19:13:59] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 19:13:59] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 19:13:59] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 19:14:10] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:14:26] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:14:26] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 19:14:26] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 19:14:26] "GET /static/img/Jerem.png HTTP/1.1" 200 167198
+[27/Apr/2025 19:14:26] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 19:14:26] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 19:14:26] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 19:14:26] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/core/views.py changed, reloading.
+Watching for file changes with StatReloader
+[27/Apr/2025 19:21:45] "GET /events/36/ HTTP/1.1" 200 35987
+[27/Apr/2025 19:21:45] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:21:45] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:21:53] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:21:54] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 19:21:56] "GET /admin HTTP/1.1" 301 0
+[27/Apr/2025 19:21:56] "GET /admin/ HTTP/1.1" 200 12490
+[27/Apr/2025 19:21:56] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+[27/Apr/2025 19:21:56] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+[27/Apr/2025 19:21:56] "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+[27/Apr/2025 19:21:56] "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+[27/Apr/2025 19:21:56] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+[27/Apr/2025 19:21:56] "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+[27/Apr/2025 19:21:56] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[27/Apr/2025 19:21:56] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[27/Apr/2025 19:21:56] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[27/Apr/2025 19:21:56] "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+[27/Apr/2025 19:22:02] "GET /admin/core/event/ HTTP/1.1" 200 16316
+[27/Apr/2025 19:22:02] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[27/Apr/2025 19:22:02] "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+[27/Apr/2025 19:22:02] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[27/Apr/2025 19:22:02] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+[27/Apr/2025 19:22:02] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+[27/Apr/2025 19:22:02] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[27/Apr/2025 19:22:02] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[27/Apr/2025 19:22:02] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 19:22:02] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[27/Apr/2025 19:22:02] "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+[27/Apr/2025 19:22:02] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+[27/Apr/2025 19:22:02] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+[27/Apr/2025 19:22:02] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+[27/Apr/2025 19:22:02] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[27/Apr/2025 19:22:02] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[27/Apr/2025 19:22:02] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[27/Apr/2025 19:22:03] "GET /admin/core/event/36/change/ HTTP/1.1" 200 15888
+[27/Apr/2025 19:22:03] "GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+[27/Apr/2025 19:22:03] "GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+[27/Apr/2025 19:22:03] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 19:22:03] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+[27/Apr/2025 19:22:03] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+[27/Apr/2025 19:22:03] "GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+[27/Apr/2025 19:22:03] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[27/Apr/2025 19:22:03] "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+[27/Apr/2025 19:22:03] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+[27/Apr/2025 19:22:11] "POST /admin/core/event/36/change/ HTTP/1.1" 302 0
+[27/Apr/2025 19:22:11] "GET /admin/core/event/ HTTP/1.1" 200 16549
+[27/Apr/2025 19:22:11] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 19:22:13] "GET /events/36/ HTTP/1.1" 200 36020
+[27/Apr/2025 19:22:19] "GET /admin/core/event/36/change/ HTTP/1.1" 200 15899
+[27/Apr/2025 19:22:19] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 19:22:28] "POST /admin/core/event/36/change/ HTTP/1.1" 302 0
+[27/Apr/2025 19:22:28] "GET /admin/core/event/ HTTP/1.1" 200 16553
+[27/Apr/2025 19:22:28] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 19:22:31] "GET /events/36/ HTTP/1.1" 200 36040
+[27/Apr/2025 19:22:38] "GET /admin/core/event/36/change/ HTTP/1.1" 200 15903
+[27/Apr/2025 19:22:38] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 19:22:43] "POST /admin/core/event/36/change/ HTTP/1.1" 302 0
+[27/Apr/2025 19:22:43] "GET /admin/core/event/ HTTP/1.1" 200 16538
+[27/Apr/2025 19:22:43] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 19:22:45] "GET /events/36/ HTTP/1.1" 200 35987
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 19:23:19] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 19:23:42] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 19:25:25] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:26] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 19:25:26] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 19:25:26] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 19:25:26] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:27] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:27] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:27] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:27] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:27] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:28] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2020/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:28] "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:28] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:28] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:28] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:29] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:29] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:29] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:29] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:25:30] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 19:25:36] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/core/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /events/36/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/core/views.py", line 100, in event_detail
+    return render(request, 'core/event_detail.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'add_hours'
+[27/Apr/2025 19:26:11] "GET /events/36/ HTTP/1.1" 500 223256
+[27/Apr/2025 19:27:20] "GET /events/36/ HTTP/1.1" 200 36336
+[27/Apr/2025 19:27:20] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:27:20] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:27:39] "GET /events/36/ HTTP/1.1" 200 36050
+[27/Apr/2025 19:27:40] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:27:40] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:28:24] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:29:56] "GET /events/36/ HTTP/1.1" 200 36046
+[27/Apr/2025 19:33:01] "GET /events/36/ HTTP/1.1" 200 39730
+[27/Apr/2025 19:33:01] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:33:01] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:33:36] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:36] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 19:33:37] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 19:33:37] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:37] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:37] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:37] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:37] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:38] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:38] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2020/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:38] "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:38] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:38] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:39] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:39] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:39] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:39] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:39] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:33:39] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 19:34:11] "GET /events/36/ HTTP/1.1" 200 41305
+[27/Apr/2025 19:34:52] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:34:52] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 19:34:52] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 19:34:52] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 19:34:55] "GET /events/36/ HTTP/1.1" 200 41305
+[27/Apr/2025 19:35:03] "GET /events/36/ HTTP/1.1" 200 41305
+[27/Apr/2025 19:35:03] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+Not Found: /favicon.ico
+[27/Apr/2025 19:35:04] "GET /favicon.ico HTTP/1.1" 404 3372
+[27/Apr/2025 19:35:20] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 19:35:20] "GET /static/img/Eric.png HTTP/1.1" 304 0
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 19:40:55] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 19:40:59] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 19:47:36] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 19:47:36] "GET /static/img/Jerem.png HTTP/1.1" 200 167198
+[27/Apr/2025 19:47:36] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 19:47:36] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 19:47:36] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 19:47:37] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+Not Found: /wp-includes/ID3/license.txt
+[27/Apr/2025 19:48:41] "GET /wp-includes/ID3/license.txt HTTP/1.1" 404 3420
+Not Found: /feed/
+[27/Apr/2025 19:48:41] "GET /feed/ HTTP/1.1" 404 3354
+Not Found: /xmlrpc.php
+[27/Apr/2025 19:48:41] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:41] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:41] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:41] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:42] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /2020/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:42] "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:42] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2021/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:42] "GET /2021/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:42] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:42] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:42] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:43] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 19:48:43] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 19:59:54] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 20:00:18] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 20:00:57] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 20:02:22] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 20:06:00] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:07:34] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:34] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 20:07:34] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 20:07:35] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:35] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:35] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:35] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:35] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:35] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:36] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:36] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:36] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:36] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:36] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:37] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:37] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:37] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:37] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:37] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:07:37] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 20:11:27] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:11:27] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 20:11:27] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 20:11:27] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 20:11:31] "GET /admin/ HTTP/1.1" 200 13378
+[27/Apr/2025 20:11:46] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:11:51] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:11:54] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 11522
+[27/Apr/2025 20:11:54] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:11:56] "GET /admin/forum/forumcategory/add/ HTTP/1.1" 200 14798
+[27/Apr/2025 20:11:56] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:17:06] "POST /admin/forum/forumcategory/add/ HTTP/1.1" 302 0
+[27/Apr/2025 20:17:06] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14118
+[27/Apr/2025 20:17:06] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:17:12] "GET /forum/ HTTP/1.1" 200 27811
+[27/Apr/2025 20:17:40] "GET /forum/categorie/presentation/ HTTP/1.1" 200 27049
+[27/Apr/2025 20:17:48] "GET /admin/forum/forumcategory/add/ HTTP/1.1" 200 14798
+[27/Apr/2025 20:17:48] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:18:12] "POST /admin/forum/forumcategory/add/ HTTP/1.1" 302 0
+[27/Apr/2025 20:18:12] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14480
+[27/Apr/2025 20:18:12] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:18:15] "GET /forum/ HTTP/1.1" 200 29593
+[27/Apr/2025 20:18:27] "GET /admin/forum/forumcategory/7/change/ HTTP/1.1" 200 15386
+[27/Apr/2025 20:18:27] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:18:27] "GET /static/admin/img/tooltag-arrowright.svg HTTP/1.1" 200 280
+[27/Apr/2025 20:18:30] "POST /admin/forum/forumcategory/7/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:18:30] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14483
+[27/Apr/2025 20:18:30] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:18:32] "GET /forum/ HTTP/1.1" 200 29593
+[27/Apr/2025 20:18:40] "GET /admin/forum/forumcategory/add/ HTTP/1.1" 200 14798
+[27/Apr/2025 20:18:41] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:19:47] "POST /admin/forum/forumcategory/add/ HTTP/1.1" 302 0
+[27/Apr/2025 20:19:47] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14839
+[27/Apr/2025 20:19:47] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:19:50] "GET /forum/ HTTP/1.1" 200 31363
+[27/Apr/2025 20:19:56] "GET /admin/forum/forumcategory/8/change/ HTTP/1.1" 200 15386
+[27/Apr/2025 20:19:56] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:19:59] "POST /admin/forum/forumcategory/8/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:19:59] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14842
+[27/Apr/2025 20:19:59] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:20:01] "GET /forum/ HTTP/1.1" 200 31363
+[27/Apr/2025 20:20:10] "GET /admin/forum/forumcategory/6/change/ HTTP/1.1" 200 15400
+[27/Apr/2025 20:20:10] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:20:15] "POST /admin/forum/forumcategory/6/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:20:15] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14826
+[27/Apr/2025 20:20:15] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:20:18] "GET /forum/ HTTP/1.1" 200 31363
+[27/Apr/2025 20:20:29] "GET /admin/forum/forumcategory/?o=-1.3 HTTP/1.1" 200 14756
+[27/Apr/2025 20:20:29] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:20:31] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14587
+[27/Apr/2025 20:20:35] "GET /forum/ HTTP/1.1" 200 31363
+[27/Apr/2025 20:20:42] "GET /admin/forum/forumcategory/6/change/ HTTP/1.1" 200 15400
+[27/Apr/2025 20:20:42] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:20:47] "POST /admin/forum/forumcategory/6/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:20:48] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14827
+[27/Apr/2025 20:20:48] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:20:50] "GET /forum/ HTTP/1.1" 200 31363
+[27/Apr/2025 20:20:54] "GET /admin/forum/forumcategory/6/change/ HTTP/1.1" 200 15401
+[27/Apr/2025 20:20:54] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:20:59] "POST /admin/forum/forumcategory/6/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:20:59] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14826
+[27/Apr/2025 20:20:59] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:21:27] "GET /admin/forum/forumcategory/add/ HTTP/1.1" 200 14798
+[27/Apr/2025 20:21:27] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:22:01] "POST /admin/forum/forumcategory/add/ HTTP/1.1" 302 0
+[27/Apr/2025 20:22:01] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 15198
+[27/Apr/2025 20:22:01] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:22:07] "GET /admin/forum/forumcategory/9/change/ HTTP/1.1" 200 15438
+[27/Apr/2025 20:22:07] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:22:09] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 14945
+[27/Apr/2025 20:22:10] "GET /admin/forum/forumcategory/7/change/ HTTP/1.1" 200 15386
+[27/Apr/2025 20:22:10] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:22:19] "POST /admin/forum/forumcategory/7/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:22:19] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 15196
+[27/Apr/2025 20:22:19] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:22:22] "GET /admin/forum/forumcategory/8/change/ HTTP/1.1" 200 15386
+[27/Apr/2025 20:22:22] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:22:30] "POST /admin/forum/forumcategory/8/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:22:30] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 15200
+[27/Apr/2025 20:22:30] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:22:35] "GET /forum/ HTTP/1.1" 200 33196
+[27/Apr/2025 20:22:46] "GET /admin/forum/forumcategory/9/change/ HTTP/1.1" 200 15438
+[27/Apr/2025 20:22:46] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:23:27] "POST /admin/forum/forumcategory/9/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:23:27] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 15201
+[27/Apr/2025 20:23:27] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:23:29] "GET /forum/ HTTP/1.1" 200 33211
+[27/Apr/2025 20:23:37] "GET /admin/forum/forumcategory/7/change/ HTTP/1.1" 200 15398
+[27/Apr/2025 20:23:37] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:23:55] "POST /admin/forum/forumcategory/7/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:23:55] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 15196
+[27/Apr/2025 20:23:55] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:23:57] "GET /forum/ HTTP/1.1" 200 33209
+[27/Apr/2025 20:24:11] "GET /admin/forum/forumcategory/add/ HTTP/1.1" 200 14798
+[27/Apr/2025 20:24:11] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:24:37] "POST /admin/forum/forumcategory/add/ HTTP/1.1" 302 0
+[27/Apr/2025 20:24:37] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 15522
+[27/Apr/2025 20:24:37] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:24:39] "GET /forum/ HTTP/1.1" 200 35020
+[27/Apr/2025 20:24:51] "GET /admin/forum/forumcategory/add/ HTTP/1.1" 200 14798
+[27/Apr/2025 20:24:51] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:25:07] "POST /admin/forum/forumcategory/add/ HTTP/1.1" 302 0
+[27/Apr/2025 20:25:07] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 15869
+[27/Apr/2025 20:25:07] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:25:09] "GET /forum/ HTTP/1.1" 200 36762
+[27/Apr/2025 20:25:19] "GET /admin/forum/forumcategory/add/ HTTP/1.1" 200 14798
+[27/Apr/2025 20:25:20] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:27:41] "POST /admin/forum/forumcategory/add/ HTTP/1.1" 302 0
+[27/Apr/2025 20:27:41] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16196
+[27/Apr/2025 20:27:41] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:27:43] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 20:28:22] "GET /admin/forum/forumcategory/6/change/ HTTP/1.1" 200 15400
+[27/Apr/2025 20:28:23] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:28:25] "POST /admin/forum/forumcategory/6/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:28:25] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16196
+[27/Apr/2025 20:28:25] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:28:29] "GET /admin/forum/forumcategory/11/change/ HTTP/1.1" 200 15337
+[27/Apr/2025 20:28:29] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:28:31] "POST /admin/forum/forumcategory/11/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:28:31] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16205
+[27/Apr/2025 20:28:32] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:28:33] "GET /admin/forum/forumcategory/10/change/ HTTP/1.1" 200 15394
+[27/Apr/2025 20:28:33] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:28:47] "POST /admin/forum/forumcategory/10/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:28:47] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16201
+[27/Apr/2025 20:28:47] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:28:51] "GET /admin/forum/forumcategory/7/change/ HTTP/1.1" 200 15396
+[27/Apr/2025 20:28:52] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:28:56] "POST /admin/forum/forumcategory/7/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:28:56] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16208
+[27/Apr/2025 20:28:56] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:02] "GET /admin/forum/forumcategory/8/change/ HTTP/1.1" 200 15388
+[27/Apr/2025 20:29:02] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:05] "POST /admin/forum/forumcategory/8/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:29:05] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16212
+[27/Apr/2025 20:29:05] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:13] "GET /admin/forum/forumcategory/9/change/ HTTP/1.1" 200 15453
+[27/Apr/2025 20:29:13] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:16] "POST /admin/forum/forumcategory/9/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:29:16] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16213
+[27/Apr/2025 20:29:16] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:17] "GET /admin/forum/forumcategory/9/change/ HTTP/1.1" 200 15453
+[27/Apr/2025 20:29:17] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:18] "POST /admin/forum/forumcategory/9/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:29:18] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16213
+[27/Apr/2025 20:29:18] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:19] "GET /admin/forum/forumcategory/10/change/ HTTP/1.1" 200 15394
+[27/Apr/2025 20:29:19] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:21] "POST /admin/forum/forumcategory/10/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:29:21] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16201
+[27/Apr/2025 20:29:22] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:23] "GET /admin/forum/forumcategory/12/change/ HTTP/1.1" 200 15387
+[27/Apr/2025 20:29:23] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:25] "POST /admin/forum/forumcategory/12/change/ HTTP/1.1" 302 0
+[27/Apr/2025 20:29:25] "GET /admin/forum/forumcategory/ HTTP/1.1" 200 16199
+[27/Apr/2025 20:29:25] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:47] "GET /admin/forum/forumcategory/?o=-3.1 HTTP/1.1" 200 16242
+[27/Apr/2025 20:29:47] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:29:52] "GET /admin/forum/forumcategory/?o=3.1 HTTP/1.1" 200 16229
+[27/Apr/2025 20:29:52] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:30:05] "GET /admin/forum/forumcategory/?o=2.3.1 HTTP/1.1" 200 16559
+[27/Apr/2025 20:30:05] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:30:07] "GET /admin/forum/forumcategory/?o=-2.3.1 HTTP/1.1" 200 16574
+[27/Apr/2025 20:30:07] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 20:31:11] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:11] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 20:31:12] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 20:31:12] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:12] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:12] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:12] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:13] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:13] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:13] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2020/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:13] "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:13] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:14] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:14] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:14] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:14] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:14] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:14] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:31:15] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 20:32:26] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 20:32:41] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 20:33:59] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 20:34:00] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 20:35:22] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 20:35:32] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 20:35:32] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 20:35:36] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:35:36] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 20:35:36] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 20:35:40] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 20:38:05] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:43:07] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:43:07] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 20:43:07] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 20:43:07] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 20:43:18] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:43:18] "GET /static/img/Jerem.png HTTP/1.1" 200 253572
+[27/Apr/2025 20:43:18] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 20:43:18] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 20:43:18] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 20:43:18] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 20:43:18] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 20:43:18] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 20:44:01] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:44:01] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 20:45:22] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:45:22] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 20:45:30] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 20:45:30] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 20:45:40] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 20:45:40] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 20:45:55] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 20:45:55] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 20:45:55] "GET /static/img/logo.png HTTP/1.1" 200 407054
+[27/Apr/2025 20:45:55] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 20:45:55] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 20:46:08] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:46:09] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 20:46:09] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 20:47:45] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 20:48:32] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 20:48:32] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 20:48:47] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 20:48:47] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 20:48:47] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 20:48:47] "GET /static/img/logo.png HTTP/1.1" 200 195056
+[27/Apr/2025 20:48:47] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 20:48:47] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 20:48:54] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:48:54] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 20:48:54] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 20:48:54] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 20:50:01] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 20:50:04] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:50:04] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 20:50:04] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 20:50:07] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:50:08] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:50:11] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+Watching for file changes with StatReloader
+[27/Apr/2025 20:50:28] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:50:28] "GET /static/img/logo.png HTTP/1.1" 304 0
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 20:50:46] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 20:51:01] "GET /admin/ HTTP/1.1" 302 0
+[27/Apr/2025 20:51:01] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4259
+[27/Apr/2025 20:51:02] "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+[27/Apr/2025 20:51:02] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[27/Apr/2025 20:51:02] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+[27/Apr/2025 20:51:02] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+[27/Apr/2025 20:51:02] "GET /static/admin/css/login.css HTTP/1.1" 200 958
+[27/Apr/2025 20:51:02] "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+[27/Apr/2025 20:51:02] "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+[27/Apr/2025 20:51:04] "GET /admin HTTP/1.1" 301 0
+[27/Apr/2025 20:51:04] "GET /admin/ HTTP/1.1" 302 0
+[27/Apr/2025 20:51:05] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4259
+[27/Apr/2025 20:51:05] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:51:05] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 20:51:05] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 20:51:05] "GET /static/img/logo.png HTTP/1.1" 200 195056
+[27/Apr/2025 20:51:05] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 20:51:05] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 20:51:05] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 20:51:06] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 20:51:17] "GET /static/css/style.css HTTP/1.1" 304 0
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 20:51:20] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 20:51:32] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:33] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 20:51:33] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 20:51:33] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:33] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:34] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:34] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:34] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:34] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:34] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:35] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:35] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:35] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:35] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:35] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:35] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:36] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:36] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:36] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 20:51:36] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 20:52:11] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:52:11] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 20:52:11] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 20:52:11] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 20:52:12] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:52:12] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 20:52:16] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:52:16] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 20:52:16] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 20:52:23] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:52:34] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:52:34] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 20:52:34] "GET /static/img/logo.png HTTP/1.1" 200 195056
+[27/Apr/2025 20:52:34] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 20:52:34] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 20:52:34] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 20:52:34] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 20:52:35] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 20:54:34] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:54:35] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 20:54:46] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:54:46] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 20:54:46] "GET /static/img/logo.png HTTP/1.1" 200 195056
+[27/Apr/2025 20:54:46] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 20:54:46] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 20:54:46] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 20:54:46] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 20:54:47] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+[27/Apr/2025 20:54:52] "GET /events/36/ HTTP/1.1" 200 41305
+[27/Apr/2025 20:55:02] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 20:55:02] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:02:25] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 21:02:25] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 21:02:28] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 21:02:48] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:02:48] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 21:02:48] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 21:03:16] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:04:20] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:04:32] "GET / HTTP/1.1" 200 28829
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 21:04:41] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /.well-known/traffic-advice
+[27/Apr/2025 21:05:00] "GET /.well-known/traffic-advice HTTP/1.1" 404 3417
+[27/Apr/2025 21:05:00] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 21:05:02] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:05:05] "GET /static/img/logo.png HTTP/1.1" 200 195056
+[27/Apr/2025 21:05:05] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 21:05:05] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 21:05:05] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 21:05:06] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 21:05:09] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 21:06:15] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:06:15] "GET /static/img/logo.png HTTP/1.1" 200 195056
+[27/Apr/2025 21:06:15] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 21:06:15] "GET /static/img/Eric.png HTTP/1.1" 200 189332
+[27/Apr/2025 21:06:15] "GET /static/img/Jerem.png HTTP/1.1" 200 1782630
+[27/Apr/2025 21:06:15] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 21:06:15] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 21:06:17] "GET /static/img/favicon.ico HTTP/1.1" 200 226046
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 21:06:22] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+[27/Apr/2025 21:06:23] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:06:49] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 21:06:49] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:06:49] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:06:52] "GET /about/ HTTP/1.1" 200 38744
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 21:07:01] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 21:07:02] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:07:02] "GET /static/img/rasso.png HTTP/1.1" 200 2776748
+[27/Apr/2025 21:07:02] "GET /static/img/autre.png HTTP/1.1" 200 3263315
+[27/Apr/2025 21:07:32] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:07:32] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:07:36] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:07:36] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:07:37] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:07:37] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:07:37] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 21:07:37] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 21:07:37] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 21:07:37] "GET /forum/categorie/presentation/ HTTP/1.1" 200 27049
+[27/Apr/2025 21:07:41] "GET /forum/categorie/presentation/ HTTP/1.1" 200 27049
+[27/Apr/2025 21:07:42] "GET /forum/categorie/presentation/ HTTP/1.1" 200 27049
+[27/Apr/2025 21:07:42] "GET /forum/categorie/presentation/ HTTP/1.1" 200 27049
+[27/Apr/2025 21:08:02] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 21:08:02] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:08:02] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:08:04] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:08:04] "GET /media/profile_images/default.png HTTP/1.1" 200 21886
+[27/Apr/2025 21:08:04] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 200 2965868
+[27/Apr/2025 21:08:08] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:08:09] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:08:16] "GET /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:08:36] "GET /events/ HTTP/1.1" 200 29809
+[27/Apr/2025 21:08:37] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:08:41] "GET /events/ HTTP/1.1" 200 29809
+[27/Apr/2025 21:08:41] "GET /events/ HTTP/1.1" 200 29809
+[27/Apr/2025 21:08:42] "GET /admin/auth/user/ HTTP/1.1" 200 18821
+[27/Apr/2025 21:08:42] "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+[27/Apr/2025 21:08:42] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[27/Apr/2025 21:08:42] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[27/Apr/2025 21:08:42] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+[27/Apr/2025 21:08:42] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+[27/Apr/2025 21:08:42] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+[27/Apr/2025 21:08:42] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+[27/Apr/2025 21:08:42] "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+[27/Apr/2025 21:08:42] "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+[27/Apr/2025 21:08:42] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[27/Apr/2025 21:08:42] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+[27/Apr/2025 21:08:42] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[27/Apr/2025 21:08:42] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[27/Apr/2025 21:08:42] "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+[27/Apr/2025 21:08:42] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:08:42] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+[27/Apr/2025 21:08:42] "GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+[27/Apr/2025 21:08:42] "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+[27/Apr/2025 21:08:42] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[27/Apr/2025 21:08:42] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[27/Apr/2025 21:08:42] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[27/Apr/2025 21:08:42] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[27/Apr/2025 21:08:42] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[27/Apr/2025 21:08:43] "GET /admin/auth/user/1/change/ HTTP/1.1" 200 47845
+[27/Apr/2025 21:08:44] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+[27/Apr/2025 21:08:44] "GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+[27/Apr/2025 21:08:44] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+[27/Apr/2025 21:08:44] "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+[27/Apr/2025 21:08:44] "GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+[27/Apr/2025 21:08:44] "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+[27/Apr/2025 21:08:44] "GET /static/admin/js/inlines.js HTTP/1.1" 200 15526
+[27/Apr/2025 21:08:44] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:08:44] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[27/Apr/2025 21:08:44] "GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+[27/Apr/2025 21:08:44] "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+[27/Apr/2025 21:08:44] "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+[27/Apr/2025 21:08:44] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+[27/Apr/2025 21:08:44] "GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+[27/Apr/2025 21:09:24] "POST /accounts/login/ HTTP/1.1" 302 0
+[27/Apr/2025 21:09:24] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:09:25] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 21:09:33] "GET /events/ HTTP/1.1" 200 29809
+[27/Apr/2025 21:09:33] "GET /admin/auth/user/ HTTP/1.1" 200 18821
+[27/Apr/2025 21:09:33] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:09:33] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:09:36] "GET /admin/auth/user/64/change/ HTTP/1.1" 200 47812
+[27/Apr/2025 21:09:36] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:09:44] "GET /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:09:52] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:09:52] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:10:02] "GET /admin/auth/user/64/password/ HTTP/1.1" 200 11511
+[27/Apr/2025 21:10:17] "POST /admin/auth/user/64/password/ HTTP/1.1" 302 0
+[27/Apr/2025 21:10:17] "GET /admin/auth/user/64/change/ HTTP/1.1" 200 47952
+[27/Apr/2025 21:10:17] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:10:29] "POST /accounts/login/ HTTP/1.1" 302 0
+[27/Apr/2025 21:10:29] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:10:29] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:10:29] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 21:10:32] "GET /forum/categorie/idees-de-sorties/ HTTP/1.1" 200 27040
+[27/Apr/2025 21:10:32] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:10:36] "GET /forum/nouveau-sujet/idees-de-sorties/ HTTP/1.1" 200 28872
+[27/Apr/2025 21:10:37] "GET /forum/categorie/idees-de-sorties/ HTTP/1.1" 200 27040
+[27/Apr/2025 21:10:37] "GET /forum/categorie/idees-de-sorties/ HTTP/1.1" 200 27040
+[27/Apr/2025 21:10:37] "GET /forum/categorie/idees-de-sorties/ HTTP/1.1" 200 27040
+[27/Apr/2025 21:10:48] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:11:53] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:11:53] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:11:55] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:56] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 21:11:56] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 21:11:56] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:11:56] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:11:56] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 21:11:56] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:56] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:56] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:57] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:57] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:57] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+[27/Apr/2025 21:11:57] "GET / HTTP/1.1" 200 28829
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:57] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:57] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:57] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:58] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:58] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:58] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:58] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:58] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:59] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:59] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:11:59] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 21:12:00] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 21:12:01] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:12:01] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 200 2965868
+[27/Apr/2025 21:12:01] "GET /media/profile_images/default.png HTTP/1.1" 304 0
+[27/Apr/2025 21:12:10] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:10] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 21:12:10] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 21:12:11] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:11] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:11] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:11] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:11] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:11] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:12] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:12] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:12] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:12] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:12] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:13] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:13] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:13] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:13] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:13] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:12:14] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+[27/Apr/2025 21:12:33] "GET /about/ HTTP/1.1" 200 38744
+[27/Apr/2025 21:12:33] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:12:34] "GET /accounts/profile/Marina-Pasquier/ HTTP/1.1" 200 43135
+[27/Apr/2025 21:12:44] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:12:51] "GET /accounts/profile/Marina-Pasquier/ HTTP/1.1" 200 44950
+[27/Apr/2025 21:12:59] "GET /accounts/profile/edit/ HTTP/1.1" 200 51680
+[27/Apr/2025 21:13:03] "GET /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:13:03] "GET /accounts/login/?next=/accounts/profile/edit/ HTTP/1.1" 200 25464
+[27/Apr/2025 21:13:10] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:13:10] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:13:20] "GET /accounts/profile/ HTTP/1.1" 200 44950
+[27/Apr/2025 21:13:32] "GET /accounts/profile/edit/ HTTP/1.1" 200 51680
+[27/Apr/2025 21:13:56] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:13:56] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:13:56] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:13:59] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:13:59] "GET /media/profile_images/default.png HTTP/1.1" 200 21886
+[27/Apr/2025 21:13:59] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 200 2965868
+[27/Apr/2025 21:14:17] "GET /admin/auth/user/ HTTP/1.1" 200 18821
+[27/Apr/2025 21:14:17] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:14:19] "GET /admin/auth/user/1/change/ HTTP/1.1" 200 47845
+[27/Apr/2025 21:14:19] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:14:44] "GET /admin/auth/user/ HTTP/1.1" 200 18821
+[27/Apr/2025 21:14:58] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:14:58] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:15:00] "GET /admin/auth/user/ HTTP/1.1" 200 18821
+[27/Apr/2025 21:15:00] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:15:06] "GET /admin/auth/user/64/change/ HTTP/1.1" 200 47848
+[27/Apr/2025 21:15:06] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:15:06] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:10] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:14] "GET /accounts/members/ HTTP/1.1" 200 35629
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 124, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 44, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/IMG-20250427-WA0042.jpg'
+[27/Apr/2025 21:15:26] "POST /accounts/profile/edit/ HTTP/1.1" 500 135503
+Not Found: /favicon.ico
+[27/Apr/2025 21:15:27] "GET /favicon.ico HTTP/1.1" 404 3372
+[27/Apr/2025 21:15:27] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:28] "GET /admin/auth/user/64/change/ HTTP/1.1" 200 47848
+[27/Apr/2025 21:15:28] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:15:30] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:37] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:40] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:40] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:15:44] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:44] "GET /accounts/profile/ HTTP/1.1" 200 44959
+[27/Apr/2025 21:15:44] "GET /media/profile_images/default.png HTTP/1.1" 200 21886
+[27/Apr/2025 21:15:44] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:15:44] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:15:48] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:15:50] "GET /accounts/profile/edit/ HTTP/1.1" 200 51690
+[27/Apr/2025 21:15:56] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:16:00] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:16:04] "GET /accounts/members/ HTTP/1.1" 200 35629
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 124, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 44, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/holberton_school_france_logo.jpg'
+[27/Apr/2025 21:16:13] "POST /accounts/profile/edit/ HTTP/1.1" 500 135615
+[27/Apr/2025 21:16:15] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:16:28] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:16:32] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:16:49] "GET /accounts/members/ HTTP/1.1" 200 35629
+[27/Apr/2025 21:17:06] "GET /accounts/profile/ HTTP/1.1" 200 44950
+[27/Apr/2025 21:17:06] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:17:06] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:18:43] "GET /accounts/logout/ HTTP/1.1" 302 0
+[27/Apr/2025 21:18:43] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:18:43] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 21:18:43] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 21:22:30] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:22:30] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:22:30] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 21:22:30] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 21:22:30] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 21:22:30] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:22:55] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:22:59] "GET /accounts/profile/ HTTP/1.1" 302 0
+[27/Apr/2025 21:22:59] "GET /accounts/login/?next=/accounts/profile/ HTTP/1.1" 200 25459
+[27/Apr/2025 21:23:08] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:23:36] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:36] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 21:23:36] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 21:23:36] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:37] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:37] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:37] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:37] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:37] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:37] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2020/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:38] "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:38] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:38] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:38] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:38] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:39] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:23:39] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/amca/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[27/Apr/2025 21:23:46] "GET /accounts/profile/edit/ HTTP/1.1" 200 51690
+[27/Apr/2025 21:23:46] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:23:46] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:23:54] "GET /accounts/profile/edit/ HTTP/1.1" 200 51690
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 124, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 44, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 21:24:04] "POST /accounts/profile/edit/ HTTP/1.1" 500 136292
+[27/Apr/2025 21:24:47] "GET / HTTP/1.1" 200 28829
+Not Found: /wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:47] "GET /wp-includes/wlwmanifest.xml HTTP/1.1" 404 3420
+Not Found: /xmlrpc.php
+[27/Apr/2025 21:24:47] "GET /xmlrpc.php?rsd HTTP/1.1" 404 3373
+[27/Apr/2025 21:24:48] "GET / HTTP/1.1" 200 28829
+Not Found: /blog/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:48] "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /web/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:48] "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /wordpress/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:48] "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3450
+Not Found: /website/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:48] "GET /website/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3444
+Not Found: /wp/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:48] "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3429
+Not Found: /news/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:49] "GET /news/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2018/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:49] "GET /2018/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /2019/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:49] "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /shop/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:49] "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /wp1/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:49] "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /test/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:50] "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /media/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:50] "GET /media/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3679
+Not Found: /wp2/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:50] "GET /wp2/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /site/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:50] "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Not Found: /cms/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:50] "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3432
+Not Found: /sito/wp-includes/wlwmanifest.xml
+[27/Apr/2025 21:24:51] "GET /sito/wp-includes/wlwmanifest.xml HTTP/1.1" 404 3435
+Watching for file changes with StatReloader
+[27/Apr/2025 21:27:03] "GET /accounts/profile/edit/ HTTP/1.1" 200 51690
+[27/Apr/2025 21:27:03] "GET /static/css/style.css HTTP/1.1" 304 0
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 21:27:04] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 124, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 44, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 21:27:09] "POST /accounts/profile/edit/ HTTP/1.1" 500 136292
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 21:27:28] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 21:28:05] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 21:29:02] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/amca/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[27/Apr/2025 21:29:40] "GET /accounts/profile/edit/ HTTP/1.1" 200 51821
+[27/Apr/2025 21:29:40] "GET /static/img/logo.png HTTP/1.1" 304 0
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 135, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 55, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/storage.py", line 13, in _save
+    file_name = super()._save(name, content)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 21:29:45] "POST /accounts/profile/edit/ HTTP/1.1" 500 140619
+[27/Apr/2025 21:30:20] "GET /events/36/ HTTP/1.1" 200 41305
+[27/Apr/2025 21:30:20] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 21:30:20] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 21:30:23] "GET /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:30:32] "POST /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:30:41] "POST /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:30:51] "GET /admin/auth/user/ HTTP/1.1" 200 18821
+[27/Apr/2025 21:30:51] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:30:53] "GET /admin/auth/user/2/change/ HTTP/1.1" 200 48005
+[27/Apr/2025 21:30:53] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 21:30:55] "GET /admin/auth/user/2/password/ HTTP/1.1" 200 11505
+[27/Apr/2025 21:31:03] "POST /admin/auth/user/2/password/ HTTP/1.1" 200 11673
+[27/Apr/2025 21:31:20] "POST /accounts/login/ HTTP/1.1" 200 25441
+Not Found: /robots.txt
+[27/Apr/2025 21:31:36] "GET /robots.txt HTTP/1.1" 404 3369
+[27/Apr/2025 21:31:36] "GET /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:31:37] "GET /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:31:40] "GET /static/css/style.css HTTP/1.1" 200 15598
+[27/Apr/2025 21:31:57] "POST /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:32:06] "POST /accounts/login/ HTTP/1.1" 302 0
+[27/Apr/2025 21:32:06] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:32:06] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 21:32:10] "GET /accounts/profile/ HTTP/1.1" 200 44959
+[27/Apr/2025 21:32:10] "GET /media/profile_images/default.png HTTP/1.1" 200 21886
+[27/Apr/2025 21:32:13] "GET /accounts/profile/edit/ HTTP/1.1" 200 51821
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 135, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 55, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/storage.py", line 13, in _save
+    file_name = super()._save(name, content)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 21:32:25] "POST /accounts/profile/edit/ HTTP/1.1" 500 140619
+Not Found: /favicon.ico
+[27/Apr/2025 21:32:25] "GET /favicon.ico HTTP/1.1" 404 3372
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/amca/settings.py changed, reloading.
+Watching for file changes with StatReloader
+[27/Apr/2025 21:38:05] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:38:05] "GET /accounts/profile/ HTTP/1.1" 200 45384
+[27/Apr/2025 21:38:05] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 200 85908
+[27/Apr/2025 21:38:05] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:38:05] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:10] "GET /accounts/profile/edit/ HTTP/1.1" 200 51969
+[27/Apr/2025 21:38:10] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:19] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:38:19] "GET /accounts/profile/ HTTP/1.1" 200 45366
+[27/Apr/2025 21:38:19] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 200 76744
+[27/Apr/2025 21:38:33] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:38:34] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:38:34] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:34] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:34] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:34] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:34] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:38] "GET /accounts/members/ HTTP/1.1" 200 35657
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:38:38] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+[27/Apr/2025 21:38:38] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 304 0
+[27/Apr/2025 21:38:38] "GET /static/img/default-avatar.png HTTP/1.1" 200 21886
+[27/Apr/2025 21:38:40] "GET /accounts/login/ HTTP/1.1" 200 25441
+[27/Apr/2025 21:38:44] "POST /accounts/login/ HTTP/1.1" 302 0
+[27/Apr/2025 21:38:44] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:38:45] "GET /accounts/profile/Eric-Pasquier/ HTTP/1.1" 200 48850
+Not Found: /media/posts/20250405_202546.jpg
+[27/Apr/2025 21:38:46] "GET /media/posts/20250405_202546.jpg HTTP/1.1" 404 3626
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:38:46] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+Not Found: /media/posts/images.png
+[27/Apr/2025 21:38:46] "GET /media/posts/images.png HTTP/1.1" 404 3590
+Not Found: /media/posts/logo-base.png
+[27/Apr/2025 21:38:46] "GET /media/posts/logo-base.png HTTP/1.1" 404 3602
+Not Found: /media/posts/Jerem.png
+Not Found: /media/posts/Eric.png
+[27/Apr/2025 21:38:46] "GET /media/posts/Eric.png HTTP/1.1" 404 3582
+[27/Apr/2025 21:38:46] "GET /media/posts/Jerem.png HTTP/1.1" 404 3586
+[27/Apr/2025 21:38:58] "GET /forum/ HTTP/1.1" 200 38572
+[27/Apr/2025 21:39:07] "GET /events/ HTTP/1.1" 200 29809
+[27/Apr/2025 21:39:17] "GET /accounts/profile/ HTTP/1.1" 200 44950
+[27/Apr/2025 21:39:23] "GET /accounts/members/ HTTP/1.1" 200 35657
+[27/Apr/2025 21:39:23] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 200 76744
+[27/Apr/2025 21:39:42] "GET / HTTP/1.1" 200 28829
+[27/Apr/2025 21:39:42] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:39:42] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:39:42] "GET /static/img/Jerem.png HTTP/1.1" 304 0
+[27/Apr/2025 21:39:42] "GET /static/img/autre.png HTTP/1.1" 304 0
+[27/Apr/2025 21:39:42] "GET /static/img/rasso.png HTTP/1.1" 304 0
+[27/Apr/2025 21:39:42] "GET /static/img/Eric.png HTTP/1.1" 304 0
+[27/Apr/2025 21:39:45] "GET /accounts/members/ HTTP/1.1" 200 35657
+[27/Apr/2025 21:39:46] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 200 76744
+Not Found: /media/profile_images/default.png
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:39:46] "GET /media/profile_images/default.png HTTP/1.1" 404 3630
+[27/Apr/2025 21:39:46] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+[27/Apr/2025 21:39:46] "GET /static/img/default-avatar.png HTTP/1.1" 200 21886
+[27/Apr/2025 21:39:46] "GET /accounts/profile/Marina-Pasquier/ HTTP/1.1" 200 44950
+[27/Apr/2025 21:39:55] "GET /accounts/profile/Eric-Pasquier/ HTTP/1.1" 302 0
+[27/Apr/2025 21:39:55] "GET /accounts/login/?next=/accounts/profile/Eric-Pasquier/ HTTP/1.1" 200 25473
+[27/Apr/2025 21:40:01] "GET /accounts/profile/Marina-Pasquier/ HTTP/1.1" 200 44950
+[27/Apr/2025 21:40:05] "GET /accounts/members/ HTTP/1.1" 200 35657
+[27/Apr/2025 21:40:05] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 304 0
+[27/Apr/2025 21:40:09] "GET /accounts/profile/Eric-Pasquier/ HTTP/1.1" 200 48850
+Not Found: /media/posts/logo-base.png
+Not Found: /media/posts/20250405_202546.jpg
+[27/Apr/2025 21:40:09] "GET /media/posts/logo-base.png HTTP/1.1" 404 3602
+[27/Apr/2025 21:40:09] "GET /media/posts/20250405_202546.jpg HTTP/1.1" 404 3626
+Not Found: /media/posts/images.png
+[27/Apr/2025 21:40:09] "GET /media/posts/images.png HTTP/1.1" 404 3590
+Not Found: /media/posts/Jerem.png
+Not Found: /media/posts/Eric.png
+[27/Apr/2025 21:40:09] "GET /media/posts/Eric.png HTTP/1.1" 404 3582
+[27/Apr/2025 21:40:09] "GET /media/posts/Jerem.png HTTP/1.1" 404 3586
+[27/Apr/2025 21:40:21] "GET /accounts/profile/ HTTP/1.1" 200 44950
+[27/Apr/2025 21:40:31] "GET /accounts/profile/edit/ HTTP/1.1" 200 51811
+[27/Apr/2025 21:40:35] "GET /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:40:35] "GET /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:40:36] "GET /accounts/login/?next=/accounts/profile/edit/ HTTP/1.1" 200 25464
+[27/Apr/2025 21:40:36] "GET /accounts/login/?next=/accounts/profile/edit/ HTTP/1.1" 200 25464
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:40:53] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+[27/Apr/2025 21:41:00] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:41:00] "GET /accounts/profile/ HTTP/1.1" 200 45325
+[27/Apr/2025 21:41:00] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 200 271918
+[27/Apr/2025 21:41:10] "GET /accounts/members/ HTTP/1.1" 200 35669
+Not Found: /media/profile_images/default.png
+[27/Apr/2025 21:41:10] "GET /media/profile_images/default.png HTTP/1.1" 404 3630
+[27/Apr/2025 21:41:10] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 304 0
+[27/Apr/2025 21:41:10] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 200 271918
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:41:10] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+[27/Apr/2025 21:41:15] "GET /accounts/profile/Marina-Pasquier/ HTTP/1.1" 302 0
+[27/Apr/2025 21:41:15] "GET /accounts/login/?next=/accounts/profile/Marina-Pasquier/ HTTP/1.1" 200 25475
+[27/Apr/2025 21:41:23] "GET /accounts/members/ HTTP/1.1" 200 35669
+Not Found: /media/profile_images/default.png
+[27/Apr/2025 21:41:23] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 304 0
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:41:23] "GET /media/profile_images/default.png HTTP/1.1" 404 3630
+[27/Apr/2025 21:41:23] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:42:28] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+Watching for file changes with StatReloader
+[27/Apr/2025 21:43:44] "GET /accounts/members/ HTTP/1.1" 200 35669
+[27/Apr/2025 21:43:44] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:43:44] "GET /static/css/style.css HTTP/1.1" 304 0
+Not Found: /media/profile_images/20250412_182916.jpg
+[27/Apr/2025 21:43:45] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 404 3662
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 21:43:45] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3678
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:43:45] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3742
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 21:45:06] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 21:45:25] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 21:46:11] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 21:46:56] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 21:49:41] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 21:49:58] "GET / HTTP/1.1" 200 28829
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/amca/settings.py changed, reloading.
+Watching for file changes with StatReloader
+[27/Apr/2025 21:50:23] "GET /accounts/members/ HTTP/1.1" 200 35669
+[27/Apr/2025 21:50:23] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:50:23] "GET /static/img/logo.png HTTP/1.1" 304 0
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 21:50:24] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3723
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:50:24] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+[27/Apr/2025 21:50:24] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 200 2965868
+[27/Apr/2025 21:50:27] "GET /accounts/profile/JaysonPasquier/ HTTP/1.1" 200 45015
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:50:27] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:50:27] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+[27/Apr/2025 21:50:31] "GET /accounts/profile/edit/ HTTP/1.1" 200 51933
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:50:31] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:50:31] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 135, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 55, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/storage.py", line 12, in _save
+    file_name = super()._save(name, content)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 21:50:39] "POST /accounts/profile/edit/ HTTP/1.1" 500 140642
+Watching for file changes with StatReloader
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 135, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 55, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/storage.py", line 12, in _save
+    file_name = super()._save(name, content)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 21:51:22] "POST /accounts/profile/edit/ HTTP/1.1" 500 140642
+[27/Apr/2025 21:51:25] "GET /accounts/profile/edit/ HTTP/1.1" 200 51933
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:51:25] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:51:25] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 135, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 55, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/storage.py", line 12, in _save
+    file_name = super()._save(name, content)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 21:51:29] "POST /accounts/profile/edit/ HTTP/1.1" 500 140642
+[27/Apr/2025 21:53:03] "GET /accounts/members/ HTTP/1.1" 200 35669
+[27/Apr/2025 21:53:04] "GET /static/img/logo.png HTTP/1.1" 304 0
+[27/Apr/2025 21:53:04] "GET /static/css/style.css HTTP/1.1" 304 0
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png
+[27/Apr/2025 21:53:04] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29.png HTTP/1.1" 404 3787
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 21:53:04] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3723
+[27/Apr/2025 21:53:04] "GET /static/img/default-avatar.png HTTP/1.1" 200 21886
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/storage.py changed, reloading.
+Watching for file changes with StatReloader
+[27/Apr/2025 21:58:13] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:58:13] "GET /accounts/profile/ HTTP/1.1" 200 45384
+[27/Apr/2025 21:58:13] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 21:58:13] "GET /static/img/logo.png HTTP/1.1" 304 0
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:13] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:13] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+[27/Apr/2025 21:58:17] "GET /accounts/profile/edit/ HTTP/1.1" 200 51969
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:17] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:17] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+[27/Apr/2025 21:58:24] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 21:58:24] "GET /accounts/profile/ HTTP/1.1" 200 45384
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:24] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:24] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+[27/Apr/2025 21:58:43] "GET /accounts/members/ HTTP/1.1" 200 35678
+[27/Apr/2025 21:58:43] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 304 0
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 21:58:43] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+[27/Apr/2025 21:58:43] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3723
+[27/Apr/2025 21:58:46] "GET /accounts/profile/JaysonPasquier/ HTTP/1.1" 200 45033
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:46] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:46] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+[27/Apr/2025 21:58:48] "GET /accounts/profile/edit/ HTTP/1.1" 200 51969
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:48] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 21:58:48] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 22:03:28] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+[27/Apr/2025 22:03:45] "GET /admin/auth/user/ HTTP/1.1" 200 18821
+[27/Apr/2025 22:03:45] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 22:03:47] "GET /admin/auth/user/2/change/ HTTP/1.1" 200 48079
+[27/Apr/2025 22:03:47] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 22:03:52] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+[27/Apr/2025 22:03:57] "GET /admin/auth/user/2/change/ HTTP/1.1" 200 48079
+[27/Apr/2025 22:04:06] "POST /admin/auth/user/2/change/ HTTP/1.1" 302 0
+[27/Apr/2025 22:04:06] "GET /admin/auth/user/ HTTP/1.1" 200 19043
+[27/Apr/2025 22:04:06] "GET /admin/jsi18n/ HTTP/1.1" 200 8621
+[27/Apr/2025 22:04:08] "GET /accounts/profile/edit/ HTTP/1.1" 200 51969
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 22:04:08] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 22:04:08] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+[27/Apr/2025 22:05:50] "GET /accounts/login/ HTTP/1.1" 200 25441
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 22:05:51] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[27/Apr/2025 22:06:09] "GET /accounts/profile/edit/ HTTP/1.1" 200 51969
+[27/Apr/2025 22:06:10] "GET /static/css/style.css HTTP/1.1" 304 0
+[27/Apr/2025 22:06:10] "GET /static/img/logo.png HTTP/1.1" 304 0
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 22:06:10] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Not Found: /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png
+[27/Apr/2025 22:06:10] "GET /media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png HTTP/1.1" 404 3823
+Internal Server Error: /accounts/profile/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/views.py", line 61, in profile_edit
+    form.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/forms.py", line 111, in save
+    user.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 132, in save_user_profile
+    instance.profile.save()
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py", line 52, in save
+    super().save(*args, **kwargs)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/base.py", line 985, in _save_table
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/files/storage/filesystem.py", line 106, in _save
+    fd = os.open(full_path, self.OS_OPEN_FLAGS, 0o666)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media/profile_images/ChatGPT_Image_24_avr._2025_22_53_29-modified.png'
+[27/Apr/2025 22:06:18] "POST /accounts/profile/edit/ HTTP/1.1" 500 136292
+Not Found: /wordpress/wp-admin/setup-config.php
+[27/Apr/2025 22:06:34] "GET /wordpress/wp-admin/setup-config.php HTTP/1.1" 404 3444
+Not Found: /wp-admin/setup-config.php
+[27/Apr/2025 22:06:43] "GET /wp-admin/setup-config.php HTTP/1.1" 404 3414
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/accounts/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[27/Apr/2025 22:09:24] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 22:09:25] "GET /accounts/profile/ HTTP/1.1" 200 45330
+Not Found: /media/e9d67c549b3c4d07b6e37eba6ad2a639.png
+[27/Apr/2025 22:09:25] "GET /media/e9d67c549b3c4d07b6e37eba6ad2a639.png HTTP/1.1" 404 3715
+Not Found: /media/e9d67c549b3c4d07b6e37eba6ad2a639.png
+[27/Apr/2025 22:09:25] "GET /media/e9d67c549b3c4d07b6e37eba6ad2a639.png HTTP/1.1" 404 3715
+[27/Apr/2025 22:09:31] "GET /accounts/profile/edit/ HTTP/1.1" 200 51861
+Not Found: /media/e9d67c549b3c4d07b6e37eba6ad2a639.png
+[27/Apr/2025 22:09:31] "GET /media/e9d67c549b3c4d07b6e37eba6ad2a639.png HTTP/1.1" 404 3715
+Not Found: /media/e9d67c549b3c4d07b6e37eba6ad2a639.png
+[27/Apr/2025 22:09:31] "GET /media/e9d67c549b3c4d07b6e37eba6ad2a639.png HTTP/1.1" 404 3715
+[27/Apr/2025 22:09:40] "POST /accounts/profile/edit/ HTTP/1.1" 302 0
+[27/Apr/2025 22:09:40] "GET /accounts/profile/ HTTP/1.1" 200 45330
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:09:40] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3715
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:09:40] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3715
+[27/Apr/2025 22:09:43] "GET /accounts/members/ HTTP/1.1" 200 35651
+[27/Apr/2025 22:09:44] "GET /media/profile_images/20250412_182916.jpg HTTP/1.1" 304 0
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:09:44] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3715
+Not Found: /media/profile_images/IMG-20250427-WA0042.jpg
+[27/Apr/2025 22:09:44] "GET /media/profile_images/IMG-20250427-WA0042.jpg HTTP/1.1" 404 3723
+[27/Apr/2025 22:09:49] "GET /accounts/profile/JaysonPasquier/ HTTP/1.1" 200 44979
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:09:49] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3715
+Not Found: /media/bfa697b4ad844a84b0402e4b6f83ff7e.png
+[27/Apr/2025 22:09:49] "GET /media/bfa697b4ad844a84b0402e4b6f83ff7e.png HTTP/1.1" 404 3715
