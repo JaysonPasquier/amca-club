@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import FileExtensionValidator
-from .storage import PermissionFileStorage
 
 class UserProfile(models.Model):
     ROLE_CHOICES = (
@@ -17,7 +16,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_image = models.ImageField(
         upload_to='profile_images/',
-        storage=PermissionFileStorage(),
         default='default.png',
         blank=True
     )
@@ -34,7 +32,6 @@ class UserProfile(models.Model):
     # Nouveaux champs pour la bannière
     banner_image = models.ImageField(
         upload_to='banner_images/',
-        storage=PermissionFileStorage(),
         blank=True,
         null=True
     )

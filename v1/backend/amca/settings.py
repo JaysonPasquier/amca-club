@@ -169,8 +169,8 @@ except Exception as e:
     print(f"Error setting permissions: {e}")
 
 # File permission settings
-FILE_UPLOAD_PERMISSIONS = 0o644
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+FILE_UPLOAD_PERMISSIONS = 0o666  # Very permissive file permissions
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o777  # Very permissive directory permissions
 
 # Media file settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
