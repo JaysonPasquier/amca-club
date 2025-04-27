@@ -14,7 +14,7 @@
 
     <!-- Categories listing -->
     <div class="category-list" style="display: flex; flex-direction: column; gap: 15px;">
-        {% for category in categories %}
+        {% for category in categories|dictsort:"order" %}
             <div class="category-card" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 0; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <a href="{% url 'forum:category_detail' category.slug %}" style="text-decoration: none; color: inherit; display: block;">
                     <div class="category-header" style="padding: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 15px;">
