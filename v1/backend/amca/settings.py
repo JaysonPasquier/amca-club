@@ -140,55 +140,34 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Dynamic media and static path configuration
-# Check if we're running on production server
+# Media and static configuration - simplified to avoid conflicts
 if '/var/www/vhosts/amc-f.com' in str(BASE_DIR):
-    # Production paths - use /tmp for media
+    # Production paths
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = '/tmp/amca_media'
-    STATIC_ROOT = os.path.join(str(BASE_DIR).replace('/home/scorpio/personall-website', '/var/www/vhosts/amc-f.com/httpdocs/amca-club'), 'staticfiles')
+    MEDIA_ROOT = '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media'
+    STATIC_ROOT = '/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/staticfiles'
 else:
     # Development paths
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Ensure media directories exist with proper permissions
-import os
+# Ensure the media directories exist, but don't try to change permissions
 try:
     os.makedirs(MEDIA_ROOT, exist_ok=True)
-    print(f"Using media directory: {MEDIA_ROOT}")
-
     for directory in ['profile_images', 'banner_images', 'posts']:
         dir_path = os.path.join(MEDIA_ROOT, directory)
         os.makedirs(dir_path, exist_ok=True)
+    print(f"Using media directory: {MEDIA_ROOT}")
 except Exception as e:
-    print(f"Error setting up media directory: {e}")
+    print(f"Error creating media directories: {e}")
 
-# File permissions settings
-FILE_UPLOAD_PERMISSIONS = 0o644
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+# File permission settings - use standard permissions
+FILE_UPLOAD_PERMISSIONS = 0o644      # rw-r--r--
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755  # rwxr-xr-x
 
-# Set our custom storage as the default
-DEFAULT_FILE_STORAGE = 'accounts.storage.PermissionFileStorage'
-
-# Try to create directories with minimal permissions
-try:
-    os.makedirs(MEDIA_ROOT, exist_ok=True)
-    print(f"Media root directory: {MEDIA_ROOT}")
-
-    # Use extremely permissive permissions as a last resort
-    os.chmod(MEDIA_ROOT, 0o777)  # rwxrwxrwx
-except Exception as e:
-    print(f"Error setting up media directory: {e}")
-
-# Most permissive file upload permissions
-FILE_UPLOAD_PERMISSIONS = 0o666      # rw-rw-rw-
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o777  # rwxrwxrwx
-
-# File permission settings
-FILE_UPLOAD_PERMISSIONS = 0o666  # Very permissive file permissions
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o777  # Very permissive directory permissions
+# Disable custom storage - use Django's default
+# DEFAULT_FILE_STORAGE = 'accounts.storage.PermissionFileStorage'
 
 # Media file settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
