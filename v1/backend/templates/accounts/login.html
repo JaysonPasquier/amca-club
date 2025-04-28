@@ -7,10 +7,32 @@
 <div style="max-width: 500px; margin: 80px auto; padding: 30px 20px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px;">
     <h1 style="text-align: center; margin-bottom: 30px;">Connexion</h1>
 
+    <!-- Add error message display -->
+    {% if form.errors %}
+    <div class="error-message" style="background-color: rgba(255, 59, 48, 0.2); border-left: 4px solid #ff3b30; padding: 15px; margin-bottom: 20px; border-radius: 4px;"></div>
+        <p style="margin: 0; color: #ff6b6b; font-weight: 500;">Nom d'utilisateur ou mot de passe incorrect. Veuillez réessayer.</p>
+    </div>
+    {% endif %}
+
+    {% if messages %}
+    <div class="messages" style="margin-bottom: 20px;">
+        {% for message in messages %}
+        <div class="message {{ message.tags }}" style="padding: 15px; border-radius: 4px; margin-bottom: 10px;
+                {% if message.tags == 'error' %}background-color: rgba(255, 59, 48, 0.2); border-left: 4px solid #ff3b30; color: #ff6b6b;
+                {% elif message.tags == 'success' %}background-color: rgba(52, 199, 89, 0.2); border-left: 4px solid #34c759; color: #48bb78;
+                {% elif message.tags == 'info' %}background-color: rgba(0, 122, 255, 0.2); border-left: 4px solid #007aff; color: #63b3ed;
+                {% elif message.tags == 'warning' %}background-color: rgba(255, 204, 0, 0.2); border-left: 4px solid #ffcc00; color: #f6e05e;
+                {% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
 
-        <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 20px;"></div>
             <label for="id_username" style="display: block; margin-bottom: 8px; font-weight: 500;">Nom d'utilisateur</label>
             <input type="text" name="username" id="id_username" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px; box-sizing: border-box;">
         </div>
