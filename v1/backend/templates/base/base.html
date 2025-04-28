@@ -11,7 +11,7 @@
     <!-- Ensure favicon has absolute path with correct URL -->
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <style>
-        /* Page Transition Effects */
+        /* Page Transition Effects - improved */
         #page-transition-overlay {
             position: fixed;
             top: 0;
@@ -21,6 +21,7 @@
             background-color: black;
             z-index: 9999;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
@@ -40,6 +41,15 @@
             border-top-color: white;
             border-radius: 50%;
             animation: page-transition-spin 1s ease-in-out infinite;
+        }
+
+        /* Add styling for the help text */
+        .transition-help-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin-top: 20px;
+            text-align: center;
+            max-width: 80%;
         }
 
         @keyframes page-transition-spin {
@@ -654,9 +664,10 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Page Transition Overlay -->
+    <!-- Page Transition Overlay - updated with help text -->
     <div id="page-transition-overlay">
         <div class="page-transition-spinner"></div>
+        <p class="transition-help-text">Si vous êtes bloqués, rafraîchissez la page!</p>
     </div>
 
     <!-- Navigation bar - restructured for better responsive behavior -->
@@ -754,8 +765,35 @@
             // Add class to body for initial page load effect
             document.body.classList.add('page-transition');
 
-            // Hide overlay on initial page load
+            // Get overlay element
             const overlay = document.getElementById('page-transition-overlay');
+
+            // Setup auto-timeout for overlay to prevent infinite loading
+            function setupOverlayTimeout() {
+                if (overlay.classList.contains('visible')) {
+                    // Force hide the overlay after 8 seconds if it's still visible
+                    setTimeout(() => {
+                        overlay.classList.remove('visible');
+                    }, 8000);
+                }
+            }
+
+            // Handle browser history navigation more reliably
+            window.addEventListener('pageshow', function(event) {
+                // Hide overlay when returning to a page via back/forward navigation
+                overlay.classList.remove('visible');
+
+                if (event.persisted) {
+                    // Page was restored from back/forward cache
+                    document.body.classList.add('page-transition');
+                }
+            });
+
+            // Better handling for popstate events (browser back/forward buttons)
+            window.addEventListener('popstate', function() {
+                // Hide overlay when using browser navigation
+                overlay.classList.remove('visible');
+            });
 
             // Mobile navigation toggle - updated for improved animation
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -826,6 +864,9 @@
                     e.preventDefault();
                     overlay.classList.add('visible');
 
+                    // Setup timeout to prevent infinite loading
+                    setupOverlayTimeout();
+
                     // Navigate after short delay for animation
                     setTimeout(function() {
                         window.location.href = href;
@@ -833,18 +874,26 @@
                 }
             });
 
-            // For form submissions (optional - can be removed if it causes issues)
+            // For form submissions
             document.addEventListener('submit', function(e) {
                 const form = e.target;
 
                 // Skip for forms with data-no-transition attribute
                 if (form.hasAttribute('data-no-transition')) return;
 
-                // Skip for AJAX forms
+                // Skip for AJAX forms and file uploads
                 if (form.getAttribute('method')?.toLowerCase() === 'post' &&
                     form.getAttribute('enctype') === 'multipart/form-data') return;
 
                 overlay.classList.add('visible');
+
+                // Setup timeout to prevent infinite loading
+                setupOverlayTimeout();
+            });
+
+            // Add a manual way to dismiss the overlay if stuck
+            overlay.addEventListener('click', function() {
+                this.classList.remove('visible');
             });
         });
 
