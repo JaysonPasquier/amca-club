@@ -7,6 +7,8 @@
 <div class="signup-container" style="max-width: 600px; margin: 80px auto; padding: 30px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px;">
     <h1 style="text-align: center; margin-bottom: 30px;">Demande d'Adhésion</h1>
 
+    <!-- Remove standard message display if it exists -->
+
     <p style="text-align: center; margin-bottom: 30px; color: #aaa;">
         Remplissez le formulaire ci-dessous pour demander à rejoindre le Club de Voitures Américaines.
         Votre demande sera examinée par un administrateur.
@@ -177,5 +179,10 @@
             icon.classList.add('fa-eye-slash');
         }
     }
+
+    // Initialize toasts when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeToasts();
+    });
 </script>
 {% endblock %}

@@ -551,6 +551,105 @@
                 display: none;
             }
         }
+
+        /* Toast notification styles */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 400px;
+            width: calc(100% - 40px);
+        }
+
+        .toast {
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            animation: toast-in 0.3s ease-out forwards;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        @keyframes toast-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .toast.toast-out {
+            animation: toast-out 0.3s ease forwards;
+        }
+
+        @keyframes toast-out {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .toast-content {
+            flex-grow: 1;
+            padding-right: 15px;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .toast-message {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .toast-close {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .toast-close:hover {
+            color: white;
+        }
+
+        .toast-success {
+            border-left: 4px solid #10b981;
+        }
+
+        .toast-error {
+            border-left: 4px solid #ef4444;
+        }
+
+        .toast-info {
+            border-left: 4px solid #3b82f6;
+        }
+
+        .toast-warning {
+            border-left: 4px solid #f59e0b;
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -606,6 +705,9 @@
             </div>
         </div>
     </nav>
+
+    <!-- Toast container - will be populated with JavaScript -->
+    <div id="toast-container" class="toast-container"></div>
 
     <!-- Messages -->
     {% if messages %}
@@ -763,6 +865,103 @@
                 // Page was restored from the bfcache (back/forward navigation)
                 document.body.classList.add('page-transition');
             }
+        });
+
+        function initializeToasts() {
+            // Process Django messages and convert to toasts
+            {% if messages %}
+                {% for message in messages %}
+                    showToast({
+                        message: "{{ message }}",
+                        type: "{{ message.tags }}",
+                        title: getToastTitle("{{ message.tags }}")
+                    });
+                {% endfor %}
+            {% endif %}
+        }
+
+        function getToastTitle(type) {
+            switch(type) {
+                case 'success':
+                    return 'Succès!';
+                case 'error':
+                    return 'Erreur';
+                case 'warning':
+                    return 'Attention';
+                case 'info':
+                default:
+                    return 'Information';
+            }
+        }
+
+        function showToast(options) {
+            const container = document.getElementById('toast-container');
+
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${options.type || 'info'}`;
+
+            // Create content
+            const content = document.createElement('div');
+            content.className = 'toast-content';
+
+            if (options.title) {
+                const title = document.createElement('div');
+                title.className = 'toast-title';
+                title.textContent = options.title;
+                content.appendChild(title);
+            }
+
+            const message = document.createElement('div');
+            message.className = 'toast-message';
+            message.textContent = options.message;
+            content.appendChild(message);
+
+            // Create close button
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'toast-close';
+            closeBtn.innerHTML = '×';
+            closeBtn.onclick = function() {
+                closeToast(toast);
+            };
+
+            // Assemble toast
+            toast.appendChild(content);
+            toast.appendChild(closeBtn);
+
+            // Add to container
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            }, 10);
+
+            // Auto-close after delay
+            const delay = options.delay || 5000;
+            if (delay > 0) {
+                setTimeout(() => {
+                    closeToast(toast);
+                }, delay);
+            }
+
+            return toast;
+        }
+
+        function closeToast(toast) {
+            toast.classList.add('toast-out');
+
+            setTimeout(() => {
+                if (toast && toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeToasts();
         });
     </script>
 
