@@ -32,7 +32,7 @@
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
 
-        <div style="margin-bottom: 20px;"></div>
+        <div style="margin-bottom: 20px;">
             <label for="id_username" style="display: block; margin-bottom: 8px; font-weight: 500;">Nom d'utilisateur</label>
             <input type="text" name="username" id="id_username" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px; box-sizing: border-box;">
         </div>
