@@ -57,7 +57,10 @@
 
         <div style="margin-bottom: 20px;">
             <label for="{{ form.password.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600; color: #fff;">{{ form.password.label }}</label>
-            {{ form.password|add_class:"form-input" }}
+            <div class="password-container" style="position: relative;">
+                {{ form.password|add_class:"form-input" }}
+                <i class="password-toggle fa fa-eye-slash" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #aaa;" onclick="togglePassword('{{ form.password.id_for_label }}', this)"></i>
+            </div>
             {% if form.password.errors %}
                 <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
                     {{ form.password.errors }}
@@ -72,7 +75,10 @@
 
         <div style="margin-bottom: 20px;">
             <label for="{{ form.password_confirm.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600; color: #fff;">{{ form.password_confirm.label }}</label>
-            {{ form.password_confirm|add_class:"form-input" }}
+            <div class="password-container" style="position: relative;">
+                {{ form.password_confirm|add_class:"form-input" }}
+                <i class="password-toggle fa fa-eye-slash" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #aaa;" onclick="togglePassword('{{ form.password_confirm.id_for_label }}', this)"></i>
+            </div>
             {% if form.password_confirm.errors %}
                 <div class="error-message" style="color: #ff6b6b; font-size: 0.9rem; margin-top: 5px;">
                     {{ form.password_confirm.errors }}
@@ -113,6 +119,14 @@
         background-color: rgba(255, 255, 255, 0.15);
     }
 
+    .password-container {
+        position: relative;
+    }
+
+    .password-toggle:hover {
+        color: #fff;
+    }
+
     /* Responsive styles */
     @media (max-width: 768px) {
         .signup-container {
@@ -145,4 +159,23 @@
         }
     }
 </style>
+
+<!-- Add Font Awesome for eye icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Script to toggle password visibility -->
+<script>
+    function togglePassword(fieldId, icon) {
+        const field = document.getElementById(fieldId);
+        if (field.type === 'password') {
+            field.type = 'text';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        } else {
+            field.type = 'password';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
 {% endblock %}
