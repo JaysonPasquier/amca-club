@@ -17,7 +17,10 @@
 
         <div style="margin-bottom: 20px;">
             <label for="id_password" style="display: block; margin-bottom: 8px; font-weight: 500;">Mot de passe</label>
-            <input type="password" name="password" id="id_password" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px; box-sizing: border-box;">
+            <div class="password-container" style="position: relative;">
+                <input type="password" name="password" id="id_password" style="width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; background-color: rgba(255, 255, 255, 0.05); color: white; font-size: 16px; box-sizing: border-box;">
+                <i class="password-toggle fa fa-eye-slash" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #aaa;" onclick="togglePassword('id_password', this)"></i>
+            </div>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0 20px; flex-wrap: wrap; gap: 10px;">
@@ -58,5 +61,32 @@
             gap: 15px;
         }
     }
+
+    .password-container {
+        position: relative;
+    }
+
+    .password-toggle:hover {
+        color: #fff;
+    }
 </style>
+
+<!-- Add Font Awesome for eye icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Script to toggle password visibility -->
+<script>
+    function togglePassword(fieldId, icon) {
+        const field = document.getElementById(fieldId);
+        if (field.type === 'password') {
+            field.type = 'text';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        } else {
+            field.type = 'password';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
 {% endblock %}
