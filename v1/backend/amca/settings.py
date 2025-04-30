@@ -197,5 +197,5 @@ EMAIL_HOST = 'smtp.ionos.fr'  # Check with Ionos for the correct SMTP server
 EMAIL_PORT = 587  # Common port for TLS
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'contact@amc-f.com'
-EMAIL_HOST_PASSWORD = 'Marina20021974'  # Store this securely, preferably as an environment variable
+EMAIL_HOST_PASSWORD = 'Marina20021971'  # Store this securely, preferably as an environment variable
 DEFAULT_FROM_EMAIL = 'Club de Voitures Américaines <contact@amc-f.com>'
