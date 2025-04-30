@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.urls import reverse
 from .models import UserProfile, SignupRequest, Newsletter, Post, Like, Comment
 from .forms import SignupRequestForm, UserProfileForm, NewsletterForm
@@ -105,47 +107,45 @@ def newsletter_signup(request):
                 # Create the newsletter subscription
                 newsletter = Newsletter.objects.create(email=email)
 
-                # Send confirmation email
-                subject = "Merci de vous être inscrit à notre Newsletter!"
-                message = """Bonjour,
+                # Send beautiful HTML email
+                subject = "Bienvenue à la Newsletter du Club de Voitures Américaines !"
 
-Merci de vous être inscrit à la Newsletter du Club de Voitures Américaines !
+                # Context data for the email template
+                context = {
+                    'site_url': settings.SITE_URL,
+                    'email': email,
+                    'unsubscribe_url': f"{settings.SITE_URL}/newsletter/unsubscribe/?email={email}",
+                    'year': timezone.now().year
+                }
 
-Vous allez recevoir toutes les mises à jour importantes du site et certains événements à venir.
+                # Render HTML content from template
+                html_content = render_to_string('emails/welcome_newsletter.html', context)
 
-Vous pouvez vous désinscrire à tout moment des newsletters, il vous suffit juste d'envoyer un email à cette même adresse email !
-
-Cordialement,
-L'équipe du Club de Voitures Américaines
-"""
-                # Print directly to stdout for immediate visibility in logs
-                print(f"Newsletter: Attempting to send email to {email}", file=sys.stderr)
+                # Create plain text version by stripping HTML
+                text_content = strip_tags(html_content)
 
                 try:
-                    # Print email configuration for debugging
-                    print(f"Email settings: HOST={settings.EMAIL_HOST}, PORT={settings.EMAIL_PORT}", file=sys.stderr)
-
-                    # Try with explicit sender and recipient
-                    result = send_mail(
+                    # Create EmailMultiAlternatives for HTML email
+                    msg = EmailMultiAlternatives(
                         subject,
-                        message,
-                        settings.EMAIL_HOST_USER,  # Use setting directly
-                        [email],
-                        fail_silently=False,
+                        text_content,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [email]
                     )
+                    # Attach HTML content
+                    msg.attach_alternative(html_content, "text/html")
+                    # Send email
+                    msg.send()
 
-                    print(f"Newsletter: Email sent successfully to {email} (Result: {result})", file=sys.stderr)
+                    print(f"HTML Newsletter email sent successfully to {email}")
                     messages.success(request, "Vous êtes inscrit à notre newsletter ! Un email de confirmation vous a été envoyé.")
                 except Exception as e:
-                    # Print detailed error information
-                    print(f"Newsletter ERROR: {str(e)}", file=sys.stderr)
-                    print(f"Traceback: {traceback.format_exc()}", file=sys.stderr)
+                    # Handle errors
+                    print(f"Newsletter ERROR: {str(e)}")
                     messages.success(request, "Vous êtes inscrit à notre newsletter !")
             else:
-                print(f"Newsletter: Email {email} already subscribed", file=sys.stderr)
                 messages.info(request, "Cette adresse email est déjà inscrite à notre newsletter.")
         else:
-            print("Newsletter: No email provided", file=sys.stderr)
             messages.error(request, "Veuillez fournir une adresse email valide.")
 
     # Redirect back to the previous page or home

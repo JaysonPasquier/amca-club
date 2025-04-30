@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bienvenue à la Newsletter du Club de Voitures Américaines</title>
+    <style>
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+        .logo {
+            max-height: 80px;
+            margin: 0 auto;
+            display: block;
+        }
+        .email-content {
+            padding: 30px;
+            background-color: #ffffff;
+        }
+        .welcome-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .feature-section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .feature-title {
+            color: #e74c3c;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .feature-box {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+            vertical-align: top;
+        }
+        .call-to-action {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #c0392b;
+        }
+        .social-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .social-icon {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+        .email-footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            background-color: #f4f4f4;
+        }
+        .divider {
+            height: 1px;
+            background-color: #eeeeee;
+            margin: 20px 0;
+        }
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100%;
+                border-radius: 0;
+            }
+            .feature-box {
+                width: 100%;
+                padding: 0;
+            }
+            .email-header, .email-content, .email-footer {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <img src="{{ site_url }}/static/img/logo.png" alt="Club de Voitures Américaines" class="logo">
+        </div>
+
+        <div class="email-content">
+            <div class="welcome-text">Bienvenue au Club de Voitures Américaines !</div>
+
+            <p>Merci de vous être inscrit à notre newsletter ! Vous recevrez désormais toutes les actualités importantes et informations sur nos événements à venir.</p>
+
+            <div class="feature-section">
+                <div class="feature-box">
+                    <div class="feature-title">🚗 Explorez nos événements</div>
+                    <p>Découvrez tous nos rassemblements et événements à venir. Rencontrez d'autres passionnés et exposez votre voiture américaine lors de nos rencontres régulières.</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="feature-box">
+                    <div class="feature-title">👥 Rejoignez notre communauté</div>
+                    <p>Échangez avec d'autres amateurs sur notre forum, partagez vos conseils et astuces, et connectez-vous avec des membres qui partagent votre passion.</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="feature-box">
+                    <div class="feature-title">📸 Partagez vos photos</div>
+                    <p>Montrez votre voiture américaine à la communauté et découvrez les magnifiques véhicules des autres membres.</p>
+                </div>
+            </div>
+
+            <div class="call-to-action">
+                <a href="{{ site_url }}" class="button">Visiter le site</a>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-icon">📱</a>
+                <a href="#" class="social-icon">📘</a>
+                <a href="#" class="social-icon">📷</a>
+            </div>
+        </div>
+
+        <div class="email-footer">
+            <p>© {{ year }} Club de Voitures Américaines. Tous droits réservés.</p>
+            <p>Vous recevez cet email car vous vous êtes inscrit à notre newsletter.</p>
+            <p>Pour vous désinscrire, <a href="{{ unsubscribe_url }}">cliquez ici</a> ou répondez simplement à cet email.</p>
+        </div>
+    </div>
+</body>
+</html>
