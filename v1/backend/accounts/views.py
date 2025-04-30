@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
+from django.core.mail import send_mail
+from django.urls import reverse
 from .models import UserProfile, SignupRequest, Newsletter, Post, Like, Comment
 from .forms import SignupRequestForm, UserProfileForm, NewsletterForm
 
@@ -89,19 +91,47 @@ def members_list(request):
 def newsletter_signup(request):
     """Handle newsletter subscriptions"""
     if request.method == 'POST':
-        form = NewsletterForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
+        email = request.POST.get('email')
+        if email:
+            # Check if the email is already subscribed
             if not Newsletter.objects.filter(email=email).exists():
-                form.save()
-                messages.success(request, 'Vous êtes bien inscrit à notre newsletter !')
-            else:
-                messages.info(request, 'Cet email est déjà inscrit.')
-            return redirect('home')
-    else:
-        form = NewsletterForm()
+                # Create the newsletter subscription
+                Newsletter.objects.create(email=email)
 
-    return render(request, 'accounts/newsletter_signup.html', {'form': form})
+                # Send confirmation email
+                subject = "Merci de vous être inscrit à notre Newsletter!"
+                message = """Bonjour,
+
+Merci de vous être inscrit à la Newsletter du Club de Voitures Américaines !
+
+Vous allez recevoir toutes les mises à jour importantes du site et certains événements à venir.
+
+Vous pouvez vous désinscrire à tout moment des newsletters, il vous suffit juste d'envoyer un email à cette même adresse email !
+
+Cordialement,
+L'équipe du Club de Voitures Américaines
+"""
+                try:
+                    send_mail(
+                        subject,
+                        message,
+                        'contact@amc-f.com',
+                        [email],
+                        fail_silently=False,
+                    )
+                    messages.success(request, "Vous êtes inscrit à notre newsletter ! Un email de confirmation vous a été envoyé.")
+                except Exception as e:
+                    # Log the error but still save the subscription
+                    print(f"Error sending email: {e}")
+                    messages.success(request, "Vous êtes inscrit à notre newsletter !")
+            else:
+                messages.info(request, "Cette adresse email est déjà inscrite à notre newsletter.")
+        else:
+            messages.error(request, "Veuillez fournir une adresse email valide.")
+
+    # Redirect back to the previous page or home
+    redirect_to = request.META.get('HTTP_REFERER', reverse('home'))
+    return redirect(redirect_to)
 
 @login_required
 def update_last_login(request):

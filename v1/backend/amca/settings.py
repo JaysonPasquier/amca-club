@@ -190,3 +190,12 @@ CORS_ALLOW_ALL_ORIGINS = True  # Change in production
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.ionos.fr'  # Check with Ionos for the correct SMTP server
+EMAIL_PORT = 587  # Common port for TLS
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'contact@amc-f.com'
+EMAIL_HOST_PASSWORD = 'Marina20021974'  # Store this securely, preferably as an environment variable
+DEFAULT_FROM_EMAIL = 'Club de Voitures Américaines <contact@amc-f.com>'
