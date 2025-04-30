@@ -1,0 +1,317 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Boutique - American Muscle Car France{% endblock %}
+
+{% block content %}
+<div class="shop-container">
+    <!-- Hero Banner -->
+    <div class="shop-hero">
+        <div class="shop-hero-content">
+            <h1>Boutique AMC France</h1>
+            <p>Découvrez notre collection de produits officiels</p>
+            <a href="{% url 'shop_products' %}" class="shop-button">Voir tous les produits</a>
+        </div>
+    </div>
+
+    <!-- Featured Categories -->
+    <div class="shop-categories">
+        <h2 class="section-title">Catégories</h2>
+        <div class="categories-grid">
+            {% for category in categories %}
+            <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="category-card">
+                <div class="category-content">
+                    <h3>{{ category.name }}</h3>
+                    <span class="category-cta">Explorer</span>
+                </div>
+            </a>
+            {% empty %}
+            <div class="no-items">Aucune catégorie disponible pour le moment</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Featured Products -->
+    <div class="shop-featured">
+        <h2 class="section-title">Produits en vedette</h2>
+        <div class="products-grid">
+            {% for product in featured_products %}
+            <div class="product-card">
+                <div class="product-badge {% if product.discount_percentage > 0 %}sale{% elif product.is_featured %}featured{% endif %}">
+                    {% if product.discount_percentage > 0 %}
+                    -{{ product.discount_percentage }}%
+                    {% elif product.is_featured %}
+                    Nouveau
+                    {% endif %}
+                </div>
+                <a href="{% url 'product_detail' product.slug %}" class="product-image">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </a>
+                <div class="product-info">
+                    <h3><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h3>
+                    <div class="product-price">
+                        {% if product.old_price %}
+                        <span class="old-price">{{ product.old_price }}€</span>
+                        {% endif %}
+                        <span class="current-price">{{ product.price }}€</span>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-items">Aucun produit en vedette pour le moment</div>
+            {% endfor %}
+        </div>
+        <div class="view-all">
+            <a href="{% url 'shop_products' %}" class="shop-button">Voir tous les produits</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Shop Styles */
+    .shop-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .shop-hero {
+        background-color: #1a1a1a;
+        color: white;
+        border-radius: 8px;
+        padding: 60px 30px;
+        margin-bottom: 40px;
+        text-align: center;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/static/img/shop-banner.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .shop-hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .shop-hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+        opacity: 0.9;
+    }
+
+    .shop-button {
+        display: inline-block;
+        background-color: white;
+        color: black;
+        padding: 12px 24px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .shop-button:hover {
+        background-color: #e0e0e0;
+        transform: translateY(-2px);
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.8rem;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: #333;
+    }
+
+    /* Categories Section */
+    .shop-categories {
+        margin-bottom: 50px;
+    }
+
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .category-card {
+        height: 150px;
+        background-color: #f2f2f2;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: black;
+        transition: all 0.3s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-content {
+        text-align: center;
+        padding: 20px;
+        z-index: 2;
+    }
+
+    .category-content h3 {
+        margin-bottom: 10px;
+    }
+
+    .category-cta {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+
+    /* Products Section */
+    .shop-featured {
+        margin-bottom: 50px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 30px;
+    }
+
+    .product-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #333;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .product-badge.sale {
+        background-color: #e74c3c;
+    }
+
+    .product-badge.featured {
+        background-color: #3498db;
+    }
+
+    .product-image {
+        height: 220px;
+        overflow: hidden;
+        display: block;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+
+    .product-info {
+        padding: 15px;
+    }
+
+    .product-info h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .product-info h3 a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .product-price {
+        display: flex;
+        align-items: center;
+    }
+
+    .current-price {
+        font-weight: bold;
+    }
+
+    .old-price {
+        text-decoration: line-through;
+        color: #999;
+        margin-right: 10px;
+        font-size: 0.9rem;
+    }
+
+    .view-all {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .no-items {
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 768px) {
+        .shop-hero {
+            padding: 40px 20px;
+        }
+
+        .shop-hero-content h1 {
+            font-size: 1.8rem;
+        }
+
+        .categories-grid,
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .categories-grid,
+        .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .product-image {
+            height: 180px;
+        }
+    }
+</style>
+{% endblock %}

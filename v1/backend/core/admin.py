@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, ClubInfo, EventParticipant
+from .models import Event, ClubInfo, EventParticipant, ProductCategory, Product, ProductImage
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
@@ -49,3 +49,38 @@ class EventParticipantAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'event__title')
     date_hierarchy = 'joined_at'
     raw_id_fields = ('user', 'event')
+
+@admin.register(ProductCategory)
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'order')
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name',)
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    extra = 1
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'price', 'is_featured', 'stock', 'is_active')
+    list_filter = ('category', 'is_featured', 'is_active')
+    search_fields = ('name', 'description')
+    prepopulated_fields = {'slug': ('name',)}
+    inlines = [ProductImageInline]
+    fieldsets = (
+        ('Informations de base', {
+            'fields': ('name', 'slug', 'description', 'category')
+        }),
+        ('Prix', {
+            'fields': ('price', 'old_price')
+        }),
+        ('Images', {
+            'fields': ('image',)
+        }),
+        ('Stock', {
+            'fields': ('stock', 'available_sizes')
+        }),
+        ('Options', {
+            'fields': ('is_featured', 'is_active')
+        }),
+    )

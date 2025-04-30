@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.utils import timezone
 from accounts.forms import NewsletterForm
 from accounts.models import UserProfile
-from .models import Event, ClubInfo, EventParticipant
+from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory
+from django.contrib.auth.decorators import user_passes_test
 
 def home(request):
     """Homepage view with club info, events, and newsletter signup"""
@@ -123,3 +124,71 @@ def social_links(request):
     View for displaying social media links page accessible via QR code.
     """
     return render(request, 'core/social_links.html')
+
+def is_admin(user):
+    return user.is_authenticated and user.is_staff
+
+# Shop views with admin access control
+@user_passes_test(is_admin, login_url='home')
+def shop_home(request):
+    """Shop home page showing featured products"""
+    featured_products = Product.objects.filter(is_featured=True, is_active=True)[:8]
+    categories = ProductCategory.objects.all()
+
+    return render(request, 'core/shop/shop_home.html', {
+        'featured_products': featured_products,
+        'categories': categories,
+        'active_shop': True,
+    })
+
+@user_passes_test(is_admin, login_url='home')
+def shop_products(request):
+    """Shop products page with filtering options"""
+    products = Product.objects.filter(is_active=True)
+    categories = ProductCategory.objects.all()
+
+    # Filter by category
+    category_slug = request.GET.get('category')
+    if category_slug:
+        products = products.filter(category__slug=category_slug)
+
+    # Filter by price range
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    if min_price:
+        products = products.filter(price__gte=min_price)
+    if max_price:
+        products = products.filter(price__lte=max_price)
+
+    # Sort products
+    sort_by = request.GET.get('sort')
+    if sort_by == 'price_asc':
+        products = products.order_by('price')
+    elif sort_by == 'price_desc':
+        products = products.order_by('-price')
+    elif sort_by == 'name':
+        products = products.order_by('name')
+    elif sort_by == 'newest':
+        products = products.order_by('-created_at')
+
+    return render(request, 'core/shop/shop_products.html', {
+        'products': products,
+        'categories': categories,
+        'active_shop': True,
+        'current_category': category_slug,
+        'current_sort': sort_by,
+        'min_price': min_price,
+        'max_price': max_price,
+    })
+
+@user_passes_test(is_admin, login_url='home')
+def product_detail(request, slug):
+    """Product detail page"""
+    product = get_object_or_404(Product, slug=slug, is_active=True)
+    related_products = Product.objects.filter(category=product.category, is_active=True).exclude(id=product.id)[:4]
+
+    return render(request, 'core/shop/product_detail.html', {
+        'product': product,
+        'related_products': related_products,
+        'active_shop': True,
+    })

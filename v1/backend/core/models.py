@@ -78,3 +78,76 @@ class ClubInfo(models.Model):
     class Meta:
         verbose_name = "Information du Club"
         verbose_name_plural = "Informations du Club"
+
+# New Shop models
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Nom de la catégorie")
+    slug = models.SlugField(unique=True)
+    description = models.TextField(blank=True, null=True, verbose_name="Description")
+    order = models.IntegerField(default=0, verbose_name="Ordre d'affichage")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Catégorie de produit"
+        verbose_name_plural = "Catégories de produits"
+        ordering = ['order', 'name']
+
+class Product(models.Model):
+    SIZE_CHOICES = (
+        ('XS', 'XS'),
+        ('S', 'S'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('XL', 'XL'),
+        ('XXL', 'XXL'),
+        ('XXXL', 'XXXL'),
+        ('unique', 'Taille unique'),
+    )
+
+    name = models.CharField(max_length=200, verbose_name="Nom du produit")
+    slug = models.SlugField(unique=True)
+    description = models.TextField(verbose_name="Description")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Prix")
+    old_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, verbose_name="Ancien prix")
+    image = models.ImageField(upload_to='products/', verbose_name="Image principale")
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products', verbose_name="Catégorie")
+    stock = models.PositiveIntegerField(default=0, verbose_name="Stock disponible")
+    is_featured = models.BooleanField(default=False, verbose_name="Produit en vedette")
+    is_active = models.BooleanField(default=True, verbose_name="Produit actif")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    available_sizes = models.CharField(max_length=100, blank=True, null=True, verbose_name="Tailles disponibles")
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def discount_percentage(self):
+        if self.old_price and self.old_price > self.price:
+            return int(100 - (self.price * 100 / self.old_price))
+        return 0
+
+    @property
+    def get_available_sizes(self):
+        if not self.available_sizes:
+            return []
+        return self.available_sizes.split(',')
+
+    class Meta:
+        verbose_name = "Produit"
+        verbose_name_plural = "Produits"
+        ordering = ['-created_at']
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='products/', verbose_name="Image")
+    is_main = models.BooleanField(default=False, verbose_name="Image principale")
+
+    def __str__(self):
+        return f"Image pour {self.product.name}"
+
+    class Meta:
+        verbose_name = "Image de produit"
+        verbose_name_plural = "Images de produit"

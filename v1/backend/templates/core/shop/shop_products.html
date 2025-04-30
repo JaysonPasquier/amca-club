@@ -1,0 +1,278 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Nos Produits - Boutique American Muscle Car France{% endblock %}
+
+{% block content %}
+<div class="shop-container">
+    <div class="shop-header">
+        <h1>Nos Produits</h1>
+        <p>Découvrez notre collection complète de produits officiels</p>
+    </div>
+
+    <div class="shop-layout">
+        <!-- Sidebar with filters -->
+        <div class="shop-sidebar">
+            <div class="filter-section">
+                <h3>Catégories</h3>
+                <ul class="filter-list">
+                    <li><a href="{% url 'shop_products' %}" class="{% if not current_category %}active{% endif %}">Tous les produits</a></li>
+                    {% for category in categories %}
+                    <li><a href="{% url 'shop_products' %}?category={{ category.slug }}" class="{% if current_category == category.slug %}active{% endif %}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="filter-section">
+                <h3>Prix</h3>
+                <form action="{% url 'shop_products' %}" method="get" class="price-filter-form">
+                    {% if current_category %}
+                    <input type="hidden" name="category" value="{{ current_category }}">
+                    {% endif %}
+                    <div class="price-inputs">
+                        <input type="number" name="min_price" placeholder="Min €" value="{{ min_price|default:'' }}" min="0" step="1">
+                        <span>à</span>
+                        <input type="number" name="max_price" placeholder="Max €" value="{{ max_price|default:'' }}" min="0" step="1">
+                    </div>
+                    <button type="submit" class="filter-button">Appliquer</button>
+                </form>
+            </div>
+
+            <div class="filter-section">
+                <h3>Trier par</h3>
+                <form action="{% url 'shop_products' %}" method="get" class="sort-form">
+                    {% if current_category %}
+                    <input type="hidden" name="category" value="{{ current_category }}">
+                    {% endif %}
+                    {% if min_price %}
+                    <input type="hidden" name="min_price" value="{{ min_price }}">
+                    {% endif %}
+                    {% if max_price %}
+                    <input type="hidden" name="max_price" value="{{ max_price }}">
+                    {% endif %}
+                    <select name="sort" onchange="this.form.submit()">
+                        <option value="newest" {% if current_sort == 'newest' or not current_sort %}selected{% endif %}>Plus récents</option>
+                        <option value="price_asc" {% if current_sort == 'price_asc' %}selected{% endif %}>Prix croissant</option>
+                        <option value="price_desc" {% if current_sort == 'price_desc' %}selected{% endif %}>Prix décroissant</option>
+                        <option value="name" {% if current_sort == 'name' %}selected{% endif %}>Nom (A-Z)</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+
+        <!-- Products listing -->
+        <div class="shop-products">
+            {% if products %}
+            <div class="products-grid">
+                {% for product in products %}
+                <div class="product-card">
+                    <div class="product-badge {% if product.discount_percentage > 0 %}sale{% elif product.is_featured %}featured{% endif %}">
+                        {% if product.discount_percentage > 0 %}
+                        -{{ product.discount_percentage }}%
+                        {% elif product.is_featured %}
+                        Nouveau
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'product_detail' product.slug %}" class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </a>
+                    <div class="product-info">
+                        <h3><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h3>
+                        <div class="product-price">
+                            {% if product.old_price %}
+                            <span class="old-price">{{ product.old_price }}€</span>
+                            {% endif %}
+                            <span class="current-price">{{ product.price }}€</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-products-message">
+                <p>Aucun produit ne correspond à vos critères de recherche.</p>
+                <a href="{% url 'shop_products' %}" class="shop-button">Réinitialiser les filtres</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Shop Products Page Styles */
+    .shop-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .shop-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .shop-header h1 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+
+    .shop-header p {
+        color: #666;
+    }
+
+    .shop-layout {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 30px;
+    }
+
+    /* Sidebar Styles */
+    .shop-sidebar {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        align-self: start;
+    }
+
+    .filter-section {
+        margin-bottom: 25px;
+    }
+
+    .filter-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .filter-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .filter-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .filter-list li {
+        margin-bottom: 8px;
+    }
+
+    .filter-list a {
+        display: block;
+        padding: 5px 0;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .filter-list a:hover {
+        color: #000;
+        transform: translateX(5px);
+    }
+
+    .filter-list a.active {
+        font-weight: bold;
+        color: #000;
+    }
+
+    .price-filter-form {
+        margin-top: 10px;
+    }
+
+    .price-inputs {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .price-inputs input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .filter-button {
+        width: 100%;
+        padding: 8px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .filter-button:hover {
+        background-color: #000;
+    }
+
+    .sort-form select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Products Grid Styles */
+    .shop-products {
+        min-height: 500px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 30px;
+    }
+
+    .no-products-message {
+        text-align: center;
+        padding: 40px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    .no-products-message p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        color: #666;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .shop-layout {
+            grid-template-columns: 200px 1fr;
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .shop-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .shop-sidebar {
+            order: 2;
+        }
+
+        .shop-products {
+            order: 1;
+        }
+
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+    }
+</style>
+{% endblock %}
