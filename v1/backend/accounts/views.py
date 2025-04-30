@@ -132,6 +132,11 @@ def newsletter_signup(request):
                         settings.DEFAULT_FROM_EMAIL,
                         [email]
                     )
+                    # Add these headers to improve deliverability
+                    msg.extra_headers = {
+                        'List-Unsubscribe': f"<{settings.SITE_URL}/newsletter/unsubscribe/?email={email}>",
+                        'Precedence': 'bulk'
+                    }
                     # Attach HTML content
                     msg.attach_alternative(html_content, "text/html")
                     # Send email

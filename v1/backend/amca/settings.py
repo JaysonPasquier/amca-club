@@ -200,5 +200,11 @@ EMAIL_HOST_USER = 'contact@amc-f.com'
 EMAIL_HOST_PASSWORD = 'Marina20021971'  # Store this securely, preferably as an environment variable
 DEFAULT_FROM_EMAIL = 'Club de Voitures Américaines <contact@amc-f.com>'
 
+# Make sure this matches the actual domain sending the email
+EMAIL_DOMAIN = 'amc-f.com'
+
+# Add email headers for better deliverability
+EMAIL_USE_LOCALTIME = True
+
 # Site URL for email templates
 SITE_URL = 'https://amc-f.com'
