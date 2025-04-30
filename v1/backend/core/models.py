@@ -17,6 +17,8 @@ class Event(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Date de mise à jour")
     is_published = models.BooleanField(default=False, verbose_name="Est publié")
     type = models.CharField(max_length=20, choices=EVENT_TYPE_CHOICES, default='other', verbose_name="Type d'événement")
+    flyer_front = models.ImageField(upload_to='event_flyers/', null=True, blank=True, verbose_name="Flyer (recto)")
+    flyer_back = models.ImageField(upload_to='event_flyers/', null=True, blank=True, verbose_name="Flyer (verso)")
 
     def __str__(self):
         return self.title

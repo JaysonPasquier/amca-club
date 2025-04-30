@@ -18,6 +18,10 @@ class EventAdmin(admin.ModelAdmin):
         ('Publication', {
             'fields': ('is_published',)
         }),
+        ('Flyer', {
+            'fields': ['flyer_front', 'flyer_back'],
+            'classes': ['collapse'],
+        }),
     )
 
 @admin.register(ClubInfo)
