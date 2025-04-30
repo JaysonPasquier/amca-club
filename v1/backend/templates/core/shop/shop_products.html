@@ -98,30 +98,37 @@
 </div>
 
 <style>
-    /* Shop Products Page Styles */
+    /* Shop Products Page Styles - Improved */
     .shop-container {
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 50px auto;
         padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .shop-header {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
 
     .shop-header h1 {
         font-size: 2.2rem;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        color: #333;
     }
 
     .shop-header p {
         color: #666;
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
 
     .shop-layout {
         display: grid;
-        grid-template-columns: 250px 1fr;
+        grid-template-columns: 280px 1fr;
         gap: 30px;
     }
 
@@ -129,12 +136,14 @@
     .shop-sidebar {
         background-color: #f9f9f9;
         border-radius: 8px;
-        padding: 20px;
+        padding: 25px;
         align-self: start;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: 1px solid #eee;
     }
 
     .filter-section {
-        margin-bottom: 25px;
+        margin-bottom: 30px;
     }
 
     .filter-section:last-child {
@@ -142,10 +151,11 @@
     }
 
     .filter-section h3 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-bottom: 15px;
-        padding-bottom: 5px;
+        padding-bottom: 10px;
         border-bottom: 1px solid #ddd;
+        color: #333;
     }
 
     .filter-list {
@@ -155,66 +165,91 @@
     }
 
     .filter-list li {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
 
     .filter-list a {
         display: block;
-        padding: 5px 0;
-        color: #333;
+        padding: 8px 10px;
+        color: #555;
         text-decoration: none;
         transition: all 0.2s ease;
+        border-radius: 4px;
     }
 
     .filter-list a:hover {
         color: #000;
+        background-color: #eee;
         transform: translateX(5px);
     }
 
     .filter-list a.active {
         font-weight: bold;
-        color: #000;
+        color: #fff;
+        background-color: #333;
     }
 
     .price-filter-form {
-        margin-top: 10px;
+        margin-top: 15px;
     }
 
     .price-inputs {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 10px;
+        gap: 15px;
+        margin-bottom: 15px;
     }
 
     .price-inputs input {
         flex: 1;
-        padding: 8px;
+        padding: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
+        background-color: #fff;
+        color: #333;
+    }
+
+    .price-inputs span {
+        color: #666;
     }
 
     .filter-button {
         width: 100%;
-        padding: 8px;
+        padding: 12px;
         background-color: #333;
         color: white;
         border: none;
         border-radius: 4px;
         cursor: pointer;
         transition: all 0.3s ease;
+        font-weight: 500;
     }
 
     .filter-button:hover {
         background-color: #000;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .sort-form select {
         width: 100%;
-        padding: 8px;
+        padding: 12px;
         border: 1px solid #ddd;
         border-radius: 4px;
         cursor: pointer;
+        background-color: #fff;
+        color: #333;
+        font-size: 0.95rem;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 35px;
+    }
+
+    .sort-form select:focus {
+        border-color: #999;
+        outline: none;
     }
 
     /* Products Grid Styles */
@@ -224,38 +259,160 @@
 
     .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .product-card {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        border: 1px solid #eee;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        border-color: #ddd;
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: #333;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        z-index: 2;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-badge.sale {
+        background-color: #c0392b;
+    }
+
+    .product-badge.featured {
+        background-color: #2980b9;
+    }
+
+    .product-image {
+        height: 250px;
+        overflow: hidden;
+        display: block;
+        background-color: #f9f9f9;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.08);
+    }
+
+    .product-info {
+        padding: 20px;
+    }
+
+    .product-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .product-info h3 a {
+        color: #333;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .product-info h3 a:hover {
+        color: #000;
+    }
+
+    .product-price {
+        display: flex;
+        align-items: center;
+    }
+
+    .current-price {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .old-price {
+        text-decoration: line-through;
+        color: #999;
+        margin-right: 10px;
+        font-size: 0.95rem;
     }
 
     .no-products-message {
         text-align: center;
-        padding: 40px;
+        padding: 50px 30px;
         background-color: #f9f9f9;
         border-radius: 8px;
+        border: 1px dashed #ddd;
     }
 
     .no-products-message p {
-        margin-bottom: 20px;
-        font-size: 1.1rem;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
         color: #666;
+    }
+
+    .shop-button {
+        display: inline-block;
+        background-color: #333;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .shop-button:hover {
+        background-color: #000;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
     }
 
     /* Responsive */
     @media (max-width: 992px) {
         .shop-layout {
-            grid-template-columns: 200px 1fr;
-            gap: 20px;
+            grid-template-columns: 240px 1fr;
+            gap: 25px;
         }
     }
 
     @media (max-width: 768px) {
+        .shop-container {
+            margin: 20px auto;
+            padding: 15px;
+        }
+
         .shop-layout {
             grid-template-columns: 1fr;
         }
 
         .shop-sidebar {
             order: 2;
+            margin-top: 30px;
         }
 
         .shop-products {
@@ -263,15 +420,29 @@
         }
 
         .products-grid {
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
         }
     }
 
     @media (max-width: 576px) {
+        .shop-container {
+            border-radius: 0;
+            box-shadow: none;
+            padding: 10px;
+        }
+
+        .shop-header h1 {
+            font-size: 1.8rem;
+        }
+
         .products-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 15px;
+        }
+
+        .product-image {
+            height: 180px;
         }
     }
 </style>
