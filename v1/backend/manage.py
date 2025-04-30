@@ -6,14 +6,33 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    # Change to match the actual module name in your folder structure
-    # Either "amca.settings" or "amca_project.settings" based on what you have
-    module_name = 'amca.settings'
+    # Clean up problematic paths from sys.path
+    sys.path = [p for p in sys.path if 'holberton-hub' not in p]
 
-    # Uncomment and replace if your project structure uses amca_project instead
-    # module_name = 'amca_project.settings'
+    # Set the Python path to prioritize the current project directory
+    current_path = os.path.dirname(os.path.abspath(__file__))
+    if current_path not in sys.path:
+        sys.path.insert(0, current_path)
+
+    # For debugging - print Python path
+    print("Python path:", sys.path)
+
+    # Check your directory structure and use the correct settings module
+    if os.path.exists(os.path.join(current_path, 'amca', 'settings.py')):
+        module_name = 'amca.settings'
+    elif os.path.exists(os.path.join(current_path, 'amca_project', 'settings.py')):
+        module_name = 'amca_project.settings'
+    elif os.path.exists(os.path.join(current_path, 'project', 'settings.py')):
+        module_name = 'project.settings'
+    else:
+        # Fall back to using the standalone settings.py file
+        module_name = 'settings'
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', module_name)
+
+    # Print which settings module we're using for debugging
+    print(f"Using settings module: {module_name}")
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

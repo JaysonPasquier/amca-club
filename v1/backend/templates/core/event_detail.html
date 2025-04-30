@@ -50,7 +50,7 @@
         </div>
 
         <!-- Event Flyer Images - New Section -->
-        {% if event.flyer_front or event.flyer_back %}
+        {% if event.flyer_front|default:None or event.flyer_back|default:None %}
         <div class="event-flyers" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
             <h2 style="margin-top: 0; display: flex; align-items: center; font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <i class="fas fa-image" style="margin-right: 10px; color: #3498db;"></i>
@@ -58,7 +58,7 @@
             </h2>
 
             <div class="flyers-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                {% if event.flyer_front %}
+                {% if event.flyer_front|default:None %}
                 <div class="flyer-wrapper" style="max-width: 100%; width: 400px; position: relative;">
                     <img src="{{ event.flyer_front.url }}" alt="Flyer (recto)" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer;"
                          onclick="openFlyerModal('{{ event.flyer_front.url }}', 'Flyer (recto)')" class="flyer-image">
@@ -68,7 +68,7 @@
                 </div>
                 {% endif %}
 
-                {% if event.flyer_back %}
+                {% if event.flyer_back|default:None %}
                 <div class="flyer-wrapper" style="max-width: 100%; width: 400px; position: relative;">
                     <img src="{{ event.flyer_back.url }}" alt="Flyer (verso)" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer;"
                          onclick="openFlyerModal('{{ event.flyer_back.url }}', 'Flyer (verso)')" class="flyer-image">
@@ -83,7 +83,7 @@
 
         <!-- Event Description -->
         <div class="event-description" style="background-color: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
-            <h2 style="margin-top: 0; display: flex; align-items: center; font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"></h2>
+            <h2 style="margin-top: 0; display: flex; align-items: center; font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <i class="fas fa-info-circle" style="margin-right: 10px; color: #3498db;"></i>
                 Description
             </h2>
