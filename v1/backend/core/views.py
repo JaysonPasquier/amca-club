@@ -117,3 +117,9 @@ def toggle_event_participation(request, event_id):
         messages.success(request, "Vous participez maintenant à cet événement!")
 
     return redirect('event_detail', event_id=event_id)
+
+def social_links(request):
+    """
+    View for displaying social media links page accessible via QR code.
+    """
+    return render(request, 'core/social_links.html')
