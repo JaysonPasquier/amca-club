@@ -9,6 +9,11 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from .models import UserProfile, SignupRequest, Newsletter, Post, Like, Comment
 from .forms import SignupRequestForm, UserProfileForm, NewsletterForm
+import logging
+import traceback
+
+# Get a logger
+logger = logging.getLogger(__name__)
 
 def signup_request(request):
     """Handle user signup requests which need admin approval"""
@@ -111,7 +116,15 @@ Vous pouvez vous désinscrire à tout moment des newsletters, il vous suffit jus
 Cordialement,
 L'équipe du Club de Voitures Américaines
 """
+                # Log that we're attempting to send email
+                print(f"Attempting to send email to {email}")
+                logger.info(f"Attempting to send email to {email}")
+
                 try:
+                    # Add debugging info
+                    print(f"Email settings: HOST={settings.EMAIL_HOST}, PORT={settings.EMAIL_PORT}, USER={settings.EMAIL_HOST_USER}")
+                    logger.info(f"Email settings: HOST={settings.EMAIL_HOST}, PORT={settings.EMAIL_PORT}, USER={settings.EMAIL_HOST_USER}")
+
                     send_mail(
                         subject,
                         message,
@@ -119,10 +132,16 @@ L'équipe du Club de Voitures Américaines
                         [email],
                         fail_silently=False,
                     )
+                    print(f"Email sent successfully to {email}")
+                    logger.info(f"Email sent successfully to {email}")
                     messages.success(request, "Vous êtes inscrit à notre newsletter ! Un email de confirmation vous a été envoyé.")
                 except Exception as e:
-                    # Log the error but still save the subscription
-                    print(f"Error sending email: {e}")
+                    # More detailed error logging
+                    error_message = f"Failed to send email: {str(e)}"
+                    print(error_message)
+                    print(traceback.format_exc())
+                    logger.error(error_message)
+                    logger.error(traceback.format_exc())
                     messages.success(request, "Vous êtes inscrit à notre newsletter !")
             else:
                 messages.info(request, "Cette adresse email est déjà inscrite à notre newsletter.")
