@@ -11,6 +11,8 @@ from .models import UserProfile, SignupRequest, Newsletter, Post, Like, Comment
 from .forms import SignupRequestForm, UserProfileForm, NewsletterForm
 import logging
 import traceback
+import sys
+from django.conf import settings  # Add this import
 
 # Get a logger
 logger = logging.getLogger(__name__)
@@ -101,7 +103,7 @@ def newsletter_signup(request):
             # Check if the email is already subscribed
             if not Newsletter.objects.filter(email=email).exists():
                 # Create the newsletter subscription
-                Newsletter.objects.create(email=email)
+                newsletter = Newsletter.objects.create(email=email)
 
                 # Send confirmation email
                 subject = "Merci de vous être inscrit à notre Newsletter!"
@@ -116,36 +118,34 @@ Vous pouvez vous désinscrire à tout moment des newsletters, il vous suffit jus
 Cordialement,
 L'équipe du Club de Voitures Américaines
 """
-                # Log that we're attempting to send email
-                print(f"Attempting to send email to {email}")
-                logger.info(f"Attempting to send email to {email}")
+                # Print directly to stdout for immediate visibility in logs
+                print(f"Newsletter: Attempting to send email to {email}", file=sys.stderr)
 
                 try:
-                    # Add debugging info
-                    print(f"Email settings: HOST={settings.EMAIL_HOST}, PORT={settings.EMAIL_PORT}, USER={settings.EMAIL_HOST_USER}")
-                    logger.info(f"Email settings: HOST={settings.EMAIL_HOST}, PORT={settings.EMAIL_PORT}, USER={settings.EMAIL_HOST_USER}")
+                    # Print email configuration for debugging
+                    print(f"Email settings: HOST={settings.EMAIL_HOST}, PORT={settings.EMAIL_PORT}", file=sys.stderr)
 
-                    send_mail(
+                    # Try with explicit sender and recipient
+                    result = send_mail(
                         subject,
                         message,
-                        'contact@amc-f.com',
+                        settings.EMAIL_HOST_USER,  # Use setting directly
                         [email],
                         fail_silently=False,
                     )
-                    print(f"Email sent successfully to {email}")
-                    logger.info(f"Email sent successfully to {email}")
+
+                    print(f"Newsletter: Email sent successfully to {email} (Result: {result})", file=sys.stderr)
                     messages.success(request, "Vous êtes inscrit à notre newsletter ! Un email de confirmation vous a été envoyé.")
                 except Exception as e:
-                    # More detailed error logging
-                    error_message = f"Failed to send email: {str(e)}"
-                    print(error_message)
-                    print(traceback.format_exc())
-                    logger.error(error_message)
-                    logger.error(traceback.format_exc())
+                    # Print detailed error information
+                    print(f"Newsletter ERROR: {str(e)}", file=sys.stderr)
+                    print(f"Traceback: {traceback.format_exc()}", file=sys.stderr)
                     messages.success(request, "Vous êtes inscrit à notre newsletter !")
             else:
+                print(f"Newsletter: Email {email} already subscribed", file=sys.stderr)
                 messages.info(request, "Cette adresse email est déjà inscrite à notre newsletter.")
         else:
+            print("Newsletter: No email provided", file=sys.stderr)
             messages.error(request, "Veuillez fournir une adresse email valide.")
 
     # Redirect back to the previous page or home
