@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from accounts.forms import NewsletterForm
 from accounts.models import UserProfile
-from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory, ProductVariation
+from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory, ProductVariation, ProductImage
 from django.contrib.auth.decorators import user_passes_test
 
 def home(request):
@@ -192,6 +192,35 @@ def product_detail(request, slug):
     colors = product.get_available_colors()
     sizes = product.get_available_sizes()
 
+    # Get all product images
+    product_images = product.images.all()
+
+    # Prepare color-specific images map
+    color_images = {}
+    for color in colors:
+        # Find images that might be associated with this color (by naming convention)
+        # First, try to find images with matching color name in their alt_text or name
+        color_specific_images = []
+
+        # Use color's own image as front image
+        front_image = color.image.url if color.image else product.image.url
+
+        # Add to color_images with front view as default
+        color_images[color.name] = {
+            'front': front_image,
+            'back': None,  # Will be populated from ProductImage if available
+            'additional': []
+        }
+
+        # Look for back images or additional views in product images
+        for img in product_images:
+            img_name = img.image.name.lower()
+            if color.name.lower() in img_name:
+                if 'back' in img_name or 'dos' in img_name or 'arriere' in img_name:
+                    color_images[color.name]['back'] = img.image.url
+                else:
+                    color_images[color.name]['additional'].append(img.image.url)
+
     # Get variation data organized by color and size for JS
     variation_data = {}
     for variation in variations:
@@ -211,6 +240,7 @@ def product_detail(request, slug):
         'sizes': sizes,
         'variations': variations,
         'variation_data': variation_data,
+        'color_images': color_images,
         'active_shop': True,
     }
 

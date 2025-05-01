@@ -145,9 +145,11 @@
 <script>
     // Store variation data from Django
     const variationData = {{ variation_data|safe }};
+    const colorImages = {{ color_images|safe }};
     let currentColor = '';
     let currentSize = '';
     let maxStockAvailable = {{ product.stock }};
+    let currentView = 'front'; // Track the current view (front/back)
 
     function initializeVariations() {
         // Set initial color (first one)
@@ -156,6 +158,70 @@
             firstColorOption.checked = true;
             currentColor = firstColorOption.value;
             updateAvailableSizes();
+
+            // Initialize color images
+            updateColorImages(currentColor);
+        }
+    }
+
+    function updateColorImages(colorName) {
+        if (colorImages[colorName]) {
+            const colorImageData = colorImages[colorName];
+
+            // Update main image to front view of this color
+            if (colorImageData.front) {
+                changeMainImage(colorImageData.front);
+                currentView = 'front';
+            }
+
+            // Add front/back view toggle if back image exists
+            const thumbsContainer = document.getElementById('color-thumbnails');
+            thumbsContainer.innerHTML = '';
+
+            // Add front view thumbnail
+            if (colorImageData.front) {
+                const frontThumb = document.createElement('div');
+                frontThumb.className = 'thumbnail view-thumbnail';
+                frontThumb.innerHTML = `
+                    <img src="${colorImageData.front}" alt="Front View" class="active">
+                    <span class="view-label">Front</span>
+                `;
+                frontThumb.addEventListener('click', () => {
+                    changeMainImage(colorImageData.front);
+                    currentView = 'front';
+                });
+                thumbsContainer.appendChild(frontThumb);
+            }
+
+            // Add back view thumbnail if available
+            if (colorImageData.back) {
+                const backThumb = document.createElement('div');
+                backThumb.className = 'thumbnail view-thumbnail';
+                backThumb.innerHTML = `
+                    <img src="${colorImageData.back}" alt="Back View">
+                    <span class="view-label">Back</span>
+                `;
+                backThumb.addEventListener('click', () => {
+                    changeMainImage(colorImageData.back);
+                    currentView = 'back';
+                });
+                thumbsContainer.appendChild(backThumb);
+            }
+
+            // Add any additional images
+            if (colorImageData.additional && colorImageData.additional.length > 0) {
+                colorImageData.additional.forEach((imgUrl, index) => {
+                    const additionalThumb = document.createElement('div');
+                    additionalThumb.className = 'thumbnail';
+                    additionalThumb.innerHTML = `
+                        <img src="${imgUrl}" alt="Additional View ${index+1}">
+                    `;
+                    additionalThumb.addEventListener('click', () => {
+                        changeMainImage(imgUrl);
+                    });
+                    thumbsContainer.appendChild(additionalThumb);
+                });
+            }
         }
     }
 
@@ -240,6 +306,11 @@
                 changeMainImage(colorImg.src);
             }
         }
+
+        // Also update the color images when product details change
+        if (currentColor && colorImages[currentColor]) {
+            updateColorImages(currentColor);
+        }
     }
 
     function changeMainImage(src) {
@@ -280,6 +351,7 @@
             input.addEventListener('change', function() {
                 currentColor = this.value;
                 updateAvailableSizes();
+                updateColorImages(currentColor);
             });
         });
 
@@ -853,6 +925,20 @@
         margin-right: 5px;
     }
 
-    /* Adjust the existing styles as needed */
+    .view-thumbnail {
+        position: relative;
+    }
+
+    .view-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        font-size: 0.7rem;
+        padding: 2px 0;
+        text-align: center;
+    }
 </style>
 {% endblock %}
