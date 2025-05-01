@@ -184,37 +184,56 @@
         if (colorData.front && colorData.front !== "null") {
             changeMainImage(colorData.front);
 
-            // Add front thumbnail
-            addThumbnail(thumbsContainer, colorData.front, true, "Front");
+            // Add front thumbnail with label
+            addThumbnail(thumbsContainer, colorData.front, true, "Face", "front");
         }
 
         // Add back view thumbnail if available
         if (colorData.back && colorData.back !== "null") {
-            addThumbnail(thumbsContainer, colorData.back, false, "Back");
+            addThumbnail(thumbsContainer, colorData.back, false, "Dos", "back");
+        }
+
+        // Add left side view thumbnail if available
+        if (colorData.left && colorData.left !== "null") {
+            addThumbnail(thumbsContainer, colorData.left, false, "Gauche", "left");
+        }
+
+        // Add right side view thumbnail if available
+        if (colorData.right && colorData.right !== "null") {
+            addThumbnail(thumbsContainer, colorData.right, false, "Droite", "right");
         }
 
         // Add any additional images
         if (colorData.additional && colorData.additional.length > 0) {
             colorData.additional.forEach((imgUrl, index) => {
-                addThumbnail(thumbsContainer, imgUrl, false, `View ${index+1}`);
+                addThumbnail(thumbsContainer, imgUrl, false, `Détail ${index+1}`, "detail");
             });
         }
     }
 
-    // Helper function to add thumbnails
-    function addThumbnail(container, imageUrl, isActive, altText) {
+    // Helper function to add thumbnails with view type indicator
+    function addThumbnail(container, imageUrl, isActive, label, viewType) {
         const thumb = document.createElement('div');
         thumb.className = 'thumbnail';
-        thumb.innerHTML = `<img src="${imageUrl}" alt="${altText}" ${isActive ? 'class="active"' : ''}>`;
-        thumb.onclick = function() {
+        thumb.dataset.viewType = viewType;
+
+        // Image with view type indicator
+        thumb.innerHTML = `
+            <img src="${imageUrl}" alt="${label}" ${isActive ? 'class="active"' : ''}>
+            <span class="view-indicator">${label}</span>
+        `;
+
+        thumb.onclick = function(e) {
+            e.stopPropagation();
             changeMainImage(imageUrl);
         };
-        // Add click event to open lightbox
-        thumb.addEventListener('click', function(e) {
-            // Prevent double action when clicking thumbnail
+
+        // Double click or long tap to open lightbox
+        thumb.addEventListener('dblclick', function(e) {
             e.stopPropagation();
             openLightbox(imageUrl);
         });
+
         container.appendChild(thumb);
     }
 
@@ -519,6 +538,7 @@
         border: 2px solid var(--medium-gray);
         transition: var(--transition);
         flex-shrink: 0;
+        position: relative;
     }
 
     .thumbnail:hover {
@@ -1059,5 +1079,31 @@
             gap: 15px;
         }
     }
+
+    /* Thumbnail view indicator styles */
+    .thumbnail {
+        position: relative;
+        /* ...existing thumbnail styles... */
+    }
+
+    .view-indicator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 3px 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 0.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .thumbnail:hover .view-indicator {
+        opacity: 1;
+    }
+
+    /* ...existing styles... */
 </style>
 {% endblock %}

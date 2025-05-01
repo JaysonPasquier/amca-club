@@ -152,19 +152,44 @@ class Product(models.Model):
         verbose_name_plural = "Produits"
         ordering = ['-created_at']
 
+class ProductColor(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='colors')
+    name = models.CharField(max_length=50)  # e.g., "Red", "Blue"
+    color_code = models.CharField(max_length=10, blank=True)  # Hex color code
+    image = models.ImageField(upload_to='products/colors/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.name}"
+
+    class Meta:
+        ordering = ['name']
+        unique_together = ['product', 'name']
+
 class ProductImage(models.Model):
+    VIEW_CHOICES = [
+        ('front', 'Front View'),
+        ('back', 'Back View'),
+        ('left', 'Left Side'),
+        ('right', 'Right Side'),
+        ('detail', 'Detail'),
+        ('other', 'Other'),
+    ]
+
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products/', verbose_name="Image")
     is_main = models.BooleanField(default=False, verbose_name="Image principale")
+    view_type = models.CharField(max_length=10, choices=VIEW_CHOICES, default='other', verbose_name="Type de vue")
+    color = models.ForeignKey(ProductColor, related_name='views', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Couleur associée")
 
     def __str__(self):
-        return f"Image pour {self.product.name}"
+        view_type = self.get_view_type_display()
+        if self.color:
+            return f"{view_type} de {self.product.name} - {self.color.name}"
+        return f"{view_type} de {self.product.name}"
 
     class Meta:
         verbose_name = "Image de produit"
         verbose_name_plural = "Images de produit"
-
-class ProductColor(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='colors')
     name = models.CharField(max_length=50)  # e.g., "Red", "Blue"
     color_code = models.CharField(max_length=10, blank=True)  # Hex color code

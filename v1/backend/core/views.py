@@ -200,7 +200,6 @@ def product_detail(request, slug):
     # Determine default color (prefer "Blanc" or "White" if available, otherwise the first color)
     default_color = None
     for color in colors:
-        # Remove any "-back" suffix from color names for comparison
         clean_color_name = re.sub(r'-back$', '', color.name.lower())
         if clean_color_name in ['blanc', 'white']:
             default_color = color
@@ -210,10 +209,8 @@ def product_detail(request, slug):
         default_color = colors.first()
 
     # Group colors to remove duplicates caused by front/back naming
-    # This dictionary will store clean color names to avoid duplicates in the UI
     unique_colors = {}
     for color in colors:
-        # Remove any "-back" suffix for display in the UI
         clean_name = re.sub(r'-back$', '', color.name)
         if clean_name not in unique_colors:
             unique_colors[clean_name] = color
@@ -226,33 +223,50 @@ def product_detail(request, slug):
 
         color_images[color_name] = {
             'front': front_image,
-            'back': None,  # Will be populated if back image found
+            'back': None,
+            'left': None,
+            'right': None,
             'additional': []
         }
 
-        # Search for back images for this color
+        # First, check for images that have explicit view_type and color association
+        color_specific_views = ProductImage.objects.filter(product=product, color=color)
+        for view in color_specific_views:
+            if view.view_type in ['front', 'back', 'left', 'right']:
+                color_images[color_name][view.view_type] = view.image.url
+
+        # Also check other images using naming convention (for backward compatibility)
         for img in product_images:
             img_name = img.image.name.lower()
             color_name_lower = color_name.lower()
 
             if color_name_lower in img_name:
-                # Check if it's a back image
+                # Check view type from filename
                 if 'back' in img_name or 'dos' in img_name or 'arriere' in img_name:
-                    color_images[color_name]['back'] = img.image.url
-                elif not 'front' in img_name and not color_images[color_name]['front'] == img.image.url:
-                    # If not specifically marked as back or front, add to additional
+                    if not color_images[color_name]['back']:  # Don't override if already set
+                        color_images[color_name]['back'] = img.image.url
+                elif 'left' in img_name or 'gauche' in img_name or 'cote-g' in img_name:
+                    if not color_images[color_name]['left']:
+                        color_images[color_name]['left'] = img.image.url
+                elif 'right' in img_name or 'droite' in img_name or 'cote-d' in img_name:
+                    if not color_images[color_name]['right']:
+                        color_images[color_name]['right'] = img.image.url
+                elif not any(word in img_name for word in ['front', 'face', 'avant']) and not color_images[color_name]['front'] == img.image.url:
+                    # If not specifically marked as a view and not already the front image, add to additional
                     color_images[color_name]['additional'].append(img.image.url)
 
-        # Also check for images from "-back" variant colors
+        # Check for images from "-back" variant colors (backward compatibility)
         back_color_name = f"{color_name}-back"
         for c in colors:
             if c.name.lower() == back_color_name.lower() and c.image:
-                color_images[color_name]['back'] = c.image.url
+                if not color_images[color_name]['back']:  # Don't override if already set
+                    color_images[color_name]['back'] = c.image.url
 
     # Convert color_images to JSON-safe format
     for color_name, images in color_images.items():
-        if images['back'] is None:
-            images['back'] = "null"  # This will be converted to JS null
+        for key, value in images.items():
+            if value is None and key != 'additional':
+                images[key] = "null"
 
     # Get variation data organized by color and size for JS
     variation_data = {}
