@@ -132,3 +132,36 @@ Using media directory: /tmp/amca_media
 Media root directory: /tmp/amca_media
 Using media directory: /tmp/amca_media
 Media root directory: /tmp/amca_media
+Using media directory: /tmp/amca_media
+Media root directory: /tmp/amca_media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 27, 2025 - 22:18:04
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Using media directory: /tmp/amca_media
+Media root directory: /tmp/amca_media
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 30, 2025 - 19:54:20
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 30, 2025 - 19:56:47
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
