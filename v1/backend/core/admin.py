@@ -60,7 +60,7 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1
-    fields = ('image', 'alt_text', 'is_main')
+    fields = ('image', 'is_main')  # Remove 'alt_text' as it doesn't exist in the model
 
 class ProductColorInline(admin.TabularInline):
     model = ProductColor
