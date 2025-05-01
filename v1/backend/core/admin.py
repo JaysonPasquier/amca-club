@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
-from .models import Event, ClubInfo, EventParticipant, ProductCategory, Product, ProductImage, ProductColor, ProductSize, ProductVariation, Category
+from .models import Event, ClubInfo, EventParticipant, ProductCategory, Product, ProductImage, ProductColor, ProductSize, ProductVariation
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
@@ -137,8 +137,3 @@ class ProductVariationAdmin(admin.ModelAdmin):
             'fields': ('price', 'stock', 'sku')
         }),
     )
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-    prepopulated_fields = {'slug': ('name',)}
