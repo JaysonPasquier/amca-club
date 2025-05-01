@@ -14,12 +14,17 @@
         <!-- Product Gallery -->
         <div class="product-gallery">
             <div class="main-image">
+                <!-- We'll set this image via JavaScript when the page loads -->
                 <img src="{{ product.image.url }}" alt="{{ product.name }}" id="main-product-image">
                 {% if product.discount_percentage > 0 %}
                 <span class="product-badge sale">-{{ product.discount_percentage }}%</span>
                 {% endif %}
             </div>
             <div class="thumbnail-images">
+                <!-- Color variant thumbnails will be added here dynamically -->
+                <div id="color-thumbnails"></div>
+
+                <!-- Product images are still available but we'll hide them initially
                 <div class="thumbnail" onclick="changeMainImage('{{ product.image.url }}')">
                     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="active">
                 </div>
@@ -28,9 +33,7 @@
                     <img src="{{ img.image.url }}" alt="{{ product.name }}">
                 </div>
                 {% endfor %}
-
-                <!-- Color variant thumbnails will be added here dynamically -->
-                <div id="color-thumbnails"></div>
+                -->
             </div>
         </div>
 
@@ -146,18 +149,29 @@
     // Store variation data from Django - parse JSON data
     const variationData = JSON.parse('{{ variation_data|escapejs }}');
     const colorImages = JSON.parse('{{ color_images|escapejs }}');
-    let currentColor = '';
+    const defaultColor = '{{ default_color }}';
+    let currentColor = defaultColor || '';
     let currentSize = '';
     let maxStockAvailable = {{ product.stock }};
 
     function initializeVariations() {
-        // Set initial color (first one)
-        const firstColorOption = document.querySelector('.color-option input');
-        if (firstColorOption) {
-            firstColorOption.checked = true;
-            currentColor = firstColorOption.value;
-            updateAvailableSizes();
-            updateColorImages(currentColor);
+        // If default color is defined, set it as active
+        if (currentColor) {
+            const colorInput = document.querySelector(`.color-option[data-color="${currentColor}"] input`);
+            if (colorInput) {
+                colorInput.checked = true;
+                updateAvailableSizes();
+                updateColorImages(currentColor);
+            }
+        } else {
+            // Use first color as fallback
+            const firstColorOption = document.querySelector('.color-option input');
+            if (firstColorOption) {
+                firstColorOption.checked = true;
+                currentColor = firstColorOption.value;
+                updateAvailableSizes();
+                updateColorImages(currentColor);
+            }
         }
     }
 
@@ -329,6 +343,9 @@
 
     // Event listeners
     document.addEventListener('DOMContentLoaded', function() {
+        // Initialize with default color
+        initializeVariations();
+
         // Color selection
         const colorOptions = document.querySelectorAll('.color-option input');
         colorOptions.forEach(input => {

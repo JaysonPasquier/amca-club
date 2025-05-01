@@ -193,6 +193,16 @@ def product_detail(request, slug):
     colors = product.get_available_colors()
     sizes = product.get_available_sizes()
 
+    # Determine default color (prefer "Blanc" or "White" if available, otherwise the first color)
+    default_color = None
+    for color in colors:
+        if color.name.lower() in ['blanc', 'white']:
+            default_color = color
+            break
+
+    if not default_color and colors.exists():
+        default_color = colors.first()
+
     # Get all product images
     product_images = product.images.all()
 
@@ -221,7 +231,7 @@ def product_detail(request, slug):
                     # If not specifically marked as back, add to additional
                     color_images[color.name]['additional'].append(img.image.url)
 
-    # Convert color_images to JSON-safe format (ensure Python None is converted to JS null)
+    # Convert color_images to JSON-safe format
     for color_name, images in color_images.items():
         if images['back'] is None:
             images['back'] = "null"  # This will be converted to JS null
@@ -246,6 +256,7 @@ def product_detail(request, slug):
         'variations': variations,
         'variation_data': json.dumps(variation_data),
         'color_images': json.dumps(color_images),
+        'default_color': default_color.name if default_color else '',
         'active_shop': True,
     }
 
