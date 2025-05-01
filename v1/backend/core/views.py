@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from accounts.forms import NewsletterForm
 from accounts.models import UserProfile
-from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory
+from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory, ProductVariation
 from django.contrib.auth.decorators import user_passes_test
 
 def home(request):
@@ -211,6 +211,7 @@ def product_detail(request, slug):
         'sizes': sizes,
         'variations': variations,
         'variation_data': variation_data,
+        'active_shop': True,
     }
 
     return render(request, 'core/shop/product_detail.html', context)
