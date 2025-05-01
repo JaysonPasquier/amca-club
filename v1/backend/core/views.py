@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from accounts.forms import NewsletterForm
 from accounts.models import UserProfile
-from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory, ProductVariation, ProductImage
+from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory, ProductVariation, ProductImage, ProductColor, ProductSize
 from django.contrib.auth.decorators import user_passes_test
 import json
 import re
@@ -185,114 +185,68 @@ def shop_products(request):
 
 @user_passes_test(is_admin, login_url='home')
 def product_detail(request, slug):
-    """Product detail page"""
-    product = get_object_or_404(Product, slug=slug, is_active=True)
-    related_products = Product.objects.filter(category=product.category, is_active=True).exclude(id=product.id)[:4]
+    product = get_object_or_404(Product, slug=slug)
+    related_products = Product.objects.filter(category=product.category).exclude(id=product.id)[:4]
 
-    # Get available variations
-    variations = ProductVariation.objects.filter(product=product)
-    colors = product.get_available_colors()
-    sizes = product.get_available_sizes()
+    # Get all product colors
+    colors = ProductColor.objects.filter(product=product)
+    default_color = colors.first().name if colors.exists() else ''
 
-    # Get all product images
-    product_images = product.images.all()
-
-    # Determine default color (prefer "Blanc" or "White" if available, otherwise the first color)
-    default_color = None
-    for color in colors:
-        clean_color_name = re.sub(r'-back$', '', color.name.lower())
-        if clean_color_name in ['blanc', 'white']:
-            default_color = color
-            break
-
-    if not default_color and colors.exists():
-        default_color = colors.first()
-
-    # Group colors to remove duplicates caused by front/back naming
-    unique_colors = {}
-    for color in colors:
-        clean_name = re.sub(r'-back$', '', color.name)
-        if clean_name not in unique_colors:
-            unique_colors[clean_name] = color
-
-    # Prepare color-specific images map
-    color_images = {}
-    for color_name, color in unique_colors.items():
-        # Use color's own image as front image if available, otherwise use product's main image
-        front_image = color.image.url if color.image else product.image.url
-
-        color_images[color_name] = {
-            'front': front_image,
-            'back': None,
-            'left': None,
-            'right': None,
-            'additional': []
-        }
-
-        # First, check for images that have explicit view_type and color association
-        color_specific_views = ProductImage.objects.filter(product=product, color=color)
-        for view in color_specific_views:
-            if view.view_type in ['front', 'back', 'left', 'right']:
-                color_images[color_name][view.view_type] = view.image.url
-
-        # Also check other images using naming convention (for backward compatibility)
-        for img in product_images:
-            img_name = img.image.name.lower()
-            color_name_lower = color_name.lower()
-
-            if color_name_lower in img_name:
-                # Check view type from filename
-                if 'back' in img_name or 'dos' in img_name or 'arriere' in img_name:
-                    if not color_images[color_name]['back']:  # Don't override if already set
-                        color_images[color_name]['back'] = img.image.url
-                elif 'left' in img_name or 'gauche' in img_name or 'cote-g' in img_name:
-                    if not color_images[color_name]['left']:
-                        color_images[color_name]['left'] = img.image.url
-                elif 'right' in img_name or 'droite' in img_name or 'cote-d' in img_name:
-                    if not color_images[color_name]['right']:
-                        color_images[color_name]['right'] = img.image.url
-                elif not any(word in img_name for word in ['front', 'face', 'avant']) and not color_images[color_name]['front'] == img.image.url:
-                    # If not specifically marked as a view and not already the front image, add to additional
-                    color_images[color_name]['additional'].append(img.image.url)
-
-        # Check for images from "-back" variant colors (backward compatibility)
-        back_color_name = f"{color_name}-back"
-        for c in colors:
-            if c.name.lower() == back_color_name.lower() and c.image:
-                if not color_images[color_name]['back']:  # Don't override if already set
-                    color_images[color_name]['back'] = c.image.url
-
-    # Convert color_images to JSON-safe format
-    for color_name, images in color_images.items():
-        for key, value in images.items():
-            if value is None and key != 'additional':
-                images[key] = "null"
-
-    # Get variation data organized by color and size for JS
+    # Prepare variations data
     variation_data = {}
-    for variation in variations:
-        # Remove any "-back" suffix for the color key
-        color_name = re.sub(r'-back$', '', variation.color.name)
+    for variation in ProductVariation.objects.filter(product=product):
+        color_name = variation.color.name
+        size_code = variation.size.size
 
         if color_name not in variation_data:
             variation_data[color_name] = {}
 
-        variation_data[color_name][variation.size.size] = {
+        variation_data[color_name][size_code] = {
             'price': float(variation.get_price()),
             'stock': variation.stock,
-            'sku': variation.sku or '',
+            'sku': variation.sku or f"{product.id}-{color_name}-{size_code}"
         }
 
-    context = {
+    # Get product sizes
+    sizes = ProductSize.objects.filter(product=product).order_by('order')
+
+    # Get all product images, organized by color and view type
+    color_images = {}
+    for image in product.images.all():
+        color_name = image.color.name if image.color else 'default'
+
+        if color_name not in color_images:
+            color_images[color_name] = {
+                'front': None,
+                'back': None,
+                'left': None,
+                'right': None,
+                'additional': []
+            }
+
+        if image.view_type in ['front', 'back', 'left', 'right']:
+            color_images[color_name][image.view_type] = image.image.url
+        else:
+            # For 'detail' or 'other' view types, add to additional
+            color_images[color_name]['additional'].append(image.image.url)
+
+    # If no images for a color, use product main image as front view
+    for color in colors:
+        if color.name not in color_images:
+            color_images[color.name] = {
+                'front': product.image.url,
+                'back': None,
+                'left': None,
+                'right': None,
+                'additional': []
+            }
+
+    return render(request, 'core/shop/product_detail.html', {
         'product': product,
         'related_products': related_products,
-        'colors': list(unique_colors.values()),  # Use only unique colors
+        'colors': colors,
         'sizes': sizes,
-        'variations': variations,
         'variation_data': json.dumps(variation_data),
         'color_images': json.dumps(color_images),
-        'default_color': default_color.name if default_color else '',
-        'active_shop': True,
-    }
-
-    return render(request, 'core/shop/product_detail.html', context)
+        'default_color': default_color
+    })

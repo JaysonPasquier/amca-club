@@ -174,40 +174,73 @@
 
     // Update thumbnails when color is selected
     function updateColorImages(colorName) {
-        if (!colorImages[colorName]) return;
+        if (!colorImages[colorName]) {
+            console.log("No images found for color:", colorName);
+            // Use default product image if no color images are available
+            const mainImage = document.getElementById('main-product-image');
+            mainImage.src = "{{ product.image.url }}";
+            document.getElementById('color-thumbnails').innerHTML = '';
+            return;
+        }
 
         const colorData = colorImages[colorName];
         const thumbsContainer = document.getElementById('color-thumbnails');
         thumbsContainer.innerHTML = '';
+        let hasSetMainImage = false;
 
-        // Set the main image to the front view
+        // Set the main image to the front view if available
         if (colorData.front && colorData.front !== "null") {
             changeMainImage(colorData.front);
-
+            hasSetMainImage = true;
             // Add front thumbnail with label
             addThumbnail(thumbsContainer, colorData.front, true, "Face", "front");
         }
 
         // Add back view thumbnail if available
         if (colorData.back && colorData.back !== "null") {
-            addThumbnail(thumbsContainer, colorData.back, false, "Dos", "back");
+            if (!hasSetMainImage) {
+                changeMainImage(colorData.back);
+                hasSetMainImage = true;
+            }
+            addThumbnail(thumbsContainer, colorData.back, !hasSetMainImage, "Dos", "back");
         }
 
         // Add left side view thumbnail if available
         if (colorData.left && colorData.left !== "null") {
-            addThumbnail(thumbsContainer, colorData.left, false, "Gauche", "left");
+            if (!hasSetMainImage) {
+                changeMainImage(colorData.left);
+                hasSetMainImage = true;
+            }
+            addThumbnail(thumbsContainer, colorData.left, !hasSetMainImage, "Gauche", "left");
         }
 
         // Add right side view thumbnail if available
         if (colorData.right && colorData.right !== "null") {
-            addThumbnail(thumbsContainer, colorData.right, false, "Droite", "right");
+            if (!hasSetMainImage) {
+                changeMainImage(colorData.right);
+                hasSetMainImage = true;
+            }
+            addThumbnail(thumbsContainer, colorData.right, !hasSetMainImage, "Droite", "right");
         }
 
         // Add any additional images
         if (colorData.additional && colorData.additional.length > 0) {
             colorData.additional.forEach((imgUrl, index) => {
-                addThumbnail(thumbsContainer, imgUrl, false, `Détail ${index+1}`, "detail");
+                if (imgUrl && imgUrl !== "null") {
+                    if (!hasSetMainImage) {
+                        changeMainImage(imgUrl);
+                        hasSetMainImage = true;
+                        addThumbnail(thumbsContainer, imgUrl, true, `Détail ${index+1}`, "detail");
+                    } else {
+                        addThumbnail(thumbsContainer, imgUrl, false, `Détail ${index+1}`, "detail");
+                    }
+                }
             });
+        }
+
+        // If no images were found for this color, use the default product image
+        if (!hasSetMainImage) {
+            changeMainImage("{{ product.image.url }}");
         }
     }
 
@@ -729,7 +762,7 @@
     .color-name {
         margin-top: 8px;
         font-size: 0.8rem;
-        color: var(--dark-gray);
+        color: var (--dark-gray);
     }
 
     /* Size selection */
