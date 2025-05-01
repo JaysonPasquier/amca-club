@@ -179,13 +179,13 @@ class ProductColor(models.Model):
 
 class ProductSize(models.Model):
     SIZE_CHOICES = [
-        ('XS', 'Extra Small'),
-        ('S', 'Small'),
-        ('M', 'Medium'),
-        ('L', 'Large'),
-        ('XL', 'Extra Large'),
-        ('XXL', '2X Large'),
-        ('XXXL', '3X Large'),
+        ('XS', 'Extra Small(XS)'),
+        ('S', 'Small(S)'),
+        ('M', 'Medium(M)'),
+        ('L', 'Large(L)'),
+        ('XL', 'Extra Large(XL)'),
+        ('XXL', '2X Large(2XL)'),
+        ('XXXL', '3X Large(3XL)'),
     ]
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='sizes')
