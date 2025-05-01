@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import mark_safe
 from .models import Event, ClubInfo, EventParticipant, ProductCategory, Product, ProductImage, ProductColor, ProductSize, ProductVariation, Category
 
 @admin.register(Event)
@@ -59,25 +60,29 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1
+    fields = ('image', 'alt_text', 'is_main')
 
 class ProductColorInline(admin.TabularInline):
     model = ProductColor
     extra = 1
+    fields = ('name', 'color_code', 'image')
 
 class ProductSizeInline(admin.TabularInline):
     model = ProductSize
     extra = 1
+    fields = ('size', 'order')
 
-class ProductVariationInline(admin.TabularInline):
+class ProductVariationInline(admin.StackedInline):
     model = ProductVariation
     extra = 1
+    fields = (('color', 'size'), ('price', 'stock'), 'sku')
     autocomplete_fields = ['color', 'size']
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'stock', 'is_featured', 'created_at')
-    list_filter = ('is_featured', 'category')
-    search_fields = ('name', 'description')
+    list_display = ('name', 'category', 'price', 'stock', 'has_variations', 'is_featured', 'created_at')
+    list_filter = ('is_featured', 'category', 'created_at')
+    search_fields = ('name', 'description', 'slug')
     prepopulated_fields = {'slug': ('name',)}
     inlines = [ProductImageInline, ProductColorInline, ProductSizeInline, ProductVariationInline]
 
@@ -93,23 +98,45 @@ class ProductAdmin(admin.ModelAdmin):
         }),
     )
 
+    def has_variations(self, obj):
+        return ProductVariation.objects.filter(product=obj).exists()
+    has_variations.boolean = True
+    has_variations.short_description = "Has Variations"
+
 @admin.register(ProductColor)
 class ProductColorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'color_code', 'product')
+    list_display = ('name', 'color_code', 'product', 'color_preview')
     list_filter = ('product',)
     search_fields = ('name', 'product__name')
 
+    def color_preview(self, obj):
+        if obj.color_code:
+            return mark_safe(f'<div style="background-color: {obj.color_code}; width: 30px; height: 30px; border-radius: 50%;"></div>')
+        return "-"
+    color_preview.short_description = "Color"
+
 @admin.register(ProductSize)
 class ProductSizeAdmin(admin.ModelAdmin):
-    list_display = ('size', 'product', 'order')
-    list_filter = ('product',)
+    list_display = ('product', 'size', 'get_size_display', 'order')
+    list_filter = ('product', 'size')
     search_fields = ('product__name',)
+    ordering = ('product', 'order')
 
 @admin.register(ProductVariation)
 class ProductVariationAdmin(admin.ModelAdmin):
-    list_display = ('product', 'color', 'size', 'price', 'stock')
+    list_display = ('product', 'color', 'size', 'price', 'stock', 'sku')
     list_filter = ('product', 'color', 'size')
-    search_fields = ('product__name', 'color__name')
+    search_fields = ('product__name', 'color__name', 'sku')
+    list_editable = ('price', 'stock')
+
+    fieldsets = (
+        ('Product Information', {
+            'fields': ('product', 'color', 'size')
+        }),
+        ('Pricing & Inventory', {
+            'fields': ('price', 'stock', 'sku')
+        }),
+    )
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
