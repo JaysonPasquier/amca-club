@@ -7,6 +7,7 @@ from accounts.models import UserProfile
 from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory, ProductVariation, ProductImage
 from django.contrib.auth.decorators import user_passes_test
 import json
+import re
 
 def home(request):
     """Homepage view with club info, events, and newsletter signup"""
@@ -193,43 +194,60 @@ def product_detail(request, slug):
     colors = product.get_available_colors()
     sizes = product.get_available_sizes()
 
+    # Get all product images
+    product_images = product.images.all()
+
     # Determine default color (prefer "Blanc" or "White" if available, otherwise the first color)
     default_color = None
     for color in colors:
-        if color.name.lower() in ['blanc', 'white']:
+        # Remove any "-back" suffix from color names for comparison
+        clean_color_name = re.sub(r'-back$', '', color.name.lower())
+        if clean_color_name in ['blanc', 'white']:
             default_color = color
             break
 
     if not default_color and colors.exists():
         default_color = colors.first()
 
-    # Get all product images
-    product_images = product.images.all()
+    # Group colors to remove duplicates caused by front/back naming
+    # This dictionary will store clean color names to avoid duplicates in the UI
+    unique_colors = {}
+    for color in colors:
+        # Remove any "-back" suffix for display in the UI
+        clean_name = re.sub(r'-back$', '', color.name)
+        if clean_name not in unique_colors:
+            unique_colors[clean_name] = color
 
     # Prepare color-specific images map
     color_images = {}
-    for color in colors:
+    for color_name, color in unique_colors.items():
         # Use color's own image as front image if available, otherwise use product's main image
         front_image = color.image.url if color.image else product.image.url
 
-        color_images[color.name] = {
+        color_images[color_name] = {
             'front': front_image,
             'back': None,  # Will be populated if back image found
             'additional': []
         }
 
-        # Search for additional images for this color
+        # Search for back images for this color
         for img in product_images:
             img_name = img.image.name.lower()
-            color_name_lower = color.name.lower()
+            color_name_lower = color_name.lower()
 
             if color_name_lower in img_name:
                 # Check if it's a back image
                 if 'back' in img_name or 'dos' in img_name or 'arriere' in img_name:
-                    color_images[color.name]['back'] = img.image.url
-                else:
-                    # If not specifically marked as back, add to additional
-                    color_images[color.name]['additional'].append(img.image.url)
+                    color_images[color_name]['back'] = img.image.url
+                elif not 'front' in img_name and not color_images[color_name]['front'] == img.image.url:
+                    # If not specifically marked as back or front, add to additional
+                    color_images[color_name]['additional'].append(img.image.url)
+
+        # Also check for images from "-back" variant colors
+        back_color_name = f"{color_name}-back"
+        for c in colors:
+            if c.name.lower() == back_color_name.lower() and c.image:
+                color_images[color_name]['back'] = c.image.url
 
     # Convert color_images to JSON-safe format
     for color_name, images in color_images.items():
@@ -239,10 +257,13 @@ def product_detail(request, slug):
     # Get variation data organized by color and size for JS
     variation_data = {}
     for variation in variations:
-        if variation.color.name not in variation_data:
-            variation_data[variation.color.name] = {}
+        # Remove any "-back" suffix for the color key
+        color_name = re.sub(r'-back$', '', variation.color.name)
 
-        variation_data[variation.color.name][variation.size.size] = {
+        if color_name not in variation_data:
+            variation_data[color_name] = {}
+
+        variation_data[color_name][variation.size.size] = {
             'price': float(variation.get_price()),
             'stock': variation.stock,
             'sku': variation.sku or '',
@@ -251,7 +272,7 @@ def product_detail(request, slug):
     context = {
         'product': product,
         'related_products': related_products,
-        'colors': colors,
+        'colors': list(unique_colors.values()),  # Use only unique colors
         'sizes': sizes,
         'variations': variations,
         'variation_data': json.dumps(variation_data),
