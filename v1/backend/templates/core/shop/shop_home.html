@@ -66,43 +66,64 @@
 
         <div class="mosaic-grid">
             {% for category in categories %}
-                {% if forloop.counter0|divisibleby:6 == 0 %}
+                {% if forloop.counter0|divisibleby:9 == 0 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item large landscape">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif forloop.counter0|divisibleby:6 == 1 %}
+                {% elif forloop.counter0|divisibleby:9 == 1 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif forloop.counter0|divisibleby:6 == 2 %}
+                {% elif forloop.counter0|divisibleby:9 == 2 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif forloop.counter0|divisibleby:6 == 3 %}
+                {% elif forloop.counter0|divisibleby:9 == 3 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif forloop.counter0|divisibleby:6 == 4 %}
+                {% elif forloop.counter0|divisibleby:9 == 4 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% else %}
+                {% elif forloop.counter0|divisibleby:9 == 5 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 6 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 7 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 8 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
