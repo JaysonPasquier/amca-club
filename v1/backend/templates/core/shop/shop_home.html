@@ -67,27 +67,27 @@
         <div class="mosaic-grid">
             {% for category in categories %}
                 {% if category.display_order == 0 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
-                    <div class="collection-card">
-                        <h3>{{ category.name }}</h3>
-                        <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Portrait</span>
-                    </div>
-                </a>
-                {% elif category.display_order == 1 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
-                    <div class="collection-card">
-                        <h3>{{ category.name }}</h3>
-                        <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Landscape</span>
-                    </div>
-                </a>
-                {% elif category.display_order == 2 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Square</span>
+                        <span class="debug-label">Type: Carré</span>
+                    </div>
+                </a>
+                {% elif category.display_order == 1 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                        <span class="debug-label">Type: Rectangle Portrait</span>
+                    </div>
+                </a>
+                {% elif category.display_order == 2 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                        <span class="debug-label">Type: Rectangle Paysage</span>
                     </div>
                 </a>
                 {% elif category.display_order == 3 %}
@@ -95,7 +95,7 @@
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Large</span>
+                        <span class="debug-label">Type: Grand Rectangle</span>
                     </div>
                 </a>
                 {% elif category.display_order == 4 %}
@@ -103,7 +103,7 @@
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Circle</span>
+                        <span class="debug-label">Type: Cercle</span>
                     </div>
                 </a>
                 {% elif category.display_order == 5 %}
@@ -115,19 +115,11 @@
                     </div>
                 </a>
                 {% elif category.display_order == 6 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item diamond">
-                    <div class="collection-card">
-                        <h3>{{ category.name }}</h3>
-                        <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Diamond</span>
-                    </div>
-                </a>
-                {% elif category.display_order == 7 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item hexagon">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Hexagon</span>
+                        <span class="debug-label">Type: Hexagone</span>
                     </div>
                 </a>
                 {% else %}
@@ -135,7 +127,7 @@
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
-                        <span class="debug-label">Type: Default</span>
+                        <span class="debug-label">Type: Par défaut</span>
                     </div>
                 </a>
                 {% endif %}
