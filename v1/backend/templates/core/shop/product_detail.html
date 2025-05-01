@@ -14,10 +14,11 @@
         <!-- Product Gallery -->
         <div class="product-gallery">
             <div class="main-image-container">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" id="main-product-image">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" id="main-product-image" onclick="openLightbox(this.src)">
                 {% if product.discount_percentage > 0 %}
                 <span class="product-badge sale">-{{ product.discount_percentage }}%</span>
                 {% endif %}
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
             </div>
             <div class="thumbnails-container">
                 <div id="color-thumbnails"></div>
@@ -97,6 +98,12 @@
                 <span id="product-sku">{% if product.has_variations %}Sélectionnez une couleur et une taille{% else %}{{ product.sku }}{% endif %}</span>
             </div>
         </div>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
     </div>
 
     <!-- Related Products -->
@@ -199,7 +206,15 @@
         const thumb = document.createElement('div');
         thumb.className = 'thumbnail';
         thumb.innerHTML = `<img src="${imageUrl}" alt="${altText}" ${isActive ? 'class="active"' : ''}>`;
-        thumb.onclick = function() { changeMainImage(imageUrl); };
+        thumb.onclick = function() {
+            changeMainImage(imageUrl);
+        };
+        // Add click event to open lightbox
+        thumb.addEventListener('click', function(e) {
+            // Prevent double action when clicking thumbnail
+            e.stopPropagation();
+            openLightbox(imageUrl);
+        });
         container.appendChild(thumb);
     }
 
@@ -226,6 +241,41 @@
             });
         }, 200);
     }
+
+    // Lightbox functions
+    function openLightbox(imgSrc) {
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        lightboxImg.src = imgSrc;
+        lightbox.style.display = 'flex';
+
+        // Add animation
+        setTimeout(() => {
+            lightbox.classList.add('active');
+        }, 10);
+
+        // Prevent scrolling of the background
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('imageLightbox');
+        lightbox.classList.remove('active');
+
+        // Wait for transition to finish before hiding
+        setTimeout(() => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+
+    // Close lightbox when clicking outside the image
+    document.getElementById('imageLightbox').addEventListener('click', function(e) {
+        if (e.target !== document.getElementById('lightbox-img')) {
+            closeLightbox();
+        }
+    });
 
     // Update available sizes based on selected color
     function updateAvailableSizes() {
@@ -423,6 +473,7 @@
         background-color: white;
         box-shadow: var(--box-shadow);
         margin-bottom: 20px;
+        cursor: pointer; /* Add pointer cursor to indicate it's clickable */
     }
 
     #main-product-image {
@@ -484,6 +535,76 @@
 
     .thumbnail img.active {
         border: 2px solid var(--accent-color);
+    }
+
+    .main-image-container .zoom-icon {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .main-image-container:hover .zoom-icon {
+        opacity: 1;
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+        opacity: 1;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+    }
+
+    .lightbox.active .lightbox-content {
+        transform: scale(1);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+        transition: transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+        transform: scale(1.2);
+        color: #ddd;
     }
 
     /* Product Info */
@@ -669,7 +790,7 @@
         content: "•";
         margin-right: 8px;
         font-size: 1.5em;
-        color: var(--success-color);
+        color: var (--success-color);
     }
 
     .out-of-stock {
