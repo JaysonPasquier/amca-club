@@ -423,7 +423,8 @@
     .mosaic-grid {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(2, 250px);
+        /* Remove the fixed rows and let the grid auto-flow */
+        grid-auto-rows: 250px;
         gap: 20px;
         height: auto;
     }
@@ -694,6 +695,19 @@
                 {% for product in featured_products|slice:":10" %}
                     if (collectionItems[{{ forloop.counter0 }} % collectionItems.length]) {
                         collectionItems[{{ forloop.counter0 }} % collectionItems.length].style.backgroundImage = "url('{{ product.image.url }}')";
+                        // Add category number for debugging
+                        const categoryIndex = {{ forloop.counter0 }} % collectionItems.length;
+                        const debugLabel = document.createElement('div');
+                        debugLabel.style.position = 'absolute';
+                        debugLabel.style.top = '5px';
+                        debugLabel.style.right = '5px';
+                        debugLabel.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                        debugLabel.style.color = 'white';
+                        debugLabel.style.padding = '3px 6px';
+                        debugLabel.style.borderRadius = '3px';
+                        debugLabel.style.fontSize = '12px';
+                        debugLabel.textContent = `Cat ${categoryIndex + 1}`;
+                        collectionItems[categoryIndex].appendChild(debugLabel);
                     }
                 {% endfor %}
             {% endif %}
