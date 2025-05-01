@@ -186,36 +186,34 @@
         if (colorData.front && colorData.front !== "null") {
             changeMainImage(colorData.front);
 
-            // Add front thumbnail
+            // Add front thumbnail without label
             const frontThumb = document.createElement('div');
             frontThumb.className = 'thumbnail';
             frontThumb.innerHTML = `
                 <img src="${colorData.front}" alt="Front View" class="active">
-                <span class="view-label">Face</span>
             `;
             frontThumb.onclick = function() { changeMainImage(colorData.front); };
             thumbsContainer.appendChild(frontThumb);
         }
 
-        // Add back image thumbnail if available
+        // Add back image thumbnail if available (without label)
         if (colorData.back && colorData.back !== "null") {
             const backThumb = document.createElement('div');
             backThumb.className = 'thumbnail';
             backThumb.innerHTML = `
                 <img src="${colorData.back}" alt="Back View">
-                <span class="view-label">Dos</span>
             `;
             backThumb.onclick = function() { changeMainImage(colorData.back); };
             thumbsContainer.appendChild(backThumb);
         }
 
-        // Add any additional images
+        // Add any additional images (without labels)
         if (colorData.additional && colorData.additional.length > 0) {
             colorData.additional.forEach((imgUrl, index) => {
                 const additionalThumb = document.createElement('div');
                 additionalThumb.className = 'thumbnail';
                 additionalThumb.innerHTML = `
-                    <img src="${imgUrl}" alt="Vue ${index+1}">
+                    <img src="${imgUrl}" alt="Additional View ${index+1}">
                 `;
                 additionalThumb.onclick = function() { changeMainImage(imgUrl); };
                 thumbsContainer.appendChild(additionalThumb);
@@ -459,7 +457,8 @@
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start; /* Changed from center to flex-start */
+        margin-top: 15px;
     }
 
     .thumbnail {
@@ -470,6 +469,8 @@
         cursor: pointer;
         border: 2px solid #eee;
         transition: all 0.2s ease;
+        margin-bottom: 10px; /* Added margin-bottom to ensure proper spacing */
+        flex: 0 0 auto; /* Prevent thumbnails from growing or shrinking */
     }
 
     .thumbnail:hover {
@@ -486,6 +487,18 @@
 
     .thumbnail img.active {
         border: 2px solid #333;
+    }
+
+    /* Remove the view-label styling as we're not using it anymore */
+    /*.view-label {
+        display: none;
+    }*/
+
+    #color-thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 100%;
     }
 
     /* Product Info */
