@@ -66,50 +66,64 @@
 
         <div class="mosaic-grid">
             {% for category in categories %}
-                {% if category.display_order == 0 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
-                    <div class="collection-card">
-                        <h3>{{ category.name }}</h3>
-                        <span class="explore-link">Découvrir</span>
-                    </div>
-                </a>
-                {% elif category.display_order == 1 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
-                    <div class="collection-card">
-                        <h3>{{ category.name }}</h3>
-                        <span class="explore-link">Découvrir</span>
-                    </div>
-                </a>
-                {% elif category.display_order == 2 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
-                    <div class="collection-card">
-                        <h3>{{ category.name }}</h3>
-                        <span class="explore-link">Découvrir</span>
-                    </div>
-                </a>
-                {% elif category.display_order == 3 %}
+                {% if forloop.counter0|divisibleby:9 == 0 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item large landscape">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif category.display_order == 4 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item circle">
+                {% elif forloop.counter0|divisibleby:9 == 1 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif category.display_order == 5 %}
-                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item triangle">
+                {% elif forloop.counter0|divisibleby:9 == 2 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% else %}
+                {% elif forloop.counter0|divisibleby:9 == 3 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 4 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 5 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 6 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 7 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:9 == 8 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
@@ -131,20 +145,6 @@
             <p>Ne manquez pas nos derniers arrivages</p>
         </div>
 
-        <div class="latest-grid">
-            {% for product in featured_products|slice:":6" %}
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                        {% if product.discount_percentage > 0 %}
-                        <div class="product-tag sale">-{{ product.discount_percentage }}%</div>
-                        {% elif product.is_featured %}
-                        <div class="product-tag new">Nouveau</div>
-                        {% endif %}
-                    </div>
-                    <div class="product-details">
-                        <h3>{{ product.name }}</h3>
-                        <div class="product-price">
         <div class="latest-grid">
             {% for product in featured_products|slice:":6" %}
                 <div class="product-card">
