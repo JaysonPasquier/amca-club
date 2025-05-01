@@ -6,6 +6,7 @@ from accounts.forms import NewsletterForm
 from accounts.models import UserProfile
 from .models import Event, ClubInfo, EventParticipant, Product, ProductCategory, ProductVariation, ProductImage
 from django.contrib.auth.decorators import user_passes_test
+import json
 
 def home(request):
     """Homepage view with club info, events, and newsletter signup"""
@@ -198,28 +199,32 @@ def product_detail(request, slug):
     # Prepare color-specific images map
     color_images = {}
     for color in colors:
-        # Find images that might be associated with this color (by naming convention)
-        # First, try to find images with matching color name in their alt_text or name
-        color_specific_images = []
-
-        # Use color's own image as front image
+        # Use color's own image as front image if available, otherwise use product's main image
         front_image = color.image.url if color.image else product.image.url
 
-        # Add to color_images with front view as default
         color_images[color.name] = {
             'front': front_image,
-            'back': None,  # Will be populated from ProductImage if available
+            'back': None,  # Will be populated if back image found
             'additional': []
         }
 
-        # Look for back images or additional views in product images
+        # Search for additional images for this color
         for img in product_images:
             img_name = img.image.name.lower()
-            if color.name.lower() in img_name:
+            color_name_lower = color.name.lower()
+
+            if color_name_lower in img_name:
+                # Check if it's a back image
                 if 'back' in img_name or 'dos' in img_name or 'arriere' in img_name:
                     color_images[color.name]['back'] = img.image.url
                 else:
+                    # If not specifically marked as back, add to additional
                     color_images[color.name]['additional'].append(img.image.url)
+
+    # Convert color_images to JSON-safe format (ensure Python None is converted to JS null)
+    for color_name, images in color_images.items():
+        if images['back'] is None:
+            images['back'] = "null"  # This will be converted to JS null
 
     # Get variation data organized by color and size for JS
     variation_data = {}
@@ -239,8 +244,8 @@ def product_detail(request, slug):
         'colors': colors,
         'sizes': sizes,
         'variations': variations,
-        'variation_data': variation_data,
-        'color_images': color_images,
+        'variation_data': json.dumps(variation_data),
+        'color_images': json.dumps(color_images),
         'active_shop': True,
     }
 

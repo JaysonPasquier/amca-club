@@ -143,13 +143,12 @@
 </div>
 
 <script>
-    // Store variation data from Django
-    const variationData = {{ variation_data|safe }};
-    const colorImages = {{ color_images|safe }};
+    // Store variation data from Django - parse JSON data
+    const variationData = JSON.parse('{{ variation_data|escapejs }}');
+    const colorImages = JSON.parse('{{ color_images|escapejs }}');
     let currentColor = '';
     let currentSize = '';
     let maxStockAvailable = {{ product.stock }};
-    let currentView = 'front'; // Track the current view (front/back)
 
     function initializeVariations() {
         // Set initial color (first one)
@@ -158,71 +157,70 @@
             firstColorOption.checked = true;
             currentColor = firstColorOption.value;
             updateAvailableSizes();
-
-            // Initialize color images
             updateColorImages(currentColor);
         }
     }
 
     function updateColorImages(colorName) {
-        if (colorImages[colorName]) {
-            const colorImageData = colorImages[colorName];
+        if (!colorImages[colorName]) return;
 
-            // Update main image to front view of this color
-            if (colorImageData.front) {
-                changeMainImage(colorImageData.front);
-                currentView = 'front';
-            }
+        const colorData = colorImages[colorName];
+        const thumbsContainer = document.getElementById('color-thumbnails');
+        thumbsContainer.innerHTML = '';
 
-            // Add front/back view toggle if back image exists
-            const thumbsContainer = document.getElementById('color-thumbnails');
-            thumbsContainer.innerHTML = '';
+        // Display the main color image
+        if (colorData.front && colorData.front !== "null") {
+            changeMainImage(colorData.front);
 
-            // Add front view thumbnail
-            if (colorImageData.front) {
-                const frontThumb = document.createElement('div');
-                frontThumb.className = 'thumbnail view-thumbnail';
-                frontThumb.innerHTML = `
-                    <img src="${colorImageData.front}" alt="Front View" class="active">
-                    <span class="view-label">Front</span>
-                `;
-                frontThumb.addEventListener('click', () => {
-                    changeMainImage(colorImageData.front);
-                    currentView = 'front';
-                });
-                thumbsContainer.appendChild(frontThumb);
-            }
-
-            // Add back view thumbnail if available
-            if (colorImageData.back) {
-                const backThumb = document.createElement('div');
-                backThumb.className = 'thumbnail view-thumbnail';
-                backThumb.innerHTML = `
-                    <img src="${colorImageData.back}" alt="Back View">
-                    <span class="view-label">Back</span>
-                `;
-                backThumb.addEventListener('click', () => {
-                    changeMainImage(colorImageData.back);
-                    currentView = 'back';
-                });
-                thumbsContainer.appendChild(backThumb);
-            }
-
-            // Add any additional images
-            if (colorImageData.additional && colorImageData.additional.length > 0) {
-                colorImageData.additional.forEach((imgUrl, index) => {
-                    const additionalThumb = document.createElement('div');
-                    additionalThumb.className = 'thumbnail';
-                    additionalThumb.innerHTML = `
-                        <img src="${imgUrl}" alt="Additional View ${index+1}">
-                    `;
-                    additionalThumb.addEventListener('click', () => {
-                        changeMainImage(imgUrl);
-                    });
-                    thumbsContainer.appendChild(additionalThumb);
-                });
-            }
+            // Add front thumbnail
+            const frontThumb = document.createElement('div');
+            frontThumb.className = 'thumbnail';
+            frontThumb.innerHTML = `
+                <img src="${colorData.front}" alt="Front View" class="active">
+                <span class="view-label">Face</span>
+            `;
+            frontThumb.onclick = function() { changeMainImage(colorData.front); };
+            thumbsContainer.appendChild(frontThumb);
         }
+
+        // Add back image thumbnail if available
+        if (colorData.back && colorData.back !== "null") {
+            const backThumb = document.createElement('div');
+            backThumb.className = 'thumbnail';
+            backThumb.innerHTML = `
+                <img src="${colorData.back}" alt="Back View">
+                <span class="view-label">Dos</span>
+            `;
+            backThumb.onclick = function() { changeMainImage(colorData.back); };
+            thumbsContainer.appendChild(backThumb);
+        }
+
+        // Add any additional images
+        if (colorData.additional && colorData.additional.length > 0) {
+            colorData.additional.forEach((imgUrl, index) => {
+                const additionalThumb = document.createElement('div');
+                additionalThumb.className = 'thumbnail';
+                additionalThumb.innerHTML = `
+                    <img src="${imgUrl}" alt="Vue ${index+1}">
+                `;
+                additionalThumb.onclick = function() { changeMainImage(imgUrl); };
+                thumbsContainer.appendChild(additionalThumb);
+            });
+        }
+    }
+
+    function changeMainImage(src) {
+        document.getElementById('main-product-image').src = src;
+
+        // Update active thumbnail
+        const thumbnails = document.querySelectorAll('.thumbnail img');
+        thumbnails.forEach(thumb => {
+            if (thumb.src === src) {
+                thumb.classList.add('active');
+            } else {
+                thumb.classList.remove('active');
+            }
+        });
     }
 
     function updateAvailableSizes() {
@@ -311,20 +309,6 @@
         if (currentColor && colorImages[currentColor]) {
             updateColorImages(currentColor);
         }
-    }
-
-    function changeMainImage(src) {
-        document.getElementById('main-product-image').src = src;
-
-        // Update active thumbnail
-        const thumbnails = document.querySelectorAll('.thumbnail img');
-        thumbnails.forEach(thumb => {
-            if (thumb.src === src) {
-                thumb.classList.add('active');
-            } else {
-                thumb.classList.remove('active');
-            }
-        });
     }
 
     function incrementQuantity() {
