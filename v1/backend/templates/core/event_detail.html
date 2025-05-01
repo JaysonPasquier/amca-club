@@ -68,8 +68,8 @@
 
             <div class="flyers-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
                 {% if event.flyer_front|default:None %}
-                <div class="flyer-wrapper" style="max-width: 100%; width: 400px; position: relative;">
-                    <img src="{{ event.flyer_front.url }}" alt="Flyer (recto)" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer;"
+                <div class="flyer-wrapper" style="max-width: 100%; width: calc(50% - 10px); min-width: 250px; position: relative;">
+                    <img src="{{ event.flyer_front.url }}" alt="Flyer (recto)" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);"
                          onclick="openFlyerModal('{{ event.flyer_front.url }}', 'Flyer (recto)')" class="flyer-image">
                     <div class="flyer-caption" style="text-align: center; margin-top: 8px; font-size: 0.9rem; color: #ccc;">
                         Recto du flyer (cliquez pour agrandir)
@@ -78,8 +78,8 @@
                 {% endif %}
 
                 {% if event.flyer_back|default:None %}
-                <div class="flyer-wrapper" style="max-width: 100%; width: 400px; position: relative;">
-                    <img src="{{ event.flyer_back.url }}" alt="Flyer (verso)" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer;"
+                <div class="flyer-wrapper" style="max-width: 100%; width: calc(50% - 10px); min-width: 250px; position: relative;">
+                    <img src="{{ event.flyer_back.url }}" alt="Flyer (verso)" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);"
                          onclick="openFlyerModal('{{ event.flyer_back.url }}', 'Flyer (verso)')" class="flyer-image">
                     <div class="flyer-caption" style="text-align: center; margin-top: 8px; font-size: 0.9rem; color: #ccc;">
                         Verso du flyer (cliquez pour agrandir)
@@ -88,6 +88,45 @@
                 {% endif %}
             </div>
         </div>
+
+        <!-- Ajout de styles CSS responsive pour les flyers -->
+        <style>
+            @media (max-width: 768px) {
+                .event-flyers {
+                    padding: 20px 15px !important;
+                }
+
+                .flyers-container {
+                    gap: 15px !important;
+                }
+
+                .flyer-wrapper {
+                    width: 100% !important;
+                    min-width: unset !important;
+                    margin-bottom: 5px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .event-flyers {
+                    padding: 15px 10px !important;
+                }
+
+                .flyers-container {
+                    gap: 10px !important;
+                }
+            }
+
+            /* Animation de survol pour les flyers */
+            .flyer-image {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .flyer-image:hover {
+                transform: translateY(-3px) scale(1.01);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+            }
+        </style>
         {% endif %}
 
         <!-- Participants List -->
