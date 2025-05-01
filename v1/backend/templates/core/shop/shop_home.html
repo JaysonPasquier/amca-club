@@ -66,29 +66,36 @@
 
         <div class="mosaic-grid">
             {% for category in categories %}
-                {% if forloop.counter == 1 %}
+                {% if forloop.counter0|divisibleby:6 == 0 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item large landscape">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif forloop.counter == 2 %}
+                {% elif forloop.counter0|divisibleby:6 == 1 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif forloop.counter == 3 %}
+                {% elif forloop.counter0|divisibleby:6 == 2 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item landscape">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
                     </div>
                 </a>
-                {% elif forloop.counter == 4 %}
+                {% elif forloop.counter0|divisibleby:6 == 3 %}
                 <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item portrait">
+                    <div class="collection-card">
+                        <h3>{{ category.name }}</h3>
+                        <span class="explore-link">Découvrir</span>
+                    </div>
+                </a>
+                {% elif forloop.counter0|divisibleby:6 == 4 %}
+                <a href="{% url 'shop_products' %}?category={{ category.slug }}" class="mosaic-item standard">
                     <div class="collection-card">
                         <h3>{{ category.name }}</h3>
                         <span class="explore-link">Découvrir</span>
