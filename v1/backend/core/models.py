@@ -135,6 +135,18 @@ class Product(models.Model):
             return []
         return self.available_sizes.split(',')
 
+    def get_available_colors(self):
+        return ProductColor.objects.filter(product=self).order_by('name')
+
+    def get_available_sizes(self):
+        return ProductSize.objects.filter(product=self).order_by('order')
+
+    def get_all_variations(self):
+        return ProductVariation.objects.filter(product=self)
+
+    def has_variations(self):
+        return self.get_all_variations().exists()
+
     class Meta:
         verbose_name = "Produit"
         verbose_name_plural = "Produits"
@@ -151,3 +163,55 @@ class ProductImage(models.Model):
     class Meta:
         verbose_name = "Image de produit"
         verbose_name_plural = "Images de produit"
+
+class ProductColor(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='colors')
+    name = models.CharField(max_length=50)  # e.g., "Red", "Blue"
+    color_code = models.CharField(max_length=10, blank=True)  # Hex color code
+    image = models.ImageField(upload_to='products/colors/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.name}"
+
+    class Meta:
+        ordering = ['name']
+        unique_together = ['product', 'name']
+
+class ProductSize(models.Model):
+    SIZE_CHOICES = [
+        ('XS', 'Extra Small'),
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+        ('XL', 'Extra Large'),
+        ('XXL', '2X Large'),
+        ('XXXL', '3X Large'),
+    ]
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='sizes')
+    size = models.CharField(max_length=10, choices=SIZE_CHOICES)
+    order = models.PositiveSmallIntegerField(default=0)  # For consistent ordering
+
+    def __str__(self):
+        return self.get_size_display()
+
+    class Meta:
+        ordering = ['order']
+        unique_together = ['product', 'size']
+
+class ProductVariation(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variations')
+    color = models.ForeignKey(ProductColor, on_delete=models.CASCADE)
+    size = models.ForeignKey(ProductSize, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    stock = models.PositiveIntegerField(default=0)
+    sku = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.color.name} - {self.size.size}"
+
+    def get_price(self):
+        return self.price if self.price is not None else self.product.price
+
+    class Meta:
+        unique_together = ['product', 'color', 'size']

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, ClubInfo, EventParticipant, ProductCategory, Product, ProductImage
+from .models import Event, ClubInfo, EventParticipant, ProductCategory, Product, ProductImage, ProductColor, ProductSize, ProductVariation, Category
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
@@ -60,27 +60,58 @@ class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1
 
+class ProductColorInline(admin.TabularInline):
+    model = ProductColor
+    extra = 1
+
+class ProductSizeInline(admin.TabularInline):
+    model = ProductSize
+    extra = 1
+
+class ProductVariationInline(admin.TabularInline):
+    model = ProductVariation
+    extra = 1
+    autocomplete_fields = ['color', 'size']
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'is_featured', 'stock', 'is_active')
-    list_filter = ('category', 'is_featured', 'is_active')
+    list_display = ('name', 'price', 'stock', 'is_featured', 'created_at')
+    list_filter = ('is_featured', 'category')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
-    inlines = [ProductImageInline]
+    inlines = [ProductImageInline, ProductColorInline, ProductSizeInline, ProductVariationInline]
+
     fieldsets = (
-        ('Informations de base', {
+        ('Basic Information', {
             'fields': ('name', 'slug', 'description', 'category')
         }),
-        ('Prix', {
-            'fields': ('price', 'old_price')
+        ('Pricing & Inventory', {
+            'fields': ('price', 'old_price', 'stock', 'is_featured')
         }),
-        ('Images', {
+        ('Media', {
             'fields': ('image',)
         }),
-        ('Stock', {
-            'fields': ('stock', 'available_sizes')
-        }),
-        ('Options', {
-            'fields': ('is_featured', 'is_active')
-        }),
     )
+
+@admin.register(ProductColor)
+class ProductColorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'color_code', 'product')
+    list_filter = ('product',)
+    search_fields = ('name', 'product__name')
+
+@admin.register(ProductSize)
+class ProductSizeAdmin(admin.ModelAdmin):
+    list_display = ('size', 'product', 'order')
+    list_filter = ('product',)
+    search_fields = ('product__name',)
+
+@admin.register(ProductVariation)
+class ProductVariationAdmin(admin.ModelAdmin):
+    list_display = ('product', 'color', 'size', 'price', 'stock')
+    list_filter = ('product', 'color', 'size')
+    search_fields = ('product__name', 'color__name')
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}

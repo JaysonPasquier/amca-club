@@ -187,8 +187,30 @@ def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, is_active=True)
     related_products = Product.objects.filter(category=product.category, is_active=True).exclude(id=product.id)[:4]
 
-    return render(request, 'core/shop/product_detail.html', {
+    # Get available variations
+    variations = ProductVariation.objects.filter(product=product)
+    colors = product.get_available_colors()
+    sizes = product.get_available_sizes()
+
+    # Get variation data organized by color and size for JS
+    variation_data = {}
+    for variation in variations:
+        if variation.color.name not in variation_data:
+            variation_data[variation.color.name] = {}
+
+        variation_data[variation.color.name][variation.size.size] = {
+            'price': float(variation.get_price()),
+            'stock': variation.stock,
+            'sku': variation.sku or '',
+        }
+
+    context = {
         'product': product,
         'related_products': related_products,
-        'active_shop': True,
-    })
+        'colors': colors,
+        'sizes': sizes,
+        'variations': variations,
+        'variation_data': variation_data,
+    }
+
+    return render(request, 'core/shop/product_detail.html', context)
