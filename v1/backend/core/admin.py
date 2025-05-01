@@ -99,7 +99,10 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
     def has_variations(self, obj):
-        return ProductVariation.objects.filter(product=obj).exists()
+        try:
+            return ProductVariation.objects.filter(product=obj).exists()
+        except Exception:  # This will catch any database errors
+            return False
     has_variations.boolean = True
     has_variations.short_description = "Has Variations"
 
