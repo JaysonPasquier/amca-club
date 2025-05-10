@@ -53,6 +53,23 @@
         <div class="scan-message">
             <p>Rejoignez notre communauté de passionnés de voitures américaines !</p>
         </div>
+
+        <!-- Nouvelle section de tutoriel -->
+        <div class="tutorial-section">
+            <h2 class="tutorial-heading">Comment naviguer sur notre site</h2>
+
+            <div class="tutorial-content">
+                <p>Dans le coin en haut à droite de votre écran vous avez le menu, cliquez dessus et vous allez avoir toutes les pages qui vont s'afficher. Il vous suffira plus qu'à sélectionner la page qu'il vous faut.</p>
+
+                <div class="tutorial-image-container">
+                    <!-- Emplacement pour l'image du menu de navigation -->
+                    <img src="/static/img/nav-menu-tutorial.png" alt="Menu de navigation" class="tutorial-image">
+                </div>
+
+                <h3 class="tutorial-subheading">Créer votre compte</h3>
+                <p>Si vous voulez vous inscrire, vous pouvez vous créer un compte gratuitement. Il faudra juste attendre qu'un administrateur accepte la demande. Ensuite, vous pourrez personnaliser votre profil avec une biographie, une image de profil, ainsi qu'une bannière. La bannière devra elle aussi être validée par un administrateur.</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -223,6 +240,65 @@
         margin: 0;
         font-size: 0.95rem;
         color: #444;
+    }
+
+    /* Styles pour la section tutoriel */
+    .tutorial-section {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        border-left: 4px solid #3498db;
+        text-align: left;
+    }
+
+    .tutorial-heading {
+        font-size: 1.4rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .tutorial-subheading {
+        font-size: 1.2rem;
+        color: #2c3e50;
+        margin: 20px 0 10px;
+        font-weight: 500;
+    }
+
+    .tutorial-content p {
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .tutorial-image-container {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .tutorial-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+    }
+
+    /* Adaptation responsive pour la section tutoriel */
+    @media (max-width: 576px) {
+        .tutorial-section {
+            padding: 15px;
+            margin-top: 30px;
+        }
+
+        .tutorial-heading {
+            font-size: 1.3rem;
+        }
+
+        .tutorial-subheading {
+            font-size: 1.1rem;
+        }
     }
 
     /* Responsive adjustments */
