@@ -10,7 +10,70 @@
     <link href="/static/css/style.css" rel="stylesheet">
     <!-- Ensure favicon has absolute path with correct URL -->
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+
+    <!-- Ajout d'un mécanisme de normalisation des couleurs pour uniformisation sur tous les navigateurs -->
     <style>
+        /* Définition des variables de couleur globales - pour meilleure compatibilité */
+        :root {
+            /* Couleurs principales avec multiples formats pour meilleure compatibilité */
+            --color-primary: #333333;
+            --color-primary-rgb: 51, 51, 51;
+            --color-secondary: #3498db;
+            --color-secondary-rgb: 52, 152, 219;
+            --color-accent: #000000;
+            --color-accent-rgb: 0, 0, 0;
+            --color-white: #ffffff;
+            --color-white-rgb: 255, 255, 255;
+
+            /* États et feedback */
+            --color-success: #27ae60;
+            --color-success-rgb: 39, 174, 96;
+            --color-danger: #e74c3c;
+            --color-danger-rgb: 231, 76, 60;
+            --color-warning: #f1c40f;
+            --color-warning-rgb: 241, 196, 15;
+            --color-info: #3498db;
+            --color-info-rgb: 52, 152, 219;
+
+            /* Niveaux de gris */
+            --color-gray-100: #f5f5f5;
+            --color-gray-100-rgb: 245, 245, 245;
+            --color-gray-200: #eeeeee;
+            --color-gray-200-rgb: 238, 238, 238;
+            --color-gray-300: #dddddd;
+            --color-gray-300-rgb: 221, 221, 221;
+            --color-gray-400: #cccccc;
+            --color-gray-400-rgb: 204, 204, 204;
+            --color-gray-500: #999999;
+            --color-gray-500-rgb: 153, 153, 153;
+            --color-gray-600: #666666;
+            --color-gray-600-rgb: 102, 102, 102;
+            --color-gray-700: #333333;
+            --color-gray-700-rgb: 51, 51, 51;
+            --color-gray-800: #222222;
+            --color-gray-800-rgb: 34, 34, 34;
+            --color-gray-900: #111111;
+            --color-gray-900-rgb: 17, 17, 17;
+
+            /* Autres variables communes */
+            --box-shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --box-shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.15);
+            --box-shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.2);
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            --transition-speed: 0.3s;
+        }
+
+        /* Forcer le mode de rendu des couleurs pour une meilleure cohérence entre navigateurs */
+        html {
+            color-scheme: light;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: rgb(var(--color-gray-700-rgb));
+            background-color: rgb(var(--color-white-rgb));
+        }
+
         /* Page Transition Effects - improved */
         #page-transition-overlay {
             position: fixed;
@@ -18,7 +81,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: black;
+            background-color: rgb(var(--color-accent-rgb));
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -26,7 +89,7 @@
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity var(--transition-speed) ease;
         }
 
         #page-transition-overlay.visible {
