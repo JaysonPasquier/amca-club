@@ -4,66 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}{% endblock %}</title>
-
-    <!-- Color Mode Definition - Add this before any CSS -->
-    <meta name="color-scheme" content="light">
-    <meta name="theme-color" content="#ffffff">
-
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/static/css/style.css" rel="stylesheet">
     <!-- Ensure favicon has absolute path with correct URL -->
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
-
-    <!-- Color normalization styles - add before other styles -->
-    <style>
-        /* Base color normalization for cross-browser consistency */
-        html, body {
-            background-color: #ffffff;
-            color: #333333;
-        }
-
-        body * {
-            /* Ensure color rendering is consistent */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        /* Force standard color interpretation for form elements */
-        input, button, select, textarea, option {
-            color: #333333;
-            background-color: #ffffff;
-        }
-
-        /* Ensure links have explicit colors */
-        a {
-            color: #3498db;
-        }
-
-        a:hover, a:focus {
-            color: #2980b9;
-        }
-
-        a:visited {
-            color: #3498db; /* Keep consistent with non-visited */
-        }
-
-        /* Prevent differences in default browser form styling */
-        input[type="text"], input[type="email"], input[type="password"],
-        input[type="number"], textarea, select {
-            border: 1px solid #dddddd;
-        }
-
-        /* Prevent color differences in buttons */
-        button, .button, input[type="button"], input[type="submit"] {
-            color: #ffffff;
-            background-color: #333333;
-            border: none;
-        }
-    </style>
-
     <style>
         /* Page Transition Effects - improved */
         #page-transition-overlay {
