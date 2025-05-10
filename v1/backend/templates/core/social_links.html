@@ -62,14 +62,22 @@
                 <p>Dans le coin en haut à droite de votre écran vous avez le menu, cliquez dessus et vous allez avoir toutes les pages qui vont s'afficher. Il vous suffira plus qu'à sélectionner la page qu'il vous faut.</p>
 
                 <div class="tutorial-image-container">
-                    <!-- Emplacement pour l'image du menu de navigation -->
-                    <img src="/static/img/nav-menu-tutorial.png" alt="Menu de navigation" class="tutorial-image">
+                    <!-- Image cliquable avec curseur pointeur -->
+                    <img src="/static/img/nav-menu-tutorial.png" alt="Menu de navigation" class="tutorial-image"
+                         onclick="openTutorialLightbox(this.src)" style="cursor: pointer;">
+                    <div class="click-hint">Cliquez sur l'image pour l'agrandir</div>
                 </div>
 
                 <h3 class="tutorial-subheading">Créer votre compte</h3>
                 <p>Si vous voulez vous inscrire, vous pouvez vous créer un compte gratuitement. Il faudra juste attendre qu'un administrateur accepte la demande. Ensuite, vous pourrez personnaliser votre profil avec une biographie, une image de profil, ainsi qu'une bannière. La bannière devra elle aussi être validée par un administrateur.</p>
             </div>
         </div>
+    </div>
+
+    <!-- Nouveau lightbox pour l'image du tutoriel -->
+    <div id="tutorialImageLightbox" class="tutorial-lightbox">
+        <span class="tutorial-lightbox-close" onclick="closeTutorialLightbox()">&times;</span>
+        <img class="tutorial-lightbox-content" id="tutorial-lightbox-img">
     </div>
 </div>
 
@@ -288,6 +296,63 @@
         border: 1px solid #ddd;
     }
 
+    /* Style pour l'indice de clic */
+    .click-hint {
+        font-size: 0.8rem;
+        color: #666;
+        margin-top: 5px;
+        font-style: italic;
+    }
+
+    /* Styles pour le lightbox du tutoriel */
+    .tutorial-lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .tutorial-lightbox.active {
+        opacity: 1;
+    }
+
+    .tutorial-lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
+    }
+
+    .tutorial-lightbox.active .tutorial-lightbox-content {
+        transform: scale(1);
+    }
+
+    .tutorial-lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+        transition: transform 0.2s ease;
+    }
+
+    .tutorial-lightbox-close:hover {
+        transform: scale(1.2);
+        color: #ddd;
+    }
+
     /* Adaptation responsive pour la section tutoriel */
     @media (max-width: 576px) {
         .tutorial-section {
@@ -377,4 +442,41 @@
         position: relative;
     }
 </style>
+
+<script>
+    // Fonctions pour le lightbox de l'image du tutoriel
+    function openTutorialLightbox(imgSrc) {
+        const lightbox = document.getElementById('tutorialImageLightbox');
+        const lightboxImg = document.getElementById('tutorial-lightbox-img');
+
+        lightboxImg.src = imgSrc;
+        lightbox.style.display = 'flex';
+
+        // Animation d'ouverture
+        setTimeout(() => {
+            lightbox.classList.add('active');
+        }, 10);
+
+        // Empêcher le défilement du fond
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeTutorialLightbox() {
+        const lightbox = document.getElementById('tutorialImageLightbox');
+        lightbox.classList.remove('active');
+
+        // Attendre la fin de la transition avant de cacher
+        setTimeout(() => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+
+    // Fermer le lightbox en cliquant en dehors de l'image
+    document.getElementById('tutorialImageLightbox').addEventListener('click', function(e) {
+        if (e.target !== document.getElementById('tutorial-lightbox-img')) {
+            closeTutorialLightbox();
+        }
+    });
+</script>
 {% endblock %}
