@@ -78,10 +78,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: calc(100vh - 200px);
+        min-height: 100vh; /* Full viewport height */
         padding: 20px;
-        padding-top: 80px; /* Add padding to account for the navbar height */
-		padding-bottom: 80px;
+        /* Add more top and bottom padding to prevent overlap with nav and footer */
+        padding-top: 100px;
+        padding-bottom: 100px;
+        box-sizing: border-box; /* Ensure padding is included in the height */
     }
 
     .social-links-container {
@@ -92,6 +94,8 @@
         padding: 30px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         text-align: center;
+        /* Add margin to ensure content doesn't touch the edges */
+        margin: 20px auto;
     }
 
     .social-logo {
@@ -328,14 +332,15 @@
         }
 
         .social-links-page {
-            padding-top: 100px; /* Increase top padding on mobile to ensure content is below navbar */
-            min-height: calc(100vh - 100px); /* Adjust min-height calculation for mobile */
+            padding-top: 120px; /* Increase for mobile to avoid navbar overlap */
+            padding-bottom: 120px; /* Add more space at the bottom for footer */
         }
     }
 
     @media (max-width: 480px) {
         .social-links-page {
-            padding-top: 70px; /* Adjust for smaller mobile screens */
+            padding-top: 100px; /* Adjust for smaller screens */
+            padding-bottom: 100px;
         }
     }
 
@@ -355,12 +360,22 @@
         }
 
         .social-links-page {
-            padding-top: 60px; /* Further adjust for very small screens */
+            padding-top: 90px; /* Further adjust for very small screens */
+            padding-bottom: 90px;
         }
     }
 
     .social-logo {
         max-width: 75%;
+    }
+
+    /* Add this to ensure proper spacing with the base template */
+    body {
+        /* This ensures there's no unexpected margin/padding on the body */
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        position: relative;
     }
 </style>
 {% endblock %}
