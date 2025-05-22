@@ -675,8 +675,8 @@
         <div class="nav-left">
             <a href="{% url 'home' %}">
                 <img src="/static/img/logo.png" alt="logo">
+                <span class="nav-title">{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}</span>
             </a>
-            <span class="nav-title">{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}</span>
         </div>
 
         <div class="nav-right">
