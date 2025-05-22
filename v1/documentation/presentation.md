@@ -1,59 +1,111 @@
-# American Muscle Car France - Présentation du Site Web
+American Car Club Website Project Planning - Stage 1 Report
 
-## Description du Site Web
+1. Project Overview
 
-Site web développé sur mesure pour l'association American Muscle Car France (AMC-F), un regroupement de passionnés de voitures américaines en France. Le client cherchait une solution numérique complète pour dynamiser sa communauté et faciliter l'organisation de ses activités.
+My Role:
+I'm a student at Holberton School and almost finishing my first year. I enjoy learning technologies outside of my school curriculum, such as Lua and React, which will help me in developing this project independently.
 
-Cette plateforme associative permet la gestion des adhérents, la promotion des événements, et la commercialisation de produits dérivés, le tout dans une interface moderne et responsive adaptée à l'image de marque de l'association.
+Project Management Approach:
+I work on the project almost every day, typically for 5-6 hours straight. This consistent dedication allows me to maintain momentum and make steady progress on the development.
 
-Notre site propose :
+Tools & Communication:
+I use GitHub for version control and maintaining different versions of the project, VS Code as my primary development environment, and Figma for design work when needed for mockups or UI planning even if I didn't use it a lot.
 
-- **Espace Événements** : Calendrier détaillé des rassemblements, meetings et sorties organisés par le club, avec possibilité de s'inscrire et de visualiser les participants
-- **Boutique en Ligne** : Collection de vêtements et accessoires officiels du club, avec gestion des variations de produits (tailles, couleurs)
-- **Espace Membres** : Profils personnalisés pour chaque membre, affichant leur statut dans le club et permettant l'interaction sociale
-- **Forum de Discussion** : Espace d'échange entre passionnés sur différentes thématiques liées aux voitures américaines
-- **Galerie Media** : Publication et partage de photos et vidéos des événements et des véhicules des membres
-- **Newsletter** : Service d'abonnement pour recevoir les dernières nouvelles et annonces du club
-- **À Propos** : Informations sur l'histoire et la mission du club, ainsi que les contacts des responsables
+2. Research and Brainstorming
 
-Le site est conçu pour être accessible sur tous les appareils, offrant une expérience utilisateur optimale sur ordinateurs, tablettes et smartphones.
+Initial Research:
+I didn't extensively research other websites initially. Instead, I began with a written concept document outlining what I wanted to create. After establishing the base functionality, I identified additional features that would enhance the user experience.
 
-## Technologies Utilisées
+Brainstorming Results:
+- Core features: Must-have features include member profiles, event calendar, and admin approval system. Nice-to-have features for future implementation include forum functionality, a marketplace for parts/cars, and photo galleries for car shows and meetups.
+- User experience: Simplified registration flow with 3 steps: basic info → admin approval → profile creation. This ensures quality control of membership while keeping the process straightforward.
+- Technical implementation: Django REST framework for the backend API, React for the frontend interface, with images stored directly on the server rather than using external storage solutions.
+- Design approach: Clean, minimalist design with emphasis on car imagery, mobile-responsive layout with card-based components to showcase members and events effectively.
 
-### Backend
-- **Framework principal** : Django 4.2 (Python)
-- **Base de données** : SQLite (développement), PostgreSQL (production)
-- **API** : Django REST Framework
-- **Authentification** : Système Django intégré
+Inspiration Sources:
+The project is primarily inspired by the needs of car club communities and modern web design principles focusing on usability and clean aesthetics.
 
-### Frontend
-- **HTML5**, **CSS3**, **JavaScript**
-- **Responsive Design** : Media queries personnalisées
-- **Frameworks/Bibliothèques** :
-  - Font Awesome (icônes)
-  - Bootstrap 5 (via crispy_bootstrap5)
 
-### Services Intégrés
-- **Email** : SMTP via ionos.fr
-- **Cartes** : Google Maps API pour la localisation des événements
-- **Partage Social** : Intégration avec Facebook, Twitter, WhatsApp
+3. Idea Evaluation
 
-### Hébergement & Déploiement
-- **Hébergement** : Serveur VPS sous ionos.fr
-- **Domaine** : amc-f.com
-- **Serveur Web** : Nginx avec WSGI
+Evaluation Criteria:
+For this project, I'm prioritizing feasibility (can I build it with my current skills?), user value (will club members find it useful?), and development efficiency (can I complete it in reasonable time?).
 
-## Palette de Couleurs
+Feature Prioritization:
+I've evaluated the key features based on their importance to the core functionality:
 
-### Couleurs Principales
-- **Noir** (#000000) : Couleur dominante, représentant l'élégance et la puissance
-- **Bleu** (#3498db) : Couleur d'accentuation, utilisée pour les éléments interactifs
-- **Gris Foncé** (#333333) : Utilisé pour les arrière-plans secondaires et la typographie
-- **Rouge** (#e74c3c) : Utilisé pour les alertes et certains éléments d'action
 
-### Couleurs Secondaires
-- **Vert** (#2ecc71) : Actions positives, confirmations
-- **Gris Clair** (#f5f5f5) : Arrière-plans neutres
-- **Blanc** (#ffffff) : Texte et contrastes
+Feature
+Priority
+Reasoning
+User Profiles
+High
+Essential for member identity and community building
+Admin Approval
+High
+Critical for maintaining quality membership
+Event Calendar
+High
+Primary activity coordination tool for the club
+Member Directory
+Medium
+Important for community but simpler than profiles
+Forum System
+Medium
+Valuable but complex
+Photo Galleries
+Medium
+Enhances experience but not core functionality
 
-Le design global du site s'inspire de l'esthétique automobile américaine, combinant robustesse et sophistication, avec une interface intuitive qui met en valeur le contenu et facilite la navigation pour tous les utilisateurs.
+
+
+Technical Constraints:
+My limited experience with React's advanced features might slow down frontend development. Server configuration will be simple at first, focusing on reliability rather than advanced features.
+
+Risk Assessment:
+- High risk: Time management - balancing school commitments with consistent development time
+- Medium risk: Technical complexity of user approval flow and permission systems
+- Low risk: Basic CRUD operations for profiles and events are well within my capabilities
+
+
+
+
+4. Decision and Refinement
+
+Selected Approach:
+Community-focused platform centered around member profiles and events, with emphasis on visual appeal and ease of use for non-technical car enthusiasts. The platform will serve as a digital home for car club members.
+
+Problem Definition:
+Current car club communication and event organization happen through fragmented channels (Facebook, email, phone calls), making it difficult to maintain a cohesive community and keep track of events and members.
+
+Target Audience:
+Primary: American car owners with varying technical abilities who want to connect with other enthusiasts.
+Secondary: Car enthusiasts without American cars but interested in the community and events.
+
+Core Features:
+- User Profiles: Custom avatars, car details, member ID system, role assignments (founder, co-founder, member)
+- Event System: Calendar view, RSVP functionality, location maps, automatic email notifications (email functionality to be added in later phases)
+- Admin Dashboard: New member approval workflow, content moderation tools, analytics reporting
+
+Technical Architecture:
+Django backend with PostgreSQL database, Django REST framework for API, React frontend, JWT authentication, media stored directly on the server, Django templating for admin interfaces.
+
+5. Documentation
+
+Project Scope:
+MVP includes: user authentication, admin approval flow, user profiles, member directory, and simple event listing.
+Future phases will add: forums, media galleries, member-to-member messaging, and email notifications.
+
+Feature Specifications:
+- User Profiles: Profiles will include public display name, member ID (auto-incremented), profile image (with default option), join date, last active date, role (from predefined choices: founder, co-founder, member, developer), car details (brand, model, year, optional description and photos), and privacy settings.
+
+- Admin Approval System: New user registrations will be placed in a pending state. Admins will receive notifications of new registrations and can approve or reject them through a dedicated interface. Approved users will be prompted to complete their profiles.
+
+- Event System: Events will have title, description, date/time, location (with map integration), RSVP capability, and attendee list. The system will display upcoming events on the home page and allow filtering by date range.
+
+- Member Directory: Searchable/filterable list of approved members showing profile image, name, member ID, role, and join date, with links to detailed profile views.
+
+Design Concept:
+Modern, clean interface with black and white as base colors. Minimal use of accent colors to maintain a professional, timeless aesthetic. Card-based components for consistent display of members and events, with responsive design for all screen sizes.
+
+
