@@ -673,7 +673,9 @@
     <!-- Navigation bar - restructured for better responsive behavior -->
     <nav>
         <div class="nav-left">
-            <img src="/static/img/logo.png" alt="logo">
+            <a href="{% url 'home' %}">
+                <img src="/static/img/logo.png" alt="logo">
+            </a>
             <span class="nav-title">{% if global_club_info %}{{ global_club_info.name }}{% else %}Club de Voitures Américaines{% endif %}</span>
         </div>
 
