@@ -1,0 +1,42 @@
+{% extends 'admin_custom/base.html' %}
+
+{% block content %}
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h2>
+            <i class="fas fa-edit"></i>
+            {% if object %}Modifier{% else %}Ajouter{% endif %} {{ model.verbose_name }}
+        </h2>
+    </div>
+    <div class="admin-card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small style="color: #666;">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% if field.errors %}
+                        <div style="color: #e74c3c; font-size: 0.9rem;">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Enregistrer
+                </button>
+                <a href="{% url 'admin_model_list' app_name=app_name model_name=model_name %}"
+                   class="btn btn-secondary" style="margin-left: 1rem; background: #6c757d;">
+                    <i class="fas fa-times"></i> Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

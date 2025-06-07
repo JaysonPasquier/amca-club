@@ -1,0 +1,86 @@
+{% extends 'admin_custom/base.html' %}
+
+{% block content %}
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h2><i class="fas fa-list"></i> {{ model.verbose_name_plural }}</h2>
+        <a href="{% url 'admin_model_add' app_name=app_name model_name=model_name %}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Ajouter
+        </a>
+    </div>
+    <div class="admin-card-body">
+        <div class="search-box">
+            <form method="get">
+                <input type="text" name="search" placeholder="Rechercher..." value="{{ search_query }}">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Rechercher
+                </button>
+            </form>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    {% for field in fields %}
+                        <th>{{ field.verbose_name }}</th>
+                    {% endfor %}
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in objects %}
+                    <tr>
+                        {% for field in fields %}
+                            <td>
+                                {% with field_value=obj|getattr:field.name %}
+                                    {% if field_value %}
+                                        {{ field_value|truncatechars:50 }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                        {% endfor %}
+                        <td>
+                            <a href="{% url 'admin_model_edit' app_name=app_name model_name=model_name pk=obj.pk %}"
+                               class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button onclick="confirmDelete('{% url 'admin_model_delete' app_name=app_name model_name=model_name pk=obj.pk %}', '{{ obj }}')"
+                                    class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="{{ fields|length|add:1 }}">Aucun élément trouvé.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        {% if objects.has_other_pages %}
+            <div class="pagination">
+                {% if objects.has_previous %}
+                    <a href="?page={{ objects.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                {% endif %}
+
+                <span class="current">Page {{ objects.number }} sur {{ objects.paginator.num_pages }}</span>
+
+                {% if objects.has_next %}
+                    <a href="?page={{ objects.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- CSRF Token for delete operations -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+{% endblock %}

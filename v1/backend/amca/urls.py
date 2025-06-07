@@ -17,6 +17,9 @@ urlpatterns = [
     path('shop/', shop_home, name='shop_home'),
     path('shop/products/', shop_products, name='shop_products'),
     path('shop/product/<slug:slug>/', product_detail, name='product_detail'),
+
+    #Custom Admin Page
+    path('custom-admin/', include('admin_custom.urls')),
 ]
 
 if settings.DEBUG:

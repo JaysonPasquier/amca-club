@@ -1,0 +1,35 @@
+{% extends 'admin_custom/base.html' %}
+
+{% block content %}
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h2><i class="fas fa-tachometer-alt"></i> Tableau de Bord</h2>
+    </div>
+    <div class="admin-card-body">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            {% for model in models_info %}
+                <div class="admin-card" style="margin: 0;">
+                    <div class="admin-card-header" style="padding: 1rem;">
+                        <h3>{{ model.name }}</h3>
+                        <span class="badge" style="background: #3498db; color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">
+                            {{ model.count }}
+                        </span>
+                    </div>
+                    <div class="admin-card-body" style="padding: 1rem;">
+                        <a href="{% url 'admin_model_list' app_name=model.app_name model_name=model.model_name %}"
+                           class="btn btn-primary">
+                            <i class="fas fa-list"></i> Gérer
+                        </a>
+                        <a href="{% url 'admin_model_add' app_name=model.app_name model_name=model.model_name %}"
+                           class="btn btn-success" style="margin-left: 0.5rem;">
+                            <i class="fas fa-plus"></i> Ajouter
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Aucun modèle disponible.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
