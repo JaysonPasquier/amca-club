@@ -1,5 +1,4 @@
 {% extends 'admin_custom/base.html' %}
-{% load admin_filters %}
 
 {% block content %}
 <div class="admin-card">
@@ -29,25 +28,17 @@
                 </tr>
             </thead>
             <tbody>
-                {% for obj in objects %}
+                {% for obj_data in objects_with_values %}
                     <tr>
-                        {% for field in fields %}
-                            <td>
-                                {% with field_value=obj|getattr:field.name %}
-                                    {% if field_value %}
-                                        {{ field_value|truncatechars:50 }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
-                                {% endwith %}
-                            </td>
+                        {% for field_value in obj_data.field_values %}
+                            <td>{{ field_value }}</td>
                         {% endfor %}
                         <td>
-                            <a href="{% url 'admin_model_edit' app_name=app_name model_name=model_name pk=obj.pk %}"
+                            <a href="{% url 'admin_model_edit' app_name=app_name model_name=model_name pk=obj_data.object.pk %}"
                                class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button onclick="confirmDelete('{% url 'admin_model_delete' app_name=app_name model_name=model_name pk=obj.pk %}', '{{ obj }}')"
+                            <button onclick="confirmDelete('{% url 'admin_model_delete' app_name=app_name model_name=model_name pk=obj_data.object.pk %}', '{{ obj_data.object }}')"
                                     class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash"></i>
                             </button>

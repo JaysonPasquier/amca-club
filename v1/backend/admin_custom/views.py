@@ -103,11 +103,33 @@ def model_list(request, app_name, model_name):
     else:
         fields = [f for f in model._meta.fields if not f.name == 'id']
 
+    # Prepare objects with field values for easier template rendering
+    objects_with_values = []
+    for obj in page_obj:
+        obj_data = {
+            'object': obj,
+            'field_values': []
+        }
+        for field in fields:
+            try:
+                value = getattr(obj, field.name)
+                if value is None:
+                    display_value = "-"
+                elif len(str(value)) > 50:
+                    display_value = str(value)[:47] + "..."
+                else:
+                    display_value = str(value)
+                obj_data['field_values'].append(display_value)
+            except AttributeError:
+                obj_data['field_values'].append("-")
+        objects_with_values.append(obj_data)
+
     context = {
         'model': model,
         'model_name': model_name,
         'app_name': app_name,
         'objects': page_obj,
+        'objects_with_values': objects_with_values,
         'fields': fields,
         'search_query': search_query,
         'title': f"{model._meta.verbose_name_plural} Administration"
