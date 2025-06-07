@@ -374,6 +374,9 @@ def model_list(request, app_name, model_name):
     search_query = request.GET.get('q', '')
     objects = model.objects.all()
 
+    # DEBUG: Print total count before any filtering
+    print(f"DEBUG: Total {model_name} objects before filtering: {objects.count()}")
+
     if search_query:
         search_fields = []
         for f in model._meta.fields:
@@ -388,14 +391,27 @@ def model_list(request, app_name, model_name):
             for field in search_fields:
                 q_objects |= Q(**{f"{field}__icontains": search_query})
             objects = objects.filter(q_objects)
+            print(f"DEBUG: Objects after search filtering: {objects.count()}")
 
     # Order by primary key (most recent first)
-    objects = objects.order_by('-pk')
+    try:
+        objects = objects.order_by('-pk')
+    except Exception as e:
+        print(f"DEBUG: Error ordering by pk: {e}")
+        objects = objects.order_by('-id')  # Fallback to id
+
+    # DEBUG: Print objects after ordering
+    print(f"DEBUG: Objects after ordering: {objects.count()}")
+    print(f"DEBUG: First few objects: {list(objects[:3])}")
 
     # Pagination
     paginator = Paginator(objects, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
+    # DEBUG: Print pagination info
+    print(f"DEBUG: Page object count: {len(page_obj.object_list)}")
+    print(f"DEBUG: Page object list: {list(page_obj.object_list)}")
 
     # Display fields (exclude large text, relations, and sensitive fields)
     display_fields = []
@@ -409,6 +425,12 @@ def model_list(request, app_name, model_name):
     # Limit to first 6 fields for better display
     display_fields = display_fields[:6]
 
+    # DEBUG: Print display fields
+    print(f"DEBUG: Display fields: {display_fields}")
+
+    # Get total count for the unfiltered queryset
+    total_count = model.objects.count()
+
     context = {
         'model': model,
         'model_name': model_name,
@@ -417,6 +439,12 @@ def model_list(request, app_name, model_name):
         'display_fields': display_fields,
         'search_query': search_query,
         'title': f"Liste des {model._meta.verbose_name_plural}",
-        'total_count': objects.count(),
+        'total_count': total_count,
+        'filtered_count': objects.count(),
     }
+
+    # DEBUG: Print context info
+    print(f"DEBUG: Context total_count: {context['total_count']}")
+    print(f"DEBUG: Context filtered_count: {context['filtered_count']}")
+
     return render(request, 'admin_custom/model_list.html', context)
