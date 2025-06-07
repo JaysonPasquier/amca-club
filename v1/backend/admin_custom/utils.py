@@ -14,6 +14,23 @@ def get_client_ip(request):
 def track_model_change(instance, action, user=None, request=None, field_changes=None):
     """Track changes to models"""
 
+    # Skip tracking for certain models that we don't want to track
+    if instance._meta.label in ['sessions.Session', 'admin.LogEntry', 'admin_custom.ChangeHistory']:
+        return
+
+    # Get object_id, handle different primary key types
+    try:
+        object_id = instance.pk
+        # Convert to int if possible, otherwise skip tracking for non-integer PKs
+        if isinstance(object_id, str):
+            try:
+                object_id = int(object_id)
+            except (ValueError, TypeError):
+                # Skip tracking for models with non-integer primary keys (like sessions)
+                return
+    except:
+        return
+
     # Determine actor type
     if user and (user.is_staff or user.is_superuser):
         actor_type = 'admin'
@@ -35,7 +52,7 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
         actor_type=actor_type,
         user=user,
         content_type=ContentType.objects.get_for_model(instance),
-        object_id=instance.pk if hasattr(instance, 'pk') else None,
+        object_id=object_id,  # Now guaranteed to be an integer or None
         object_repr=str(instance)[:200],
         field_changes=field_changes or {},
         ip_address=ip_address,
