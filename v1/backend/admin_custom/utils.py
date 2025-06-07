@@ -31,13 +31,13 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
     except:
         return
 
-    # Determine actor type
-    if user and (user.is_staff or user.is_superuser):
-        actor_type = 'admin'
-    elif user:
-        actor_type = 'user'
-    else:
-        actor_type = 'system'
+    # Determine actor type - Fix the logic
+    actor_type = 'system'  # Default
+    if user and user.is_authenticated:
+        if user.is_staff or user.is_superuser:
+            actor_type = 'admin'
+        else:
+            actor_type = 'user'
 
     # Get request info if available
     ip_address = None
@@ -50,14 +50,31 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
     ChangeHistory.objects.create(
         action=action,
         actor_type=actor_type,
-        user=user,
+        user=user if user and user.is_authenticated else None,
         content_type=ContentType.objects.get_for_model(instance),
-        object_id=object_id,  # Now guaranteed to be an integer or None
+        object_id=object_id,
         object_repr=str(instance)[:200],
         field_changes=field_changes or {},
         ip_address=ip_address,
         user_agent=user_agent[:500] if user_agent else ''
     )
+
+    # Create admin notifications for user profile changes (banner/avatar)
+    if (actor_type == 'user' and
+        instance._meta.model_name in ['profile', 'userprofile'] and
+        field_changes and
+        any(field in ['banner', 'avatar', 'profile_picture'] for field in field_changes.keys())):
+
+        changed_fields = [field for field in field_changes.keys() if field in ['banner', 'avatar', 'profile_picture']]
+        field_names = ', '.join(changed_fields)
+
+        create_admin_notification(
+            notification_type='profile_change',
+            title=f'Modification de profil - {user.username}',
+            message=f'{user.username} a modifié son profil ({field_names}). Vérification recommandée.',
+            user=user,
+            content_object=instance
+        )
 
 def create_admin_notification(notification_type, title, message, user=None, content_object=None):
     """Create an admin notification"""
