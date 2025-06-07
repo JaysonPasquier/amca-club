@@ -380,7 +380,6 @@ def model_list(request, app_name, model_name):
     if search_query:
         search_fields = []
         for f in model._meta.fields:
-            # Better field type detection
             if hasattr(f, 'get_internal_type'):
                 field_type = f.get_internal_type()
                 if field_type in ['CharField', 'TextField', 'EmailField', 'URLField']:
@@ -398,7 +397,7 @@ def model_list(request, app_name, model_name):
         objects = objects.order_by('-pk')
     except Exception as e:
         print(f"DEBUG: Error ordering by pk: {e}")
-        objects = objects.order_by('-id')  # Fallback to id
+        objects = objects.order_by('-id')
 
     # DEBUG: Print objects after ordering
     print(f"DEBUG: Objects after ordering: {objects.count()}")
@@ -415,18 +414,41 @@ def model_list(request, app_name, model_name):
 
     # Display fields (exclude large text, relations, and sensitive fields)
     display_fields = []
+    fields_with_meta = []
     for f in model._meta.fields:
         if (hasattr(f, 'get_internal_type') and
             f.get_internal_type() not in ['TextField', 'BinaryField', 'FileField', 'ImageField'] and
             not isinstance(f, (ForeignKey, OneToOneField, ManyToManyField)) and
             f.name not in ['password', 'user_permissions', 'groups']):
             display_fields.append(f.name)
+            fields_with_meta.append(f)
 
     # Limit to first 6 fields for better display
     display_fields = display_fields[:6]
+    fields_with_meta = fields_with_meta[:6]
 
     # DEBUG: Print display fields
     print(f"DEBUG: Display fields: {display_fields}")
+
+    # Create objects_with_values that the template expects
+    objects_with_values = []
+    for obj in page_obj.object_list:
+        field_values = []
+        for field_name in display_fields:
+            try:
+                value = getattr(obj, field_name)
+                if value is None:
+                    value = '-'
+                elif hasattr(value, '__str__'):
+                    value = str(value)[:50]  # Truncate long values
+                field_values.append(value)
+            except Exception as e:
+                field_values.append('-')
+
+        objects_with_values.append({
+            'object': obj,
+            'field_values': field_values
+        })
 
     # Get total count for the unfiltered queryset
     total_count = model.objects.count()
@@ -435,8 +457,10 @@ def model_list(request, app_name, model_name):
         'model': model,
         'model_name': model_name,
         'app_name': app_name,
-        'objects': page_obj,
-        'display_fields': display_fields,
+        'objects': page_obj,  # Keep for pagination
+        'objects_with_values': objects_with_values,  # Add this for template
+        'fields': fields_with_meta,  # Add this for template headers
+        'display_fields': display_fields,  # Keep for backward compatibility
         'search_query': search_query,
         'title': f"Liste des {model._meta.verbose_name_plural}",
         'total_count': total_count,
@@ -446,5 +470,6 @@ def model_list(request, app_name, model_name):
     # DEBUG: Print context info
     print(f"DEBUG: Context total_count: {context['total_count']}")
     print(f"DEBUG: Context filtered_count: {context['filtered_count']}")
+    print(f"DEBUG: Objects with values count: {len(objects_with_values)}")
 
     return render(request, 'admin_custom/model_list.html', context)
