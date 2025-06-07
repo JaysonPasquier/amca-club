@@ -16,20 +16,17 @@ class AdminNotification(models.Model):
     type = models.CharField(max_length=50, choices=NOTIFICATION_TYPES)
     title = models.CharField(max_length=200)
     message = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)
+    object_id = models.CharField(max_length=255, null=True, blank=True)  # Changed to CharField to handle different ID types
     is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    # Generic foreign key to link to any model
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)
-    object_id = models.PositiveIntegerField(null=True, blank=True)
-    content_object = GenericForeignKey('content_type', 'object_id')
 
     class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.title} - {self.created_at.strftime('%d/%m/%Y %H:%M')}"
+        return f"{self.get_type_display()}: {self.title}"
 
 class ChangeHistory(models.Model):
     ACTION_CHOICES = [

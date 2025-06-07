@@ -148,7 +148,7 @@ def admin_dashboard(request):
 @user_passes_test(is_admin)
 def admin_notifications(request):
     """View admin notifications"""
-    notifications = AdminNotification.objects.all()[:50]
+    notifications = AdminNotification.objects.all().order_by('-created_at')[:50]
 
     # Mark as read if requested
     if request.GET.get('mark_read'):
@@ -156,8 +156,12 @@ def admin_notifications(request):
         messages.success(request, 'Toutes les notifications ont été marquées comme lues.')
         return redirect('admin_notifications')
 
+    # Count unread notifications
+    unread_count = AdminNotification.objects.filter(is_read=False).count()
+
     context = {
         'notifications': notifications,
+        'unread_count': unread_count,
         'title': 'Notifications'
     }
     return render(request, 'admin_custom/notifications.html', context)

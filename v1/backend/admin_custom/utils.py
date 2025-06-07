@@ -61,42 +61,26 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
         user_agent=user_agent[:500] if user_agent else ''
     )
 
-    # Special handling for banner changes on user profiles
+    # ONLY create admin notifications for user profile banner changes
     if (actor_type == 'user' and
         instance._meta.model_name in ['profile', 'userprofile'] and
-        field_changes):
+        field_changes and
+        user and user.is_authenticated):
 
-        # Check if banner field was changed
-        banner_changed = False
-        banner_field_names = ['banner', 'banner_image', 'profile_banner']
+        # Check if banner_image field was changed
+        banner_image_changed = 'banner_image' in field_changes or 'banner' in field_changes
 
-        for field_name in banner_field_names:
-            if field_name in field_changes:
-                old_value = field_changes[field_name].get('old')
-                new_value = field_changes[field_name].get('new')
-
-                # Banner was added or changed (not removed)
-                if new_value and new_value != old_value and new_value != 'None':
-                    banner_changed = True
-                    break
-
-        # Check if banner approval was reset to False (indicates new banner pending approval)
+        # Check if banner approval was reset to False
         banner_approval_reset = False
-        approval_field_names = ['banner_approved', 'is_banner_approved']
+        if 'banner_approved' in field_changes:
+            old_value = field_changes['banner_approved'].get('old')
+            new_value = field_changes['banner_approved'].get('new')
+            if new_value == 'False':
+                banner_approval_reset = True
 
-        for field_name in approval_field_names:
-            if field_name in field_changes:
-                old_value = field_changes[field_name].get('old')
-                new_value = field_changes[field_name].get('new')
-
-                # Approval was reset to False (new banner submitted)
-                if new_value == 'False' and old_value != new_value:
-                    banner_approval_reset = True
-                    break
-
-        # Create notification for banner change request
-        if banner_changed or banner_approval_reset:
-            # Check if there's already a recent notification for this user to avoid duplicates
+        # Only create notification when user uploads new banner (not when admin approves)
+        if banner_image_changed and banner_approval_reset:
+            # Check for duplicate notifications in the last 5 minutes
             from django.utils import timezone
             from datetime import timedelta
 
@@ -110,7 +94,7 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
                 create_admin_notification(
                     notification_type='banner_request',
                     title=f'Nouvelle demande de bannière - {user.username}',
-                    message=f'{user.get_full_name() or user.username} a uploadé une nouvelle bannière et attend l\'approbation.',
+                    message=f'{user.get_full_name() or user.username} a uploadé une nouvelle bannière qui nécessite une approbation.',
                     user=user,
                     content_object=instance
                 )
