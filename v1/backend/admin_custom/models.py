@@ -5,10 +5,12 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 
 class AdminNotification(models.Model):
     NOTIFICATION_TYPES = [
-        ('banner_approval', 'Approbation de bannière'),
-        ('user_registration', 'Nouvelle inscription'),
-        ('forum_report', 'Signalement forum'),
-        ('general', 'Général'),
+        ('user_action', 'Action utilisateur'),
+        ('system_alert', 'Alerte système'),
+        ('banner_request', 'Demande de bannière'),
+        ('user_registration', 'Inscription utilisateur'),
+        ('profile_change', 'Modification de profil'),
+        ('content_moderation', 'Modération de contenu'),
     ]
 
     type = models.CharField(max_length=50, choices=NOTIFICATION_TYPES)
