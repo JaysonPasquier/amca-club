@@ -1,0 +1,248 @@
+{% extends 'admin_custom/base.html' %}
+
+{% block content %}
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h2>
+            <i class="fas fa-history"></i>
+            Historique des modifications
+        </h2>
+        <div class="history-filters">
+            <a href="?type=all" class="btn {% if history_type == 'all' %}btn-primary{% else %}btn-secondary{% endif %}">
+                Tout
+            </a>
+            <a href="?type=admin" class="btn {% if history_type == 'admin' %}btn-primary{% else %}btn-secondary{% endif %}">
+                Admins
+            </a>
+            <a href="?type=user" class="btn {% if history_type == 'user' %}btn-primary{% else %}btn-secondary{% endif %}">
+                Utilisateurs
+            </a>
+        </div>
+    </div>
+    <div class="admin-card-body">
+        {% if history %}
+            <div class="history-timeline">
+                {% for change in history %}
+                    <div class="history-item {% if change.actor_type == 'admin' %}admin-change{% endif %}">
+                        <div class="history-icon">
+                            {% if change.action == 'create' %}
+                                <i class="fas fa-plus" style="color: var(--success-color);"></i>
+                            {% elif change.action == 'update' %}
+                                <i class="fas fa-edit" style="color: var(--warning-color);"></i>
+                            {% elif change.action == 'delete' %}
+                                <i class="fas fa-trash" style="color: var(--danger-color);"></i>
+                            {% endif %}
+                        </div>
+                        <div class="history-content">
+                            <div class="history-header">
+                                <div class="history-actor">
+                                    {% if change.user %}
+                                        <strong>{{ change.user.username }}</strong>
+                                        <span class="actor-type {{ change.actor_type }}">{{ change.get_actor_type_display }}</span>
+                                    {% else %}
+                                        <strong>Système</strong>
+                                    {% endif %}
+                                </div>
+                                <div class="history-time">
+                                    {{ change.timestamp|date:"d/m/Y H:i:s" }}
+                                </div>
+                            </div>
+                            <div class="history-action">
+                                {{ change.get_action_display }} <strong>{{ change.object_repr }}</strong>
+                                <small>({{ change.content_type.model }})</small>
+                            </div>
+                            {% if change.field_changes %}
+                                <div class="field-changes">
+                                    <strong>Modifications:</strong>
+                                    <ul>
+                                        {% for field, changes in change.field_changes.items %}
+                                            <li>
+                                                <strong>{{ field }}:</strong>
+                                                "{{ changes.old|default:"-" }}" → "{{ changes.new|default:"-" }}"
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            {% if change.ip_address %}
+                                <div class="history-meta">
+                                    <small>IP: {{ change.ip_address }}</small>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if history.has_other_pages %}
+                <div class="pagination">
+                    {% if history.has_previous %}
+                        <a href="?page=1&type={{ history_type }}">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
+                        <a href="?page={{ history.previous_page_number }}&type={{ history_type }}">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ history.number }} sur {{ history.paginator.num_pages }}
+                    </span>
+
+                    {% if history.has_next %}
+                        <a href="?page={{ history.next_page_number }}&type={{ history_type }}">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                        <a href="?page={{ history.paginator.num_pages }}&type={{ history_type }}">
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                <i class="fas fa-history" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                <h3>Aucun historique</h3>
+                <p>L'historique des modifications apparaîtra ici.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+.history-filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.history-timeline {
+    position: relative;
+}
+
+.history-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.history-item {
+    position: relative;
+    display: flex;
+    margin-bottom: 2rem;
+    padding-left: 3rem;
+}
+
+.history-item.admin-change {
+    background: rgba(37, 99, 235, 0.02);
+    border-radius: 8px;
+    padding: 1rem 1rem 1rem 3rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.history-icon {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.history-content {
+    flex: 1;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.history-actor {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.actor-type {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.actor-type.admin {
+    background: var(--primary-color);
+    color: white;
+}
+
+.actor-type.user {
+    background: var(--success-color);
+    color: white;
+}
+
+.actor-type.system {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.history-time {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.history-action {
+    margin-bottom: 0.5rem;
+}
+
+.field-changes {
+    background: #f8fafc;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.field-changes ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.5rem;
+}
+
+.field-changes li {
+    margin-bottom: 0.25rem;
+}
+
+.history-meta {
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .history-item {
+        padding-left: 2rem;
+    }
+
+    .history-icon {
+        left: -1rem;
+        width: 30px;
+        height: 30px;
+    }
+
+    .history-filters {
+        flex-direction: column;
+    }
+}
+</style>
+{% endblock %}

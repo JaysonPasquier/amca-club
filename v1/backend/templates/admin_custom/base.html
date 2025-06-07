@@ -573,6 +573,28 @@
                 <i class="fas fa-home"></i>
                 Tableau de bord
             </a>
+            <a href="{% url 'admin_notifications' %}" class="nav-link">
+                <i class="fas fa-bell"></i>
+                Notifications
+                {% if pending_notifications %}
+                    <span class="badge" style="background: var(--danger-color); color: white; font-size: 0.7rem; padding: 0.2rem 0.4rem; border-radius: 10px; margin-left: 0.5rem;">
+                        {{ pending_notifications }}
+                    </span>
+                {% endif %}
+            </a>
+            <a href="{% url 'change_history' %}" class="nav-link">
+                <i class="fas fa-history"></i>
+                Historique
+            </a>
+            <a href="{% url 'banner_requests' %}" class="nav-link">
+                <i class="fas fa-image"></i>
+                Bannières
+                {% if pending_banners %}
+                    <span class="badge" style="background: var(--warning-color); color: white; font-size: 0.7rem; padding: 0.2rem 0.4rem; border-radius: 10px; margin-left: 0.5rem;">
+                        {{ pending_banners }}
+                    </span>
+                {% endif %}
+            </a>
             <a href="/" class="nav-link" target="_blank">
                 <i class="fas fa-globe"></i>
                 Voir le site

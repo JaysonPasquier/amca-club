@@ -7,6 +7,10 @@ from django.db.models import Q
 from django.forms.models import modelform_factory
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from .models import AdminNotification, ChangeHistory, BannerRequest
+from .utils import track_model_change, create_admin_notification
+from django.utils import timezone
+from django.db.models.fields.related import ForeignKey, OneToOneField, ManyToManyField
 
 def is_admin(user):
     return user.is_authenticated and (user.is_staff or user.is_superuser)
@@ -129,85 +133,113 @@ def admin_dashboard(request):
     # Sort models alphabetically by display name
     models_info.sort(key=lambda x: x['name'])
 
+    # Get pending notifications count
+    pending_notifications = AdminNotification.objects.filter(is_read=False).count()
+    pending_banners = BannerRequest.objects.filter(status='pending').count()
+
     context = {
         'models_info': models_info,
-        'title': 'Administration'
+        'title': 'Administration',
+        'pending_notifications': pending_notifications,
+        'pending_banners': pending_banners,
     }
     return render(request, 'admin_custom/dashboard.html', context)
 
 @user_passes_test(is_admin)
-def model_list(request, app_name, model_name):
-    """List view for any model"""
-    try:
-        if app_name == 'auth' and model_name == 'User':
-            model = User
-        else:
-            model = apps.get_model(app_name, model_name)
-    except:
-        messages.error(request, f"Model {model_name} not found")
-        return redirect('admin_dashboard')
+def admin_notifications(request):
+    """View admin notifications"""
+    notifications = AdminNotification.objects.all()[:50]
 
-    # Search functionality
-    search_query = request.GET.get('search', '')
-    objects = model.objects.all()
+    # Mark as read if requested
+    if request.GET.get('mark_read'):
+        AdminNotification.objects.filter(is_read=False).update(is_read=True)
+        messages.success(request, 'Toutes les notifications ont été marquées comme lues.')
+        return redirect('admin_notifications')
 
-    if search_query:
-        # Simple search across all text fields
-        search_fields = [f.name for f in model._meta.fields if f.get_internal_type() in ['CharField', 'TextField']]
-        if search_fields:
-            query = Q()
-            for field in search_fields:
-                query |= Q(**{f"{field}__icontains": search_query})
-            objects = objects.filter(query)
+    context = {
+        'notifications': notifications,
+        'title': 'Notifications'
+    }
+    return render(request, 'admin_custom/notifications.html', context)
+
+@user_passes_test(is_admin)
+def change_history(request):
+    """View change history"""
+    history_type = request.GET.get('type', 'all')
+
+    history = ChangeHistory.objects.all()
+
+    if history_type == 'admin':
+        history = history.filter(actor_type='admin')
+    elif history_type == 'user':
+        history = history.filter(actor_type__in=['user', 'system'])
 
     # Pagination
-    paginator = Paginator(objects, 20)
+    paginator = Paginator(history, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Get field names for table headers (exclude sensitive fields for User model)
-    if model == User:
-        # Only show safe fields for User model
-        fields = [f for f in model._meta.fields if f.name in ['username', 'email', 'first_name', 'last_name', 'is_active', 'is_staff', 'date_joined']]
-    else:
-        fields = [f for f in model._meta.fields if not f.name == 'id']
-
-    # Prepare objects with field values for easier template rendering
-    objects_with_values = []
-    for obj in page_obj:
-        obj_data = {
-            'object': obj,
-            'field_values': []
-        }
-        for field in fields:
-            try:
-                value = getattr(obj, field.name)
-                if value is None:
-                    display_value = "-"
-                elif len(str(value)) > 50:
-                    display_value = str(value)[:47] + "..."
-                else:
-                    display_value = str(value)
-                obj_data['field_values'].append(display_value)
-            except AttributeError:
-                obj_data['field_values'].append("-")
-        objects_with_values.append(obj_data)
-
     context = {
-        'model': model,
-        'model_name': model_name,
-        'app_name': app_name,
-        'objects': page_obj,
-        'objects_with_values': objects_with_values,
-        'fields': fields,
-        'search_query': search_query,
-        'title': f"{model._meta.verbose_name_plural} Administration"
+        'history': page_obj,
+        'history_type': history_type,
+        'title': 'Historique des modifications'
     }
-    return render(request, 'admin_custom/model_list.html', context)
+    return render(request, 'admin_custom/change_history.html', context)
 
 @user_passes_test(is_admin)
+def banner_requests(request):
+    """Manage banner requests"""
+    status_filter = request.GET.get('status', 'pending')
+
+    requests = BannerRequest.objects.all()
+    if status_filter != 'all':
+        requests = requests.filter(status=status_filter)
+
+    context = {
+        'banner_requests': requests,
+        'status_filter': status_filter,
+        'title': 'Demandes de bannière'
+    }
+    return render(request, 'admin_custom/banner_requests.html', context)
+
+@user_passes_test(is_admin)
+def approve_banner(request, banner_id):
+    """Approve or reject banner request"""
+    banner_request = get_object_or_404(BannerRequest, id=banner_id)
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'approve':
+            banner_request.status = 'approved'
+            banner_request.reviewed_by = request.user
+            banner_request.reviewed_at = timezone.now()
+
+            # Apply banner to user profile (you'll need to implement this based on your Profile model)
+            # profile = banner_request.user.profile
+            # profile.banner = banner_request.banner_image
+            # profile.save()
+
+            track_model_change(banner_request, 'update', request.user, request)
+            messages.success(request, f'Bannière de {banner_request.user.username} approuvée.')
+
+        elif action == 'reject':
+            banner_request.status = 'rejected'
+            banner_request.reviewed_by = request.user
+            banner_request.reviewed_at = timezone.now()
+            banner_request.rejection_reason = request.POST.get('rejection_reason', '')
+
+            track_model_change(banner_request, 'update', request.user, request)
+            messages.success(request, f'Bannière de {banner_request.user.username} rejetée.')
+
+        banner_request.save()
+
+    return redirect('banner_requests')
+
+# Override existing views to add change tracking
+@user_passes_test(is_admin)
 def model_add(request, app_name, model_name):
-    """Add new object view"""
+    """Add new object view with change tracking"""
     try:
         if app_name == 'auth' and model_name == 'User':
             model = User
@@ -217,10 +249,8 @@ def model_add(request, app_name, model_name):
         messages.error(request, f"Model {model_name} not found")
         return redirect('admin_dashboard')
 
-    # Create dynamic form with excluded fields
     excluded_fields = []
     if model == User:
-        # Exclude sensitive fields for User model
         excluded_fields = ['password', 'user_permissions', 'groups', 'last_login']
 
     ModelForm = modelform_factory(model, exclude=excluded_fields)
@@ -229,10 +259,13 @@ def model_add(request, app_name, model_name):
         form = ModelForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save()
-            # Set default password for new users
             if model == User and not obj.password:
                 obj.set_password('defaultpassword123')
                 obj.save()
+
+            # Track the change
+            track_model_change(obj, 'create', request.user, request)
+
             messages.success(request, f"{model._meta.verbose_name} créé avec succès!")
             return redirect('admin_model_list', app_name=app_name, model_name=model_name)
     else:
@@ -249,7 +282,7 @@ def model_add(request, app_name, model_name):
 
 @user_passes_test(is_admin)
 def model_edit(request, app_name, model_name, pk):
-    """Edit object view"""
+    """Edit object view with change tracking"""
     try:
         if app_name == 'auth' and model_name == 'User':
             model = User
@@ -261,10 +294,14 @@ def model_edit(request, app_name, model_name, pk):
 
     obj = get_object_or_404(model, pk=pk)
 
-    # Create dynamic form with excluded fields
+    # Store original values for change tracking
+    original_values = {}
+    for field in model._meta.fields:
+        if field.name not in ['password', 'user_permissions', 'groups', 'last_login']:
+            original_values[field.name] = getattr(obj, field.name)
+
     excluded_fields = []
     if model == User:
-        # Exclude sensitive fields for User model
         excluded_fields = ['password', 'user_permissions', 'groups', 'last_login']
 
     ModelForm = modelform_factory(model, exclude=excluded_fields)
@@ -272,7 +309,19 @@ def model_edit(request, app_name, model_name, pk):
     if request.method == 'POST':
         form = ModelForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
+            # Track changes
+            field_changes = {}
+            for field_name, old_value in original_values.items():
+                new_value = getattr(obj, field_name)
+                if old_value != new_value:
+                    field_changes[field_name] = {
+                        'old': str(old_value) if old_value is not None else None,
+                        'new': str(new_value) if new_value is not None else None
+                    }
+
             form.save()
+            track_model_change(obj, 'update', request.user, request, field_changes)
+
             messages.success(request, f"{model._meta.verbose_name} modifié avec succès!")
             return redirect('admin_model_list', app_name=app_name, model_name=model_name)
     else:
@@ -290,7 +339,7 @@ def model_edit(request, app_name, model_name, pk):
 
 @user_passes_test(is_admin)
 def model_delete(request, app_name, model_name, pk):
-    """Delete object view"""
+    """Delete object view with change tracking"""
     try:
         if app_name == 'auth' and model_name == 'User':
             model = User
@@ -302,7 +351,58 @@ def model_delete(request, app_name, model_name, pk):
     obj = get_object_or_404(model, pk=pk)
 
     if request.method == 'POST':
+        obj_repr = str(obj)
+        track_model_change(obj, 'delete', request.user, request)
         obj.delete()
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+@user_passes_test(is_admin)
+def model_list(request, app_name, model_name):
+    """List objects for a given model (custom admin changelist)"""
+    try:
+        if app_name == 'auth' and model_name == 'User':
+            model = User
+        else:
+            model = apps.get_model(app_name, model_name)
+    except Exception as e:
+        messages.error(request, f"Model {model_name} introuvable ({e})")
+        return redirect('admin_dashboard')
+
+    # Search support (simple, on char/text fields)
+    search_query = request.GET.get('q', '')
+    objects = model.objects.all()
+    if search_query:
+        search_fields = [
+            f.name for f in model._meta.fields
+            if hasattr(f, 'get_internal_type') and f.get_internal_type() in ['CharField', 'TextField']
+        ]
+        if search_fields:
+            q_objects = Q()
+            for field in search_fields:
+                q_objects |= Q(**{f"{field}__icontains": search_query})
+            objects = objects.filter(q_objects)
+
+    # Pagination
+    paginator = Paginator(objects, 50)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    # Display fields (exclude large text, relations)
+    display_fields = [
+        f.name for f in model._meta.fields
+        if f.get_internal_type() not in ['TextField', 'BinaryField']
+        and not isinstance(f, (ForeignKey, OneToOneField, ManyToManyField))
+    ][:6]  # Show up to 6 fields
+
+    context = {
+        'model': model,
+        'model_name': model_name,
+        'app_name': app_name,
+        'objects': page_obj,
+        'display_fields': display_fields,
+        'search_query': search_query,
+        'title': f"Liste des {model._meta.verbose_name_plural}",
+    }
+    return render(request, 'admin_custom/model_list.html', context)

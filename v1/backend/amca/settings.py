@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'forum',  # Ajouter l'application forum ici
+    'admin_custom',  # Add the custom admin app
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,264 @@
+{% extends 'admin_custom/base.html' %}
+
+{% block content %}
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h2>
+            <i class="fas fa-image"></i>
+            Demandes de bannière
+        </h2>
+        <div class="status-filters">
+            <a href="?status=pending" class="btn {% if status_filter == 'pending' %}btn-warning{% else %}btn-secondary{% endif %}">
+                En attente
+            </a>
+            <a href="?status=approved" class="btn {% if status_filter == 'approved' %}btn-success{% else %}btn-secondary{% endif %}">
+                Approuvées
+            </a>
+            <a href="?status=rejected" class="btn {% if status_filter == 'rejected' %}btn-danger{% else %}btn-secondary{% endif %}">
+                Rejetées
+            </a>
+            <a href="?status=all" class="btn {% if status_filter == 'all' %}btn-primary{% else %}btn-secondary{% endif %}">
+                Toutes
+            </a>
+        </div>
+    </div>
+    <div class="admin-card-body">
+        {% if banner_requests %}
+            <div class="banner-requests-grid">
+                {% for request in banner_requests %}
+                    <div class="banner-request-card">
+                        <div class="banner-image">
+                            <img src="{{ request.banner_image.url }}" alt="Bannière de {{ request.user.username }}">
+                        </div>
+                        <div class="banner-details">
+                            <div class="banner-header">
+                                <h4>{{ request.user.username }}</h4>
+                                <span class="status status-{{ request.status }}">
+                                    {{ request.get_status_display }}
+                                </span>
+                            </div>
+                            {% if request.description %}
+                                <p class="banner-description">{{ request.description }}</p>
+                            {% endif %}
+                            <div class="banner-meta">
+                                <small>Demandé le {{ request.requested_at|date:"d/m/Y à H:i" }}</small>
+                                {% if request.reviewed_at %}
+                                    <small>Traité le {{ request.reviewed_at|date:"d/m/Y à H:i" }} par {{ request.reviewed_by.username }}</small>
+                                {% endif %}
+                            </div>
+                            {% if request.status == 'pending' %}
+                                <div class="banner-actions">
+                                    <form method="post" action="{% url 'approve_banner' request.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="approve">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-check"></i>
+                                            Approuver
+                                        </button>
+                                    </form>
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="showRejectModal({{ request.id }})">
+                                        <i class="fas fa-times"></i>
+                                        Rejeter
+                                    </button>
+                                </div>
+                            {% elif request.status == 'rejected' and request.rejection_reason %}
+                                <div class="rejection-reason">
+                                    <strong>Raison du rejet:</strong>
+                                    <p>{{ request.rejection_reason }}</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                <h3>Aucune demande</h3>
+                <p>Les demandes de bannière apparaîtront ici.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Rejection Modal -->
+<div id="rejectModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h3>Rejeter la demande de bannière</h3>
+        <form id="rejectForm" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="reject">
+            <div class="form-group">
+                <label for="rejection_reason">Raison du rejet:</label>
+                <textarea name="rejection_reason" id="rejection_reason" required rows="4" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;"></textarea>
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+                <button type="button" onclick="hideRejectModal()" class="btn btn-secondary">Annuler</button>
+                <button type="submit" class="btn btn-danger">Rejeter</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+.status-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.banner-requests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.banner-request-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+.banner-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-details {
+    padding: 1.5rem;
+}
+
+.banner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.banner-header h4 {
+    margin: 0;
+}
+
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-approved {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.banner-description {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.banner-meta {
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.banner-meta small {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.banner-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.rejection-reason {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #fee2e2;
+    border-radius: 4px;
+}
+
+.rejection-reason p {
+    margin: 0.5rem 0 0 0;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+}
+
+@media (max-width: 768px) {
+    .banner-requests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .status-filters {
+        flex-direction: column;
+    }
+
+    .banner-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .banner-actions {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+function showRejectModal(bannerId) {
+    document.getElementById('rejectForm').action = '{% url "approve_banner" 0 %}'.replace('0', bannerId);
+    document.getElementById('rejectModal').style.display = 'flex';
+}
+
+function hideRejectModal() {
+    document.getElementById('rejectModal').style.display = 'none';
+    document.getElementById('rejection_reason').value = '';
+}
+
+// Close modal when clicking outside
+document.getElementById('rejectModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideRejectModal();
+    }
+});
+</script>
+{% endblock %}
