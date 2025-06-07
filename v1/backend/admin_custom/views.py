@@ -14,6 +14,18 @@ def is_admin(user):
 @user_passes_test(is_admin)
 def admin_dashboard(request):
     """Custom admin dashboard"""
+    # Define which models you want to show and their custom names/apps
+    allowed_models = {
+        # Format: 'app_name.ModelName': 'Display Name'
+        'core.ClubInfo': 'Informations du Club',
+        'core.Event': 'Événements',
+        'accounts.Profile': 'Profils Utilisateurs',
+        'forum.Topic': 'Sujets du Forum',
+        'forum.Post': 'Messages du Forum',
+        'auth.User': 'Utilisateurs',  # Django's built-in User model
+        # Add other models you want to display here
+    }
+
     models_info = []
 
     # Add Django's User model first
@@ -29,48 +41,24 @@ def admin_dashboard(request):
     except:
         pass
 
-    # Define custom model mappings with French names
-    model_mappings = {
-        'core': {
-            'ClubInfo': 'Informations du Club',
-            'Event': 'Événements',
-        },
-        'accounts': {
-            'Profile': 'Profils Utilisateurs',
-            'Newsletter': 'Abonnés Newsletter',
-        },
-        'forum': {
-            'Topic': 'Sujets du Forum',
-            'Post': 'Messages du Forum',
-            'Category': 'Catégories du Forum',
-        }
-    }
-
-    # Dynamically discover and add models
-    for app_name, model_names in model_mappings.items():
-        try:
-            app_config = apps.get_app_config(app_name)
-            for model in app_config.get_models():
-                model_name = model.__name__
-                if model_name in model_names:
-                    try:
-                        models_info.append({
-                            'name': model_names[model_name],
-                            'model_name': model_name,
-                            'app_name': app_name,
-                            'count': model.objects.count(),
-                            'url_name': 'admin_model_list',
-                        })
-                    except Exception as e:
-                        print(f"Error counting {app_name}.{model_name}: {e}")
-        except Exception as e:
-            print(f"App {app_name} not available: {e}")
+    # Add your custom models
+    for model_key, display_name in allowed_models.items():
+        if model_key == 'auth.User':  # Skip as we already added it
             continue
 
-    # Debug: Print what we found
-    print("Found models:")
-    for model_info in models_info:
-        print(f"  - {model_info['name']} ({model_info['app_name']}.{model_info['model_name']}): {model_info['count']} items")
+        try:
+            app_name, model_name = model_key.split('.')
+            model = apps.get_model(app_name, model_name)
+            models_info.append({
+                'name': display_name,
+                'model_name': model_name,
+                'app_name': app_name,
+                'count': model.objects.count(),
+                'url_name': 'admin_model_list',
+            })
+        except:
+            # Skip if model doesn't exist
+            continue
 
     context = {
         'models_info': models_info,
@@ -240,24 +228,7 @@ def model_delete(request, app_name, model_name, pk):
         else:
             model = apps.get_model(app_name, model_name)
     except:
-        messages.error(request, f"Model {model_name} not found")
-        return redirect('admin_dashboard')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return render(request, 'admin_custom/model_delete.html', context)    }        'title': f"Supprimer {model._meta.verbose_name}"        'app_name': app_name,        'model_name': model_name,        'object': obj,    context = {        return redirect('admin_model_list', app_name=app_name, model_name=model_name)        messages.success(request, f"{model._meta.verbose_name} supprimé avec succès!")        obj.delete()    if request.method == 'POST':    obj = get_object_or_404(model, pk=pk)        return JsonResponse({'success': False, 'error': 'Model not found'})
+        return JsonResponse({'success': False, 'error': 'Model not found'})
 
     obj = get_object_or_404(model, pk=pk)
 
