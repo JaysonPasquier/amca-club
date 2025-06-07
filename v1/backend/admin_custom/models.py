@@ -18,7 +18,8 @@ class AdminNotification(models.Model):
     message = models.TextField()
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)
-    object_id = models.CharField(max_length=255, null=True, blank=True)  # Changed to CharField to handle different ID types
+    object_id = models.CharField(max_length=255, null=True, blank=True)
+    content_object = GenericForeignKey('content_type', 'object_id')
     is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 

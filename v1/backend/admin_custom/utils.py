@@ -13,6 +13,31 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
+def create_admin_notification(notification_type, title, message, user=None, content_object=None):
+    """Create an admin notification"""
+    content_type = None
+    object_id = None
+
+    if content_object:
+        content_type = ContentType.objects.get_for_model(content_object)
+        # Handle different primary key types for notifications
+        try:
+            object_id = str(content_object.pk)  # Convert to string instead of int
+        except:
+            object_id = None
+
+    notification = AdminNotification.objects.create(
+        type=notification_type,
+        title=title,
+        message=message,
+        user=user,
+        content_type=content_type,
+        object_id=object_id
+    )
+
+    print(f"Created notification: {notification.title} for user: {user}")
+    return notification
+
 def track_model_change(instance, action, user=None, request=None, field_changes=None):
     """Track changes to models"""
 
@@ -61,16 +86,23 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
         user_agent=user_agent[:500] if user_agent else ''
     )
 
-    # ONLY create admin notifications for user profile banner changes
+    # CREATE ADMIN NOTIFICATIONS for specific profile changes
     if (actor_type == 'user' and
         instance._meta.model_name in ['profile', 'userprofile'] and
         field_changes and
         user and user.is_authenticated):
 
-        # Check if banner_image field was changed
-        banner_image_changed = 'banner_image' in field_changes or 'banner' in field_changes
+        # Check for banner image upload (new banner or changed banner)
+        banner_image_changed = False
+        if 'banner_image' in field_changes:
+            old_value = field_changes['banner_image'].get('old', '')
+            new_value = field_changes['banner_image'].get('new', '')
 
-        # Check if banner approval was reset to False
+            # Check if a new image was uploaded (new value is not empty and different from old)
+            if new_value and new_value != old_value and new_value != 'None' and new_value != '':
+                banner_image_changed = True
+
+        # Check if banner approval was reset to False (indicates new banner pending approval)
         banner_approval_reset = False
         if 'banner_approved' in field_changes:
             old_value = field_changes['banner_approved'].get('old')
@@ -78,7 +110,7 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
             if new_value == 'False':
                 banner_approval_reset = True
 
-        # Only create notification when user uploads new banner (not when admin approves)
+        # Create notification when user uploads new banner that needs approval
         if banner_image_changed and banner_approval_reset:
             # Check for duplicate notifications in the last 5 minutes
             from django.utils import timezone
@@ -91,18 +123,34 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
             ).exists()
 
             if not recent_notification:
-                create_admin_notification(
+                notification = create_admin_notification(
                     notification_type='banner_request',
                     title=f'Nouvelle demande de bannière - {user.username}',
                     message=f'{user.get_full_name() or user.username} a uploadé une nouvelle bannière qui nécessite une approbation.',
                     user=user,
                     content_object=instance
                 )
+                print(f"Banner notification created: {notification.id}")
 
-    # Also handle new user registrations
+        # Also create notification for avatar/profile picture changes
+        elif 'profile_image' in field_changes or 'avatar' in field_changes:
+            old_value = field_changes.get('profile_image', {}).get('old') or field_changes.get('avatar', {}).get('old')
+            new_value = field_changes.get('profile_image', {}).get('new') or field_changes.get('avatar', {}).get('new')
+
+            if new_value and new_value != old_value and new_value != 'None':
+                create_admin_notification(
+                    notification_type='profile_change',
+                    title=f'Photo de profil modifiée - {user.username}',
+                    message=f'{user.get_full_name() or user.username} a changé sa photo de profil.',
+                    user=user,
+                    content_object=instance
+                )
+
+    # Handle new user registrations
     if (actor_type == 'user' and
         instance._meta.model_name in ['profile', 'userprofile'] and
-        action == 'create'):
+        action == 'create' and
+        user and user.is_authenticated):
 
         create_admin_notification(
             notification_type='user_registration',
@@ -111,33 +159,6 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
             user=user,
             content_object=instance
         )
-
-def create_admin_notification(notification_type, title, message, user=None, content_object=None):
-    """Create an admin notification"""
-    content_type = None
-    object_id = None
-
-    if content_object:
-        content_type = ContentType.objects.get_for_model(content_object)
-        # Handle different primary key types for notifications too
-        try:
-            object_id = content_object.pk
-            if isinstance(object_id, str):
-                try:
-                    object_id = int(object_id)
-                except (ValueError, TypeError):
-                    object_id = None  # Set to None if can't convert to int
-        except:
-            object_id = None
-
-    AdminNotification.objects.create(
-        type=notification_type,
-        title=title,
-        message=message,
-        user=user,
-        content_type=content_type,
-        object_id=object_id
-    )
 
 def track_banner_request(user, banner_image, description):
     """Track banner approval request"""
