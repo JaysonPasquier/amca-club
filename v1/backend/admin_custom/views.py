@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.forms.models import modelform_factory
 from django.http import JsonResponse
+from django.contrib.auth.models import User
 
 def is_admin(user):
     return user.is_authenticated and (user.is_staff or user.is_superuser)
@@ -13,23 +14,51 @@ def is_admin(user):
 @user_passes_test(is_admin)
 def admin_dashboard(request):
     """Custom admin dashboard"""
-    # Get all models from your apps (excluding Django's built-in apps)
-    custom_apps = ['core', 'events', 'members']  # Add your app names here
+    # Define which models you want to show and their custom names/apps
+    allowed_models = {
+        # Format: 'app_name.ModelName': 'Display Name'
+        'core.ClubInfo': 'Informations du Club',
+        'core.Event': 'Événements',
+        'accounts.Profile': 'Profils Utilisateurs',
+        'forum.Topic': 'Sujets du Forum',
+        'forum.Post': 'Messages du Forum',
+        'auth.User': 'Utilisateurs',  # Django's built-in User model
+        # Add other models you want to display here
+    }
+
     models_info = []
 
-    for app_name in custom_apps:
+    # Add Django's User model first
+    try:
+        user_model = User
+        models_info.append({
+            'name': 'Utilisateurs',
+            'model_name': 'User',
+            'app_name': 'auth',
+            'count': user_model.objects.count(),
+            'url_name': 'admin_model_list',
+        })
+    except:
+        pass
+
+    # Add your custom models
+    for model_key, display_name in allowed_models.items():
+        if model_key == 'auth.User':  # Skip as we already added it
+            continue
+
         try:
-            app = apps.get_app_config(app_name)
-            for model in app.get_models():
-                models_info.append({
-                    'name': model._meta.verbose_name_plural,
-                    'model_name': model.__name__,
-                    'app_name': app_name,
-                    'count': model.objects.count(),
-                    'url_name': f'admin_model_list',
-                })
+            app_name, model_name = model_key.split('.')
+            model = apps.get_model(app_name, model_name)
+            models_info.append({
+                'name': display_name,
+                'model_name': model_name,
+                'app_name': app_name,
+                'count': model.objects.count(),
+                'url_name': 'admin_model_list',
+            })
         except:
-            pass
+            # Skip if model doesn't exist
+            continue
 
     context = {
         'models_info': models_info,
@@ -41,7 +70,10 @@ def admin_dashboard(request):
 def model_list(request, app_name, model_name):
     """List view for any model"""
     try:
-        model = apps.get_model(app_name, model_name)
+        if app_name == 'auth' and model_name == 'User':
+            model = User
+        else:
+            model = apps.get_model(app_name, model_name)
     except:
         messages.error(request, f"Model {model_name} not found")
         return redirect('admin_dashboard')
@@ -64,8 +96,12 @@ def model_list(request, app_name, model_name):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Get field names for table headers
-    fields = [f for f in model._meta.fields if not f.name == 'id']
+    # Get field names for table headers (exclude sensitive fields for User model)
+    if model == User:
+        # Only show safe fields for User model
+        fields = [f for f in model._meta.fields if f.name in ['username', 'email', 'first_name', 'last_name', 'is_active', 'is_staff', 'date_joined']]
+    else:
+        fields = [f for f in model._meta.fields if not f.name == 'id']
 
     context = {
         'model': model,
@@ -82,18 +118,30 @@ def model_list(request, app_name, model_name):
 def model_add(request, app_name, model_name):
     """Add new object view"""
     try:
-        model = apps.get_model(app_name, model_name)
+        if app_name == 'auth' and model_name == 'User':
+            model = User
+        else:
+            model = apps.get_model(app_name, model_name)
     except:
         messages.error(request, f"Model {model_name} not found")
         return redirect('admin_dashboard')
 
-    # Create dynamic form
-    ModelForm = modelform_factory(model, exclude=[])
+    # Create dynamic form with excluded fields
+    excluded_fields = []
+    if model == User:
+        # Exclude sensitive fields for User model
+        excluded_fields = ['password', 'user_permissions', 'groups', 'last_login']
+
+    ModelForm = modelform_factory(model, exclude=excluded_fields)
 
     if request.method == 'POST':
         form = ModelForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            obj = form.save()
+            # Set default password for new users
+            if model == User and not obj.password:
+                obj.set_password('defaultpassword123')
+                obj.save()
             messages.success(request, f"{model._meta.verbose_name} créé avec succès!")
             return redirect('admin_model_list', app_name=app_name, model_name=model_name)
     else:
@@ -112,13 +160,23 @@ def model_add(request, app_name, model_name):
 def model_edit(request, app_name, model_name, pk):
     """Edit object view"""
     try:
-        model = apps.get_model(app_name, model_name)
+        if app_name == 'auth' and model_name == 'User':
+            model = User
+        else:
+            model = apps.get_model(app_name, model_name)
     except:
         messages.error(request, f"Model {model_name} not found")
         return redirect('admin_dashboard')
 
     obj = get_object_or_404(model, pk=pk)
-    ModelForm = modelform_factory(model, exclude=[])
+
+    # Create dynamic form with excluded fields
+    excluded_fields = []
+    if model == User:
+        # Exclude sensitive fields for User model
+        excluded_fields = ['password', 'user_permissions', 'groups', 'last_login']
+
+    ModelForm = modelform_factory(model, exclude=excluded_fields)
 
     if request.method == 'POST':
         form = ModelForm(request.POST, request.FILES, instance=obj)
@@ -143,7 +201,10 @@ def model_edit(request, app_name, model_name, pk):
 def model_delete(request, app_name, model_name, pk):
     """Delete object view"""
     try:
-        model = apps.get_model(app_name, model_name)
+        if app_name == 'auth' and model_name == 'User':
+            model = User
+        else:
+            model = apps.get_model(app_name, model_name)
     except:
         return JsonResponse({'success': False, 'error': 'Model not found'})
 
