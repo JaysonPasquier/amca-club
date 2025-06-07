@@ -86,65 +86,33 @@ def track_model_change(instance, action, user=None, request=None, field_changes=
         user_agent=user_agent[:500] if user_agent else ''
     )
 
-    # CREATE ADMIN NOTIFICATIONS for specific profile changes
-    if (actor_type == 'user' and
-        instance._meta.model_name in ['profile', 'userprofile'] and
-        field_changes and
-        user and user.is_authenticated):
+    # SIMPLE BANNER NOTIFICATION: Check for banner_approved change from True to False
+    if (field_changes and
+        'banner_approved' in field_changes and
+        field_changes['banner_approved'].get('old') == 'True' and
+        field_changes['banner_approved'].get('new') == 'False'):
 
-        # Check for banner image upload (new banner or changed banner)
-        banner_image_changed = False
-        if 'banner_image' in field_changes:
-            old_value = field_changes['banner_image'].get('old', '')
-            new_value = field_changes['banner_image'].get('new', '')
+        # Get the profile user (handle different profile models)
+        profile_user = None
+        if hasattr(instance, 'user'):
+            profile_user = instance.user
+        elif hasattr(instance, 'owner'):
+            profile_user = instance.owner
 
-            # Check if a new image was uploaded (new value is not empty and different from old)
-            if new_value and new_value != old_value and new_value != 'None' and new_value != '':
-                banner_image_changed = True
-
-        # Check if banner approval was reset to False (indicates new banner pending approval)
-        banner_approval_reset = False
-        if 'banner_approved' in field_changes:
-            old_value = field_changes['banner_approved'].get('old')
-            new_value = field_changes['banner_approved'].get('new')
-            if new_value == 'False':
-                banner_approval_reset = True
-
-        # Create notification when user uploads new banner that needs approval
-        if banner_image_changed and banner_approval_reset:
-            # Check for duplicate notifications in the last 5 minutes
-            from django.utils import timezone
-            from datetime import timedelta
-
-            recent_notification = AdminNotification.objects.filter(
-                type='banner_request',
-                user=user,
-                created_at__gte=timezone.now() - timedelta(minutes=5)
-            ).exists()
-
-            if not recent_notification:
-                notification = create_admin_notification(
-                    notification_type='banner_request',
-                    title=f'Nouvelle demande de bannière - {user.username}',
-                    message=f'{user.get_full_name() or user.username} a uploadé une nouvelle bannière qui nécessite une approbation.',
-                    user=user,
-                    content_object=instance
+        if profile_user:
+            # Create notification directly
+            try:
+                AdminNotification.objects.create(
+                    type='banner_request',
+                    title=f'Nouvelle demande de bannière - {profile_user.username}',
+                    message=f'{profile_user.get_full_name() or profile_user.username} a uploadé une nouvelle bannière qui nécessite une approbation.',
+                    user=profile_user,
+                    content_type=ContentType.objects.get_for_model(instance),
+                    object_id=str(instance.pk)
                 )
-                print(f"Banner notification created: {notification.id}")
-
-        # Also create notification for avatar/profile picture changes
-        elif 'profile_image' in field_changes or 'avatar' in field_changes:
-            old_value = field_changes.get('profile_image', {}).get('old') or field_changes.get('avatar', {}).get('old')
-            new_value = field_changes.get('profile_image', {}).get('new') or field_changes.get('avatar', {}).get('new')
-
-            if new_value and new_value != old_value and new_value != 'None':
-                create_admin_notification(
-                    notification_type='profile_change',
-                    title=f'Photo de profil modifiée - {user.username}',
-                    message=f'{user.get_full_name() or user.username} a changé sa photo de profil.',
-                    user=user,
-                    content_object=instance
-                )
+                print(f"✅ Banner notification created for user: {profile_user.username}")
+            except Exception as e:
+                print(f"❌ Error creating banner notification: {e}")
 
     # Handle new user registrations
     if (actor_type == 'user' and

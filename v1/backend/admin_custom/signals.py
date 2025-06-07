@@ -34,6 +34,9 @@ def store_original_values(sender, instance, **kwargs):
 @receiver(post_save)
 def track_model_save(sender, instance, created, **kwargs):
     """Track model saves with proper change detection"""
+    from .utils import track_model_change
+    from threading import local
+
     # Get user and request from thread local storage
     current_request = getattr(_local, 'request', None)
     user = getattr(current_request, 'user', None) if current_request else None
@@ -59,6 +62,9 @@ def track_model_save(sender, instance, created, **kwargs):
                         'old': old_str,
                         'new': new_str
                     }
+                    # Debug specific banner_approved changes
+                    if field_name == 'banner_approved':
+                        print(f"🔍 Banner approval change detected for {instance}: {old_str} → {new_str}")
 
     track_model_change(instance, action, user, current_request, field_changes)
 
