@@ -4,9 +4,19 @@
 <div class="admin-card">
     <div class="admin-card-header">
         <h2>
-            <i class="fas fa-edit"></i>
-            {% if object %}Modifier{% else %}Ajouter{% endif %} {{ model.verbose_name }}
+            {% if object %}
+                <i class="fas fa-edit"></i>
+                Modifier {{ model.verbose_name }}
+            {% else %}
+                <i class="fas fa-plus"></i>
+                Ajouter {{ model.verbose_name }}
+            {% endif %}
         </h2>
+        <a href="{% url 'admin_model_list' app_name=app_name model_name=model_name %}"
+           class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            Retour à la liste
+        </a>
     </div>
     <div class="admin-card-body">
         <form method="post" enctype="multipart/form-data">
@@ -17,23 +27,33 @@
                     {{ field.label_tag }}
                     {{ field }}
                     {% if field.help_text %}
-                        <small style="color: #666;">{{ field.help_text }}</small>
+                        <small style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; display: block;">
+                            <i class="fas fa-info-circle"></i>
+                            {{ field.help_text }}
+                        </small>
                     {% endif %}
                     {% if field.errors %}
-                        <div style="color: #e74c3c; font-size: 0.9rem;">
-                            {{ field.errors }}
+                        <div style="color: var(--danger-color); font-size: 0.9rem; margin-top: 0.25rem;">
+                            {% for error in field.errors %}
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
                         </div>
                     {% endif %}
                 </div>
             {% endfor %}
 
-            <div style="margin-top: 2rem;">
+            <div class="form-actions">
                 <button type="submit" class="btn btn-success">
-                    <i class="fas fa-save"></i> Enregistrer
+                    <i class="fas fa-save"></i>
+                    {% if object %}Modifier{% else %}Créer{% endif %}
                 </button>
                 <a href="{% url 'admin_model_list' app_name=app_name model_name=model_name %}"
-                   class="btn btn-secondary" style="margin-left: 1rem; background: #6c757d;">
-                    <i class="fas fa-times"></i> Annuler
+                   class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Annuler
                 </a>
             </div>
         </form>
