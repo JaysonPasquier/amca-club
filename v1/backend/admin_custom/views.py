@@ -18,18 +18,45 @@ def admin_dashboard(request):
 
     # Models to exclude (the ones you don't want to see)
     excluded_models = {
+        # Shop/Product related models (different possible app names)
         'shop.ProductCategory',
         'shop.Product',
         'shop.ProductColor',
         'shop.ProductImage',
         'shop.ProductSize',
         'shop.ProductVariation',
-        # Add other models you want to exclude here
+        'core.ProductCategory',
+        'core.Product',
+        'core.ProductColor',
+        'core.ProductImage',
+        'core.ProductSize',
+        'core.ProductVariation',
+        # Django built-in models we don't want to manage
         'admin.LogEntry',
         'auth.Permission',
         'auth.Group',
         'contenttypes.ContentType',
         'sessions.Session',
+        'django.contrib.admin.LogEntry',
+        'django.contrib.auth.Permission',
+        'django.contrib.auth.Group',
+        'django.contrib.contenttypes.ContentType',
+        'django.contrib.sessions.Session',
+    }
+
+    # Also exclude by model name regardless of app (as backup)
+    excluded_model_names = {
+        'ProductCategory',
+        'Product',
+        'ProductColor',
+        'ProductImage',
+        'ProductSize',
+        'ProductVariation',
+        'Permission',
+        'Group',
+        'ContentType',
+        'Session',
+        'LogEntry',
     }
 
     # Custom display names for models (French translations)
@@ -72,8 +99,12 @@ def admin_dashboard(request):
         for model in app_config.get_models():
             model_key = f"{app_name}.{model.__name__}"
 
-            # Skip excluded models
+            # Skip excluded models by full path
             if model_key in excluded_models:
+                continue
+
+            # Skip excluded models by name only
+            if model.__name__ in excluded_model_names:
                 continue
 
             # Skip User model as we already added it
