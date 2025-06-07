@@ -68,7 +68,7 @@ def admin_dashboard(request):
         'auth.User': 'Utilisateurs',
         'core.ClubInfo': 'Informations du Club',
         'core.Event': 'Événements',
-        'accounts.Profile': 'Profils Utilisateurs',
+        'accounts.UserProfile': 'Profils Utilisateurs',  # Changed from Profile to UserProfile
         'accounts.Newsletter': 'Abonnés Newsletter',
         'forum.Topic': 'Sujets du Forum',
         'forum.Post': 'Messages du Forum',
@@ -121,7 +121,7 @@ def admin_dashboard(request):
 
                 models_info.append({
                     'name': display_name,
-                    'model_name': model.__name__,
+                    'model_name': model.__name__,  # This will be UserProfile for the accounts.UserProfile model
                     'app_name': app_name,
                     'count': model.objects.count(),
                     'url_name': 'admin_model_list',

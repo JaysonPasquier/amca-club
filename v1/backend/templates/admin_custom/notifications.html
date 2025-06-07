@@ -73,7 +73,7 @@
                                             Voir le profil
                                         </a>
                                         {% if notification.content_object %}
-                                            <a href="{% url 'admin_model_edit' app_name='accounts' model_name='Profile' pk=notification.content_object.pk %}"
+                                            <a href="{% url 'admin_model_edit' app_name='accounts' model_name='UserProfile' pk=notification.content_object.pk %}"
                                                class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit"></i>
                                                 Modérer
