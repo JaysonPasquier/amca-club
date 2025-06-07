@@ -83,7 +83,16 @@ def create_admin_notification(notification_type, title, message, user=None, cont
 
     if content_object:
         content_type = ContentType.objects.get_for_model(content_object)
-        object_id = content_object.pk
+        # Handle different primary key types for notifications too
+        try:
+            object_id = content_object.pk
+            if isinstance(object_id, str):
+                try:
+                    object_id = int(object_id)
+                except (ValueError, TypeError):
+                    object_id = None  # Set to None if can't convert to int
+        except:
+            object_id = None
 
     AdminNotification.objects.create(
         type=notification_type,

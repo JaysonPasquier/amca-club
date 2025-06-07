@@ -373,28 +373,41 @@ def model_list(request, app_name, model_name):
     # Search support (simple, on char/text fields)
     search_query = request.GET.get('q', '')
     objects = model.objects.all()
+
     if search_query:
-        search_fields = [
-            f.name for f in model._meta.fields
-            if hasattr(f, 'get_internal_type') and f.get_internal_type() in ['CharField', 'TextField']
-        ]
+        search_fields = []
+        for f in model._meta.fields:
+            # Better field type detection
+            if hasattr(f, 'get_internal_type'):
+                field_type = f.get_internal_type()
+                if field_type in ['CharField', 'TextField', 'EmailField', 'URLField']:
+                    search_fields.append(f.name)
+
         if search_fields:
             q_objects = Q()
             for field in search_fields:
                 q_objects |= Q(**{f"{field}__icontains": search_query})
             objects = objects.filter(q_objects)
 
+    # Order by primary key (most recent first)
+    objects = objects.order_by('-pk')
+
     # Pagination
     paginator = Paginator(objects, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Display fields (exclude large text, relations)
-    display_fields = [
-        f.name for f in model._meta.fields
-        if f.get_internal_type() not in ['TextField', 'BinaryField']
-        and not isinstance(f, (ForeignKey, OneToOneField, ManyToManyField))
-    ][:6]  # Show up to 6 fields
+    # Display fields (exclude large text, relations, and sensitive fields)
+    display_fields = []
+    for f in model._meta.fields:
+        if (hasattr(f, 'get_internal_type') and
+            f.get_internal_type() not in ['TextField', 'BinaryField', 'FileField', 'ImageField'] and
+            not isinstance(f, (ForeignKey, OneToOneField, ManyToManyField)) and
+            f.name not in ['password', 'user_permissions', 'groups']):
+            display_fields.append(f.name)
+
+    # Limit to first 6 fields for better display
+    display_fields = display_fields[:6]
 
     context = {
         'model': model,
@@ -404,5 +417,6 @@ def model_list(request, app_name, model_name):
         'display_fields': display_fields,
         'search_query': search_query,
         'title': f"Liste des {model._meta.verbose_name_plural}",
+        'total_count': objects.count(),
     }
     return render(request, 'admin_custom/model_list.html', context)
