@@ -80,7 +80,8 @@ def admin_dashboard(request):
 
     # Add Django's User model first
     try:
-        user_model = User
+        from django.contrib.auth.models import User as AuthUser
+        user_model = AuthUser
         models_info.append({
             'name': 'Utilisateurs',
             'model_name': 'User',
@@ -250,9 +251,12 @@ def approve_banner(request, banner_id):
 @user_passes_test(is_admin)
 def model_add(request, app_name, model_name):
     """Add new object view with change tracking"""
+    # Import User model at the top to avoid scoping issues
+    from django.contrib.auth.models import User as AuthUser
+
     try:
         if app_name == 'auth' and model_name == 'User':
-            model = User
+            model = AuthUser
         else:
             model = apps.get_model(app_name, model_name)
     except:
@@ -260,7 +264,7 @@ def model_add(request, app_name, model_name):
         return redirect('admin_dashboard')
 
     excluded_fields = []
-    if model == User:
+    if model == AuthUser:
         excluded_fields = ['password', 'user_permissions', 'groups', 'last_login']
 
     ModelForm = modelform_factory(model, exclude=excluded_fields)
@@ -269,7 +273,7 @@ def model_add(request, app_name, model_name):
         form = ModelForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save()
-            if model == User and not obj.password:
+            if model == AuthUser and not obj.password:
                 obj.set_password('defaultpassword123')
                 obj.save()
 
@@ -293,9 +297,14 @@ def model_add(request, app_name, model_name):
 @user_passes_test(is_admin)
 def model_edit(request, app_name, model_name, pk):
     """Edit object view with change tracking"""
+    # Import User model at the top to avoid scoping issues
+    from django.contrib.auth.models import User as AuthUser
+    from accounts.models import SignupRequest
+    import logging
+
     try:
         if app_name == 'auth' and model_name == 'User':
-            model = User
+            model = AuthUser
         else:
             model = apps.get_model(app_name, model_name)
     except:
@@ -311,7 +320,7 @@ def model_edit(request, app_name, model_name, pk):
             original_values[field.name] = getattr(obj, field.name)
 
     excluded_fields = []
-    if model == User:
+    if model == AuthUser:
         excluded_fields = ['password', 'user_permissions', 'groups', 'last_login']
 
     ModelForm = modelform_factory(model, exclude=excluded_fields)
@@ -320,27 +329,24 @@ def model_edit(request, app_name, model_name, pk):
         form = ModelForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
             # Special handling for SignupRequest approval
-            from accounts.models import SignupRequest
             if model == SignupRequest and 'is_approved' in form.changed_data:
                 signup_request = obj
                 if form.cleaned_data.get('is_approved') and not signup_request.is_approved:
                     # User is being approved, create the actual User account
                     try:
                         from django.db import transaction
-                        from django.contrib.auth.models import User
-                        import logging
 
                         logger = logging.getLogger(__name__)
 
                         with transaction.atomic():
                             # Check if user already exists
-                            if User.objects.filter(username=signup_request.username).exists():
+                            if AuthUser.objects.filter(username=signup_request.username).exists():
                                 messages.error(request, f"L'utilisateur {signup_request.username} existe déjà.")
                                 return redirect('admin_model_edit', app_name=app_name, model_name=model_name, pk=pk)
 
                             # Create user with existing password hash
                             if signup_request.password:
-                                user = User.objects.create_user(
+                                user = AuthUser.objects.create_user(
                                     username=signup_request.username,
                                     email=signup_request.email,
                                     password=None,
@@ -351,7 +357,7 @@ def model_edit(request, app_name, model_name, pk):
                                 user.password = signup_request.password
                             else:
                                 # Create user with default password
-                                user = User.objects.create_user(
+                                user = AuthUser.objects.create_user(
                                     username=signup_request.username,
                                     email=signup_request.email,
                                     password='ChangeMe!2023',
@@ -407,9 +413,12 @@ def model_edit(request, app_name, model_name, pk):
 @user_passes_test(is_admin)
 def model_delete(request, app_name, model_name, pk):
     """Delete object view with change tracking"""
+    # Import User model at the top to avoid scoping issues
+    from django.contrib.auth.models import User as AuthUser
+
     try:
         if app_name == 'auth' and model_name == 'User':
-            model = User
+            model = AuthUser
         else:
             model = apps.get_model(app_name, model_name)
     except:
@@ -428,9 +437,13 @@ def model_delete(request, app_name, model_name, pk):
 @user_passes_test(is_admin)
 def model_list(request, app_name, model_name):
     """List objects for a given model (custom admin changelist)"""
+    # Import User model at the top to avoid scoping issues
+    from django.contrib.auth.models import User as AuthUser
+    from accounts.models import SignupRequest
+
     try:
         if app_name == 'auth' and model_name == 'User':
-            model = User
+            model = AuthUser
         else:
             model = apps.get_model(app_name, model_name)
     except Exception as e:
@@ -438,7 +451,6 @@ def model_list(request, app_name, model_name):
         return redirect('admin_dashboard')
 
     # Handle bulk actions for SignupRequest
-    from accounts.models import SignupRequest
     if request.method == 'POST' and model == SignupRequest:
         action = request.POST.get('action')
         if action == 'bulk_approve':
@@ -553,6 +565,7 @@ def bulk_approve_signup_requests(request):
     """Bulk approve signup requests"""
     if request.method == 'POST':
         from accounts.models import SignupRequest
+        from django.contrib.auth.models import User as AuthUser
         from django.db import transaction
         import logging
 
@@ -572,13 +585,13 @@ def bulk_approve_signup_requests(request):
                 if not signup_request.is_approved and not signup_request.is_rejected:
                     with transaction.atomic():
                         # Check if user already exists
-                        if User.objects.filter(username=signup_request.username).exists():
+                        if AuthUser.objects.filter(username=signup_request.username).exists():
                             logger.warning(f"User {signup_request.username} already exists. Skipping.")
                             continue
 
                         # Create user with existing password hash
                         if signup_request.password:
-                            user = User.objects.create_user(
+                            user = AuthUser.objects.create_user(
                                 username=signup_request.username,
                                 email=signup_request.email,
                                 password=None,
@@ -587,7 +600,7 @@ def bulk_approve_signup_requests(request):
                             )
                             user.password = signup_request.password
                         else:
-                            user = User.objects.create_user(
+                            user = AuthUser.objects.create_user(
                                 username=signup_request.username,
                                 email=signup_request.email,
                                 password='ChangeMe!2023',
