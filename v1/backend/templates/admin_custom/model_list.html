@@ -23,10 +23,40 @@
             </form>
         </div>
 
+        <!-- Bulk Actions for SignupRequest -->
+        {% if model_name == 'SignupRequest' %}
+        <div class="bulk-actions" style="margin: 20px 0; padding: 15px; background-color: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+            <form method="post" id="bulk-form">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="bulk_approve">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <button type="button" onclick="selectAll()" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-check-square"></i>
+                        Tout sélectionner
+                    </button>
+                    <button type="button" onclick="selectNone()" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-square"></i>
+                        Tout désélectionner
+                    </button>
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir approuver les demandes sélectionnées ?')" class="btn btn-success btn-sm">
+                        <i class="fas fa-user-check"></i>
+                        Approuver les demandes sélectionnées
+                    </button>
+                    <span id="selected-count" style="color: var(--text-secondary);">0 sélectionné(s)</span>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+
         <div class="table-container">
             <table class="table">
                 <thead>
                     <tr>
+                        {% if model_name == 'SignupRequest' %}
+                            <th style="width: 40px;">
+                                <input type="checkbox" id="select-all-checkbox" onchange="toggleSelectAll()">
+                            </th>
+                        {% endif %}
                         {% for field in fields %}
                             <th>{{ field.verbose_name }}</th>
                         {% endfor %}
@@ -36,6 +66,12 @@
                 <tbody>
                     {% for obj_data in objects_with_values %}
                         <tr>
+                            {% if model_name == 'SignupRequest' %}
+                                <td>
+                                    <input type="checkbox" name="selected_items" value="{{ obj_data.object.pk }}"
+                                           form="bulk-form" class="item-checkbox" onchange="updateSelectedCount()">
+                                </td>
+                            {% endif %}
                             {% for field_value in obj_data.field_values %}
                                 <td>{{ field_value }}</td>
                             {% endfor %}
@@ -56,7 +92,7 @@
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="{{ fields|length|add:1 }}" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                            <td colspan="{% if model_name == 'SignupRequest' %}{{ fields|length|add:2 }}{% else %}{{ fields|length|add:1 }}{% endif %}" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                                 <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
                                 {% if search_query %}
                                     Aucun résultat trouvé pour "{{ search_query }}"
@@ -105,4 +141,64 @@
 
 <!-- CSRF Token for delete operations -->
 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+<script>
+// JavaScript for bulk actions
+function selectAll() {
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    checkboxes.forEach(checkbox => checkbox.checked = true);
+    updateSelectedCount();
+}
+
+function selectNone() {
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    checkboxes.forEach(checkbox => checkbox.checked = false);
+    document.getElementById('select-all-checkbox').checked = false;
+    updateSelectedCount();
+}
+
+function toggleSelectAll() {
+    const selectAllCheckbox = document.getElementById('select-all-checkbox');
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    checkboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
+    updateSelectedCount();
+}
+
+function updateSelectedCount() {
+    const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
+    const count = checkedBoxes.length;
+    document.getElementById('selected-count').textContent = count + ' sélectionné(s)';
+
+    // Update the "select all" checkbox state
+    const allCheckboxes = document.querySelectorAll('.item-checkbox');
+    const selectAllCheckbox = document.getElementById('select-all-checkbox');
+    if (selectAllCheckbox) {
+        selectAllCheckbox.checked = count === allCheckboxes.length && count > 0;
+    }
+}
+
+// Existing delete function
+function confirmDelete(url, objectName) {
+    if (confirm(`Êtes-vous sûr de vouloir supprimer "${objectName}" ?`)) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('input[name="csrfmiddlewaretoken"]').value,
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Erreur lors de la suppression: ' + (data.error || 'Erreur inconnue'));
+            }
+        })
+        .catch(error => {
+            alert('Erreur lors de la suppression: ' + error);
+        });
+    }
+}
+</script>
 {% endblock %}

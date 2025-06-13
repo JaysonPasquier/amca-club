@@ -319,6 +319,63 @@ def model_edit(request, app_name, model_name, pk):
     if request.method == 'POST':
         form = ModelForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
+            # Special handling for SignupRequest approval
+            from accounts.models import SignupRequest
+            if model == SignupRequest and 'is_approved' in form.changed_data:
+                signup_request = obj
+                if form.cleaned_data.get('is_approved') and not signup_request.is_approved:
+                    # User is being approved, create the actual User account
+                    try:
+                        from django.db import transaction
+                        from django.contrib.auth.models import User
+                        import logging
+
+                        logger = logging.getLogger(__name__)
+
+                        with transaction.atomic():
+                            # Check if user already exists
+                            if User.objects.filter(username=signup_request.username).exists():
+                                messages.error(request, f"L'utilisateur {signup_request.username} existe déjà.")
+                                return redirect('admin_model_edit', app_name=app_name, model_name=model_name, pk=pk)
+
+                            # Create user with existing password hash
+                            if signup_request.password:
+                                user = User.objects.create_user(
+                                    username=signup_request.username,
+                                    email=signup_request.email,
+                                    password=None,
+                                    first_name=signup_request.first_name,
+                                    last_name=signup_request.last_name,
+                                )
+                                # Set the hashed password directly
+                                user.password = signup_request.password
+                            else:
+                                # Create user with default password
+                                user = User.objects.create_user(
+                                    username=signup_request.username,
+                                    email=signup_request.email,
+                                    password='ChangeMe!2023',
+                                    first_name=signup_request.first_name,
+                                    last_name=signup_request.last_name,
+                                )
+
+                            # Make sure user is active
+                            user.is_active = True
+                            user.save()
+
+                            # Update profile
+                            if hasattr(user, 'profile'):
+                                profile = user.profile
+                                profile.is_approved = True
+                                profile.save()
+
+                            logger.info(f"Successfully created user {user.username} via custom admin")
+                            messages.success(request, f"Utilisateur {user.username} créé et approuvé avec succès!")
+
+                    except Exception as e:
+                        messages.error(request, f"Erreur lors de la création de l'utilisateur: {str(e)}")
+                        return redirect('admin_model_edit', app_name=app_name, model_name=model_name, pk=pk)
+
             # Track changes
             field_changes = {}
             for field_name, old_value in original_values.items():
@@ -379,6 +436,13 @@ def model_list(request, app_name, model_name):
     except Exception as e:
         messages.error(request, f"Model {model_name} introuvable ({e})")
         return redirect('admin_dashboard')
+
+    # Handle bulk actions for SignupRequest
+    from accounts.models import SignupRequest
+    if request.method == 'POST' and model == SignupRequest:
+        action = request.POST.get('action')
+        if action == 'bulk_approve':
+            return bulk_approve_signup_requests(request)
 
     # Search support (simple, on char/text fields)
     search_query = request.GET.get('q', '')
@@ -483,3 +547,77 @@ def model_list(request, app_name, model_name):
     print(f"DEBUG: Objects with values count: {len(objects_with_values)}")
 
     return render(request, 'admin_custom/model_list.html', context)
+
+@user_passes_test(is_admin)
+def bulk_approve_signup_requests(request):
+    """Bulk approve signup requests"""
+    if request.method == 'POST':
+        from accounts.models import SignupRequest
+        from django.db import transaction
+        import logging
+
+        logger = logging.getLogger(__name__)
+
+        selected_ids = request.POST.getlist('selected_items')
+        if not selected_ids:
+            messages.error(request, "Aucune demande sélectionnée.")
+            return redirect('admin_model_list', app_name='accounts', model_name='SignupRequest')
+
+        success_count = 0
+        error_count = 0
+
+        for request_id in selected_ids:
+            try:
+                signup_request = SignupRequest.objects.get(id=request_id)
+                if not signup_request.is_approved and not signup_request.is_rejected:
+                    with transaction.atomic():
+                        # Check if user already exists
+                        if User.objects.filter(username=signup_request.username).exists():
+                            logger.warning(f"User {signup_request.username} already exists. Skipping.")
+                            continue
+
+                        # Create user with existing password hash
+                        if signup_request.password:
+                            user = User.objects.create_user(
+                                username=signup_request.username,
+                                email=signup_request.email,
+                                password=None,
+                                first_name=signup_request.first_name,
+                                last_name=signup_request.last_name,
+                            )
+                            user.password = signup_request.password
+                        else:
+                            user = User.objects.create_user(
+                                username=signup_request.username,
+                                email=signup_request.email,
+                                password='ChangeMe!2023',
+                                first_name=signup_request.first_name,
+                                last_name=signup_request.last_name,
+                            )
+
+                        user.is_active = True
+                        user.save()
+
+                        # Update profile
+                        if hasattr(user, 'profile'):
+                            profile = user.profile
+                            profile.is_approved = True
+                            profile.save()
+
+                        # Mark request as approved
+                        signup_request.is_approved = True
+                        signup_request.save()
+
+                        success_count += 1
+                        logger.info(f"Successfully approved user {user.username} via bulk action")
+
+            except Exception as e:
+                error_count += 1
+                logger.error(f"Error approving request {request_id}: {str(e)}")
+
+        if success_count > 0:
+            messages.success(request, f"{success_count} demande(s) d'inscription approuvée(s).")
+        if error_count > 0:
+            messages.error(request, f"{error_count} demande(s) ont échoué.")
+
+    return redirect('admin_model_list', app_name='accounts', model_name='SignupRequest')
