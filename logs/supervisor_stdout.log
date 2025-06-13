@@ -301,3 +301,356 @@ Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/m
 Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
 Using settings module: amca.settings
 Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 23, 2025 - 08:27:35
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 21:14:58
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 21:18:45
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 21:21:28
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 21:37:52
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 21:39:33
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 21:41:12
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:03:42
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:04:55
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:08:24
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:11:51
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:13:32
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+DEBUG: Total User objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>, <User: Davidc>, <User: soline.dn>, <User: Marina-Pasquier>, <User: Jeremy-Pasquier>, <User: JaysonPasquier>, <User: Eric-Pasquier>]
+DEBUG: Display fields: ['id', 'last_login', 'is_superuser', 'username', 'first_name', 'last_name']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Total Newsletter objects before filtering: 7
+DEBUG: Objects after ordering: 7
+DEBUG: First few objects: [<Newsletter: mattieu.mx@gmail.com>, <Newsletter: giselechapotat@gmail.com>, <Newsletter: davidc147159@gmail.com>]
+DEBUG: Page object count: 7
+DEBUG: Page object list: [<Newsletter: mattieu.mx@gmail.com>, <Newsletter: giselechapotat@gmail.com>, <Newsletter: davidc147159@gmail.com>, <Newsletter: drddaa74@gmail.com>, <Newsletter: pasquierjayson888@gmail.com>, <Newsletter: Shop74@dbmail.com>, <Newsletter: denissoline2409@gmail.com>]
+DEBUG: Display fields: ['id', 'email', 'date_subscribed', 'is_active']
+DEBUG: Context total_count: 7
+DEBUG: Context filtered_count: 7
+DEBUG: Total Newsletter objects before filtering: 7
+DEBUG: Objects after ordering: 7
+DEBUG: First few objects: [<Newsletter: mattieu.mx@gmail.com>, <Newsletter: giselechapotat@gmail.com>, <Newsletter: davidc147159@gmail.com>]
+DEBUG: Page object count: 7
+DEBUG: Page object list: [<Newsletter: mattieu.mx@gmail.com>, <Newsletter: giselechapotat@gmail.com>, <Newsletter: davidc147159@gmail.com>, <Newsletter: drddaa74@gmail.com>, <Newsletter: pasquierjayson888@gmail.com>, <Newsletter: Shop74@dbmail.com>, <Newsletter: denissoline2409@gmail.com>]
+DEBUG: Display fields: ['id', 'email', 'date_subscribed', 'is_active']
+DEBUG: Context total_count: 7
+DEBUG: Context filtered_count: 7
+DEBUG: Total ForumTopic objects before filtering: 2
+DEBUG: Objects after ordering: 2
+DEBUG: First few objects: [<ForumTopic: Sortie demain Avoriaz>, <ForumTopic: Member #2>]
+DEBUG: Page object count: 2
+DEBUG: Page object list: [<ForumTopic: Sortie demain Avoriaz>, <ForumTopic: Member #2>]
+DEBUG: Display fields: ['id', 'title', 'created_at', 'updated_at', 'slug', 'is_locked']
+DEBUG: Context total_count: 2
+DEBUG: Context filtered_count: 2
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:15:17
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+DEBUG: Total ForumTopic objects before filtering: 2
+DEBUG: Objects after ordering: 2
+DEBUG: First few objects: [<ForumTopic: Sortie demain Avoriaz>, <ForumTopic: Member #2>]
+DEBUG: Page object count: 2
+DEBUG: Page object list: [<ForumTopic: Sortie demain Avoriaz>, <ForumTopic: Member #2>]
+DEBUG: Display fields: ['id', 'title', 'created_at', 'updated_at', 'slug', 'is_locked']
+DEBUG: Context total_count: 2
+DEBUG: Context filtered_count: 2
+DEBUG: Objects with values count: 2
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:23:52
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:27:00
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:32:59
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total SignupRequest objects before filtering: 7
+DEBUG: Objects after ordering: 7
+DEBUG: First few objects: [<SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>, <SignupRequest: Enzo Iannarilli - 06-05-2025>]
+DEBUG: Page object count: 7
+DEBUG: Page object list: [<SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>, <SignupRequest: Enzo Iannarilli - 06-05-2025>, <SignupRequest: David Carron - 05-05-2025>, <SignupRequest: Soline Denis - 02-05-2025>, <SignupRequest: Marina Pasquier - 27-04-2025>, <SignupRequest: Jeremy Pasquier - 13-04-2025>]
+DEBUG: Display fields: ['id', 'first_name', 'last_name', 'email', 'username', 'date_requested']
+DEBUG: Context total_count: 7
+DEBUG: Context filtered_count: 7
+DEBUG: Objects with values count: 7
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2025 - 23:35:59
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+🔍 Banner approval change detected for Jayson Pasquier - Développeur: False → True
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+🔍 Banner approval change detected for Jayson Pasquier - Développeur: True → False
+✅ Banner notification created for user: JaysonPasquier
+DEBUG: Total UserProfile objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<UserProfile: Benjamin Ristord - Membre>, <UserProfile: Mattieu Mouroux - Membre>, <UserProfile: Enzo Iannarilli - Membre>, <UserProfile: David Carron - Membre>, <UserProfile: Soline Denis - Membre>, <UserProfile: Marina Pasquier - Administratif>, <UserProfile: Jeremy Pasquier - Fondateur>, <UserProfile: Jayson Pasquier - Développeur>, <UserProfile: Eric Pasquier - Co-Fondateur>]
+DEBUG: Display fields: ['id', 'member_id', 'role', 'is_approved', 'date_created', 'last_login']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
