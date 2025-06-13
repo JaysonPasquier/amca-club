@@ -776,3 +776,79 @@ DEBUG: Display fields: ['id', 'email', 'date_subscribed', 'is_active']
 DEBUG: Context total_count: 10
 DEBUG: Context filtered_count: 10
 DEBUG: Objects with values count: 10
+Python path: ['/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend', '/usr/lib/python312.zip', '/usr/lib/python3.12', '/usr/lib/python3.12/lib-dynload', '/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages']
+Using settings module: amca.settings
+Using media directory: /var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/media
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 13, 2025 - 13:11:42
+Django version 4.2.7, using settings 'amca.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Created notification: Nouvelle demande d'inscription for user: None
+DEBUG: Total SignupRequest objects before filtering: 8
+DEBUG: Objects after ordering: 8
+DEBUG: First few objects: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>]
+DEBUG: Page object count: 8
+DEBUG: Page object list: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>, <SignupRequest: Enzo Iannarilli - 06-05-2025>, <SignupRequest: David Carron - 05-05-2025>, <SignupRequest: Soline Denis - 02-05-2025>, <SignupRequest: Marina Pasquier - 27-04-2025>, <SignupRequest: Jeremy Pasquier - 13-04-2025>]
+DEBUG: Display fields: ['id', 'first_name', 'last_name', 'email', 'username', 'date_requested']
+DEBUG: Context total_count: 8
+DEBUG: Context filtered_count: 8
+DEBUG: Objects with values count: 8
+DEBUG: Total SignupRequest objects before filtering: 8
+DEBUG: Objects after ordering: 8
+DEBUG: First few objects: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>]
+DEBUG: Page object count: 8
+DEBUG: Page object list: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>, <SignupRequest: Enzo Iannarilli - 06-05-2025>, <SignupRequest: David Carron - 05-05-2025>, <SignupRequest: Soline Denis - 02-05-2025>, <SignupRequest: Marina Pasquier - 27-04-2025>, <SignupRequest: Jeremy Pasquier - 13-04-2025>]
+DEBUG: Display fields: ['id', 'first_name', 'last_name', 'email', 'username', 'date_requested']
+DEBUG: Context total_count: 8
+DEBUG: Context filtered_count: 8
+DEBUG: Objects with values count: 8
+DEBUG: Total User objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>, <User: Davidc>, <User: soline.dn>, <User: Marina-Pasquier>, <User: Jeremy-Pasquier>, <User: JaysonPasquier>, <User: Eric-Pasquier>]
+DEBUG: Display fields: ['id', 'last_login', 'is_superuser', 'username', 'first_name', 'last_name']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+Created notification: Nouvelle demande d'inscription for user: None
+DEBUG: Total User objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>, <User: Davidc>, <User: soline.dn>, <User: Marina-Pasquier>, <User: Jeremy-Pasquier>, <User: JaysonPasquier>, <User: Eric-Pasquier>]
+DEBUG: Display fields: ['id', 'last_login', 'is_superuser', 'username', 'first_name', 'last_name']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total SignupRequest objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>, <SignupRequest: Enzo Iannarilli - 06-05-2025>, <SignupRequest: David Carron - 05-05-2025>, <SignupRequest: Soline Denis - 02-05-2025>, <SignupRequest: Marina Pasquier - 27-04-2025>, <SignupRequest: Jeremy Pasquier - 13-04-2025>]
+DEBUG: Display fields: ['id', 'first_name', 'last_name', 'email', 'username', 'date_requested']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total SignupRequest objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: teste testeteste - 13-06-2025>, <SignupRequest: Benjamin Ristord - 22-05-2025>, <SignupRequest: Mattieu Mouroux - 22-05-2025>, <SignupRequest: Enzo Iannarilli - 06-05-2025>, <SignupRequest: David Carron - 05-05-2025>, <SignupRequest: Soline Denis - 02-05-2025>, <SignupRequest: Marina Pasquier - 27-04-2025>, <SignupRequest: Jeremy Pasquier - 13-04-2025>]
+DEBUG: Display fields: ['id', 'first_name', 'last_name', 'email', 'username', 'date_requested']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9
+DEBUG: Total User objects before filtering: 9
+DEBUG: Objects after ordering: 9
+DEBUG: First few objects: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>]
+DEBUG: Page object count: 9
+DEBUG: Page object list: [<User: Benben>, <User: Mouks777>, <User: Enzo.ia>, <User: Davidc>, <User: soline.dn>, <User: Marina-Pasquier>, <User: Jeremy-Pasquier>, <User: JaysonPasquier>, <User: Eric-Pasquier>]
+DEBUG: Display fields: ['id', 'last_login', 'is_superuser', 'username', 'first_name', 'last_name']
+DEBUG: Context total_count: 9
+DEBUG: Context filtered_count: 9
+DEBUG: Objects with values count: 9

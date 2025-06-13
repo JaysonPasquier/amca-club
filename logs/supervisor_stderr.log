@@ -49171,3 +49171,28 @@ Not Found: /media/default.png
 [13/Jun/2025 13:17:17] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
 [13/Jun/2025 13:17:17] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
 [13/Jun/2025 13:17:17] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/admin_custom/views.py changed, reloading.
+Watching for file changes with StatReloader
+[13/Jun/2025 13:21:52] "GET / HTTP/1.1" 200 39909
+[13/Jun/2025 13:21:56] "GET /custom-admin/ HTTP/1.1" 200 34991
+[13/Jun/2025 13:21:59] "GET /custom-admin/notifications/ HTTP/1.1" 200 34696
+[13/Jun/2025 13:22:00] "GET /custom-admin/ HTTP/1.1" 200 34991
+[13/Jun/2025 13:22:04] "GET /custom-admin/notifications/ HTTP/1.1" 200 34696
+Internal Server Error: /custom-admin/accounts/SignupRequest/20/edit/
+Traceback (most recent call last):
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/fresh_venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/www/vhosts/amc-f.com/httpdocs/amca-club/v1/backend/admin_custom/views.py", line 314, in model_edit
+    if model == User:
+                ^^^^
+UnboundLocalError: cannot access local variable 'User' where it is not associated with a value
+[13/Jun/2025 13:22:08] "GET /custom-admin/accounts/SignupRequest/20/edit/ HTTP/1.1" 500 68800
+Not Found: /robots.txt
+[13/Jun/2025 13:22:31] "GET /robots.txt HTTP/1.1" 404 4374
