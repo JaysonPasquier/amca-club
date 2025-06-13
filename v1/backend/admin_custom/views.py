@@ -69,6 +69,7 @@ def admin_dashboard(request):
         'core.ClubInfo': 'Informations du Club',
         'core.Event': 'Événements',
         'accounts.UserProfile': 'Profils Utilisateurs',  # Changed from Profile to UserProfile
+        'accounts.SignupRequest': 'Demandes d\'inscription',
         'accounts.Newsletter': 'Abonnés Newsletter',
         'forum.Topic': 'Sujets du Forum',
         'forum.Post': 'Messages du Forum',
@@ -137,11 +138,16 @@ def admin_dashboard(request):
     pending_notifications = AdminNotification.objects.filter(is_read=False).count()
     pending_banners = BannerRequest.objects.filter(status='pending').count()
 
+    # Get pending signup requests count
+    from accounts.models import SignupRequest
+    pending_signup_requests = SignupRequest.objects.filter(is_approved=False, is_rejected=False).count()
+
     context = {
         'models_info': models_info,
         'title': 'Administration',
         'pending_notifications': pending_notifications,
         'pending_banners': pending_banners,
+        'pending_signup_requests': pending_signup_requests,
     }
     return render(request, 'admin_custom/dashboard.html', context)
 

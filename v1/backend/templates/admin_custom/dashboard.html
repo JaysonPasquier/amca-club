@@ -14,7 +14,7 @@
     </div>
     <div class="admin-card-body">
         <!-- Notifications Section -->
-        {% if pending_notifications or pending_banners %}
+        {% if pending_notifications or pending_banners or pending_signup_requests %}
             <div class="alert alert-warning" style="margin-bottom: 2rem;">
                 <h4><i class="fas fa-bell"></i> Actions requises</h4>
                 <div style="display: flex; gap: 1rem; margin-top: 1rem;">
@@ -28,6 +28,12 @@
                         <a href="{% url 'banner_requests' %}" class="btn btn-info">
                             <i class="fas fa-image"></i>
                             {{ pending_banners }} bannière{{ pending_banners|pluralize }} en attente
+                        </a>
+                    {% endif %}
+                    {% if pending_signup_requests %}
+                        <a href="{% url 'admin_model_list' app_name='accounts' model_name='SignupRequest' %}" class="btn btn-success">
+                            <i class="fas fa-user-plus"></i>
+                            {{ pending_signup_requests }} demande{{ pending_signup_requests|pluralize }} d'inscription
                         </a>
                     {% endif %}
                 </div>

@@ -93,6 +93,19 @@
                                             Approuver
                                         </a>
                                     </div>
+                                {% elif notification.type == 'user_registration' and notification.content_object %}
+                                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                        <a href="{% url 'admin_model_list' app_name='accounts' model_name='SignupRequest' %}"
+                                           class="btn btn-primary btn-sm">
+                                            <i class="fas fa-list"></i>
+                                            Voir toutes les demandes
+                                        </a>
+                                        <a href="{% url 'admin_model_edit' app_name='accounts' model_name='SignupRequest' pk=notification.content_object.pk %}"
+                                           class="btn btn-success btn-sm">
+                                            <i class="fas fa-user-check"></i>
+                                            Approuver la demande
+                                        </a>
+                                    </div>
                                 {% endif %}
                             </div>
 

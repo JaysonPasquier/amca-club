@@ -77,6 +77,17 @@ def track_model_save(sender, instance, created, **kwargs):
                 message=f'Un nouvel utilisateur {instance.username} s\'est inscrit.',
                 user=instance
             )
+        elif sender._meta.label == 'accounts.SignupRequest':
+            # Import here to avoid circular imports
+            from accounts.models import SignupRequest
+            if sender == SignupRequest:
+                create_admin_notification(
+                    notification_type='user_registration',
+                    title='Nouvelle demande d\'inscription',
+                    message=f'{instance.first_name} {instance.last_name} ({instance.username}) a soumis une demande d\'inscription.',
+                    user=None,
+                    content_object=instance
+                )
 
 @receiver(post_delete)
 def track_model_delete(sender, instance, **kwargs):
